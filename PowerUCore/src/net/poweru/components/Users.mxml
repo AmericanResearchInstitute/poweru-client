@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UsersCode
+	xmlns="net.poweru.components.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%"
+	creationPolicy="all"
+	creationComplete="{onCreationComplete(event)}"
+	cornerRadius="15">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Container;
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+			
+			[Bindable]
+			[Embed('/../assets/org.png')]
+			public var myFolderIcon:Class;
+		]]>
+	</mx:Script>
+	
+	<mx:TabNavigator width="100%" height="100%">
+		<mx:HBox label="Edit" height="100%" width="100%">
+			<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+				<mx:columns>
+					<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
+					<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
+					<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
+					<mx:AdvancedDataGridColumn labelFunction="labelUsername" headerText="Username" sortCompareFunction="{SortCompareFunctionFactory(['default_username_and_domain', 'username'])}"/>
+				</mx:columns>
+			</mx:AdvancedDataGrid>
+			<mx:VBox width="35%" height="100%">
+				<mx:HBox>
+					<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEUSER, '']))}"/>
+					<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+					<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPUSER, '']))}"/>
+				</mx:HBox>
+				<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+					<mx:Form>
+						<mx:FormItem label="Title:">
+							<mx:Label text="{grid.selectedItem.title}" />
+						</mx:FormItem>
+						<mx:FormItem label="First:">
+							<mx:Label text="{grid.selectedItem.first_name}" />
+						</mx:FormItem>
+						<mx:FormItem label="Last:">
+							<mx:Label text="{grid.selectedItem.last_name}" />
+						</mx:FormItem>
+						<mx:FormItem label="Email:">
+							<mx:Label text="{grid.selectedItem.email}" />
+						</mx:FormItem>
+						<mx:FormItem label="Phone:">
+							<mx:Label text="{grid.selectedItem.phone}" />
+						</mx:FormItem>
+						<mx:FormItem label="Status:">
+							<mx:Label text="{grid.selectedItem.status}" />
+						</mx:FormItem>
+						<mx:FormItem label="Groups:" width="100%">
+							<mx:List dataProvider="{grid.selectedItem.groups}" labelField="name" width="100%"/>
+						</mx:FormItem>
+						<mx:FormItem label="Orgs:">
+							<mx:DataGrid dataProvider="{grid.selectedItem.owned_userorgroles}">
+								<mx:columns>
+									<mx:DataGridColumn headerText="Organization" dataField="organization_name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
+									<mx:DataGridColumn headerText="Role" dataField="role_name" sortCompareFunction="{SortCompareFunctionFactory(['role_name'])}"/>
+								</mx:columns>
+							</mx:DataGrid>
+						</mx:FormItem>
+					</mx:Form>
+					<mx:HBox id="buttonBox">
+						<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSER, grid.selectedItem.id]))}"/>
+						<!--The following button will be orphaned and garbage collected unless someone
+							sets includeInLayout to true before onCreationComplete gets run. -->
+						<mx:Button label="Viewing Activity" id="viewingActivityButton" includeInLayout="false" enabled="false"/>
+					</mx:HBox>	
+				</mx:Panel>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:HBox label="Bulk Operations">
+			<mx:VBox width="65%" height="100%">
+				<mx:TitleWindow title="Filters" width="100%" dropShadowEnabled="false">
+					<mx:HBox>
+						<mx:FormItem label="Status:">
+							<mx:ComboBox id="statusFilterCB" change="bulkDataSet.refresh()"/>
+						</mx:FormItem>
+						<mx:FormItem label="Organization:">
+							<mx:ComboBox id="orgFilterCB" labelField="name" change="bulkDataSet.refresh()"/>
+						</mx:FormItem>
+					</mx:HBox>
+				</mx:TitleWindow>
+				<mx:AdvancedDataGrid id="bulkGrid" width="100%" height="100%" allowMultipleSelection="true">
+					<mx:columns>
+						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
+						<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
+						<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
+						<mx:AdvancedDataGridColumn dataField="status" headerText="Status" sortCompareFunction="{SortCompareFunctionFactory(['status'])}"/>
+						<mx:AdvancedDataGridColumn dataField="alleged_organization" headerText="Claimed Org" sortCompareFunction="{SortCompareFunctionFactory(['alleged_organization'])}"/>
+					</mx:columns>
+				</mx:AdvancedDataGrid>
+			</mx:VBox>
+			<mx:Accordion width="35%" height="100%" id="accordion">
+				<mx:VBox width="100%" label="Add to Organization" horizontalAlign="center">
+					<mx:Spacer height="8"/>
+					<mx:VBox width="90%">
+						<mx:Tree id="organizationTree" labelField="name" width="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
+						<mx:Form>
+							<mx:FormItem label="Role">
+								<mx:ComboBox id="orgRoleCB" labelField="name"/>
+							</mx:FormItem>
+							<mx:FormItem label="Set Active" toolTip="For new users in the system, it is often helpful to put them in an organization and make them active at the same time.  Leaving this unchecked will mean their status is not changed.">
+								<mx:CheckBox id="setActiveCB"/>
+							</mx:FormItem>
+							<mx:Button label="Add to Org" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; organizationTree.selectedItem != null}" click="onAddToOrg(event)"/>
+						</mx:Form>
+					</mx:VBox>
+				</mx:VBox>
+				<mx:VBox width="100%" label="Add to Group" horizontalAlign="center">
+					<mx:Form>
+						<mx:FormItem label="Group:">
+							<mx:ComboBox id="groupCB" labelField="name"/>
+						</mx:FormItem>
+						<mx:Button id="addToGroupButton" label="Add to Group" enabled="{bulkGrid.selectedItems.length > 0}" click="onAddToGroup(event)"/>
+					</mx:Form>
+				</mx:VBox>
+				<mx:VBox width="100%" label="Change Status" id="changeStatus">
+					<mx:Form>
+						<mx:FormItem label="Status:">
+							<mx:ComboBox id="statuses"/>
+						</mx:FormItem>
+						<mx:Button label="Set Status" enabled="{bulkGrid.selectedItems.length > 0}" click="onUpdateStatus(event)"/>
+					</mx:Form>
+				</mx:VBox>
+			</mx:Accordion>
+		</mx:HBox>
+	</mx:TabNavigator>
+</UsersCode>

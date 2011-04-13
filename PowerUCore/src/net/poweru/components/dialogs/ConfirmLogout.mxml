@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BaseDialog title="Confirm Logout"
+	xmlns="net.poweru.components.dialogs.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Label width="100%" id="message" text="Log Out?" textAlign="center"/>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="OK" click="dispatchEvent(new ViewEvent(ViewEvent.CONFIRM))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</BaseDialog>

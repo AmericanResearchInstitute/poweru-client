@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow
+	title="Organization Help"
+	width="100%"
+	minWidth="450"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	showCloseButton="true"
+	close="PopUpManager.removePopUp(this)">		
+
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+		]]>
+	</mx:Script>
+	
+	<mx:VBox backgroundColor="#FFFFFF" width="100%">
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Purpose of Organizations" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="Organizations are similar to Groups in that both are collections of users. The important distinction is that Organizations tend to model formal, real world structures, while Groups are just collections of people within the system. For example, a Sales Organization might include all sales representatives of a company. A member of this organization might attend a class along with other users from other organizations. The class members would all be part of the same group while enrolled in the class." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Organizations are Required" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="Every user must be a member of one or more organizations. Users may be removed from or added to organizations by administrators. Users may belong to an unlimited number of organizations." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Organizations protect name space" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="Organizations allow for name space protection by preventing unanticipated name collisions. For example, without organizations there could be only one user named 'John Smith' but with organizations there may be a unique 'John Smith' in every organization." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Organizations identify reporting structure" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+		</mx:HBox>
+		<mx:Text text="By associating users with organizations, we include the possibility of identifying managers and reporting structure. Roll-up reporting is an optional system feature." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Automatic Assignment" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+		</mx:HBox>
+		<mx:Text text="When a user self-registers, the system attempts to automatically assign organization membership by processing an email confirmation. A list of uthorized email domains may be attached to each organization for this purpose." width="100%" fontSize="11"/>
+	</mx:VBox>
+</mx:TitleWindow>
+
+
+

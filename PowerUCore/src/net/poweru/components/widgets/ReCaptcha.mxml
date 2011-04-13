@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas
+	width="340"
+	height="174"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	backgroundColor="#D2E9FA"
+	borderStyle="solid"
+	borderThickness="0"
+	cornerRadius="10"
+	addedToStage="if (response != null) response.text = ''"
+	>
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Canvas
+		height="77"
+		width="320"
+		backgroundColor="#FFFFFF"
+		x="10"
+		y="10"
+		cornerRadius="10"
+		borderStyle="solid"
+		borderThickness="0">
+		<mx:Image id="image" x="10" y="10" height="57" width="300"/>
+	</mx:Canvas>
+	
+	<mx:TextInput id="response" x="10" y="117"/>
+	<mx:StringValidator id="validator" source="{response}" property="text" required="true"/>
+	<mx:Button label="Load New" x="242" y="117" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+	<mx:Label text="Powered by reCAPTCHA" x="98.5" y="147"/>
+	<mx:Label text="Type the two words:" x="10" y="93"/>
+</mx:Canvas>

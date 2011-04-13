@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow
+	title="User Help"
+	width="100%"
+	minWidth="450"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	showCloseButton="true"
+	close="PopUpManager.removePopUp(this)">		
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+		]]>
+	</mx:Script>
+	
+	<mx:VBox backgroundColor="#FFFFFF" width="100%">
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Roles Groups and Organizations" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="Users are granted permissions to perform certain functions based on their role. The scope of where (or upon what) a function may be performed is limted by group membership and organization affiliation." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Organizations are Required" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="Every user must be a member of one or more organizations. Users may be removed from or added to organizations by administrators. Users may belong to an unlimited number of organizations." width="100%" fontSize="11"/>
+		
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="User Status Values" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+		</mx:HBox>
+		<mx:Text text="When a user submits a registration form, they are instantly created with PENDING status. Upon manual or automatic approval they are granted ACTIVE status. Administrators may set a user status to SUSPENDED which will prevent them from logging in. SuperAdmins may also set INACTIVE status which hides the user. The system never completely deletes users in order to preserve historical data and dependency relationships." width="100%" fontSize="11"/>
+				
+		<mx:HBox backgroundColor="#E5FFFF" width="100%">
+			<mx:Text text="Automatic Assignment" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+		</mx:HBox>
+		<mx:Text text="When a user self-registers, the system attempts to automatically assign organization membership by processing an email confirmation. A list of uthorized email domains may be attached to each organization for this purpose." width="100%" fontSize="11"/>
+	</mx:VBox>
+</mx:TitleWindow>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SelfRegisterCode
+	title="Self Register"
+	horizontalAlign="center"
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:user="net.poweru.model.user.*"
+	xmlns:User="net.poweru.generated.model.User.*"
+	xmlns:DomainAffiliation="net.poweru.generated.model.DomainAffiliation.*"
+	xmlns:widgets="net.poweru.components.widgets.*"
+	xmlns:utils="net.poweru.utils.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Constants;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Title" width="{firstFormItem.width}">
+			<widgets:TitleComboBox id="titleInput" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="First" id="firstFormItem">
+			<User:FirstNameInput id="first"/>
+		</mx:FormItem>
+		<mx:FormItem label="Last">
+			<User:LastNameInput id="last"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email">
+			<User:EmailInput id="email"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone">
+			<User:PhoneInput id="phone"/>
+		</mx:FormItem>
+		<mx:FormItem label="Username">
+			<DomainAffiliation:UsernameInput id="username"/>
+		</mx:FormItem>
+		<mx:FormItem label="Password" required="true">
+			<mx:TextInput id="password1" displayAsPassword="true"/>
+		</mx:FormItem>
+		<mx:FormItem label="Password again" required="true">
+			<mx:TextInput id="password2" displayAsPassword="true"/>
+		</mx:FormItem>
+		<mx:FormItem label="Organization" toolTip="If you wish to be associated with an organization, please type it's name here. Your membership will be confirmed at a later time.">
+			<mx:TextInput id="organization"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+	<widgets:ReCaptcha id="captcha"/>
+	
+	<mx:Array id="validators">
+		<utils:StringEqualityValidator source="{password2}" property="text" foreignObject="{password1}" foreignProperty="text"/>
+		<mx:StringValidator source="{password1}" property="text" required="true"/>
+	</mx:Array>
+	
+	<mx:HBox>
+		<mx:Button label="Submit" id="submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</SelfRegisterCode>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CreateGroupCode
+	title="Create Group"
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:Group="net.poweru.generated.model.Group.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Group:NameInput id="nameInput"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</CreateGroupCode>

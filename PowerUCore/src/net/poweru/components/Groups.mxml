@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GroupsCode xmlns="net.poweru.components.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+			import mx.effects.Fade;
+		]]>
+	</mx:Script>
+	
+	<mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0"/>
+	<mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0"/>
+
+	<mx:List id="groupsList" dataProvider="{dataProvider}" labelField="name" height="100%" minWidth="200"/>
+	<mx:VBox>
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEGROUP, null]))}"/>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:Button label="{groupHelp.visible ? 'Close Help' : 'Help'}"
+				click="{groupHelp.visible = !groupHelp.visible}"/>
+
+		</mx:HBox>
+		<mx:TitleWindow title="Group Details" id="detailsTW">
+			<mx:Form>
+				<mx:FormItem label="Group Name:" fontWeight="bold" backgroundColor="#FFFFFF">
+					<mx:Label text="{groupsList.selectedItem.name}"/>
+				</mx:FormItem>
+				<mx:FormItem label="Categories:">
+					<mx:List id="categoryList" labelField="name" minWidth="220" dataProvider="{groupsList.selectedItem.categories}"/>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
+		</mx:TitleWindow>
+		<mx:TitleWindow title="Group Help" id="groupHelp" width="{detailsTW.width}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="false">
+			<mx:VBox backgroundColor="#FFFFFF" width="100%">
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Groups are collections of users. " fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+				</mx:HBox>
+				<mx:Text text="Every user may be a member of one or more groups. Users may be removed from or added to groups by administrators. Users may belong to an unlimited &#xa;number of groups." width="100%" fontSize="11"/>
+				
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Groups are associated with Video Categories" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+				</mx:HBox>
+				<mx:Text text="Using the Edit option under Group Details an administrator may associate one or more video categories with a group." width="100%" fontSize="11"/>
+				
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Groups control access to Video Content" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+				</mx:HBox>
+				<mx:Text text="Users are able to see videos in all of the categories associated with the groups they are members of." width="100%" fontSize="11"/>
+				
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Default Group" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+				</mx:HBox>
+				<mx:Text text="Every user is added as a member of the Default group when the user is created in the system. Users may be removed from the default group." width="100%" fontSize="11"/>
+			</mx:VBox>
+		</mx:TitleWindow>
+	</mx:VBox>
+</GroupsCode>

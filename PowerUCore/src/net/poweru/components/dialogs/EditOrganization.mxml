@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditOrganizationCode
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:Organization="net.poweru.generated.model.Organization.*"
+	xmlns:parts="net.poweru.components.parts.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Organization:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email Domains:">
+			<mx:DataGrid id="orgEmailDomains" dataProvider="{orgEmailDomainDataSet}">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Domain" dataField="email_domain" sortCompareFunction="{SortCompareFunctionFactory(['email_domain'])}"/>
+					<mx:DataGridColumn headerText="Role" dataField="effective_role_name" sortCompareFunction="{SortCompareFunctionFactory(['effective_role_name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox horizontalAlign="right" width="100%">
+		  <parts:AddEmailDomain id="addEmailDomain"/>
+		</mx:HBox>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</EditOrganizationCode>

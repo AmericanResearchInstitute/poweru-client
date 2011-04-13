@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BaseCRUDDialogCode
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.StateNames;
+		]]>
+	</mx:Script>
+	
+	<states>
+		<mx:State name="{StateNames.USER"/>
+		<mx:State name="{StateNames.SUPERADMIN}"/>
+		<mx:State name="{StateNames.CATEGORYMANAGER}" basedOn="{StateNames.SUPERADMIN}"/>	
+	</states>
+</BaseCRUDDialogCode>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VideoPlayerCode
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.widgets.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:dialogs="net.poweru.components.dialogs.*">
+	<mx:UIComponent id="videoComponent" height="100%" width="100%"/>
+	<mx:HBox id="controlBox" height="30" width="100%" enabled="false">
+		<mx:UIComponent id="controlComponent" height="30" width="100%"/>
+	</mx:HBox>
+	<dialogs:VideoDialog id="videoDialog" includeInLayout="false"/>
+</VideoPlayerCode>

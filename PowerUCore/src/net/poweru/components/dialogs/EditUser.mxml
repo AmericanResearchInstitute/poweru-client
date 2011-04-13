@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditUserCode
+	title="Edit User"
+	cornerRadius="16"
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:widgets="net.poweru.components.widgets.*"
+	xmlns:utils="net.poweru.utils.*"
+	xmlns:User="net.poweru.generated.model.User.*"
+	xmlns:parts="net.poweru.components.parts.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Constants;
+			import net.poweru.StateNames;
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}" width="100%" id="form">
+		<mx:FormItem label="Title" width="{firstFormItem.width}">
+			<widgets:TitleComboBox id="titleInput" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="First" id="firstFormItem">
+			<User:FirstNameInput id="first"/>
+		</mx:FormItem>
+		<mx:FormItem label="Last">
+			<User:LastNameInput id="last"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email">
+			<User:EmailInput id="email"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone">
+			<User:PhoneInput id="phone"/>
+		</mx:FormItem>
+		<mx:FormItem id="statusFI" label="Status">
+			<mx:ComboBox id="statusInput" />
+		</mx:FormItem>
+		<mx:FormItem id="groupsFI" label="Groups" maxHeight="250" verticalScrollPolicy="auto" width="100%">
+			<widgets:MultipleSelect id="groups" labelField="name" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Organizations:">
+			<mx:DataGrid id="orgs" dataProvider="{orgDataSet}">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Organization" dataField="organization_name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
+					<mx:DataGridColumn headerText="Role" dataField="role_name" sortCompareFunction="{SortCompareFunctionFactory(['role_name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox horizontalAlign="right" width="100%" id="addOrganizationFI">
+			<parts:AddOrganization id="addOrganization"/>
+		</mx:HBox>
+		<mx:FormItem id="oldPassword" label="Old Password">
+			<mx:TextInput id="oldPasswordInput" displayAsPassword="true"/>
+		</mx:FormItem>
+		<mx:FormItem id="password1" label="New Password">
+			<mx:TextInput id="password1Input" displayAsPassword="true"/>
+		</mx:FormItem>
+		<mx:FormItem id="password2" label="New Password Again">
+			<mx:TextInput id="password2Input" displayAsPassword="true"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+
+	<states>
+		<mx:State name="{StateNames.USER}">
+			<mx:RemoveChild target="{statusFI}"/>
+			<mx:RemoveChild target="{groupsFI}"/>
+			<mx:RemoveChild target="{addOrganizationFI}"/>
+		</mx:State>
+		<mx:State name="{StateNames.STUDENT}" basedOn="{StateNames.USER}"/>
+		<mx:State name="{StateNames.SUPERADMIN}">
+			<mx:RemoveChild target="{oldPassword}"/>
+		</mx:State>
+		<mx:State name="{StateNames.CATEGORYMANAGER}" basedOn="{StateNames.USER}"/>
+	</states>
+	
+	<mx:Array id="validators">
+		<utils:StringEqualityValidator source="{password2Input}" property="text" foreignObject="{password1Input}" foreignProperty="text"/> 
+	</mx:Array>
+	
+</EditUserCode>

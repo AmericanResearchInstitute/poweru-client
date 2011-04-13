@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfirmDialogCode
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Label width="100%" text="{message}" textAlign="center"/>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="OK" click="dispatchEvent(new ViewEvent(ViewEvent.CONFIRM, data))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL, data))"/>
+	</mx:HBox>
+</ConfirmDialogCode>

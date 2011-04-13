@@ -1,0 +1,8 @@
+FLEX_HOME=/home/cchurch/opt/eclipse/Adobe Flex Builder 3 Plug-in/sdks/3.2.0
+APP_ROOT=/home/cchurch/workspace/flex/trunk/PowerUCore
+BUILD_OUTPUT_DIR=${APP_ROOT}/ant_build_output
+# whether to do incremental builds (if true, .swc.cache files will appear in the output directory)
+BUILD_INCREMENTAL=true
+LINK_REPORT_FILE=${BUILD_OUTPUT_DIR}/PowerUCore-link-report.xml
+DEBUG=true
+JVM_HEAP_SIZE=256m

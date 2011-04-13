@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:LoginCode
+	width="100%"
+	height="100%"
+	backgroundColor="#E7E7E7"
+	creationComplete="onCreationComplete(event)"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.code.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Username">
+			<mx:TextInput id="username"/>
+		</mx:FormItem>
+		<mx:FormItem label="Password">
+			<mx:TextInput id="password" displayAsPassword="true"/>
+		</mx:FormItem>
+		<mx:HBox>
+			<mx:Button id="submit" label="Submit" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT))"/>
+			<mx:Button label="Reset Password" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.RESETPASSWORD, username.text]))"/>
+			<mx:Button label="Register" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.SELFREGISTER]))"/>
+		</mx:HBox>
+	</mx:Form>
+	
+</code:LoginCode>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Ant build file for the PowerUCore Flex UI Library.
+
+    Author: Chris Church <cchurch@americanri.com>
+    Copyright 2011 American Research Institute, inc.
+-->
+
+<project name="PowerUCore" default="main">
+    <property file="build.properties"/>
+
+    <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+    <target name="main" depends="powerucore" />
+
+    <target name="clean">
+        <delete dir="${BUILD_OUTPUT_DIR}"/>
+    </target>
+
+    <target name="dist" depends="main" description="generate a releasable zip file appropriate for deployment">
+        <!--
+            This target is primarily intended for use by the continuous
+            integration system, and may fail if svn and the arisvn scripts
+            are not available.
+        -->
+        <exec executable="arisvn-lcrevfromurl" output="${BUILD_OUTPUT_DIR}/svn_revision">
+            <arg value="."/>
+        </exec>
+        <exec executable="svn" output="${BUILD_OUTPUT_DIR}/svn_info">
+            <arg value="info"/>
+        </exec>
+        <zip basedir="${BUILD_OUTPUT_DIR}" destfile="${BUILD_OUTPUT_DIR}/release.zip">
+            <exclude name="release.zip" />
+            <include name="**/*" />
+        </zip>
+    </target>
+
+    <target name="powerucore">
+        <mkdir dir="${BUILD_OUTPUT_DIR}"/>
+
+        <loadfile property="classes" srcFile="${APP_ROOT}/.flexLibProperties">
+            <filterchain>
+                <linecontains>
+                    <contains value="&lt;classEntry"/>
+               </linecontains>
+               <tokenfilter delimOutput=" ">
+                   <replacestring from="&lt;classEntry path=&quot;" to=""/>
+                   <replacestring from="&quot;/&gt;" to=""/>
+                   <trim/>
+                   <ignoreblank/>
+               </tokenfilter>
+            </filterchain>
+        </loadfile>
+        <!-- <echo message="classes is set to = ${classes}"/> -->
+
+        <compc output="${BUILD_OUTPUT_DIR}/PowerUCore.swc"
+               include-classes="${classes}"
+               link-report="${LINK_REPORT_FILE}"
+               incremental="${BUILD_INCREMENTAL}"
+               target-player="10.1.0"
+               accessible="false"
+               fork="true"
+               debug="${DEBUG}">
+            <jvmarg value="-Xmx${JVM_HEAP_SIZE}"/>
+            <source-path path-element="${FLEX_HOME}/frameworks"/>
+            <source-path path-element="${APP_ROOT}/src"/>
+            <source-path path-element="${APP_ROOT}/assets"/>
+            <compiler.library-path dir="${FLEX_HOME}/frameworks" append="true">
+                <include name="libs"/>
+                <include name="../bundles/{locale}"/>
+            </compiler.library-path>
+            <compiler.library-path dir="${APP_ROOT}" append="true">
+                <include name="libs"/>
+            </compiler.library-path>
+        </compc>
+    </target>
+
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CreateUserCode
+	creationComplete="onCreationComplete(event)"
+	title="Create User"
+	cornerRadius="16"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:User="net.poweru.generated.model.User.*"
+	xmlns:DomainAffiliation="net.poweru.generated.model.DomainAffiliation.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.validators.Validator;
+			import net.poweru.Constants;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Title" width="{firstFormItem.width}">
+			<widgets:TitleComboBox id="titleInput" width="100%"/>
+			<!--<mx:ComboBox id="titleInput" dataProvider="{Constants.HONORIFICS}" editable="true" width="100%"/>-->
+		</mx:FormItem>
+		<mx:FormItem label="First" id="firstFormItem">
+			<User:FirstNameInput id="first"/>
+		</mx:FormItem>
+		<mx:FormItem label="Last">
+			<User:LastNameInput id="last"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email">
+			<User:EmailInput id="email"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone">
+			<User:PhoneInput id="phone" />
+		</mx:FormItem>
+		<mx:FormItem label="Username">
+			<DomainAffiliation:UsernameInput id="username"/>
+		</mx:FormItem>
+		<mx:FormItem label="Password" required="true">
+			<mx:TextInput id="password"/>
+		</mx:FormItem>
+		<mx:FormItem label="Status">
+			<mx:ComboBox id="statusInput"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+	<mx:Array id="validators">
+		<mx:StringValidator source="{password}" property="text" required="true"/>
+	</mx:Array>
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</CreateUserCode>

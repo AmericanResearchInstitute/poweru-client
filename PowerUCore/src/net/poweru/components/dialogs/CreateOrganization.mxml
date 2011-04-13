@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CreateOrganizationCode
+	title="Create Organization"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:Organization="net.poweru.generated.model.Organization.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Organization:NameInput id="nameInput" />
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</CreateOrganizationCode>

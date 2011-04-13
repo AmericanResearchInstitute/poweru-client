@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MultipleSelectCode
+	xmlns="net.poweru.components.widgets.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:NumberValidator id="_validator" source="{selectedItemsDataSet}" property="length"/>
+</MultipleSelectCode>

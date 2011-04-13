@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddEmailDomainCode
+	xmlns="net.poweru.components.parts.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Button id="remove" label="Remove"/>
+	<mx:Button id="add" label="Add Email Domain" click="currentState='adding'"/>
+	
+	<states>
+		<mx:State name="adding">
+			<mx:RemoveChild target="{add}"/>
+			<mx:RemoveChild target="{remove}"/>
+			<mx:AddChild>
+			  <mx:TextInput id="emailDomainTI" change="orgRoleCB.dataProvider.refresh()"/>
+			</mx:AddChild>
+			<mx:AddChild>
+				<mx:ComboBox dataProvider="{orgRoleData}" labelField="name" id="orgRoleCB"/>
+			</mx:AddChild>
+			<mx:AddChild>
+				<mx:Button id="confirm" label="Confirm" click="currentState=''"/>
+			</mx:AddChild>
+		</mx:State>
+	</states>
+</AddEmailDomainCode>

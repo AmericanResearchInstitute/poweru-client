@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow
+	xmlns="net.poweru.components.dialog.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	showCloseButton="true"
+	resize="PopUpManager.centerPopUp(this)"
+	close="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))">
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+</mx:TitleWindow>

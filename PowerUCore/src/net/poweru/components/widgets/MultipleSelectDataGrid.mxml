@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MultipleSelectDataGridCode
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.widgets.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.CheckBox;
+		]]>
+	</mx:Script>
+	<columns>
+		<mx:DataGridColumn id="checkBoxColumn" headerText="" width="20" dataField="{SELECTEDSTRING}">
+			<mx:itemRenderer>
+				<mx:Component>
+					<mx:CheckBox/>
+				</mx:Component>
+			</mx:itemRenderer>
+		</mx:DataGridColumn>
+	</columns>
+	
+	<mx:NumberValidator id="_validator" source="{_selectedStuff}" property="length"/>
+</MultipleSelectDataGridCode>

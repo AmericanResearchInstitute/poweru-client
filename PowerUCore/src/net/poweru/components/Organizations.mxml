@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OrganizationsCode
+	width="100%"
+	height="100%"
+	xmlns="net.poweru.components.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:model="net.poweru.model.*">
+	<mx:Script>
+		<![CDATA[
+			import com.hillelcoren.components.autoComplete.classes.SelectedItem;
+			import net.poweru.events.ViewEvent;
+			import net.poweru.Places;
+			import net.poweru.utils.SortCompareFunctionFactory;
+			
+			[Bindable]
+			[Embed('/../assets/org.png')]
+			public var myFolderIcon:Class;
+		]]>
+	</mx:Script>
+	<mx:Tree id="organizations" labelField="name" change="onSelectionChange(event)" dragEnabled="true" dropEnabled="true" dragComplete="onDragComplete(event)" dragEnter="onDragBegin(event)" width="50%" height="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
+	
+	<mx:VBox width="50%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATION, null]))}"/>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPORGANIZATION, null]))}"/>
+		</mx:HBox>
+		<mx:TitleWindow title="Details" width="100%">
+			<mx:Form>
+				<mx:FormItem label="Name:">
+					<mx:Label id="orgName" text="{organizations.selectedItem.name}"/>
+				</mx:FormItem>
+				<mx:FormItem label="Email Domains:">
+					<mx:DataGrid id="orgEmailDomains" dataProvider="{organizations.selectedItem.org_email_domains}">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Domain" dataField="email_domain" sortCompareFunction="{SortCompareFunctionFactory(['email_domain'])}"/>
+							<mx:DataGridColumn headerText="Role" dataField="effective_role_name" sortCompareFunction="{SortCompareFunctionFactory(['effective_role_name'])}"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:Button label="Edit" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
+		</mx:TitleWindow>
+		<mx:TitleWindow title="Users" width="100%" height="100%">
+			<mx:AdvancedDataGrid id="users" height="100%" width="100%">
+				<mx:dataProvider>
+					<model:DataSet/>
+				</mx:dataProvider>
+				<mx:columns>
+					<mx:AdvancedDataGridColumn headerText="Last Name" labelFunction="lastNameLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'last_name'])}"/>
+					<mx:AdvancedDataGridColumn headerText="First Name" labelFunction="firstNameLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'first_name'])}"/>
+					<mx:AdvancedDataGridColumn headerText="Role" labelFunction="roleLabel" sortCompareFunction="{SortCompareFunctionFactory(['role', 'name'])}"/>
+				</mx:columns>
+			</mx:AdvancedDataGrid>
+			<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSER, users.selectedItem['owner']['id']]))}"/>
+		</mx:TitleWindow>
+	</mx:VBox>
+	
+</OrganizationsCode>

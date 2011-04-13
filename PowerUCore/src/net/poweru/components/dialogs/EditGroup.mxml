@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditGroupCode
+	creationComplete="onCreationComplete(event)"
+	xmlns="net.poweru.components.dialogs.code.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:widgets="net.poweru.components.widgets.*"
+	xmlns:Group="net.poweru.generated.model.Group.*">
+		<mx:Script>
+			<![CDATA[
+				import net.poweru.events.ViewEvent;
+			]]>
+		</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Group:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Categories" maxHeight="250" verticalScrollPolicy="auto" width="100%">
+			<widgets:MultipleSelect id="categoriesInput" labelField="name"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</EditGroupCode>
