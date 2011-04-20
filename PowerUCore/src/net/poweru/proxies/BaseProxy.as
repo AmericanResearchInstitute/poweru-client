@@ -1,15 +1,5 @@
 package net.poweru.proxies
 {
-	import net.poweru.NotificationNames;
-	import net.poweru.delegates.BaseDelegate;
-	import net.poweru.delegates.UserManagerDelegate;
-	import net.poweru.delegates.UtilsManagerDelegate;
-	import net.poweru.events.DelegateEvent;
-	import net.poweru.model.DataSet;
-	import net.poweru.utils.ExpectedResultCounter;
-	import net.poweru.utils.InputCollector;
-	import net.poweru.utils.PowerUResponder;
-	
 	import flash.events.Event;
 	import flash.events.HTTPStatusEvent;
 	import flash.events.IOErrorEvent;
@@ -21,11 +11,23 @@ package net.poweru.proxies
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 	
+	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.Base64Encoder;
 	import mx.utils.ObjectUtil;
+	
+	import net.poweru.ApplicationFacade;
+	import net.poweru.NotificationNames;
+	import net.poweru.delegates.BaseDelegate;
+	import net.poweru.delegates.UserManagerDelegate;
+	import net.poweru.delegates.UtilsManagerDelegate;
+	import net.poweru.events.DelegateEvent;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.ExpectedResultCounter;
+	import net.poweru.utils.InputCollector;
+	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -42,12 +44,14 @@ package net.poweru.proxies
 		protected var inputCollector:InputCollector;
 		protected var haveData:Boolean = false;
 		protected var saveCounter:ExpectedResultCounter;
+		protected var browserServicesProxy:BrowserServicesProxy;
 		
 		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, modelName:String = null, choiceFields:Array = null)
 		{
 			this.primaryDelegateClass = primaryDelegateClass;
 			super(proxyName, new DataSet());
 			loginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			this.updatedDataNotification = updatedDataNotification;
 			this.modelName = modelName;
 			inputCollector = new InputCollector(choiceFields);
@@ -213,6 +217,12 @@ package net.poweru.proxies
 			loader.load(request);
 		}
 		
+		public function uploadCSV(file:FileReference, modelName:String):void
+		{
+			uploadFile(file, {'model' : modelName}, browserServicesProxy.csvUploadURL, modelName);
+		}
+		
+		
 		// result handlers
 		
 		protected function onGetFilteredSuccess(data:ResultEvent):void
@@ -316,7 +326,6 @@ package net.poweru.proxies
 		protected function onHTTPStatusError(event:HTTPStatusEvent):void
 		{
 			trace('upload error: http status');
-			sendNotification(NotificationNames.UPLOADFAILED, proxyName);
 		}
 		
 		protected function onUploadError(event:IOErrorEvent):void

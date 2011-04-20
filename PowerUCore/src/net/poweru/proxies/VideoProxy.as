@@ -18,13 +18,11 @@ package net.poweru.proxies
 	{
 		public static var NAME:String = 'VideoProxy';
 		
-		protected var browserServicesProxy:BrowserServicesProxy; 
 		protected var videoCateogoryProxy:VideoCategoryProxy;
 		
 		public function VideoProxy()
 		{
 			super(NAME, VideoManagerDelegate, NotificationNames.UPDATEVIDEOS);
-			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			videoCateogoryProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(VideoCategoryProxy) as VideoCategoryProxy;
 		}
 		

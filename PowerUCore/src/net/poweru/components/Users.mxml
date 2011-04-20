@@ -33,6 +33,7 @@
 			<mx:VBox width="35%" height="100%">
 				<mx:HBox>
 					<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEUSER, '']))}"/>
+					<mx:Button label="Import" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTUSERS, '']))}"/>
 					<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 					<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPUSER, '']))}"/>
 				</mx:HBox>

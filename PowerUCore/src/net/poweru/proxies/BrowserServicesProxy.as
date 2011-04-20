@@ -1,7 +1,5 @@
 package net.poweru.proxies
 {
-	import net.poweru.NotificationNames;
-	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.external.ExternalInterface;
@@ -11,6 +9,8 @@ package net.poweru.proxies
 	import mx.managers.BrowserManager;
 	import mx.managers.IBrowserManager;
 	import mx.utils.UIDUtil;
+	
+	import net.poweru.NotificationNames;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -63,6 +63,11 @@ package net.poweru.proxies
 		public function get videoUploadURL():String
 		{
 			return backendURL + 'vod_aws/upload_video';
+		}
+		
+		public function get csvUploadURL():String
+		{
+			return backendURL + 'upload_csv';
 		}
 		
 		public function get videoThumbnailUploadURL():String

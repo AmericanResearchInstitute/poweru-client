@@ -17,6 +17,7 @@ package net.poweru
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
 	import net.poweru.components.dialogs.SelfRegister;
+	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.ConfirmLogoutMediator;
@@ -31,6 +32,7 @@ package net.poweru
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
+	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
 
 	public class ComponentFactory extends net.poweru.placemanager.ComponentFactory implements IComponentFactory
@@ -91,6 +93,10 @@ package net.poweru
 				
 				case Places.HELPORGANIZATION:
 					component = getOrCreate(name, HelpOrganization);
+					break;
+				
+				case Places.IMPORTUSERS:
+					component = getOrCreate(name, UploadCSV, UserUploadCSVMediator);
 					break;
 				
 				case Places.LOGIN:

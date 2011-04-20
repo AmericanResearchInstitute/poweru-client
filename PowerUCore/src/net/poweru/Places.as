@@ -26,6 +26,7 @@ package net.poweru
 		public static const EDITVIDEO:String = 'EditVideo';
 		public static const HELPORGANIZATION:String = 'HelpOrganization';
 		public static const HELPUSER:String = 'HelpUser';
+		public static const IMPORTUSERS:String = 'ImportUsers';
 		public static const RESETPASSWORD:String = 'ResetPassword';
 		public static const SELFREGISTER:String = 'SelfRegister';
 		public static const UPLOADVIDEO:String = 'UploadVideo';

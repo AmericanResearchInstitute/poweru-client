@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Use this for any type of CSV upload.  Just create a
+	unique mediator that subclasses BaseUploadCSVMediator.-->
+
+<code:UploadCSVCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:HBox>
+		<mx:TextInput id="fileLocation"/>
+		<mx:Button label="Select File" click="csvFile.browse([new FileFilter('CSV', '*.csv')])"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Button label="Submit" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, csvFile))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:UploadCSVCode>
