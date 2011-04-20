@@ -12,6 +12,7 @@ package net.poweru.components.dialogs.code
 	public class UploadCSVCode extends BaseCRUDDialog implements IUploadCSV
 	{
 		protected var csvFile:FileReference;
+		[Bindable]
 		public var fileLocation:TextInput;
 		
 		public function UploadCSVCode()

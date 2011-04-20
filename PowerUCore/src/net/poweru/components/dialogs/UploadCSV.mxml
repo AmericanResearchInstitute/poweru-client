@@ -8,6 +8,8 @@
 	xmlns:code="net.poweru.components.dialogs.code.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
+			
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -16,7 +18,10 @@
 		<mx:Button label="Select File" click="csvFile.browse([new FileFilter('CSV', '*.csv')])"/>
 	</mx:HBox>
 	<mx:HBox>
-		<mx:Button label="Submit" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, csvFile))"/>
+		<mx:Button label="Submit" click="if (Validator.validateAll(validators).length == 0) dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, csvFile));"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	<mx:Array id="validators">
+		<mx:StringValidator source="{fileLocation}" property="text" required="true"/>
+	</mx:Array>
 </code:UploadCSVCode>
