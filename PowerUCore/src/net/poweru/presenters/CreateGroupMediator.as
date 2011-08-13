@@ -1,6 +1,5 @@
 package net.poweru.presenters
 {
-	import net.poweru.presenters.BaseCreateDialogMediator;
 	import net.poweru.proxies.GroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;

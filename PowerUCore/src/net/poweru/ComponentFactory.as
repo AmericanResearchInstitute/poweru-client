@@ -2,11 +2,13 @@ package net.poweru
 {
 	import flash.display.DisplayObject;
 	
+	import net.poweru.components.Exams;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
 	import net.poweru.components.Users;
 	import net.poweru.components.dialogs.ConfirmLogout;
+	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
 	import net.poweru.components.dialogs.CreateUser;
@@ -21,12 +23,14 @@ package net.poweru
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.ConfirmLogoutMediator;
+	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
+	import net.poweru.presenters.ExamMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.OrganizationsMediator;
@@ -59,6 +63,10 @@ package net.poweru
 					component = getOrCreate(name, ConfirmLogout, ConfirmLogoutMediator);
 					break;
 				
+				case Places.CREATEEXAM:
+					component = getOrCreate(name, CreateExam, CreateExamMediator);
+					break;
+				
 				case Places.CREATEGROUP:
 					component = getOrCreate(name, CreateGroup, CreateGroupMediator);
 					break;
@@ -81,6 +89,10 @@ package net.poweru
 				
 				case Places.EDITUSER:
 					component = getOrCreate(name, EditUser, EditUserMediator);
+					break;
+				
+				case Places.EXAMS:
+					component = getOrCreate(name, Exams, ExamMediator);
 					break;
 				
 				case Places.GROUPS:
