@@ -12,6 +12,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
 	import net.poweru.components.dialogs.CreateUser;
+	import net.poweru.components.dialogs.EditExam;
 	import net.poweru.components.dialogs.EditGroup;
 	import net.poweru.components.dialogs.EditOrganization;
 	import net.poweru.components.dialogs.EditUser;
@@ -27,6 +28,7 @@ package net.poweru
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
 	import net.poweru.presenters.CreateUserMediator;
+	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
@@ -77,6 +79,10 @@ package net.poweru
 					
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
+					break;
+				
+				case Places.EDITEXAM:
+					component = getOrCreate(name, EditExam, EditExamMediator);
 					break;
 				
 				case Places.EDITGROUP:

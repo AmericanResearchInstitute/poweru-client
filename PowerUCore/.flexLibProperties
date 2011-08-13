@@ -141,6 +141,9 @@
     <classEntry path="net.poweru.components.dialogs.code.CreateExamCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateExam"/>
     <classEntry path="net.poweru.presenters.CreateExamMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditExamCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditExam"/>
+    <classEntry path="net.poweru.presenters.EditExamMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

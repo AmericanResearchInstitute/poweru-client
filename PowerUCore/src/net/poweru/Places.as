@@ -24,6 +24,7 @@ package net.poweru
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const EDITCATEGORY:String = 'EditCategory';
+		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
 		public static const EDITTASK:String = 'EditTask';
