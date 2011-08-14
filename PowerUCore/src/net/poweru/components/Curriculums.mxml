@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CurriculumsCode
+	width="100%"
+	height="100%"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+		]]>
+	</mx:Script>
+	<mx:List id="curriculumList" dataProvider="{dataProvider}" labelField="name" height="100%" minWidth="200"/>
+	<mx:VBox width="35%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUM, '']))}"/>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+		</mx:HBox>
+		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Form>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{curriculumList.selectedItem.name}" />
+				</mx:FormItem>
+				<mx:FormItem label="Tasks:">
+					<mx:List id="taskList" labelField="name" minWidth="220" dataProvider="{curriculumList.selectedItem.tasks}"/>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:HBox id="buttonBox">
+				<mx:Button label="Edit" id="editButton" enabled="{curriculumList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUM, curriculumList.selectedItem.id]))}"/>
+			</mx:HBox>
+		</mx:Panel>
+	</mx:VBox>
+</code:CurriculumsCode>

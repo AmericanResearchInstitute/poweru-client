@@ -2,6 +2,7 @@ package net.poweru
 {
 	import flash.display.DisplayObject;
 	
+	import net.poweru.components.Curriculums;
 	import net.poweru.components.Exams;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
@@ -28,6 +29,7 @@ package net.poweru
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
 	import net.poweru.presenters.CreateUserMediator;
+	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
@@ -79,6 +81,10 @@ package net.poweru
 					
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
+					break;
+				
+				case Places.CURRICULUMS:
+					component = getOrCreate(name, Curriculums, CurriculumsMediator);
 					break;
 				
 				case Places.EDITEXAM:

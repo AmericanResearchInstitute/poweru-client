@@ -4,6 +4,7 @@ package net.poweru
 	{
 		public static const ASSIGNMENTS:String = 'Assignments';
 		public static const CATEGORIES:String = 'Categories';
+		public static const CURRICULUMS:String = 'Curriculums';
 		public static const EXAMS:String = 'Exams';
 		public static const GROUPS:String = 'Groups';
 		public static const LOGIN:String = 'Login';
@@ -18,12 +19,14 @@ package net.poweru
 		// Dialogs
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATECATEGORY:String = 'CreateCategory';
+		public static const CREATECURRICULUM:String = 'CreateCurriculum';
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const EDITCATEGORY:String = 'EditCategory';
+		public static const EDITCURRICULUM:String = 'EditCurriculum';
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
