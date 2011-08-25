@@ -51,6 +51,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATECURRICULUMS,
+				NotificationNames.UPDATEADMINCURRICULUMSVIEW,
 			];
 		}
 		
@@ -66,6 +67,10 @@ package net.poweru.presenters
 				// Happens when we save a curriculum, and indicates that we should just refresh the view
 				case NotificationNames.UPDATECURRICULUMS:
 					populate();
+					break;
+				
+				case NotificationNames.UPDATEADMINCURRICULUMSVIEW:
+					curriculums.populate(notification.getBody() as Array);
 					break;
 			}
 		}

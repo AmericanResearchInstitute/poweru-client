@@ -147,6 +147,12 @@
     <classEntry path="net.poweru.components.code.CurriculumsCode"/>
     <classEntry path="net.poweru.components.Curriculums"/>
     <classEntry path="net.poweru.components.interfaces.ICurriculums"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateCurriculumCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateCurriculum"/>
+    <classEntry path="net.poweru.presenters.CreateCurriculumMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditCurriculumCode"/>
+    <classEntry path="net.poweru.presenters.EditCurriculumMediator"/>
+    <classEntry path="net.poweru.components.dialogs.EditCurriculum"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

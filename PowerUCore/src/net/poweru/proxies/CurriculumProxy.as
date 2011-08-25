@@ -1,6 +1,7 @@
 package net.poweru.proxies
 {
 	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.CurriculumManagerDelegate;
@@ -32,16 +33,18 @@ package net.poweru.proxies
 		
 		public function adminCurriculumsView():void
 		{
-			
+			new CurriculumManagerDelegate(new PowerUResponder(onAdminCurriculumsViewSuccess, onAdminCurriculumsViewError, onFault)).adminCurriculumsView(loginProxy.authToken);
 		}
 		
+		protected function onAdminCurriculumsViewSuccess(event:ResultEvent):void
+		{
+			data = new DataSet(event.result.value);
+			sendNotification(NotificationNames.UPDATEADMINCURRICULUMSVIEW, ObjectUtil.copy(event.result.value));
+		}
 		
-		// Result handlers
-		
-		override protected function onCreateSuccess(data:ResultEvent):void
+		protected function onAdminCurriculumsViewError(event:ResultEvent):void
 		{
 			
 		}
-		
 	}
 }

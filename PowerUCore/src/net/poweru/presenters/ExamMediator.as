@@ -78,7 +78,7 @@ package net.poweru.presenters
 						populate();
 					break;
 				
-				// Happens when we save a user, and indicates that we should just refresh the view
+				// Happens when we save an exam, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEEXAMS:
 					inputCollector.addInput('exams', (notification.getBody() as DataSet).toArray());
 					break;
