@@ -3,7 +3,7 @@ package net.poweru
 	import flash.display.DisplayObject;
 	
 	import net.poweru.components.Curriculums;
-	import net.poweru.components.Exams;
+	import net.poweru.components.Tasks;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
@@ -38,7 +38,7 @@ package net.poweru
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
-	import net.poweru.presenters.ExamMediator;
+	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.OrganizationsMediator;
@@ -116,7 +116,7 @@ package net.poweru
 					break;
 				
 				case Places.EXAMS:
-					component = getOrCreate(name, Exams, ExamMediator);
+					component = getOrCreate(name, Tasks, TasksMediator);
 					break;
 				
 				case Places.GROUPS:

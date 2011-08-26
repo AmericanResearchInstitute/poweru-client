@@ -10,12 +10,12 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IExams;
 	import net.poweru.model.DataSet;
 	
-	public class ExamsCode extends HBox implements IExams
+	public class TasksCode extends HBox implements IExams
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;
 		
-		public function ExamsCode()
+		public function TasksCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);

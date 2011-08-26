@@ -11,22 +11,23 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.ExamProxy;
+	import net.poweru.proxies.TaskProxy;
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class ExamMediator extends BaseMediator implements IMediator
+	public class TasksMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'ExamMediator';
+		public static const NAME:String = 'TasksMediator';
 		
 		protected var inputCollector:InputCollector;
 		protected var populatedSinceLastClear:Boolean;
 		
-		public function ExamMediator(viewComponent:Object)
+		public function TasksMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, ExamProxy);
+			super(NAME, viewComponent, TaskProxy);
 		}
 	
 		protected function get exams():IExams
@@ -34,9 +35,9 @@ package net.poweru.presenters
 			return viewComponent as IExams;
 		}
 		
-		protected function get examProxy():ExamProxy
+		protected function get taskProxy():TaskProxy
 		{
-			return primaryProxy as ExamProxy;
+			return primaryProxy as TaskProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -60,7 +61,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEEXAMS,
+				NotificationNames.UPDATETASKS,
 			];
 		}
 		
@@ -79,8 +80,8 @@ package net.poweru.presenters
 					break;
 				
 				// Happens when we save an exam, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEEXAMS:
-					inputCollector.addInput('exams', (notification.getBody() as DataSet).toArray());
+				case NotificationNames.UPDATETASKS:
+					inputCollector.addInput('tasks', (notification.getBody() as DataSet).toArray());
 					break;
 			}
 		}
@@ -102,17 +103,17 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			exams.populate(inputCollector.object['exams']);
+			exams.populate(inputCollector.object['tasks']);
 		}
 		
 		protected function populate():void
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['exams']);
+			inputCollector = new InputCollector(['tasks']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			examProxy.getAll(['name', 'title', 'description']);
+			taskProxy.getAll(['name', 'title', 'description', 'type']);
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

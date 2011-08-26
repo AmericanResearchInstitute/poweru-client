@@ -1,5 +1,7 @@
 package net.poweru.presenters
 {
+	import mx.core.mx_internal;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
@@ -17,11 +19,17 @@ package net.poweru.presenters
 			super(NAME, viewComponent, ExamProxy, Places.EDITEXAM);
 		}
 		
+		protected function get examProxy():ExamProxy
+		{
+			return primaryProxy as ExamProxy;
+		}
+		
 		override public function listNotificationInterests():Array
 		{
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE,
 			];
 		}
 		
@@ -39,13 +47,16 @@ package net.poweru.presenters
 					if (body != null && body == Places.EDITEXAM)
 						populate();
 					break;
+				
+				case NotificationNames.RECEIVEDONE:
+					onReceivedOne(notification);
+					break;
 			}
 		}
 		
 		override protected function populate():void
 		{
-			var initialData:Object = primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
-			editDialog.populate(initialData);
+			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 		}
 	}
 }

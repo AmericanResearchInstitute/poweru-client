@@ -145,9 +145,13 @@ package net.poweru.proxies
 			haveData = false;
 		}
 		
-		public function findByPK(pk:Number):Object
+		public function findByPK(pk:Number):void
 		{
-			return ObjectUtil.copy(dataSet.findByPK(pk));
+			var ret:Object = ObjectUtil.copy(dataSet.findByPK(pk));
+			if (ret == null)
+				getOne(pk, getAllFields);
+			else
+				sendNotification(NotificationNames.RECEIVEDONE, ret, getProxyName());
 		}
 		
 		public function getChoices():void
@@ -357,7 +361,7 @@ package net.poweru.proxies
 		{
 			var item:Object = event.result.value[0];
 			dataSet.addOrReplace(item);
-			sendNotification(NotificationNames.RECEIVEDONE, item, modelName);
+			sendNotification(NotificationNames.RECEIVEDONE, item, getProxyName());
 		}
 		
 		protected function onGetOneError(data:ResultEvent):void

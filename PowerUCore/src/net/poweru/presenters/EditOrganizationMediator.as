@@ -1,5 +1,7 @@
 package net.poweru.presenters
 {
+	import flash.events.Event;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -10,8 +12,6 @@ package net.poweru.presenters
 	import net.poweru.proxies.OrgEmailDomainProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.utils.InputCollector;
-	
-	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -37,6 +37,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE,
 				NotificationNames.UPDATEORGROLES
 			];
 		}
@@ -54,6 +55,11 @@ package net.poweru.presenters
 					var body:String = notification.getBody() as String;
 					if (body != null && body == placeName)
 						populate();
+					break;
+				
+				case NotificationNames.RECEIVEDONE:
+					if (notification.getType() == primaryProxy.getProxyName())
+						inputCollector.addInput('orgData', notification.getBody());
 					break;
 
 				case NotificationNames.UPDATEORGROLES:
@@ -111,17 +117,7 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['orgData', 'organization_roles']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			var pk:Number = initialDataProxy.getInitialData(placeName) as Number;
-			var initialData:Object = primaryProxy.findByPK(pk);
-
-			if (initialData == null)
-			{
-				// fields are not necessary since we override the proxy to use a view
-				primaryProxy.getOne(pk, []);
-			}
-			else
-			{
-				inputCollector.addInput('orgData', initialData);
-			}
+			primaryProxy.findByPK(pk);
 			orgRoleProxy.getAll(['name']);
 			primaryProxy.getChoices();
 		}

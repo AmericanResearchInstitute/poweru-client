@@ -33,6 +33,7 @@ package net.poweru
 		public static const UPDATECHOICES:String = 'UpdateChoices';
 		public static const UPDATECURRICULUMS:String = 'UpdateCurriculums';
 		public static const UPDATEEXAMS:String = 'UpdateExams';
+		public static const UPDATETASKS:String = 'UpdateTasks';
 		public static const UPDATEVODADMINGROUPSVIEW:String = 'UpdateVODAdminGroupsView';
 		public static const UPDATEGROUPS:String = 'UpdateGroups';
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';

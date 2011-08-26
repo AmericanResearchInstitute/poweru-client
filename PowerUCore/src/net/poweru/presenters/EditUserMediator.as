@@ -75,7 +75,7 @@ package net.poweru.presenters
 					break;
 					
 				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == 'User')
+					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('userData', notification.getBody());
 					break;
 				
@@ -131,17 +131,7 @@ package net.poweru.presenters
 			// If no PK was specified, assume we want the current user
 			if (pk <= 0)
 				pk = loginProxy.currentUser['id'];
-			var initialData:Object = primaryProxy.findByPK(pk);
-
-			if (initialData == null)
-			{
-				// fields are not necessary since we override the proxy to use a view
-				primaryProxy.getOne(pk, []);
-			}
-			else
-			{
-				inputCollector.addInput('userData', initialData);
-			}
+			primaryProxy.findByPK(pk);
 			groupProxy.getAll(['name']);
 			organizationProxy.getAll(['name']);
 			orgRoleProxy.getAll(['name']);

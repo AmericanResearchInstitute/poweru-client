@@ -21,6 +21,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE,
 			];
 		}
 		
@@ -38,13 +39,10 @@ package net.poweru.presenters
 					if (body != null && body == Places.EDITEXAM)
 						populate();
 					break;
+				case NotificationNames.RECEIVEDONE:
+					onReceivedOne(notification);
+					break;
 			}
-		}
-		
-		override protected function populate():void
-		{
-			var initialData:Object = primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
-			editDialog.populate(initialData);
 		}
 	}
 }

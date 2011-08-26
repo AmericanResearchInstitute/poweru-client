@@ -12,7 +12,8 @@ package net.poweru.proxies
 		
 		public function ExamProxy()
 		{
-			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS);
+			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, 'Exam');
+			getAllFields = ['name', 'description', 'title'];
 		}
 		
 		override public function create(argDict:Object):void

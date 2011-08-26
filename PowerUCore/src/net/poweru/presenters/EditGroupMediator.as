@@ -1,5 +1,9 @@
 package net.poweru.presenters
 {
+	import flash.events.Event;
+	
+	import mx.collections.ArrayCollection;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -8,6 +12,7 @@ package net.poweru.presenters
 	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.CategoryProxy;
 	import net.poweru.proxies.GroupProxy;
+	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -18,7 +23,7 @@ package net.poweru.presenters
 		public static const NAME:String = 'EditGroupMediator';
 		
 		protected var categoryProxy:CategoryProxy;
-		protected var initialData:Object;
+		protected var inputCollector:InputCollector;
 		
 		public function EditGroupMediator(viewComponent:Object)
 		{
@@ -31,6 +36,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE,
 				NotificationNames.UPDATECATEGORIES,
 			];
 		}
@@ -50,9 +56,14 @@ package net.poweru.presenters
 						populate();
 					break;
 				
+				case NotificationNames.RECEIVEDONE:
+					if (notification.getType() == primaryProxy.getProxyName())
+						inputCollector.addInput('group', notification.getBody());
+					break;
+				
 				case NotificationNames.UPDATECATEGORIES:
 					var categories:DataSet = notification.getBody() as DataSet;
-					editDialog.populate(initialData, categories.toArray());
+					inputCollector.addInput('categories', (notification.getBody() as ArrayCollection).toArray());
 					break;
 			}
 		}
@@ -67,9 +78,20 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			initialData = primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
+			if (inputCollector)
+				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
+			inputCollector = new InputCollector(['categories', 'group']);
+			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
+			
+			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 			// Need to fetch categories before actually populating.
 			categoryProxy.getAll(['name']);
+		}
+		
+		protected function onInputsCollected(event:Event):void
+		{
+			var inputCollector:InputCollector = event.target as InputCollector;
+			editDialog.populate(inputCollector.object['group'], inputCollector.object['categories']);
 		}
 		
 	}

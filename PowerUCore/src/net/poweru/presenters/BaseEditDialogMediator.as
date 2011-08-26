@@ -1,13 +1,14 @@
 package net.poweru.presenters
 {
-	import net.poweru.placemanager.InitialDataProxy;
+	import mx.events.FlexEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.events.ViewEvent;
-	
-	import mx.events.FlexEvent;
+	import net.poweru.placemanager.InitialDataProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
 
 	public class BaseEditDialogMediator extends BaseMediator implements IMediator
 	{
@@ -62,15 +63,23 @@ package net.poweru.presenters
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		
-		// override this in a subclass
+		// override this in a subclass, or at least listen for NotificationNames.RECEIVEDONE
 		protected function populate():void
 		{
-			editDialog.populate(primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number));
+			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 		}
 		
 		protected function onCancel(event:ViewEvent):void
 		{
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+		}
+		
+		// If this came from our primaryProxy, this will populate the editDialog
+		protected function onReceivedOne(notification:INotification):void
+		{
+			var type:String = notification.getType();
+			if (type == primaryProxy.getProxyName())
+				editDialog.populate(notification.getBody() as Object);
 		}
 		
 	}

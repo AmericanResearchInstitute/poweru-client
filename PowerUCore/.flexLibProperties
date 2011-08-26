@@ -10,13 +10,13 @@
     <classEntry path="net.poweru.commands.BackendReadyCommand"/>
     <classEntry path="net.poweru.commands.LogoutCommand"/>
     <classEntry path="net.poweru.commands.SpaceReadyCommand"/>
-    <classEntry path="net.poweru.components.Exams"/>
+    <classEntry path="net.poweru.components.Tasks"/>
     <classEntry path="net.poweru.components.Groups"/>
     <classEntry path="net.poweru.components.Login"/>
     <classEntry path="net.poweru.components.Organizations"/>
     <classEntry path="net.poweru.components.Users"/>
     <classEntry path="net.poweru.components.akamai.ControlBar"/>
-    <classEntry path="net.poweru.components.code.ExamsCode"/>
+    <classEntry path="net.poweru.components.code.TasksCode"/>
     <classEntry path="net.poweru.components.code.GroupsCode"/>
     <classEntry path="net.poweru.components.code.LoginCode"/>
     <classEntry path="net.poweru.components.code.MainCode"/>
@@ -107,7 +107,7 @@
     <classEntry path="net.poweru.presenters.EditGroupMediator"/>
     <classEntry path="net.poweru.presenters.EditOrganizationMediator"/>
     <classEntry path="net.poweru.presenters.EditUserMediator"/>
-    <classEntry path="net.poweru.presenters.ExamMediator"/>
+    <classEntry path="net.poweru.presenters.TasksMediator"/>
     <classEntry path="net.poweru.presenters.GroupsMediator"/>
     <classEntry path="net.poweru.presenters.LoginMediator"/>
     <classEntry path="net.poweru.presenters.MainMediator"/>
@@ -153,6 +153,8 @@
     <classEntry path="net.poweru.components.dialogs.code.EditCurriculumCode"/>
     <classEntry path="net.poweru.presenters.EditCurriculumMediator"/>
     <classEntry path="net.poweru.components.dialogs.EditCurriculum"/>
+    <classEntry path="net.poweru.delegates.TaskManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.TaskProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
