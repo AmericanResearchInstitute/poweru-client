@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:AddTasksToCurriculumCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	minWidth="1000"
+	minHeight="600">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+		]]>
+	</mx:Script>
+	<mx:Panel title="Available Tasks" width="100%" height="70%">
+		<mx:AdvancedDataGrid id="choicesGrid" width="100%" height="100%" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn dataField="name" headerText="Name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				<mx:AdvancedDataGridColumn dataField="title" headerText="Title" sortCompareFunction="{SortCompareFunctionFactory(['title'])}"/>
+				<mx:AdvancedDataGridColumn dataField="description" headerText="Description" sortCompareFunction="{SortCompareFunctionFactory(['description'])}"/>
+			</mx:columns>
+		</mx:AdvancedDataGrid>
+	</mx:Panel>
+	<mx:Panel title="Selected Tasks" width="100%" height="30%">
+		<mx:AdvancedDataGrid id="selectedGrid" width="100%" height="100%" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn dataField="name" headerText="Name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				<mx:AdvancedDataGridColumn dataField="title" headerText="Title" sortCompareFunction="{SortCompareFunctionFactory(['title'])}"/>
+				<mx:AdvancedDataGridColumn dataField="description" headerText="Description" sortCompareFunction="{SortCompareFunctionFactory(['description'])}"/>
+			</mx:columns>
+		</mx:AdvancedDataGrid>
+	</mx:Panel>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:AddTasksToCurriculumCode>

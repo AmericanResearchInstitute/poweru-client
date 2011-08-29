@@ -2,24 +2,21 @@ package net.poweru.components.code
 {
 	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
-	import mx.controls.List;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.ICurriculums;
+	import net.poweru.components.interfaces.ICurriculumEnrollments;
 	import net.poweru.model.DataSet;
 	
-	public class CurriculumsCode extends HBox implements ICurriculums
+	public class CurriculumEnrollmentsCode extends HBox implements ICurriculumEnrollments
 	{
 		[Bindable]
-		public var curriculumList:List;
+		protected var dataProvider:DataSet;
 		
-		[Bindable]
-		protected var dataProvider:ArrayCollection;
-		
-		public function CurriculumsCode()
+		public function CurriculumEnrollmentsCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			dataProvider = new DataSet();
 		}
 		
 		public function populate(data:Array):void
@@ -36,8 +33,16 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			curriculumList.dataProvider = new ArrayCollection();
-			dataProvider = new ArrayCollection();
+			dataProvider = new DataSet();
+		}
+		
+		protected function formatName(item:Object):String
+		{
+			var ret:String = '';
+			ret += item.last_name;
+			ret += ', ';
+			ret += item.first_name;
+			return ret;
 		}
 	}
 }

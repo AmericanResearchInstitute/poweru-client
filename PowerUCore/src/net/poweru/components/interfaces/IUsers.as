@@ -5,6 +5,6 @@ package net.poweru.components.interfaces
 	public interface IUsers
 	{
 		function clear():void;
-		function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object):void;
+		function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array):void;
 	}
 }

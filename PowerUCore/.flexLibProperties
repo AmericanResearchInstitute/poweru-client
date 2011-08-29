@@ -155,6 +155,20 @@
     <classEntry path="net.poweru.components.dialogs.EditCurriculum"/>
     <classEntry path="net.poweru.delegates.TaskManagerDelegate"/>
     <classEntry path="net.poweru.proxies.TaskProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.AddTasksToCurriculumCode"/>
+    <classEntry path="net.poweru.components.dialogs.AddTasksToCurriculum"/>
+    <classEntry path="net.poweru.presenters.AddTasksToCurriculumMediator"/>
+    <classEntry path="net.poweru.delegates.CurriculumTaskAssociationManagerDelegate"/>
+    <classEntry path="net.poweru.delegates.CurriculumEnrollmentManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.CurriculumEnrollmentProxy"/>
+    <classEntry path="net.poweru.components.code.CurriculumEnrollmentsCode"/>
+    <classEntry path="net.poweru.components.CurriculumEnrollments"/>
+    <classEntry path="net.poweru.presenters.CurriculumEnrollmentMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICurriculumEnrollments"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateCurriculumEnrollmentCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateCurriculumEnrollment"/>
+    <classEntry path="net.poweru.presenters.CreateCurriculumEnrollmentMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateCurriculumEnrollment"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -31,7 +31,7 @@ package net.poweru.presenters
 			return viewComponent as ISelfRegister;
 		}
 		
-		protected function populate():void
+		override protected function populate():void
 		{
 			loginProxy.getCaptchaChallenge();
 		}

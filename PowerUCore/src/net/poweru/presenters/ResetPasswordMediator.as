@@ -55,7 +55,7 @@ package net.poweru.presenters
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		
-		protected function populate():void
+		override protected function populate():void
 		{
 			var initialData:String = initialDataProxy.getInitialData(Places.RESETPASSWORD) as String;
 			resetPassword.populate(initialData);
@@ -94,12 +94,5 @@ package net.poweru.presenters
 					break;
 			}
 		}
-		
-		protected function onCreationComplete(event:FlexEvent):void
-		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			populate();
-		}
-		
 	}
 }

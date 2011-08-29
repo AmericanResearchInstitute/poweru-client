@@ -23,11 +23,13 @@
 					<mx:Label text="{curriculumList.selectedItem.name}" />
 				</mx:FormItem>
 				<mx:FormItem label="Tasks:">
-					<mx:List id="taskList" labelField="name" minWidth="220" dataProvider="{curriculumList.selectedItem.tasks}"/>
+					<mx:List id="taskList" labelField="task_name" minWidth="220" dataProvider="{curriculumList.selectedItem.curriculum_task_associations}"/>
 				</mx:FormItem>
 			</mx:Form>
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{curriculumList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUM, curriculumList.selectedItem.id]))}"/>
+				<mx:Button label="Add Tasks" id="addTasksButton" enabled="{curriculumList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.ADDTASKSTOCURRICULUM, curriculumList.selectedItem.id]))}"/>
+				<mx:Button label="Create Learning Initiative" id="createCurriculumEnrollmentButton" enabled="{curriculumList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUMENROLLMENT, curriculumList.selectedItem.id]))}"/>
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>

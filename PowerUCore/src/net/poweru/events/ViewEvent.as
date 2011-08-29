@@ -16,11 +16,13 @@ package net.poweru.events
 		public static const VIDEOPLAY:String = "VideoPlay";
 		
 		public var body:Object;
+		public var subType:String = null;
 		
-		public function ViewEvent(type:String, body:Object=null)
+		public function ViewEvent(type:String, body:Object=null, subType:String=null)
 		{
 			super(type, false, false);
 			this.body = body;
+			this.subType = subType;
 		}
 	}
 }

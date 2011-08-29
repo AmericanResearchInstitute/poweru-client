@@ -172,6 +172,11 @@ package net.poweru.delegates
 		
 		public function create(...args):void
 		{
+			// convert Date objects to ISO8601
+			for (var i:Number=0; i<args.length; i++)
+				if (args[i] is Date)
+					args[i] = DateUtil.toW3CDTF(args[i]);
+			
 			var token:AsyncToken = remoteObject.getOperation('create').send.apply(this, args);
 			token.addResponder(responder);
 		}

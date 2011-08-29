@@ -2,14 +2,17 @@ package net.poweru
 {
 	import flash.display.DisplayObject;
 	
+	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
-	import net.poweru.components.Tasks;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
+	import net.poweru.components.Tasks;
 	import net.poweru.components.Users;
+	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateCurriculum;
+	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
@@ -26,24 +29,27 @@ package net.poweru
 	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
+	import net.poweru.presenters.AddTasksToCurriculumMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
+	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
 	import net.poweru.presenters.CreateUserMediator;
+	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
-	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
+	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
 
@@ -67,12 +73,20 @@ package net.poweru
 			
 			switch (name)
 			{
+				case Places.ADDTASKSTOCURRICULUM:
+					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
+					break;
+				
 				case Places.CONFIRMLOGOUT:
 					component = getOrCreate(name, ConfirmLogout, ConfirmLogoutMediator);
 					break;
 				
 				case Places.CREATECURRICULUM:
 					component = getOrCreate(name, CreateCurriculum, CreateCurriculumMediator);
+					break;
+				
+				case Places.CREATECURRICULUMENROLLMENT:
+					component = getOrCreate(name, CreateCurriculumEnrollment, CreateCurriculumEnrollmentMediator);
 					break;
 				
 				case Places.CREATEEXAM:
@@ -89,6 +103,10 @@ package net.poweru
 					
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
+					break;
+				
+				case Places.CURRICULUMENROLLMENTS:
+					component = getOrCreate(name, CurriculumEnrollments, CurriculumEnrollmentMediator);
 					break;
 				
 				case Places.CURRICULUMS:

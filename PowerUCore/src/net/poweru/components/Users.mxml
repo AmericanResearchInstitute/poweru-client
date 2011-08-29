@@ -124,6 +124,19 @@
 						<mx:Button id="addToGroupButton" label="Add to Group" enabled="{bulkGrid.selectedItems.length > 0}" click="onAddToGroup(event)"/>
 					</mx:Form>
 				</mx:VBox>
+				<mx:VBox width="100%" label="Add to Learning Initiative" horizontalAlign="center">
+					
+				<mx:DataGrid id="curriculumEnrollmentGrid">
+					<mx:columns>
+						<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum"/>
+						<mx:DataGridColumn dataField="start" headerText="Start"/>
+						<mx:DataGridColumn dataField="end" headerText="End"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:Form>
+					<mx:Button id="addToCurriculumEnrollmentButton" label="Add to Learning Initiative" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; curriculumEnrollmentGrid.selectedItems.length > 0}" click="onAddToCurriculumEnrollment(event)"/>	
+				</mx:Form>
+				</mx:VBox>
 				<mx:VBox width="100%" label="Change Status" id="changeStatus">
 					<mx:Form>
 						<mx:FormItem label="Status:">

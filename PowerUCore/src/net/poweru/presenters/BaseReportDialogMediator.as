@@ -41,7 +41,7 @@ package net.poweru.presenters
 			displayObject.removeEventListener(ViewEvent.CANCEL, onCancel);
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
+		override protected function onCreationComplete(event:FlexEvent):void
 		{
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			inputCollector.addInput('creationComplete', true);
@@ -61,12 +61,6 @@ package net.poweru.presenters
 		protected function onInputsCollected(event:Event):void
 		{
 			reportDialog.populate(inputCollector.object['data']);
-		}
-		
-		// Override this
-		protected function populate():void
-		{
-			
 		}
 		
 	}

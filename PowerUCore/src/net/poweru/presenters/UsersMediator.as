@@ -1,5 +1,10 @@
 package net.poweru.presenters
 {
+	import flash.events.Event;
+	
+	import mx.events.FlexEvent;
+	import mx.utils.ObjectUtil;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -8,15 +13,11 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
+	import net.poweru.proxies.CurriculumEnrollmentProxy;
 	import net.poweru.proxies.GroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.InputCollector;
-	
-	import flash.events.Event;
-	
-	import mx.events.FlexEvent;
-	import mx.utils.ObjectUtil;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -30,6 +31,7 @@ package net.poweru.presenters
 		protected var adminOrganizationViewProxy:AdminOrganizationViewProxy;
 		protected var inputCollector:InputCollector;
 		protected var orgRoleProxy:OrgRoleProxy;
+		protected var curriculumEnrollmentProxy:CurriculumEnrollmentProxy;
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
@@ -37,6 +39,7 @@ package net.poweru.presenters
 			groupProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(GroupProxy) as GroupProxy;
 			adminOrganizationViewProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AdminOrganizationViewProxy) as AdminOrganizationViewProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
+			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
 		}
 		
 		protected function get userProxy():UserProxy
@@ -73,6 +76,8 @@ package net.poweru.presenters
 				NotificationNames.UPDATEADMINORGANIZATIONSVIEW,
 				NotificationNames.UPDATEADMINUSERSVIEW,
 				NotificationNames.UPDATECHOICES,
+				NotificationNames.UPDATECURRICULUMENROLLMENTS,
+				NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW,
 				NotificationNames.UPDATEGROUPS,
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
@@ -111,6 +116,14 @@ package net.poweru.presenters
 						inputCollector.addInput('choices', ObjectUtil.copy(notification.getBody()));
 					break;
 				
+				case NotificationNames.UPDATECURRICULUMENROLLMENTS:
+					curriculumEnrollmentProxy.curriculumEnrollmentsView();
+					break;
+				
+				case NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW:
+					inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(notification.getBody()));
+					break;
+				
 				case NotificationNames.UPDATEGROUPS:
 					var groups:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('groups', ObjectUtil.copy(groups.toArray()));
@@ -123,36 +136,29 @@ package net.poweru.presenters
 			}
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
-		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			populate();
-		}
-		
-		protected function onRefresh(event:ViewEvent):void
-		{
-			primaryProxy.clear();
-			populate();
-		}
-		
 		protected function onInputsCollected(event:Event):void
 		{
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			users.populate(inputCollector.object['users'], inputCollector.object['organizations'], inputCollector.object['orgRoles'], inputCollector.object['groups'], inputCollector.object['choices']);
+			users.populate(inputCollector.object['users'], inputCollector.object['organizations'], inputCollector.object['orgRoles'], inputCollector.object['groups'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments']);
 		}
 		
 		protected function onSubmit(event:ViewEvent):void
 		{
-			primaryProxy.save(event.body);
+			if (event.subType == 'CurriculumEnrollment')
+			{
+				curriculumEnrollmentProxy.save(event.body);
+			}
+			else
+				primaryProxy.save(event.body);
 		}
 		
-		protected function populate():void
+		override protected function populate():void
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'groups', 'choices']);
+			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'groups', 'choices', 'curriculumEnrollments']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			userProxy.adminUsersView();
@@ -160,6 +166,7 @@ package net.poweru.presenters
 			adminOrganizationViewProxy.adminOrganizationsView();
 			orgRoleProxy.getAll(['name']);
 			groupProxy.getAll(['name']);
+			curriculumEnrollmentProxy.curriculumEnrollmentsView();
 		}
 		
 	}

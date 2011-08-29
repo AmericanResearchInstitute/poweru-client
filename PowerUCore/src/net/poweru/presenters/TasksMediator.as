@@ -86,18 +86,6 @@ package net.poweru.presenters
 			}
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
-		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			populate();
-		}
-		
-		protected function onRefresh(event:ViewEvent):void
-		{
-			primaryProxy.clear();
-			populate();
-		}
-		
 		protected function onInputsCollected(event:Event):void
 		{
 			populatedSinceLastClear = true;
@@ -106,7 +94,7 @@ package net.poweru.presenters
 			exams.populate(inputCollector.object['tasks']);
 		}
 		
-		protected function populate():void
+		override protected function populate():void
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);

@@ -1,35 +1,33 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IGroups;
+	import net.poweru.components.interfaces.ICurriculumEnrollments;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.CurriculumEnrollmentProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-
-	public class GroupsMediator extends BaseMediator implements IMediator
+	
+	public class CurriculumEnrollmentMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'GroupsMediator';
+		public static const NAME:String = 'CurriculumEnrollmentMediator';
 		
-		public function GroupsMediator(viewComponent:Object)
+		public function CurriculumEnrollmentMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, GroupProxy);
+			super(NAME, viewComponent, CurriculumEnrollmentProxy);
 		}
 		
-		protected function get groups():IGroups
+		protected function get curriculumEnrollments():ICurriculumEnrollments
 		{
-			return viewComponent as IGroups;
+			return viewComponent as ICurriculumEnrollments;
 		}
 		
-		protected function get groupProxy():GroupProxy
+		protected function get curriculumEnrollmentProxy():CurriculumEnrollmentProxy
 		{
-			return primaryProxy as GroupProxy;
+			return primaryProxy as CurriculumEnrollmentProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -50,8 +48,8 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEGROUPS,
-				NotificationNames.UPDATEVODADMINGROUPSVIEW,
+				NotificationNames.UPDATECURRICULUMENROLLMENTS,
+				NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW,
 			];
 		}
 		
@@ -60,25 +58,23 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.GROUPS)
+					if (notification.getBody() == Places.CURRICULUMENROLLMENTS)
 						populate();
 					break;
-					
-				// Happens when we save a group, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEGROUPS:
-					populate();
+				
+				case NotificationNames.UPDATECURRICULUMENROLLMENTS:
+					curriculumEnrollmentProxy.curriculumEnrollmentsView();
 					break;
-					
-				case NotificationNames.UPDATEVODADMINGROUPSVIEW:
-					groups.populate(notification.getBody() as Array);
+				
+				case NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW:
+					curriculumEnrollments.populate(notification.getBody() as Array);
 					break;
 			}
 		}
 		
 		override protected function populate():void
 		{	
-			groupProxy.vodAdminGroupsView();
+			curriculumEnrollmentProxy.curriculumEnrollmentsView();
 		}
-		
 	}
 }

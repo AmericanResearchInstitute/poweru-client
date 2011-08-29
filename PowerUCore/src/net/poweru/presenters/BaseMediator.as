@@ -1,12 +1,15 @@
 package net.poweru.presenters
 {
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	
+	import mx.events.FlexEvent;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.BaseProxy;
 	import net.poweru.proxies.LoginProxy;
-	
-	import flash.display.DisplayObject;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -40,6 +43,9 @@ package net.poweru.presenters
 		protected function removeEventListeners():void
 		{}
 		
+		protected function populate():void
+		{}
+		
 		override public function setViewComponent(viewComponent:Object):void
 		{
 			removeEventListeners();
@@ -50,6 +56,18 @@ package net.poweru.presenters
 		protected function onShowDialog(event:ViewEvent):void
 		{
 			sendNotification(NotificationNames.SHOWDIALOG, event.body);
+		}
+		
+		protected function onCreationComplete(event:FlexEvent):void
+		{
+			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			populate();
+		}
+		
+		protected function onRefresh(event:ViewEvent):void
+		{
+			primaryProxy.clear();
+			populate();
 		}
 		
 	}

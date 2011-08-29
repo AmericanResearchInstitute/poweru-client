@@ -12,6 +12,7 @@ package net.poweru.components.code
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
+	import mx.controls.DataGrid;
 	import mx.controls.Tree;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
@@ -30,6 +31,8 @@ package net.poweru.components.code
 		public var grid:AdvancedDataGrid;
 		[Bindable]
 		public var bulkGrid:AdvancedDataGrid;
+		[Bindable]
+		public var curriculumEnrollmentGrid:DataGrid;
 		[Bindable]
 		public var organizationTree:Tree;
 		public var orgRoleCB:ComboBox;
@@ -55,10 +58,10 @@ package net.poweru.components.code
 		
 		public function clear():void
 		{
-			populate([], [], [], [], []);
+			populate([], [], [], [], [], []);
 		}
 		
-		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object):void
+		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array):void
 		{
 			grid.dataProvider.source = users;
 			grid.dataProvider.refresh();
@@ -90,6 +93,8 @@ package net.poweru.components.code
 			
 			bulkDataSet.source = users;
 			bulkDataSet.refresh();
+			
+			curriculumEnrollmentGrid.dataProvider = new DataSet(curriculumEnrollments);
 		}
 
 		protected function onCreationComplete(event:FlexEvent):void
@@ -230,6 +235,17 @@ package net.poweru.components.code
 					user['groups'].push(groupCB.selectedItem);
 					dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, user));
 				}
+			}
+		}
+		
+		protected function onAddToCurriculumEnrollment(event:Event):void
+		{
+			var curriculum:Object = curriculumEnrollmentGrid.selectedItem;
+			for each (var user:Object in bulkGrid.selectedItems)
+			{
+				if ((curriculum.users as Array).indexOf(user['id']) == -1)
+					(curriculum.users as Array).push(user['id']);
+				dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, curriculum, 'CurriculumEnrollment'));
 			}
 		}
 		

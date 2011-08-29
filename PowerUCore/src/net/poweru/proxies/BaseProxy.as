@@ -1,5 +1,7 @@
 package net.poweru.proxies
 {
+	import com.adobe.utils.DateUtil;
+	
 	import flash.events.Event;
 	import flash.events.HTTPStatusEvent;
 	import flash.events.IOErrorEvent;
@@ -45,6 +47,8 @@ package net.poweru.proxies
 		protected var haveData:Boolean = false;
 		protected var saveCounter:ExpectedResultCounter;
 		protected var browserServicesProxy:BrowserServicesProxy;
+		// names of fields which arrive as an ISO 8601 string. They will be automatically converted by the onGetFilteredSuccess method.
+		protected var dateTimeFields:Array = [];
 		
 		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, modelName:String = null, choiceFields:Array = null)
 		{
@@ -231,6 +235,25 @@ package net.poweru.proxies
 		
 		protected function onGetFilteredSuccess(data:ResultEvent):void
 		{
+			var value:Array = data.result.value as Array;
+			// Convert ISO8601 strings to Date objects
+			for each (var item:Object in value)
+			{
+				for each (var field:String in dateTimeFields)
+				{
+					if (item.hasOwnProperty(field))
+					{
+						// DateUtil doesn't recognize valid ISO8601 strings that have only a date, so we have to handle those on our own.
+						var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
+						var result:Object = re.exec(item[field]);
+						if (result['length'] == 4)
+							// month is 0-based. day of month is 1-based. Really Adobe?
+							item[field] = new Date(result[1], result[2] - 1, result[3]);
+						else
+							item[field] = DateUtil.parseW3CDTF(item[field]);
+					}
+				}
+			}
 			dataSet.mergeData(data.result.value as Array);
 			haveData = true;
 			sendNotification(updatedDataNotification, dataSet);

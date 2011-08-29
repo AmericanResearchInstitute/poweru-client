@@ -31,6 +31,8 @@ package net.poweru
 		public static const UPDATEADMINORGANIZATIONSVIEW:String = 'UpdateAdminOrganizationsView';
 		public static const UPDATECATEGORIES:String = 'UpdateCategories';
 		public static const UPDATECHOICES:String = 'UpdateChoices';
+		public static const UPDATECURRICULUMENROLLMENTS:String = 'UpdateCurriculumEnrollments';
+		public static const UPDATECURRICULUMENROLLMENTSVIEW:String = 'UpdateCurriculumEnrollmentsView';
 		public static const UPDATECURRICULUMS:String = 'UpdateCurriculums';
 		public static const UPDATEEXAMS:String = 'UpdateExams';
 		public static const UPDATETASKS:String = 'UpdateTasks';

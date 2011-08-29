@@ -39,6 +39,7 @@ package net.poweru.presenters
 					if (body != null && body == Places.EDITEXAM)
 						populate();
 					break;
+				
 				case NotificationNames.RECEIVEDONE:
 					onReceivedOne(notification);
 					break;

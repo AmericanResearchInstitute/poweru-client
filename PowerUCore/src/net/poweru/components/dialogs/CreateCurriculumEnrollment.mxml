@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateCurriculumEnrollmentCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Curriculum Name:">
+			<mx:Label text="{curriculum.name}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Start Date">
+			<mx:DateField id="startDate"/>
+		</mx:FormItem>
+		<mx:FormItem label="End Date">
+			<mx:DateField id="endDate"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:CreateCurriculumEnrollmentCode>

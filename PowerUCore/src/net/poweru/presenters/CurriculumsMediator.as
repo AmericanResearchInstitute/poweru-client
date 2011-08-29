@@ -75,19 +75,7 @@ package net.poweru.presenters
 			}
 		}
 		
-		protected function onCreationComplete(event:Event):void
-		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			populate();
-		}
-		
-		protected function onRefresh(event:ViewEvent):void
-		{
-			primaryProxy.clear();
-			populate();
-		}
-		
-		protected function populate():void
+		override protected function populate():void
 		{	
 			curriculumProxy.adminCurriculumsView();
 		}

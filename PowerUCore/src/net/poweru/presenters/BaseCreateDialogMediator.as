@@ -51,7 +51,7 @@ package net.poweru.presenters
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
+		override protected function onCreationComplete(event:FlexEvent):void
 		{
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			primaryProxy.getChoices();

@@ -50,12 +50,6 @@ package net.poweru.presenters
 			}
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
-		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			populate();
-		}
-		
 		// probably override this in a subclass, and make sure to call the method on super()
 		protected function onSubmit(event:ViewEvent):void
 		{
@@ -64,7 +58,7 @@ package net.poweru.presenters
 		}
 		
 		// override this in a subclass, or at least listen for NotificationNames.RECEIVEDONE
-		protected function populate():void
+		override protected function populate():void
 		{
 			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 		}
