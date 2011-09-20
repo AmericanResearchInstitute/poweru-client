@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateEventTemplateCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*" xmlns:EventTemplate="net.poweru.generated.model.EventTemplate.*">
+	<mx:Form>
+		<mx:FormItem label="Title:">
+			<EventTemplate:TitleInput id="titleInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Name Prefix:">
+			<EventTemplate:NamePrefixInput id="namePrefixInput" />
+		</mx:FormItem>
+		<mx:FormItem label="Reminder Lead Time:">
+			<mx:TextInput id="leadTimeInput" />
+		</mx:FormItem>
+		<mx:FormItem label="Description:">
+			<mx:TextArea id="descriptionInput" />
+		</mx:FormItem>
+	</mx:Form>
+</code:CreateEventTemplateCode>

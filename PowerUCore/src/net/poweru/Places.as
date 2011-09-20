@@ -6,6 +6,7 @@ package net.poweru
 		public static const CATEGORIES:String = 'Categories';
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
 		public static const CURRICULUMS:String = 'Curriculums';
+		public static const EVENTTEMPLATES:String = 'EventTemplates';
 		public static const EXAMS:String = 'Exams';
 		public static const GROUPS:String = 'Groups';
 		public static const LOGIN:String = 'Login';
@@ -23,6 +24,7 @@ package net.poweru
 		public static const CREATECATEGORY:String = 'CreateCategory';
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';
 		public static const CREATECURRICULUM:String = 'CreateCurriculum';
+		public static const CREATEEVENTTEMPLATE:String = 'CreateEventTemplate';
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
@@ -31,6 +33,7 @@ package net.poweru
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
+		public static const EDITEVENTTEMPLATE:String = 'EditEventTemplate';
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITORGANIZATION:String = 'EditOrganization';

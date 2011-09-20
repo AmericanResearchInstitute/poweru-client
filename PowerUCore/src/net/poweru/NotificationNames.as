@@ -21,6 +21,7 @@ package net.poweru
 		public static const RESETPASSWORDSUCCESS:String = 'ResetPasswordSuccess';
 		public static const SHOWDIALOG:String = SpaceMediator.SHOWDIALOG;
 		public static const SETSPACE:String = SpaceMediator.SETSPACE;
+		public static const SETOTHERSPACE:String = SpaceMediator.SETOTHERSPACE;
 		public static const SPACEREADY:String = SpaceMediator.SPACEREADY;
 		public static const STARTUP:String = 'StartUp';
 		public static const STATECHANGE:String = 'StateChange';
@@ -34,6 +35,7 @@ package net.poweru
 		public static const UPDATECURRICULUMENROLLMENTS:String = 'UpdateCurriculumEnrollments';
 		public static const UPDATECURRICULUMENROLLMENTSVIEW:String = 'UpdateCurriculumEnrollmentsView';
 		public static const UPDATECURRICULUMS:String = 'UpdateCurriculums';
+		public static const UPDATEEVENTTEMPLATES:String = 'UpdateEventTemplates';
 		public static const UPDATEEXAMS:String = 'UpdateExams';
 		public static const UPDATETASKS:String = 'UpdateTasks';
 		public static const UPDATEVODADMINGROUPSVIEW:String = 'UpdateVODAdminGroupsView';

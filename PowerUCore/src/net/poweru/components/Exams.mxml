@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:TasksCode
+<code:ExamsCode
 	width="100%"
 	height="100%"
+	label="Exams"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.code.*">
 	<mx:Script>
@@ -40,4 +41,4 @@
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>
-</code:TasksCode>
+</code:ExamsCode>

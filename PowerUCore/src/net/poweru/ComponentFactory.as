@@ -4,10 +4,11 @@ package net.poweru
 	
 	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
+	import net.poweru.components.EventTemplates;
+	import net.poweru.components.Exams;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
-	import net.poweru.components.Tasks;
 	import net.poweru.components.Users;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.ConfirmLogout;
@@ -44,6 +45,8 @@ package net.poweru
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
+	import net.poweru.presenters.EventTemplatesMediator;
+	import net.poweru.presenters.ExamsMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.OrganizationsMediator;
@@ -133,8 +136,12 @@ package net.poweru
 					component = getOrCreate(name, EditUser, EditUserMediator);
 					break;
 				
+				case Places.EVENTTEMPLATES:
+					component = getOrCreate(name, EventTemplates, EventTemplatesMediator);
+					break;
+				
 				case Places.EXAMS:
-					component = getOrCreate(name, Tasks, TasksMediator);
+					component = getOrCreate(name, Exams, ExamsMediator);
 					break;
 				
 				case Places.GROUPS:

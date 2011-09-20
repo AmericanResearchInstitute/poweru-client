@@ -10,13 +10,13 @@
     <classEntry path="net.poweru.commands.BackendReadyCommand"/>
     <classEntry path="net.poweru.commands.LogoutCommand"/>
     <classEntry path="net.poweru.commands.SpaceReadyCommand"/>
-    <classEntry path="net.poweru.components.Tasks"/>
+    <classEntry path="net.poweru.components.Exams"/>
     <classEntry path="net.poweru.components.Groups"/>
     <classEntry path="net.poweru.components.Login"/>
     <classEntry path="net.poweru.components.Organizations"/>
     <classEntry path="net.poweru.components.Users"/>
     <classEntry path="net.poweru.components.akamai.ControlBar"/>
-    <classEntry path="net.poweru.components.code.TasksCode"/>
+    <classEntry path="net.poweru.components.code.ExamsCode"/>
     <classEntry path="net.poweru.components.code.GroupsCode"/>
     <classEntry path="net.poweru.components.code.LoginCode"/>
     <classEntry path="net.poweru.components.code.MainCode"/>
@@ -169,6 +169,16 @@
     <classEntry path="net.poweru.components.dialogs.CreateCurriculumEnrollment"/>
     <classEntry path="net.poweru.presenters.CreateCurriculumEnrollmentMediator"/>
     <classEntry path="net.poweru.components.interfaces.ICreateCurriculumEnrollment"/>
+    <classEntry path="net.poweru.delegates.EventTemplateManagerDelegate"/>
+    <classEntry path="net.poweru.delegates.EventManagerDelegate"/>
+    <classEntry path="net.poweru.components.code.EventTemplatesCode"/>
+    <classEntry path="net.poweru.components.EventTemplates"/>
+    <classEntry path="net.poweru.presenters.EventTemplatesMediator"/>
+    <classEntry path="net.poweru.proxies.EventTemplateProxy"/>
+    <classEntry path="net.poweru.components.interfaces.IEventTemplates"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateEventTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateEventTemplate"/>
+    <classEntry path="net.poweru.presenters.ExamsMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
