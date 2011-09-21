@@ -15,6 +15,7 @@ package net.poweru.presenters
 		protected var initialDataProxy:InitialDataProxy;
 		protected var placeName:String;
 		
+		// placeName is the name associated with this dialog
 		public function BaseEditDialogMediator(mediatorName:String, viewComponent:Object, primaryProxyClass:Class, placeName:String)
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);

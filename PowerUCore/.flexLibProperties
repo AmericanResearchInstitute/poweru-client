@@ -179,6 +179,10 @@
     <classEntry path="net.poweru.components.dialogs.code.CreateEventTemplateCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateEventTemplate"/>
     <classEntry path="net.poweru.presenters.ExamsMediator"/>
+    <classEntry path="net.poweru.presenters.CreateEventTemplateMediator"/>
+    <classEntry path="net.poweru.presenters.EditEventTemplateMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditEventTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditEventTemplate"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

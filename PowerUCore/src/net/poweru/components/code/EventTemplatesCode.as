@@ -9,6 +9,7 @@ package net.poweru.components.code
 	
 	public class EventTemplatesCode extends HBox implements IEventTemplates
 	{
+		[Bindable]
 		public var grid:AdvancedDataGrid;
 		
 		public function EventTemplatesCode()

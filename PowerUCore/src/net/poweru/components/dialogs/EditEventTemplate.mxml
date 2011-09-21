@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:CreateEventTemplateCode
+<code:EditEventTemplateCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:EventTemplate="net.poweru.generated.model.EventTemplate.*">
@@ -22,8 +22,11 @@
 			<mx:TextArea id="descriptionInput" />
 		</mx:FormItem>
 	</mx:Form>
+	
+	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" allowNegative="false"/>
+	
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:CreateEventTemplateCode>
+</code:EditEventTemplateCode>

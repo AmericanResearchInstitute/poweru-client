@@ -6,6 +6,7 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IEventTemplates;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.DataSet;
 	import net.poweru.proxies.EventTemplateProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -58,9 +59,14 @@ package net.poweru.presenters
 				
 				// Happens when we save an EventTemplate, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEEVENTTEMPLATES:
-					eventTemplates.populate(notification.getBody() as Array);
+					eventTemplates.populate((notification.getBody() as DataSet).toArray());
 					break;
 			}
+		}
+		
+		override protected function populate():void
+		{
+			primaryProxy.getAll(['title', 'name_prefix', 'lead_time', 'description']);
 		}
 	}
 }

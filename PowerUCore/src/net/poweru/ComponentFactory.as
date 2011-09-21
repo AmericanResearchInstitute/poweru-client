@@ -14,11 +14,13 @@ package net.poweru
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
+	import net.poweru.components.dialogs.CreateEventTemplate;
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.EditCurriculum;
+	import net.poweru.components.dialogs.EditEventTemplate;
 	import net.poweru.components.dialogs.EditExam;
 	import net.poweru.components.dialogs.EditGroup;
 	import net.poweru.components.dialogs.EditOrganization;
@@ -34,6 +36,7 @@ package net.poweru
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
+	import net.poweru.presenters.CreateEventTemplateMediator;
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
@@ -41,6 +44,7 @@ package net.poweru
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
+	import net.poweru.presenters.EditEventTemplateMediator;
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
@@ -92,6 +96,10 @@ package net.poweru
 					component = getOrCreate(name, CreateCurriculumEnrollment, CreateCurriculumEnrollmentMediator);
 					break;
 				
+				case Places.CREATEEVENTTEMPLATE:
+					component = getOrCreate(name, CreateEventTemplate, CreateEventTemplateMediator);
+					break;
+				
 				case Places.CREATEEXAM:
 					component = getOrCreate(name, CreateExam, CreateExamMediator);
 					break;
@@ -118,6 +126,10 @@ package net.poweru
 				
 				case Places.EDITCURRICULUM:
 					component = getOrCreate(name, EditCurriculum, EditCurriculumMediator);
+					break;
+				
+				case Places.EDITEVENTTEMPLATE:
+					component = getOrCreate(name, EditEventTemplate, EditEventTemplateMediator);
 					break;
 				
 				case Places.EDITEXAM:
