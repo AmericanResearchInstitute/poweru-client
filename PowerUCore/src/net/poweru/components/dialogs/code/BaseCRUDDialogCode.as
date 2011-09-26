@@ -1,12 +1,12 @@
 package net.poweru.components.dialogs.code
 {
-	import net.poweru.components.dialogs.BaseDialog;
-	import net.poweru.events.ViewEvent;
-	
 	import flash.events.Event;
 	
 	import mx.controls.Button;
 	import mx.validators.Validator;
+	
+	import net.poweru.components.dialogs.BaseDialog;
+	import net.poweru.events.ViewEvent;
 
 	public class BaseCRUDDialogCode extends BaseDialog
 	{
@@ -25,6 +25,11 @@ package net.poweru.components.dialogs.code
 		{
 			this.choices = choices;
 		}
+		
+		/*  Called when a "Chooser" dialog is used to make a selection,
+			such as when choosing an organization for an event. */
+		public function receiveChoice(choice:Object, chooserName:String):void
+		{}
 		
 		public function setState(state:String):void
 		{

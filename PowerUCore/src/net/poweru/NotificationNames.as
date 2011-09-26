@@ -7,6 +7,7 @@ package net.poweru
 		public static const ADMINORGANIZATIONUSERSVIEW:String = 'AdminOrganizationUsersView';
 		public static const BACKENDREADY:String = 'BackendReady';
 		public static const CAPTCHACHALLENGE:String = 'CaptchaChallenge';
+		public static const CHOICEMADE:String = 'ChoiceMade';
 		public static const CREATEUSERSUCCESS:String = 'CreateUserSuccess';
 		public static const CREATEUSERPERMISSIONDENIED:String = 'CreateUserPermissionDenied';
 		public static const DIALOGPRESENTED:String = SpaceMediator.DIALOGPRESENTED;
@@ -35,6 +36,7 @@ package net.poweru
 		public static const UPDATECURRICULUMENROLLMENTS:String = 'UpdateCurriculumEnrollments';
 		public static const UPDATECURRICULUMENROLLMENTSVIEW:String = 'UpdateCurriculumEnrollmentsView';
 		public static const UPDATECURRICULUMS:String = 'UpdateCurriculums';
+		public static const UPDATEEVENTS:String = 'UpdateEvents';
 		public static const UPDATEEVENTTEMPLATES:String = 'UpdateEventTemplates';
 		public static const UPDATEEXAMS:String = 'UpdateExams';
 		public static const UPDATETASKS:String = 'UpdateTasks';

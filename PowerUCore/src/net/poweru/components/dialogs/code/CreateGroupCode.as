@@ -1,10 +1,9 @@
 package net.poweru.components.dialogs.code
 {
-	import net.poweru.components.interfaces.ICreateDialog;
-	import net.poweru.components.dialogs.BaseCRUDDialog;
-	
 	import mx.events.FlexEvent;
 	
+	import net.poweru.components.dialogs.BaseCRUDDialog;
+	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 
 	public class CreateGroupCode extends BaseCRUDDialog implements ICreateDialog
@@ -14,6 +13,7 @@ package net.poweru.components.dialogs.code
 		public function CreateGroupCode()
 		{
 			super();
+			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
 		override public function getData():Object

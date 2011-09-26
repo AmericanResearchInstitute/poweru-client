@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:ChooseOrganizationCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.choosers.code.*"
+	minHeight="400"
+	minWidth="600">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+			
+			[Bindable]
+			[Embed('/../assets/org.png')]
+			public var myFolderIcon:Class;
+		]]>
+	</mx:Script>
+	
+	<mx:Tree id="organizations" labelField="name" width="100%" height="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" enabled="{organizations.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, organizations.selectedItem))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:ChooseOrganizationCode>

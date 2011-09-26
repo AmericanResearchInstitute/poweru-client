@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CreateGroupCode
 	title="Create Group"
-	creationComplete="onCreationComplete(event)"
 	xmlns="net.poweru.components.dialogs.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:Group="net.poweru.generated.model.Group.*">

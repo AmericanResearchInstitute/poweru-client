@@ -183,6 +183,19 @@
     <classEntry path="net.poweru.presenters.EditEventTemplateMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.EditEventTemplateCode"/>
     <classEntry path="net.poweru.components.dialogs.EditEventTemplate"/>
+    <classEntry path="net.poweru.components.interfaces.IEvents"/>
+    <classEntry path="net.poweru.components.code.EventsCode"/>
+    <classEntry path="net.poweru.proxies.EventProxy"/>
+    <classEntry path="net.poweru.components.Events"/>
+    <classEntry path="net.poweru.presenters.EventsMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateEventCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateEvent"/>
+    <classEntry path="net.poweru.presenters.CreateEventMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseOrganizationCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseOrganization"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.interfaces.IChooser"/>
+    <classEntry path="net.poweru.presenters.ChooseOrganizationMediator"/>
+    <classEntry path="net.poweru.presenters.BaseChooserMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

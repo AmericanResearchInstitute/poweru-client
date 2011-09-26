@@ -5,6 +5,7 @@ package net.poweru
 	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
 	import net.poweru.components.EventTemplates;
+	import net.poweru.components.Events;
 	import net.poweru.components.Exams;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
@@ -14,6 +15,7 @@ package net.poweru
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
+	import net.poweru.components.dialogs.CreateEvent;
 	import net.poweru.components.dialogs.CreateEventTemplate;
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
@@ -30,12 +32,15 @@ package net.poweru
 	import net.poweru.components.dialogs.ResetPassword;
 	import net.poweru.components.dialogs.SelfRegister;
 	import net.poweru.components.dialogs.UploadCSV;
+	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
+	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
+	import net.poweru.presenters.CreateEventMediator;
 	import net.poweru.presenters.CreateEventTemplateMediator;
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
@@ -50,6 +55,7 @@ package net.poweru
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditUserMediator;
 	import net.poweru.presenters.EventTemplatesMediator;
+	import net.poweru.presenters.EventsMediator;
 	import net.poweru.presenters.ExamsMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
@@ -84,6 +90,10 @@ package net.poweru
 					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
 					break;
 				
+				case Places.CHOOSEORGANIZATION:
+					component = getOrCreate(name, ChooseOrganization, ChooseOrganizationMediator);
+					break;
+				
 				case Places.CONFIRMLOGOUT:
 					component = getOrCreate(name, ConfirmLogout, ConfirmLogoutMediator);
 					break;
@@ -94,6 +104,10 @@ package net.poweru
 				
 				case Places.CREATECURRICULUMENROLLMENT:
 					component = getOrCreate(name, CreateCurriculumEnrollment, CreateCurriculumEnrollmentMediator);
+					break;
+				
+				case Places.CREATEEVENT:
+					component = getOrCreate(name, CreateEvent, CreateEventMediator);
 					break;
 				
 				case Places.CREATEEVENTTEMPLATE:
@@ -146,6 +160,10 @@ package net.poweru
 				
 				case Places.EDITUSER:
 					component = getOrCreate(name, EditUser, EditUserMediator);
+					break;
+				
+				case Places.EVENTS:
+					component = getOrCreate(name, Events, EventsMediator);
 					break;
 				
 				case Places.EVENTTEMPLATES:

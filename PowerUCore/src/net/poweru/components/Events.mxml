@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EventsCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.code.*"
+	width="100%"
+	height="100%">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
+			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	<mx:VBox width="35%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENT, '']))}"/>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+		</mx:HBox>
+		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Form>
+				<mx:FormItem label="Title:">
+					<mx:Label text="{grid.selectedItem.title}" />
+				</mx:FormItem>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.name}" />
+				</mx:FormItem>
+				<mx:FormItem label="Reminder Lead Time:">
+					<mx:Label text="{grid.selectedItem.lead_time}" />
+				</mx:FormItem>
+				<mx:FormItem label="Description:">
+					<mx:Text text="{grid.selectedItem.description}" />
+				</mx:FormItem>
+			</mx:Form>
+			<mx:HBox id="buttonBox">
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEEVENT, grid.selectedItem.id]))}"/>
+			</mx:HBox>	
+		</mx:Panel>
+	</mx:VBox>
+</code:EventsCode>

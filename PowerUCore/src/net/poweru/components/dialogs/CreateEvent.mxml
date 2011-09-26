@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateEventCode
+	title="Create an Event"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:Event="net.poweru.generated.model.Event.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name Prefix">
+			<Event:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Title">
+			<Event:TitleInput id="titleInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Start" required="true">
+			<mx:DateField id="startInput" change="{onStartDateChosen(event)}"/>
+		</mx:FormItem>
+		<mx:FormItem label="End" required="true">
+			<mx:DateField id="endInput" enabled="{startInput.selectedDate != null}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Reminder Lead Time" required="true">
+			<mx:TextInput id="leadTimeInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description">
+			<mx:TextArea id="descriptionInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:Label text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))"/>
+			</mx:HBox>
+		</mx:FormItem>
+	</mx:Form>
+	
+	<mx:Array id="extraValidators">
+		<mx:DateValidator source="{startInput}" property="selectedDate" required="true"/>
+		<mx:DateValidator source="{endInput}" property="selectedDate" required="true"/>
+	</mx:Array>
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)" enabled="{chosenOrganization != null}"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:CreateEventCode>

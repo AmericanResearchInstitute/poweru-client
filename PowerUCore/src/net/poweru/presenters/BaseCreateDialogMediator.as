@@ -1,10 +1,10 @@
 package net.poweru.presenters
 {
+	import mx.events.FlexEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.events.ViewEvent;
-	
-	import mx.events.FlexEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,6 +24,7 @@ package net.poweru.presenters
 		{
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.addEventListener(ViewEvent.SUBMIT, onSubmit);
+			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			displayObject.addEventListener(ViewEvent.CANCEL, onCancel);
 		}
 		
@@ -31,6 +32,7 @@ package net.poweru.presenters
 		{
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.removeEventListener(ViewEvent.SUBMIT, onSubmit);
+			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			displayObject.removeEventListener(ViewEvent.CANCEL, onCancel);
 		}
 		
@@ -67,6 +69,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.UPDATECHOICES,
+				NotificationNames.CHOICEMADE,
 			];
 		}
 		
@@ -74,6 +77,11 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
+				case NotificationNames.CHOICEMADE:
+					// let the dialog decide if it is interested in this particular choice type
+					createDialog.receiveChoice(notification.getBody(), notification.getType());
+					break;
+				
 				case NotificationNames.UPDATECHOICES:
 					if (notification.getType() == primaryProxyName)
 						createDialog.setChoices(notification.getBody());

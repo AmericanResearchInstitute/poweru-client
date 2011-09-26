@@ -1,36 +1,29 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IGroups;
+	import net.poweru.components.interfaces.IEvents;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.EventProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-
-	public class GroupsMediator extends BaseMediator implements IMediator
+	
+	public class EventsMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'GroupsMediator';
+		public static const NAME:String = 'EventsMediator';
 		
-		public function GroupsMediator(viewComponent:Object)
+		public function EventsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, GroupProxy);
+			super(NAME, viewComponent, EventProxy);
 		}
 		
-		protected function get groups():IGroups
+		protected function get events():IEvents
 		{
-			return viewComponent as IGroups;
-		}
-		
-		protected function get groupProxy():GroupProxy
-		{
-			return primaryProxy as GroupProxy;
+			return displayObject as IEvents;
 		}
 		
 		override protected function addEventListeners():void
@@ -51,7 +44,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEGROUPS,
+				NotificationNames.UPDATEEVENTS,
 			];
 		}
 		
@@ -60,21 +53,20 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.GROUPS)
+					if (notification.getBody() == Places.EVENTS)
 						populate();
 					break;
-					
-				// Happens when we save a group, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEGROUPS:
-					groups.populate((notification.getBody() as DataSet).toArray());
+				
+				// Happens when we save an Event, and indicates that we should just refresh the view
+				case NotificationNames.UPDATEEVENTS:
+					events.populate((notification.getBody() as DataSet).toArray());
 					break;
 			}
 		}
 		
 		override protected function populate():void
-		{	
-			groupProxy.getAll(['name']);
+		{
+			primaryProxy.getAll(['title', 'name', 'lead_time', 'description']);
 		}
-		
 	}
 }

@@ -8,7 +8,6 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IGroups;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
 	import net.poweru.proxies.GroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -52,6 +51,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEGROUPS,
+				NotificationNames.UPDATEVODADMINGROUPSVIEW,
 			];
 		}
 		
@@ -66,14 +66,18 @@ package net.poweru.presenters
 					
 				// Happens when we save a group, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEGROUPS:
-					groups.populate((notification.getBody() as DataSet).toArray());
+					populate();
+					break;
+					
+				case NotificationNames.UPDATEVODADMINGROUPSVIEW:
+					groups.populate(notification.getBody() as Array);
 					break;
 			}
 		}
 		
 		override protected function populate():void
 		{	
-			groupProxy.getAll(['name']);
+			groupProxy.vodAdminGroupsView();
 		}
 		
 	}
