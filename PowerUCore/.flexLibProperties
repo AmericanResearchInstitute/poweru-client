@@ -196,6 +196,9 @@
     <classEntry path="net.poweru.components.dialogs.choosers.interfaces.IChooser"/>
     <classEntry path="net.poweru.presenters.ChooseOrganizationMediator"/>
     <classEntry path="net.poweru.presenters.BaseChooserMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditEventCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditEvent"/>
+    <classEntry path="net.poweru.presenters.EditEventMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

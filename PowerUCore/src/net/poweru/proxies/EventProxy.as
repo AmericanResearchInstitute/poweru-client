@@ -15,6 +15,10 @@ package net.poweru.proxies
 		public function EventProxy()
 		{
 			super(NAME, EventManagerDelegate, NotificationNames.UPDATEEVENTS);
+			dateTimeFields = [
+				'start',
+				'end'
+			];
 		}
 		
 		override public function create(argDict:Object):void

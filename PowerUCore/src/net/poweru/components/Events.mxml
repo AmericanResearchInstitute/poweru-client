@@ -14,6 +14,11 @@
 		<mx:columns>
 			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
 			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
+			<mx:AdvancedDataGridColumn dataField="start" headerText="Start">
+				<mx:formatter>
+					<mx:DateFormatter formatString="M-D-YYYY"/>
+				</mx:formatter>
+			</mx:AdvancedDataGridColumn>
 		</mx:columns>
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
@@ -29,6 +34,12 @@
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
 				</mx:FormItem>
+				<mx:FormItem label="Start:">
+					<mx:Label text="{(grid.selectedItem.start as Date).toDateString()}"/>
+				</mx:FormItem>
+				<mx:FormItem label="End:">
+					<mx:Label text="{(grid.selectedItem.end as Date).toDateString()}"/>
+				</mx:FormItem>
 				<mx:FormItem label="Reminder Lead Time:">
 					<mx:Label text="{grid.selectedItem.lead_time}" />
 				</mx:FormItem>
@@ -37,7 +48,7 @@
 				</mx:FormItem>
 			</mx:Form>
 			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEEVENT, grid.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENT, grid.selectedItem.id]))}"/>
 			</mx:HBox>	
 		</mx:Panel>
 	</mx:VBox>

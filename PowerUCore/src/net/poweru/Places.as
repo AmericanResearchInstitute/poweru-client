@@ -36,7 +36,7 @@ package net.poweru
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
-		public static const EDITEEVENT:String = 'EditEvent';
+		public static const EDITEVENT:String = 'EditEvent';
 		public static const EDITEVENTTEMPLATE:String = 'EditEventTemplate';
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
