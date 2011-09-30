@@ -9,11 +9,11 @@ package net.poweru.proxies
 	public class ExamProxy extends BaseProxy implements IProxy
 	{
 		public static var NAME:String = 'ExamProxy';
+		public static const FIELDS:Array = ['name', 'title', 'description', 'type'];
 		
 		public function ExamProxy()
 		{
-			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, 'Exam');
-			getAllFields = ['name', 'description', 'title'];
+			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, FIELDS, 'Exam');
 		}
 		
 		override public function create(argDict:Object):void

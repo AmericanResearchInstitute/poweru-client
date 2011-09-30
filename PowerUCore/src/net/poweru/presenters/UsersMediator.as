@@ -164,8 +164,8 @@ package net.poweru.presenters
 			userProxy.adminUsersView();
 			userProxy.getChoices();
 			adminOrganizationViewProxy.adminOrganizationsView();
-			orgRoleProxy.getAll(['name']);
-			groupProxy.getAll(['name']);
+			orgRoleProxy.getAll();
+			groupProxy.getAll();
 			curriculumEnrollmentProxy.curriculumEnrollmentsView();
 		}
 		

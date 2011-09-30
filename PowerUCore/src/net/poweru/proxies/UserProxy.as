@@ -1,22 +1,23 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.UserManagerDelegate;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PowerUResponder;
 	
-	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
-	
 	import org.puremvc.as3.interfaces.IProxy;
 
 	public class UserProxy extends BaseProxy implements IProxy
 	{
-		public static var NAME:String = 'UserProxy';
+		public static const NAME:String = 'UserProxy';
+		public static const FIELDS:Array = [];
 		
 		public function UserProxy()
 		{
-			super(NAME, UserManagerDelegate, NotificationNames.UPDATEUSERS, 'User', ['status']);
+			super(NAME, UserManagerDelegate, NotificationNames.UPDATEUSERS, FIELDS, 'User', ['status']);
 		}
 		
 		override public function create(argDict:Object):void
@@ -60,7 +61,7 @@ package net.poweru.proxies
 			new UserManagerDelegate(new PowerUResponder(onPasswordChangeSuccess, onPasswordChangeSuccess, onFault)).changePassword(loginProxy.authToken, userId, password, oldPassword);
 		}
 		
-		override public function getOne(pk:Number, fields:Array):void
+		override public function getOne(pk:Number):void
 		{
 			new UserManagerDelegate(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).adminUsersView(loginProxy.authToken, [pk]);
 		}

@@ -73,7 +73,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			primaryProxy.getAll(['title', 'name_prefix', 'lead_time', 'description']);
+			primaryProxy.getAll();
 		}
 		
 		protected function onFetchSessionTemplates(event:ViewEvent):void

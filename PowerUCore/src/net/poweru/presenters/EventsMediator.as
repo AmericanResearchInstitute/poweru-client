@@ -66,7 +66,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			primaryProxy.getAll(['title', 'name', 'lead_time', 'description', 'start', 'end']);
+			primaryProxy.getAll();
 		}
 	}
 }

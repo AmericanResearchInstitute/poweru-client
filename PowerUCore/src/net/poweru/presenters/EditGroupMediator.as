@@ -85,7 +85,7 @@ package net.poweru.presenters
 			
 			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 			// Need to fetch categories before actually populating.
-			categoryProxy.getAll(['name']);
+			categoryProxy.getAll();
 		}
 		
 		protected function onInputsCollected(event:Event):void

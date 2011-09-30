@@ -73,7 +73,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{	
-			groupProxy.getAll(['name']);
+			groupProxy.getAll();
 		}
 		
 	}

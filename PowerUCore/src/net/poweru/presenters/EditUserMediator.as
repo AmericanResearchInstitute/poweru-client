@@ -132,9 +132,9 @@ package net.poweru.presenters
 			if (pk <= 0)
 				pk = loginProxy.currentUser['id'];
 			primaryProxy.findByPK(pk);
-			groupProxy.getAll(['name']);
-			organizationProxy.getAll(['name']);
-			orgRoleProxy.getAll(['name']);
+			groupProxy.getAll();
+			organizationProxy.getAll();
+			orgRoleProxy.getAll();
 			primaryProxy.getChoices();
 		}
 		

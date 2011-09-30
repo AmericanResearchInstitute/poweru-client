@@ -39,8 +39,6 @@ package net.poweru.proxies
 		protected var loginProxy:LoginProxy;
 		protected var primaryDelegateClass:Class;
 		protected var updatedDataNotification:String;
-		protected var requestedFields:Array = [];
-		protected var getAllFields:Array = [];
 		protected var fieldChoices:Object = null;
 		protected var modelName:String;
 		protected var inputCollector:InputCollector;
@@ -49,9 +47,17 @@ package net.poweru.proxies
 		protected var browserServicesProxy:BrowserServicesProxy;
 		// names of fields which arrive as an ISO 8601 string. They will be automatically converted by the onGetFilteredSuccess method.
 		protected var dateTimeFields:Array = [];
+		protected var fields:Array;
 		
+		/*	updatedDataNotification is the notification which should be sent
+			when new data has entered the proxy.
 		
-		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, modelName:String = null, choiceFields:Array = null)
+			fields is an array of field names that should be loaded
+		
+			choiceFields is an array of field names for which choices should be
+			loaded.
+		*/
+		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, fields:Array, modelName:String = null, choiceFields:Array = null)
 		{
 			this.primaryDelegateClass = primaryDelegateClass;
 			super(proxyName, new DataSet());
@@ -59,6 +65,7 @@ package net.poweru.proxies
 			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			this.updatedDataNotification = updatedDataNotification;
 			this.modelName = modelName;
+			this.fields = fields;
 			inputCollector = new InputCollector(choiceFields);
 			inputCollector.addEventListener(Event.COMPLETE, onInputCollected);
 			for each (var fieldName:String in choiceFields)
@@ -77,45 +84,29 @@ package net.poweru.proxies
 		/*	If we have the results from a prior getAll call that included
 			the requested fields, just send those along.  Otherwise, actually
 			retrieve them from the back end. */
-		public function getAll(fields:Array):void
+		public function getAll():void
 		{
-			for each (var field:String in fields)
-			{
-				if (haveData == false)
-					getFiltered({}, fields);
-				else
-				{
-					var alreadyHaveDataAndFields:Boolean = haveData;
-					if (getAllFields.indexOf(field) == -1)
-					{
-						getAllFields = fields;
-						getFiltered({}, fields);
-						alreadyHaveDataAndFields = false;
-						break;
-					}
-				}
-			}
-			
-			if (alreadyHaveDataAndFields)
+			if (haveData == false)
+				getFiltered({});
+			else
 				sendNotification(updatedDataNotification, new DataSet(ObjectUtil.copy(dataSet.toArray()) as Array));
 		}
 		
-		public function getOne(pk:Number, fields:Array):void
+		/*	get one from the backend */
+		public function getOne(pk:Number):void
 		{
 			var filters:Object = {'exact' : {'id' : pk}};
 			new primaryDelegateClass(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
 		}
 		
-		public function getFiltered(filters:Object, fields:Array):void
+		/*	get many from the backend based on filters */
+		public function getFiltered(filters:Object):void
 		{
-			for each (var field:String in fields)
-				if (requestedFields.indexOf(field) == -1)
-					requestedFields.push(field);
-					
 			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
 		}
 		
-		public function getByIDs(ids:Array):void
+		/*	find records by IDs from local cache if possible, else from backend */
+		public function findByIDs(ids:Array):void
 		{
 			
 		}
@@ -149,21 +140,22 @@ package net.poweru.proxies
 		
 		public function clear():void
 		{
-			requestedFields = [];
 			data = new DataSet();
-			getAllFields = [];
 			haveData = false;
 		}
 		
+		/*	get one record by ID, from local cache or from backend */
 		public function findByPK(pk:Number):void
 		{
 			var ret:Object = ObjectUtil.copy(dataSet.findByPK(pk));
 			if (ret == null)
-				getOne(pk, getAllFields);
+				getOne(pk);
 			else
 				sendNotification(NotificationNames.RECEIVEDONE, ret, getProxyName());
 		}
 		
+		/* 	for each field that has potential choices, get those choices and
+			send NotificationNames.UPDATECHOICES with them */
 		public function getChoices():void
 		{
 			if (fieldChoices != null)
@@ -314,12 +306,7 @@ package net.poweru.proxies
 		protected function onCreateSuccess(data:ResultEvent):void
 		{
 			var newPK:Number = data.result.value.id;
-			if (requestedFields.length > 0)
-			{
-				getFiltered({'exact' : {'id' : newPK}}, requestedFields);
-			}
-			else
-				sendNotification(updatedDataNotification);
+			getFiltered({'exact' : {'id' : newPK}});
 		}
 		
 		protected function onCreateError(data:ResultEvent):void

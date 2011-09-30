@@ -74,7 +74,7 @@ package net.poweru.presenters
 		override protected function populate():void
 		{
 			var pk:Number = initialDataProxy.getInitialData(Places.CREATECURRICULUMENROLLMENT) as Number;
-			curriculumProxy.getOne(pk, ['name']);
+			curriculumProxy.getOne(pk);
 		}
 	}
 }

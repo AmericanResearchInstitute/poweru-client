@@ -93,7 +93,7 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['exams']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			primaryProxy.getAll(['name', 'title', 'description', 'type']);
+			primaryProxy.getAll();
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

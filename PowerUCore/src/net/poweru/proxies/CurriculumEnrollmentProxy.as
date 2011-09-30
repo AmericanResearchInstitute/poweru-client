@@ -10,10 +10,11 @@ package net.poweru.proxies
 	public class CurriculumEnrollmentProxy extends BaseProxy
 	{
 		public static const NAME:String = 'CurriculumEnrollmentProxy';
+		public static const FIELDS:Array = [];
 		
 		public function CurriculumEnrollmentProxy()
 		{
-			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTS);
+			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTS, FIELDS);
 			dateTimeFields = ['start', 'end'];
 		}
 		
@@ -34,7 +35,7 @@ package net.poweru.proxies
 			new CurriculumEnrollmentManagerDelegate(new PowerUResponder(onCurriculumEnrollmentsViewSuccess, onCurriculumEnrollmentsViewError, onFault)).curriculumEnrollmentsView(loginProxy.authToken);
 		}
 		
-		override public function getOne(pk:Number, fields:Array):void
+		override public function getOne(pk:Number):void
 		{
 			new CurriculumEnrollmentManagerDelegate(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).curriculumEnrollmentsView(loginProxy.authToken, [pk]);
 		}

@@ -118,7 +118,7 @@ package net.poweru.presenters
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			var pk:Number = initialDataProxy.getInitialData(placeName) as Number;
 			primaryProxy.findByPK(pk);
-			orgRoleProxy.getAll(['name']);
+			orgRoleProxy.getAll();
 			primaryProxy.getChoices();
 		}
 

@@ -1,21 +1,23 @@
 package net.poweru.proxies
 {
 	import com.adobe.utils.DateUtil;
+	
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.VideoSessionManagerDelegate;
 	import net.poweru.utils.PowerUResponder;
-	
-	import mx.rpc.events.ResultEvent;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 
 	public class VideoSessionProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'VideoSessionProxy';
+		public static const FIELDS:Array = [];
 		
 		public function VideoSessionProxy()
 		{
-			super(NAME, VideoSessionManagerDelegate, NotificationNames.UPDATEVIDEOSESSIONS);
+			super(NAME, VideoSessionManagerDelegate, NotificationNames.UPDATEVIDEOSESSIONS, FIELDS);
 		}
 		
 		// tells the back end that the user started watching a video

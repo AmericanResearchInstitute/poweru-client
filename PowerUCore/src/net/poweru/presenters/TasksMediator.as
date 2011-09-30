@@ -101,7 +101,7 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['tasks']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			taskProxy.getAll(['name', 'title', 'description', 'type']);
+			taskProxy.getAll();
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

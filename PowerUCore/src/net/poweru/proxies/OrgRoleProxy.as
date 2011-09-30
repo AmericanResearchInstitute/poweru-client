@@ -8,10 +8,11 @@ package net.poweru.proxies
 	public class OrgRoleProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'OrgRoleProxy';
+		public static const FIELDS:Array  = ['name'];
 		
 		public function OrgRoleProxy()
 		{
-			super(NAME, OrgRoleManagerDelegate, NotificationNames.UPDATEORGROLES);
+			super(NAME, OrgRoleManagerDelegate, NotificationNames.UPDATEORGROLES, FIELDS);
 		}
 		
 	}

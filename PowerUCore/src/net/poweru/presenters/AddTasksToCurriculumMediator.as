@@ -76,7 +76,7 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['curriculum', 'tasks']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
-			taskProxy.getAll(['name', 'title', 'description']);
+			taskProxy.getAll();
 		}
 		
 		protected function onInputsCollected(event:Event):void

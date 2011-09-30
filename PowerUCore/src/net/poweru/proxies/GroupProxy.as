@@ -1,17 +1,19 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.GroupManagerDelegate;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PowerUResponder;
-	
-	import mx.rpc.events.ResultEvent;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 
 	public class GroupProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'GroupProxy';
+		public static const FIELDS:Array = ['name'];
+		
 		public static const SUPERADMINGROUP:String = 'Super Administrators';
 		public static const CATEGORYMANAGERGROUP:String = 'Category Managers';
 		public static const STUDENTGROUP:String = 'Students';
@@ -21,7 +23,7 @@ package net.poweru.proxies
 		
 		public function GroupProxy()
 		{
-			super(NAME, GroupManagerDelegate, NotificationNames.UPDATEGROUPS);
+			super(NAME, GroupManagerDelegate, NotificationNames.UPDATEGROUPS, FIELDS);
 		}
 		
 		override public function create(argDict:Object):void

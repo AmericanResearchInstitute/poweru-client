@@ -1,28 +1,30 @@
 package net.poweru.proxies
 {
 	import com.adobe.utils.DateUtil;
-	import net.poweru.ApplicationFacade;
-	import net.poweru.NotificationNames;
-	import net.poweru.delegates.VideoManagerDelegate;
-	import net.poweru.model.DataSet;
-	import net.poweru.utils.PowerUResponder;
 	
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
 	
 	import mx.rpc.events.ResultEvent;
 	
+	import net.poweru.ApplicationFacade;
+	import net.poweru.NotificationNames;
+	import net.poweru.delegates.VideoManagerDelegate;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.PowerUResponder;
+	
 	import org.puremvc.as3.interfaces.IProxy;
 	
 	public class VideoProxy extends BaseProxy implements IProxy
 	{
-		public static var NAME:String = 'VideoProxy';
+		public static const NAME:String = 'VideoProxy';
+		public static const FIELDS:Array = [];
 		
 		protected var videoCateogoryProxy:VideoCategoryProxy;
 		
 		public function VideoProxy()
 		{
-			super(NAME, VideoManagerDelegate, NotificationNames.UPDATEVIDEOS);
+			super(NAME, VideoManagerDelegate, NotificationNames.UPDATEVIDEOS, FIELDS);
 			videoCateogoryProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(VideoCategoryProxy) as VideoCategoryProxy;
 		}
 		

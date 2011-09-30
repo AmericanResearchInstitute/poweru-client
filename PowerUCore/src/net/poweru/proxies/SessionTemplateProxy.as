@@ -9,10 +9,11 @@ package net.poweru.proxies
 	public class SessionTemplateProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'SessionTemplateProxy';
+		public static const FIELDS:Array = ['shortname', 'fullname', 'version', 'description', 'lead_time'];
 		
 		public function SessionTemplateProxy()
 		{
-			super(NAME, SessionTemplateManagerDelegate, NotificationNames.UPDATESESSIONTEMPLATES, 'SessionTemplate');
+			super(NAME, SessionTemplateManagerDelegate, NotificationNames.UPDATESESSIONTEMPLATES, FIELDS, 'SessionTemplate');
 		}
 		
 		override public function create(argDict:Object):void

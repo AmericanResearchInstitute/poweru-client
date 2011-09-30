@@ -14,7 +14,7 @@ package net.poweru.proxies
 		
 		public function OrgEmailDomainProxy()
 		{
-			super(NAME, OrgEmailDomainManagerDelegate, NotificationNames.UPDATEORGEMAILDOMAINS);
+			super(NAME, OrgEmailDomainManagerDelegate, NotificationNames.UPDATEORGEMAILDOMAINS, []);
 		}
 		
 		override public function create(argDict:Object):void

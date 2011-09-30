@@ -1,21 +1,22 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.CategoryManagerDelegate;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PowerUResponder;
 	
-	import mx.rpc.events.ResultEvent;
-	
 	import org.puremvc.as3.interfaces.IProxy;
 	
 	public class CategoryProxy extends BaseProxy implements IProxy
 	{
-		public static var NAME:String = 'CategoryProxy';
+		public static const NAME:String = 'CategoryProxy';
+		public static const FIELDS:Array = [];
 		
 		public function CategoryProxy()
 		{
-			super(NAME, CategoryManagerDelegate, NotificationNames.UPDATECATEGORIES);
+			super(NAME, CategoryManagerDelegate, NotificationNames.UPDATECATEGORIES, FIELDS);
 		}
 		
 		public function adminCategoriesView():void

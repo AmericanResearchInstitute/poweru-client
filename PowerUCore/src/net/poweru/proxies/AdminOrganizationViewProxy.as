@@ -1,22 +1,23 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.OrganizationManagerDelegate;
 	import net.poweru.model.HierarchicalDataSet;
 	import net.poweru.utils.PowerUResponder;
-	
-	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 
 	public class AdminOrganizationViewProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'AdminOrganizationViewProxy';
+		public static const FIELDS:Array = []
 		
 		public function AdminOrganizationViewProxy()
 		{
-			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS);
+			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS, FIELDS);
 		}
 		
 		public function adminOrganizationsView():void

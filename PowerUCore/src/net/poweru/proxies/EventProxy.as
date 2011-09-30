@@ -11,10 +11,11 @@ package net.poweru.proxies
 	public class EventProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'EventProxy';
+		public static const FIELDS:Array = ['title', 'name', 'lead_time', 'description', 'start', 'end'];
 		
 		public function EventProxy()
 		{
-			super(NAME, EventManagerDelegate, NotificationNames.UPDATEEVENTS);
+			super(NAME, EventManagerDelegate, NotificationNames.UPDATEEVENTS, FIELDS);
 			dateTimeFields = [
 				'start',
 				'end'

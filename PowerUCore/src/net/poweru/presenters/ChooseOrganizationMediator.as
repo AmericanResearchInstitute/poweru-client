@@ -41,7 +41,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			primaryProxy.getAll(['name', 'parent']);
+			primaryProxy.getAll();
 		}
 		
 	}
