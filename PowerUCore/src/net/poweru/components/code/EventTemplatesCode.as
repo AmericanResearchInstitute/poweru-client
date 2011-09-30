@@ -3,8 +3,10 @@ package net.poweru.components.code
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
 	import mx.events.FlexEvent;
+	import mx.events.ListEvent;
 	
 	import net.poweru.components.interfaces.IEventTemplates;
+	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	
 	public class EventTemplatesCode extends HBox implements IEventTemplates
@@ -33,6 +35,11 @@ package net.poweru.components.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			grid.dataProvider = new DataSet();
+		}
+		
+		protected function onEventTemplateSelected(event:ListEvent):void
+		{
+			dispatchEvent(new ViewEvent(ViewEvent.FETCH, (event.target as AdvancedDataGrid).selectedItem['id']));
 		}
 	}
 }

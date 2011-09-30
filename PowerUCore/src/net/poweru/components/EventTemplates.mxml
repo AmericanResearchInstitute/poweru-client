@@ -10,7 +10,7 @@
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+	<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="{onEventTemplateSelected(event)}">
 		<mx:columns>
 			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
 			<mx:AdvancedDataGridColumn dataField="name_prefix" headerText="Name Prefix"/>
@@ -38,7 +38,11 @@
 			</mx:Form>
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENTTEMPLATE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Add Session Template" id="addSessionTemplateButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSIONTEMPLATE, grid.selectedItem.id]))}"/>
 			</mx:HBox>	
+		</mx:Panel>
+		<mx:Panel width="100%" title="Session Templates">
+			<mx:List labelField="shortname" id="sessionTemplateList" width="100%"/>
 		</mx:Panel>
 	</mx:VBox>
 	

@@ -13,6 +13,7 @@ package net.poweru.proxies
 		public function EventTemplateProxy()
 		{
 			super(NAME, EventTemplateManagerDelegate, NotificationNames.UPDATEEVENTTEMPLATES, 'EventTemplate');
+			getAllFields = ['title', 'name_prefix', 'description'];
 		}
 		
 		override public function create(argDict:Object):void

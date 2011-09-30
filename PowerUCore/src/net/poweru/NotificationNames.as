@@ -17,6 +17,7 @@ package net.poweru
 		public static const LOGOUT:String = SpaceMediator.LOGOUT;
 		public static const PASSWORDCHANGESUCCESS:String = 'PasswordChangeSuccess';
 		public static const RECEIVEDONE:String = 'ReceivedOne';
+		public static const RECEIVEDMANY:String = 'ReceivedMany';
 		public static const REMOVEDIALOG:String = SpaceMediator.REMOVEDIALOG;
 		public static const RESETPASSWORDFAILURE:String = 'ResetPasswordFailure';
 		public static const RESETPASSWORDSUCCESS:String = 'ResetPasswordSuccess';
@@ -45,6 +46,7 @@ package net.poweru
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';
 		public static const UPDATEORGEMAILDOMAINS:String = 'UpdateOrgEmailDomains';
 		public static const UPDATEORGROLES:String = 'UpdateOrgRoles';
+		public static const UPDATESESSIONTEMPLATES:String = 'UpdateSessionTemplates';
 		public static const UPDATEUSERS:String = 'UpdateUsers';
 		public static const UPDATEUSERVIDEOSVIEW:String = 'UpdateUserVideosView';
 		public static const UPDATEVIDEOS:String = 'UpdateVideos';

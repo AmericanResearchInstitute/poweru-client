@@ -2,12 +2,14 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
+	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IEventTemplates;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.EventTemplateProxy;
+	import net.poweru.proxies.SessionTemplateProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -16,9 +18,12 @@ package net.poweru.presenters
 	{
 		public static const NAME:String = 'EventTemplatesMediator';
 		
+		protected var sessionTemplateProxy:SessionTemplateProxy;
+		
 		public function EventTemplatesMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventTemplateProxy);
+			sessionTemplateProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionTemplateProxy) as SessionTemplateProxy;
 		}
 		
 		protected function get eventTemplates():IEventTemplates
@@ -31,6 +36,7 @@ package net.poweru.presenters
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.addEventListener(ViewEvent.FETCH, onFetchSessionTemplates);
 		}
 		
 		override protected function removeEventListeners():void
@@ -38,6 +44,7 @@ package net.poweru.presenters
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);	
 			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.removeEventListener(ViewEvent.FETCH, onFetchSessionTemplates);
 		}
 		
 		override public function listNotificationInterests():Array
@@ -67,6 +74,11 @@ package net.poweru.presenters
 		override protected function populate():void
 		{
 			primaryProxy.getAll(['title', 'name_prefix', 'lead_time', 'description']);
+		}
+		
+		protected function onFetchSessionTemplates(event:ViewEvent):void
+		{
+			
 		}
 	}
 }

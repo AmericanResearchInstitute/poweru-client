@@ -20,6 +20,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
+	import net.poweru.components.dialogs.CreateSessionTemplate;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.EditCurriculum;
 	import net.poweru.components.dialogs.EditEvent;
@@ -46,6 +47,7 @@ package net.poweru
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
+	import net.poweru.presenters.CreateSessionTemplateMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
@@ -126,6 +128,10 @@ package net.poweru
 					
 				case Places.CREATEORGANIZATION:
 					component = getOrCreate(name, CreateOrganization, CreateOrganizationMediator);
+					break;
+				
+				case Places.CREATESESSIONTEMPLATE:
+					component = getOrCreate(name, CreateSessionTemplate, CreateSessionTemplateMediator);
 					break;
 					
 				case Places.CREATEUSER:

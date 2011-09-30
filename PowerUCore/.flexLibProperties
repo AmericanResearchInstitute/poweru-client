@@ -199,6 +199,12 @@
     <classEntry path="net.poweru.components.dialogs.code.EditEventCode"/>
     <classEntry path="net.poweru.components.dialogs.EditEvent"/>
     <classEntry path="net.poweru.presenters.EditEventMediator"/>
+    <classEntry path="net.poweru.delegates.SessionTemplateManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.SessionTemplateProxy"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateSessionTemplate"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateSessionTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateSessionTemplate"/>
+    <classEntry path="net.poweru.presenters.CreateSessionTemplateMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

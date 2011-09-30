@@ -31,6 +31,7 @@ package net.poweru
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
+		public static const CREATESESSIONTEMPLATE:String = 'CreateSessionTemplate';
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const EDITCATEGORY:String = 'EditCategory';

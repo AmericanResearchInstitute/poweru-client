@@ -50,6 +50,7 @@ package net.poweru.proxies
 		// names of fields which arrive as an ISO 8601 string. They will be automatically converted by the onGetFilteredSuccess method.
 		protected var dateTimeFields:Array = [];
 		
+		
 		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, modelName:String = null, choiceFields:Array = null)
 		{
 			this.primaryDelegateClass = primaryDelegateClass;
@@ -112,6 +113,11 @@ package net.poweru.proxies
 					requestedFields.push(field);
 					
 			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
+		}
+		
+		public function getByIDs(ids:Array):void
+		{
+			
 		}
 		
 		// override this
@@ -230,30 +236,44 @@ package net.poweru.proxies
 			uploadFile(file, {'model' : modelName}, browserServicesProxy.csvUploadURL, modelName);
 		}
 		
+		protected function convertIncomingData(data:Array):void
+		{
+			// Convert ISO8601 strings to Date objects
+			for each (var item:Object in data)
+			{
+				for each (var field:String in dateTimeFields)
+				{
+					if (item.hasOwnProperty(field))
+					{
+						item[field] = stringToDate(item[field]);
+					}
+				}
+			}
+		}
+		
+		protected function stringToDate(value:String):Date
+		{
+			var ret:Date;
+			
+			// DateUtil doesn't recognize valid ISO8601 strings that have only a date, so we have to handle those on our own.
+			var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
+			var result:Object = re.exec(value);
+			if (result['length'] == 4)
+				// month is 0-based. day of month is 1-based.
+				ret = new Date(result[1], result[2] - 1, result[3]);
+			else
+				ret = DateUtil.parseW3CDTF(value);
+			return ret;
+		}
+		
 		
 		// result handlers
 		
 		protected function onGetFilteredSuccess(data:ResultEvent):void
 		{
 			var value:Array = data.result.value as Array;
-			// Convert ISO8601 strings to Date objects
-			for each (var item:Object in value)
-			{
-				for each (var field:String in dateTimeFields)
-				{
-					if (item.hasOwnProperty(field))
-					{
-						// DateUtil doesn't recognize valid ISO8601 strings that have only a date, so we have to handle those on our own.
-						var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
-						var result:Object = re.exec(item[field]);
-						if (result['length'] == 4)
-							// month is 0-based. day of month is 1-based. Really Adobe?
-							item[field] = new Date(result[1], result[2] - 1, result[3]);
-						else
-							item[field] = DateUtil.parseW3CDTF(item[field]);
-					}
-				}
-			}
+			convertIncomingData(value);
+			
 			dataSet.mergeData(data.result.value as Array);
 			haveData = true;
 			sendNotification(updatedDataNotification, dataSet);
