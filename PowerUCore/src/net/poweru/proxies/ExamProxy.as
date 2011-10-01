@@ -14,20 +14,8 @@ package net.poweru.proxies
 		public function ExamProxy()
 		{
 			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, FIELDS, 'Exam');
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['name', 'title'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			// optional parameters go in a dictionary
-			args.push({'description': argDict['description']});
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['name', 'title'];
+			createOptionalArgNames = ['description'];
 		}
 	}
 }

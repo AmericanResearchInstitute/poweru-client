@@ -48,6 +48,8 @@ package net.poweru.proxies
 		// names of fields which arrive as an ISO 8601 string. They will be automatically converted by the onGetFilteredSuccess method.
 		protected var dateTimeFields:Array = [];
 		protected var fields:Array;
+		protected var createArgNamesInOrder:Array = [];
+		protected var createOptionalArgNames:Array = [];
 		
 		/*	updatedDataNotification is the notification which should be sent
 			when new data has entered the proxy.
@@ -119,9 +121,32 @@ package net.poweru.proxies
 			}
 		}
 		
-		// override this
-		public function create(parameters:Object):void
-		{}
+		/*	to use, set the following attributes on this instance:
+			createArgNamesInOrder: an Array of argument names, in order, that are
+				required for the create command.
+		
+			createOptionalArgNames: an Array of optional arguments to the create command
+		*/
+		public function create(argDict:Object):void
+		{
+			var args:Array = [loginProxy.authToken];
+			for each (var argName:String in createArgNamesInOrder)
+			{
+				args.push(argDict[argName]);
+			}
+			
+			var optional_args:Object = {};
+			
+			for each (var property:String in createOptionalArgNames)
+			{
+				if (argDict.hasOwnProperty(property))
+					optional_args[property] = argDict[property];
+			}
+			
+			args.push(optional_args);
+			
+			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+		}
 		
 		public function deleteObject(pk:Number):void
 		{

@@ -24,18 +24,7 @@ package net.poweru.proxies
 		public function GroupProxy()
 		{
 			super(NAME, GroupManagerDelegate, NotificationNames.UPDATEGROUPS, FIELDS);
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['name'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['name'];
 		}
 		
 		public function vodAdminGroupsView():void

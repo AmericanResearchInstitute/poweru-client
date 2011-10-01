@@ -14,22 +14,8 @@ package net.poweru.proxies
 		public function EventTemplateProxy()
 		{
 			super(NAME, EventTemplateManagerDelegate, NotificationNames.UPDATEEVENTTEMPLATES, FIELDS, 'EventTemplate');
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['name_prefix', 'title', 'description'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			// optional parameters
-			args.push({
-				'lead_time' : argDict['lead_time']
-			});
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['name_prefix', 'title', 'description'];
+			createOptionalArgNames = ['lead_time'];
 		}
 	}
 }

@@ -15,18 +15,7 @@ package net.poweru.proxies
 		public function OrgEmailDomainProxy()
 		{
 			super(NAME, OrgEmailDomainManagerDelegate, NotificationNames.UPDATEORGEMAILDOMAINS, []);
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['email_domain', 'organization', 'role'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['email_domain', 'organization', 'role'];
 		}
 
 		override public function deleteObject(pk:Number):void

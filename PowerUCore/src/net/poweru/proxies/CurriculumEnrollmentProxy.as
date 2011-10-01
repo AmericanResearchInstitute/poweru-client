@@ -16,18 +16,7 @@ package net.poweru.proxies
 		{
 			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTS, FIELDS);
 			dateTimeFields = ['start', 'end'];
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['curriculum', 'start', 'end'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['curriculum', 'start', 'end'];
 		}
 		
 		public function curriculumEnrollmentsView():void

@@ -20,22 +20,8 @@ package net.poweru.proxies
 				'start',
 				'end'
 			];
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['name', 'title', 'description', 'start', 'end', 'organization'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			// optional parameters
-			args.push({
-				'lead_time' : argDict['lead_time']
-			});
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['name', 'title', 'description', 'start', 'end', 'organization'];
+			createOptionalArgNames = ['lead_time'];
 		}
 	}
 }

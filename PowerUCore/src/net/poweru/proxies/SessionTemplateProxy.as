@@ -14,28 +14,8 @@ package net.poweru.proxies
 		public function SessionTemplateProxy()
 		{
 			super(NAME, SessionTemplateManagerDelegate, NotificationNames.UPDATESESSIONTEMPLATES, FIELDS, 'SessionTemplate');
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['shortname', 'fullname', 'version', 'description', 'price', 'lead_time', 'active', 'modality'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			
-			var optional_args:Object = {};
-			
-			for each (var property:String in ['event_template', 'sequence'])
-			{
-				if (argDict.hasOwnProperty(property))
-					optional_args[property] = argDict[property];
-			}
-			
-			args.push(optional_args);
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['shortname', 'fullname', 'version', 'description', 'price', 'lead_time', 'active', 'modality'];
+			createOptionalArgNames = ['event_template', 'sequence'];
 		}
 	}
 }

@@ -19,18 +19,7 @@ package net.poweru.proxies
 		public function OrganizationProxy()
 		{
 			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS, FIELDS);
-		}
-		
-		override public function create(parameters:Object):void
-		{
-			var argNamesInOrder:Array = ['name'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(parameters[argName]);
-			}
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			createArgNamesInOrder = ['name'];
 		}
 	}
 }
