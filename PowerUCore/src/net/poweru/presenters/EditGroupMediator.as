@@ -44,18 +44,7 @@ package net.poweru.presenters
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
-			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-					
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == Places.EDITGROUP)
-						populate();
-					break;
-				
+			{				
 				case NotificationNames.RECEIVEDONE:
 					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('group', notification.getBody());
@@ -65,6 +54,9 @@ package net.poweru.presenters
 					var categories:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('categories', (notification.getBody() as ArrayCollection).toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

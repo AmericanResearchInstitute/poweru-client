@@ -28,6 +28,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditExam;
 	import net.poweru.components.dialogs.EditGroup;
 	import net.poweru.components.dialogs.EditOrganization;
+	import net.poweru.components.dialogs.EditSessionTemplate;
 	import net.poweru.components.dialogs.EditUser;
 	import net.poweru.components.dialogs.HelpOrganization;
 	import net.poweru.components.dialogs.HelpUser;
@@ -57,6 +58,7 @@ package net.poweru
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
+	import net.poweru.presenters.EditSessionTemplateMediator;
 	import net.poweru.presenters.EditUserMediator;
 	import net.poweru.presenters.EventTemplatesMediator;
 	import net.poweru.presenters.EventsMediator;
@@ -168,6 +170,10 @@ package net.poweru
 				
 				case Places.EDITORGANIZATION:
 					component = getOrCreate(name, EditOrganization, EditOrganizationMediator);
+					break;
+				
+				case Places.EDITSESSIONTEMPLATE:
+					component = getOrCreate(name, EditSessionTemplate, EditSessionTemplateMediator);
 					break;
 				
 				case Places.EDITUSER:

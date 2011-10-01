@@ -9,7 +9,7 @@ package net.poweru.proxies
 	public class SessionTemplateProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'SessionTemplateProxy';
-		public static const FIELDS:Array = ['shortname', 'fullname', 'version', 'description', 'lead_time', 'event_template'];
+		public static const FIELDS:Array = ['shortname', 'fullname', 'version', 'description', 'lead_time', 'event_template', 'sequence'];
 		
 		public function SessionTemplateProxy()
 		{
@@ -27,7 +27,7 @@ package net.poweru.proxies
 			
 			var optional_args:Object = {};
 			
-			for each (var property:String in ['event_template'])
+			for each (var property:String in ['event_template', 'sequence'])
 			{
 				if (argDict.hasOwnProperty(property))
 					optional_args[property] = argDict[property];

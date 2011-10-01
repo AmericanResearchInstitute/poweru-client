@@ -44,6 +44,7 @@
 		</mx:Panel>
 		<mx:Panel width="100%" title="Session Templates">
 			<mx:List labelField="shortname" id="sessionTemplateList" width="100%" itemRenderer="net.poweru.components.item_renderers.SessionTemplateListRenderer"/>
+			<mx:Button label="Edit" enabled="{sessionTemplateList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSIONTEMPLATE, sessionTemplateList.selectedItem.id]))}"/>
 		</mx:Panel>
 	</mx:VBox>
 	

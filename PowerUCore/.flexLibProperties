@@ -207,6 +207,9 @@
     <classEntry path="net.poweru.presenters.CreateSessionTemplateMediator"/>
     <classEntry path="net.poweru.components.item_renderers.code.SessionTemplateListRendererCode"/>
     <classEntry path="net.poweru.components.item_renderers.SessionTemplateListRenderer"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditSessionTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditSessionTemplate"/>
+    <classEntry path="net.poweru.presenters.EditSessionTemplateMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

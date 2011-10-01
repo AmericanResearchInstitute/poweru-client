@@ -1,5 +1,7 @@
 package net.poweru.components.code
 {
+	import mx.collections.Sort;
+	import mx.collections.SortField;
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.List;
@@ -69,6 +71,9 @@ package net.poweru.components.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			grid.dataProvider = new DataSet();
 			sessionTemplateList.dataProvider = new DataSet();
+			var sort:Sort = new Sort();
+			sort.fields = [new SortField('sequence', false, false, true)];
+			sessionTemplateList.dataProvider.sort = sort;
 		}
 		
 		protected function onEventTemplateSelected(event:ListEvent):void

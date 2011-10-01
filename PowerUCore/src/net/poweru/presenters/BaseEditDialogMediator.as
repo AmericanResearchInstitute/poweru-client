@@ -51,6 +51,23 @@ package net.poweru.presenters
 			}
 		}
 		
+		override public function handleNotification(notification:INotification):void
+		{
+			switch (notification.getName())
+			{
+				case NotificationNames.LOGOUT:
+					if (editDialog)
+						editDialog.clear();
+					break;
+				
+				case NotificationNames.DIALOGPRESENTED:
+					var body:String = notification.getBody() as String;
+					if (body != null && body == placeName)
+						populate();
+					break;
+			}
+		}
+		
 		// probably override this in a subclass, and make sure to call the method on super()
 		protected function onSubmit(event:ViewEvent):void
 		{

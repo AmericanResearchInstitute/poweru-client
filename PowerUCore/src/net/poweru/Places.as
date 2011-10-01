@@ -42,6 +42,7 @@ package net.poweru
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
+		public static const EDITSESSIONTEMPLATE:String = 'EditSessionTemplate';
 		public static const EDITTASK:String = 'EditTask';
 		public static const EDITUSER:String = 'EditUser';
 		public static const EDITVIDEO:String = 'EditVideo';
