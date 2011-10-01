@@ -4,5 +4,6 @@ package net.poweru.components.interfaces
 	{
 		function populate(data:Array):void;
 		function clear():void;
+		function setSessionTemplates(data:Array):void;
 	}
 }

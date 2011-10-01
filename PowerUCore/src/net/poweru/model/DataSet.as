@@ -41,11 +41,15 @@ package net.poweru.model
 				}
 		}
 		
+		/*	returns as many of the requested items as it finds, but does not
+		raise an error if one or more are not found. */
 		public function findMembersByPK(pks:Array):DataSet
 		{
 			return findMembersByKey('id', pks);
 		}
 		
+		/*	returns as many of the requested items as it finds, but does not
+			raise an error if one or more are not found. */
 		public function findMembersByKey(key:String, values:Array):DataSet
 		{
 			var results:Array = [];
@@ -67,6 +71,7 @@ package net.poweru.model
 			addItem(data);
 		}
 		
+		/*	adds all items specified, removing old ones of the same ID. */
 		public function mergeData(data:Array):void
 		{
 			for each (var item:Object in data)

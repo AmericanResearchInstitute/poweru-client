@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ns:SessionTemplateListRendererCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:ns="net.poweru.components.item_renderers.code.*"
+	width="100%"
+	height="48">
+	<mx:HBox width="100%">
+		<mx:Label text="{data.fullname}"/>
+		<mx:Label text="{'(' + data.shortname + ')'}"/>
+	</mx:HBox>
+	<mx:HBox width="100%" height="100%">
+		<mx:Text text="{data.description}" width="100%"/>
+	</mx:HBox>
+</ns:SessionTemplateListRendererCode>

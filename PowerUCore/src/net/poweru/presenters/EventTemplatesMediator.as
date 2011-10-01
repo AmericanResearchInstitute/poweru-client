@@ -51,6 +51,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.SETSPACE,
+				NotificationNames.UPDATESESSIONTEMPLATES,
 				NotificationNames.UPDATEEVENTTEMPLATES,
 			];
 		}
@@ -68,6 +69,10 @@ package net.poweru.presenters
 				case NotificationNames.UPDATEEVENTTEMPLATES:
 					eventTemplates.populate((notification.getBody() as DataSet).toArray());
 					break;
+				
+				case NotificationNames.UPDATESESSIONTEMPLATES:
+					eventTemplates.setSessionTemplates((notification.getBody() as DataSet).toArray());
+					break;
 			}
 		}
 		
@@ -78,7 +83,9 @@ package net.poweru.presenters
 		
 		protected function onFetchSessionTemplates(event:ViewEvent):void
 		{
-			
+			var session_template_ids:Array = event.body as Array;
+			if (session_template_ids.length > 0)
+				sessionTemplateProxy.findByIDs(session_template_ids);
 		}
 	}
 }

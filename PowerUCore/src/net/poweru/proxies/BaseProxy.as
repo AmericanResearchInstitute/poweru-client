@@ -99,7 +99,9 @@ package net.poweru.proxies
 			new primaryDelegateClass(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
 		}
 		
-		/*	get many from the backend based on filters */
+		/*	get many from the backend based on filters.
+			sends the updatedDataNotification with a DataSet containing the
+			results sent back for this request only. */
 		public function getFiltered(filters:Object):void
 		{
 			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
@@ -108,7 +110,13 @@ package net.poweru.proxies
 		/*	find records by IDs from local cache if possible, else from backend */
 		public function findByIDs(ids:Array):void
 		{
-			
+			var currentItems:Array = dataSet.findMembersByPK(ids).toArray();
+			if (currentItems.length == ids.length)
+				sendNotification(updatedDataNotification, new DataSet(currentItems));
+			else
+			{
+				getFiltered({'member' : {'id' : ids}});
+			}
 		}
 		
 		// override this
@@ -266,9 +274,9 @@ package net.poweru.proxies
 			var value:Array = data.result.value as Array;
 			convertIncomingData(value);
 			
-			dataSet.mergeData(data.result.value as Array);
+			dataSet.mergeData(value);
 			haveData = true;
-			sendNotification(updatedDataNotification, dataSet);
+			sendNotification(updatedDataNotification, new DataSet(value));
 		}
 		
 		protected function onGetFilteredError(data:ResultEvent):void
