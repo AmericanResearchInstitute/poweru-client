@@ -65,9 +65,8 @@ package net.poweru.presenters
 						populate();
 					break;
 				
-				// Happens when we save an EventTemplate, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEEVENTTEMPLATES:
-					eventTemplates.populate((notification.getBody() as DataSet).toArray());
+					eventTemplates.populate(primaryProxy.dataSet.toArray());
 					break;
 				
 				case NotificationNames.UPDATESESSIONTEMPLATES:

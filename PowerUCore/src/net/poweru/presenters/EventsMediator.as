@@ -59,7 +59,7 @@ package net.poweru.presenters
 				
 				// Happens when we save an Event, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEEVENTS:
-					events.populate((notification.getBody() as DataSet).toArray());
+					events.populate(primaryProxy.dataSet.toArray());
 					break;
 			}
 		}

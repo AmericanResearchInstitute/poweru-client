@@ -66,7 +66,7 @@ package net.poweru.presenters
 					
 				// Happens when we save a group, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEGROUPS:
-					groups.populate((notification.getBody() as DataSet).toArray());
+					groups.populate(primaryProxy.dataSet.toArray());
 					break;
 			}
 		}

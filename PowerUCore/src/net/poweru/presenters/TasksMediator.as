@@ -81,7 +81,7 @@ package net.poweru.presenters
 				
 				// Happens when we save an exam, and indicates that we should just refresh the view
 				case NotificationNames.UPDATETASKS:
-					inputCollector.addInput('tasks', (notification.getBody() as DataSet).toArray());
+					inputCollector.addInput('tasks', (primaryProxy.dataSet).toArray());
 					break;
 			}
 		}
