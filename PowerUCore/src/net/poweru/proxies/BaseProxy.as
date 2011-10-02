@@ -281,9 +281,9 @@ package net.poweru.proxies
 			var ret:Date;
 			
 			// DateUtil doesn't recognize valid ISO8601 strings that have only a date, so we have to handle those on our own.
-			var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
+			var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})$/;
 			var result:Object = re.exec(value);
-			if (result['length'] == 4)
+			if (result != null && result['length'] == 4)
 				// month is 0-based. day of month is 1-based.
 				ret = new Date(result[1], result[2] - 1, result[3]);
 			else
