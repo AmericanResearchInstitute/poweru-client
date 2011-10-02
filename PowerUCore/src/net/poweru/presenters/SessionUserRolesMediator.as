@@ -1,31 +1,28 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IGroups;
+	import net.poweru.components.interfaces.ISessionUserRoles;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.SessionUserRoleProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-
-	public class GroupsMediator extends BaseMediator implements IMediator
+	
+	public class SessionUserRolesMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'GroupsMediator';
+		public static const NAME:String = 'SessionUserRolesMediator';
 		
-		public function GroupsMediator(viewComponent:Object)
+		public function SessionUserRolesMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, GroupProxy);
+			super(NAME, viewComponent, SessionUserRoleProxy);
 		}
 		
-		protected function get groups():IGroups
+		protected function get sessionUserRoles():ISessionUserRoles
 		{
-			return viewComponent as IGroups;
+			return viewComponent as ISessionUserRoles;
 		}
 		
 		override protected function addEventListeners():void
@@ -46,7 +43,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEGROUPS,
+				NotificationNames.UPDATESESSIONUSERROLES,
 			];
 		}
 		
@@ -55,13 +52,13 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.GROUPS)
+					if (notification.getBody() == Places.SESSIONUSERROLES)
 						populate();
 					break;
-					
+				
 				// Happens when we save a group, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEGROUPS:
-					groups.populate(primaryProxy.dataSet.toArray());
+				case NotificationNames.UPDATESESSIONUSERROLES:
+					sessionUserRoles.populate(primaryProxy.dataSet.toArray());
 					break;
 			}
 		}
@@ -70,6 +67,5 @@ package net.poweru.presenters
 		{	
 			primaryProxy.getAll();
 		}
-		
 	}
 }

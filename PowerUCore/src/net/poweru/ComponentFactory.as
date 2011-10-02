@@ -10,6 +10,7 @@ package net.poweru
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
+	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.Users;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.ConfirmLogout;
@@ -22,6 +23,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateOrganization;
 	import net.poweru.components.dialogs.CreateSession;
 	import net.poweru.components.dialogs.CreateSessionTemplate;
+	import net.poweru.components.dialogs.CreateSessionUserRole;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.EditCurriculum;
 	import net.poweru.components.dialogs.EditEvent;
@@ -31,6 +33,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditOrganization;
 	import net.poweru.components.dialogs.EditSession;
 	import net.poweru.components.dialogs.EditSessionTemplate;
+	import net.poweru.components.dialogs.EditSessionUserRole;
 	import net.poweru.components.dialogs.EditUser;
 	import net.poweru.components.dialogs.HelpOrganization;
 	import net.poweru.components.dialogs.HelpUser;
@@ -52,6 +55,7 @@ package net.poweru
 	import net.poweru.presenters.CreateOrganizationMediator;
 	import net.poweru.presenters.CreateSessionMediator;
 	import net.poweru.presenters.CreateSessionTemplateMediator;
+	import net.poweru.presenters.CreateSessionUserRoleMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
@@ -63,6 +67,7 @@ package net.poweru
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditSessionMediator;
 	import net.poweru.presenters.EditSessionTemplateMediator;
+	import net.poweru.presenters.EditSessionUserRoleMediator;
 	import net.poweru.presenters.EditUserMediator;
 	import net.poweru.presenters.EventTemplatesMediator;
 	import net.poweru.presenters.EventsMediator;
@@ -72,6 +77,7 @@ package net.poweru
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
+	import net.poweru.presenters.SessionUserRolesMediator;
 	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
@@ -143,6 +149,10 @@ package net.poweru
 				case Places.CREATESESSIONTEMPLATE:
 					component = getOrCreate(name, CreateSessionTemplate, CreateSessionTemplateMediator);
 					break;
+				
+				case Places.CREATESESSIONUSERROLE:
+					component = getOrCreate(name, CreateSessionUserRole, CreateSessionUserRoleMediator);
+					break;
 					
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
@@ -186,6 +196,10 @@ package net.poweru
 				
 				case Places.EDITSESSIONTEMPLATE:
 					component = getOrCreate(name, EditSessionTemplate, EditSessionTemplateMediator);
+					break;
+				
+				case Places.EDITSESSIONUSERROLE:
+					component = getOrCreate(name, EditSessionUserRole, EditSessionUserRoleMediator);
 					break;
 				
 				case Places.EDITUSER:
@@ -234,6 +248,10 @@ package net.poweru
 				
 				case Places.SELFREGISTER:
 					component = getOrCreate(name, SelfRegister, SelfRegisterMediator);
+					break;
+				
+				case Places.SESSIONUSERROLES:
+					component = getOrCreate(name, SessionUserRoles, SessionUserRolesMediator);
 					break;
 				
 				case Places.USERS:
