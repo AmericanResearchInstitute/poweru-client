@@ -10,7 +10,7 @@
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+	<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="onEventSelected(event)">
 		<mx:columns>
 			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
 			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
@@ -49,7 +49,12 @@
 			</mx:Form>
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENT, grid.selectedItem.id]))}"/>
-			</mx:HBox>	
+				<mx:Button label="Add Session" id="addSessionButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSION, grid.selectedItem.id]))}"/>
+			</mx:HBox>
+		</mx:Panel>
+		<mx:Panel width="100%" title="Sessions">
+			<mx:List labelField="name" id="sessionList" width="100%" itemRenderer="net.poweru.components.item_renderers.SessionListRenderer"/>
+			<mx:Button label="Edit" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
 		</mx:Panel>
 	</mx:VBox>
 </code:EventsCode>

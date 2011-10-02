@@ -210,6 +210,17 @@
     <classEntry path="net.poweru.components.dialogs.code.EditSessionTemplateCode"/>
     <classEntry path="net.poweru.components.dialogs.EditSessionTemplate"/>
     <classEntry path="net.poweru.presenters.EditSessionTemplateMediator"/>
+    <classEntry path="net.poweru.delegates.SessionManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.SessionProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateSessionCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateSession"/>
+    <classEntry path="net.poweru.presenters.CreateSessionMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateSession"/>
+    <classEntry path="net.poweru.components.item_renderers.code.SessionListRendererCode"/>
+    <classEntry path="net.poweru.components.item_renderers.SessionListRenderer"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditSessionCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditSession"/>
+    <classEntry path="net.poweru.presenters.EditSessionMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

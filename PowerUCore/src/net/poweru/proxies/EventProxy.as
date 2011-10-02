@@ -11,7 +11,7 @@ package net.poweru.proxies
 	public class EventProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'EventProxy';
-		public static const FIELDS:Array = ['title', 'name', 'lead_time', 'description', 'start', 'end'];
+		public static const FIELDS:Array = ['title', 'name', 'lead_time', 'description', 'start', 'end', 'sessions'];
 		
 		public function EventProxy()
 		{

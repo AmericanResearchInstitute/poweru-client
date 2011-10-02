@@ -46,6 +46,7 @@ package net.poweru
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';
 		public static const UPDATEORGEMAILDOMAINS:String = 'UpdateOrgEmailDomains';
 		public static const UPDATEORGROLES:String = 'UpdateOrgRoles';
+		public static const UPDATESESSIONS:String = 'UpdateSessions';
 		public static const UPDATESESSIONTEMPLATES:String = 'UpdateSessionTemplates';
 		public static const UPDATEUSERS:String = 'UpdateUsers';
 		public static const UPDATEUSERVIDEOSVIEW:String = 'UpdateUserVideosView';

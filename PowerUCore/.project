@@ -3,6 +3,7 @@
 	<name>PowerUCore</name>
 	<comment></comment>
 	<projects>
+		<project>astra</project>
 		<project>SpaceManager</project>
 	</projects>
 	<buildSpec>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:CreateSessionTemplateCode
+<code:CreateSessionCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:SessionTemplate="net.poweru.generated.model.SessionTemplate.*">
+	xmlns:Session="net.poweru.generated.model.Session.*"
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -10,13 +11,24 @@
 	</mx:Script>
 	<mx:Form>
 		<mx:FormItem label="Name">
-			<SessionTemplate:FullnameInput id="fullNameInput"/>
+			<Session:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Title">
+			<Session:TitleInput id="titleInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Start">
+			<mx:DateField id="startDateInput" />
+			<yahoo:TimeInput id="startTimeInput" showSeconds="{false}"/>
+		</mx:FormItem>
+		<mx:FormItem label="End">
+			<mx:DateField id="endDateInput" />
+			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time">
 			<mx:TextInput id="leadTimeInput" />
 		</mx:FormItem>
-		<mx:FormItem label="Sequence">
-			<mx:TextInput id="sequenceInput" />
+		<mx:FormItem label="URL">
+			<Session:UrlInput id="urlInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput" />
@@ -26,4 +38,4 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:CreateSessionTemplateCode>
+</code:CreateSessionCode>

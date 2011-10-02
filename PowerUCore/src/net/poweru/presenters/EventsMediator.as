@@ -2,12 +2,14 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
+	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IEvents;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.EventProxy;
+	import net.poweru.proxies.SessionProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -16,9 +18,12 @@ package net.poweru.presenters
 	{
 		public static const NAME:String = 'EventsMediator';
 		
+		protected var sessionProxy:SessionProxy;
+		
 		public function EventsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventProxy);
+			sessionProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionProxy) as SessionProxy;
 		}
 		
 		protected function get events():IEvents
@@ -31,6 +36,7 @@ package net.poweru.presenters
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.addEventListener(ViewEvent.FETCH, onFetchSessions);
 		}
 		
 		override protected function removeEventListeners():void
@@ -38,6 +44,7 @@ package net.poweru.presenters
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);	
 			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.removeEventListener(ViewEvent.FETCH, onFetchSessions);
 		}
 		
 		override public function listNotificationInterests():Array
@@ -45,6 +52,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEEVENTS,
+				NotificationNames.UPDATESESSIONS
 			];
 		}
 		
@@ -61,12 +69,23 @@ package net.poweru.presenters
 				case NotificationNames.UPDATEEVENTS:
 					events.populate(primaryProxy.dataSet.toArray());
 					break;
+				
+				case NotificationNames.UPDATESESSIONS:
+					events.setSessions((notification.getBody() as DataSet).toArray());
+					break;
 			}
 		}
 		
 		override protected function populate():void
 		{
 			primaryProxy.getAll();
+		}
+		
+		protected function onFetchSessions(event:ViewEvent):void
+		{
+			var session_ids:Array = event.body as Array;
+			if (session_ids.length > 0)
+				sessionProxy.findByIDs(session_ids);
 		}
 	}
 }
