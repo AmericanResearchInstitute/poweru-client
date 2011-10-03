@@ -1,5 +1,7 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.SessionManagerDelegate;
 	
@@ -8,14 +10,22 @@ package net.poweru.proxies
 	public class SessionProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'SessionProxy';
-		public static const FIELDS:Array = ['start', 'end', 'status', 'confirmed', 'event', 'name', 'title', 'url', 'description'];
 		
 		public function SessionProxy()
 		{
-			super(NAME, SessionManagerDelegate, NotificationNames.UPDATESESSIONS, FIELDS, 'Session');
+			super(NAME, SessionManagerDelegate, NotificationNames.UPDATESESSIONS, [], 'Session');
 			createArgNamesInOrder = ['start', 'end', 'status', 'confirmed', 'default_price', 'event'];
 			createOptionalArgNames = ['name', 'title', 'url', 'description'];
 			dateTimeFields = ['start', 'end'];
+		}
+		
+		/*	clear item from cache and re-fetch so we get the correct
+			session_user_role data. */
+		override protected function onSaveSuccess(data:ResultEvent):void
+		{
+			dataSet.removeByPK(data.token['updatedItem']['id']);
+			findByIDs([data.token['updatedItem']['id']]);
+			saveCounter.decrement();
 		}
 	}
 }

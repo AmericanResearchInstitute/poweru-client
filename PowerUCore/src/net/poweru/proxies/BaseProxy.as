@@ -135,15 +135,16 @@ package net.poweru.proxies
 				args.push(argDict[argName]);
 			}
 			
-			var optional_args:Object = {};
-			
-			for each (var property:String in createOptionalArgNames)
+			if (createOptionalArgNames.length > 0)
 			{
-				if (argDict.hasOwnProperty(property))
-					optional_args[property] = argDict[property];
+				var optional_args:Object = {};
+				for each (var property:String in createOptionalArgNames)
+				{
+					if (argDict.hasOwnProperty(property))
+						optional_args[property] = argDict[property];
+				}
+				args.push(optional_args);
 			}
-			
-			args.push(optional_args);
 			
 			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
 		}
@@ -422,7 +423,9 @@ package net.poweru.proxies
 		
 		protected function onGetOneSuccess(event:ResultEvent):void
 		{
-			var item:Object = event.result.value[0];
+			var value:Array = event.result.value as Array;
+			convertIncomingData(value);
+			var item:Object = value[0];
 			dataSet.addOrReplace(item);
 			sendNotification(NotificationNames.RECEIVEDONE, item, getProxyName());
 		}

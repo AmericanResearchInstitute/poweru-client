@@ -233,6 +233,10 @@
     <classEntry path="net.poweru.components.dialogs.code.EditSessionUserRoleCode"/>
     <classEntry path="net.poweru.components.dialogs.EditSessionUserRole"/>
     <classEntry path="net.poweru.presenters.EditSessionUserRoleMediator"/>
+    <classEntry path="net.poweru.delegates.SessionUserRoleRequirementManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.SessionUserRoleRequirementProxy"/>
+    <classEntry path="net.poweru.components.parts.code.AddSessionUserRoleCode"/>
+    <classEntry path="net.poweru.components.parts.AddSessionUserRole"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

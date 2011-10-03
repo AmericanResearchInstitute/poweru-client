@@ -43,7 +43,7 @@ package net.poweru.components.dialogs.code
 				'lead_time' : leadTimeInput.text,
 				'url' : urlInput.text,
 				'description' : descriptionInput.text,
-				'status' : 'active',
+				'status' : 'pending',
 				'default_price' : 0,
 				'confirmed' : true,
 				'start' : new Date(

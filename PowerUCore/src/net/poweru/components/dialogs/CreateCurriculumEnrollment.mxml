@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:CreateCurriculumEnrollmentCode
+	title="Create Learning Initiative"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*">
 	<mx:Script>

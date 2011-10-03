@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:EditSessionCode
+	title="Edit Session"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Session="net.poweru.generated.model.Session.*"
-	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml">
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml" xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -33,6 +34,18 @@
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput" />
 		</mx:FormItem>
+		<mx:FormItem label="Roles">
+			<mx:DataGrid id="roles">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="role_name"/>
+					<mx:DataGridColumn headerText="Min" dataField="min"/>
+					<mx:DataGridColumn headerText="Max" dataField="max"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox horizontalAlign="right" width="100%" id="addRoleFI">
+			<parts:AddSessionUserRole id="addRole"/>
+		</mx:HBox>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

@@ -20,6 +20,12 @@ package net.poweru.delegates
 		private var updateFieldsToIgnore:Array;
 		private var specialUpdateHandlingInfo:Object;
 		
+		/*	Sometimes we want to use a view method that adds extra data to the
+			typical get_filtered output. That method must take the same number
+			of parameters as get_filtered. Specify the name of the remote
+			method here. */
+		protected var getFilteredMethodName:String = 'get_filtered';
+		
 		/*	some attributes need a small touch of type translation or such before
 			being shipped off to the server.  Set this attribute in subclasses
 			such that keys are names of attributes you want to mangle, and values
@@ -65,7 +71,7 @@ package net.poweru.delegates
 		
 		public function getFiltered(authToken:String, filters:Object, fields:Array):AsyncToken
 		{
-			var token:AsyncToken = remoteObject.getOperation('get_filtered').send(authToken, filters, fields);
+			var token:AsyncToken = remoteObject.getOperation(getFilteredMethodName).send(authToken, filters, fields);
 			token.addResponder(responder);
 			return token;
 		}

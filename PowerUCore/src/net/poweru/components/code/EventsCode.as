@@ -1,6 +1,7 @@
 package net.poweru.components.code
 {
 	import mx.containers.HBox;
+	import mx.containers.Panel;
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.List;
 	import mx.events.FlexEvent;

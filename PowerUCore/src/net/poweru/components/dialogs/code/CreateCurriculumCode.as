@@ -20,7 +20,8 @@ package net.poweru.components.dialogs.code
 		override public function getData():Object
 		{
 			return {
-				'name' : nameInput.text
+				'name' : nameInput.text,
+				'organization' : null
 			};
 		}
 		
