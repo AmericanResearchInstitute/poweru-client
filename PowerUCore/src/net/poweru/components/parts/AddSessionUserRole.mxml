@@ -13,7 +13,13 @@
 				<mx:ComboBox dataProvider="{roleData}" labelField="name" id="roleCB"/>
 			</mx:AddChild>
 			<mx:AddChild>
+				<mx:Label text="Min:"/>
+			</mx:AddChild>
+			<mx:AddChild>
 				<mx:TextInput id="minInput"/>
+			</mx:AddChild>
+			<mx:AddChild>
+				<mx:Label text="Max:"/>
 			</mx:AddChild>
 			<mx:AddChild>
 				<mx:TextInput id="maxInput"/>

@@ -47,6 +47,12 @@ package net.poweru.presenters
 			displayObject.removeEventListener(ViewEvent.FETCH, onFetchSessions);
 		}
 		
+		override protected function onRefresh(event:ViewEvent):void
+		{
+			sessionProxy.clear();
+			super.onRefresh(event);
+		}
+		
 		override public function listNotificationInterests():Array
 		{
 			return [
