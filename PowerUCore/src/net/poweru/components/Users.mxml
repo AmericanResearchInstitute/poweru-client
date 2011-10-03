@@ -10,6 +10,7 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Container;
+			
 			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
@@ -125,17 +126,31 @@
 					</mx:Form>
 				</mx:VBox>
 				<mx:VBox width="100%" label="Add to Learning Initiative" horizontalAlign="center">
-					
-				<mx:DataGrid id="curriculumEnrollmentGrid">
-					<mx:columns>
-						<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum"/>
-						<mx:DataGridColumn dataField="start" headerText="Start"/>
-						<mx:DataGridColumn dataField="end" headerText="End"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:Form>
-					<mx:Button id="addToCurriculumEnrollmentButton" label="Add to Learning Initiative" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; curriculumEnrollmentGrid.selectedItems.length > 0}" click="onAddToCurriculumEnrollment(event)"/>	
-				</mx:Form>
+					<mx:DataGrid id="curriculumEnrollmentGrid">
+						<mx:columns>
+							<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum"/>
+							<mx:DataGridColumn dataField="start" headerText="Start"/>
+							<mx:DataGridColumn dataField="end" headerText="End"/>
+						</mx:columns>
+					</mx:DataGrid>
+					<mx:Form>
+						<mx:Button id="addToCurriculumEnrollmentButton" label="Add to Learning Initiative" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; curriculumEnrollmentGrid.selectedItems.length > 0}" click="onAddToCurriculumEnrollment(event)"/>	
+					</mx:Form>
+				</mx:VBox>
+				<mx:VBox width="100%" label="Enroll in Event" id="enrollEvent">
+					<mx:DataGrid id="eventGrid" width="100%" height="100%">
+						<mx:columns>
+							<mx:DataGridColumn dataField="name" headerText="Name"/>
+							<mx:DataGridColumn dataField="title" headerText="Title"/>
+							<mx:DataGridColumn dataField="start" headerText="Start"/>
+						</mx:columns>
+					</mx:DataGrid>
+					<mx:Form>
+						<mx:Button id="enrollInEventButton"
+								   label="Choose Sessions"
+								   enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; eventGrid.selectedItems.length > 0}"
+								   click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.BULKENROLLINEVENT, {'event':eventGrid.selectedItem, 'users' : bulkGrid.selectedItems}]))"/>	
+					</mx:Form>
 				</mx:VBox>
 				<mx:VBox width="100%" label="Change Status" id="changeStatus">
 					<mx:Form>

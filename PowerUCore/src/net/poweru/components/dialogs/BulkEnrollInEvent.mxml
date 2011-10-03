@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:BulkEnrollInEventCode
+	title="Choose Sessions and Roles"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:ns="net.poweru.components.item_editors.*">
+	<mx:VBox width="100%" id="sessionContainer"/>
+	<mx:Button label="Enroll" click="onSubmit(event)"/>
+	
+</code:BulkEnrollInEventCode>

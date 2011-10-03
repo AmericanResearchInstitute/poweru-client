@@ -14,6 +14,7 @@ package net.poweru.presenters
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.CurriculumEnrollmentProxy;
+	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.GroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.UserProxy;
@@ -32,6 +33,7 @@ package net.poweru.presenters
 		protected var inputCollector:InputCollector;
 		protected var orgRoleProxy:OrgRoleProxy;
 		protected var curriculumEnrollmentProxy:CurriculumEnrollmentProxy;
+		protected var eventProxy:EventProxy;
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
@@ -40,6 +42,7 @@ package net.poweru.presenters
 			adminOrganizationViewProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AdminOrganizationViewProxy) as AdminOrganizationViewProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
+			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
 		}
 		
 		protected function get userProxy():UserProxy
@@ -81,6 +84,7 @@ package net.poweru.presenters
 				NotificationNames.UPDATEGROUPS,
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
+				NotificationNames.UPDATEEVENTS
 				];
 		}
 		
@@ -124,6 +128,10 @@ package net.poweru.presenters
 					inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(notification.getBody()));
 					break;
 				
+				case NotificationNames.UPDATEEVENTS:
+					inputCollector.addInput('events', ObjectUtil.copy((notification.getBody() as DataSet).toArray()));
+					break;
+				
 				case NotificationNames.UPDATEGROUPS:
 					var groups:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('groups', ObjectUtil.copy(groups.toArray()));
@@ -141,7 +149,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			users.populate(inputCollector.object['users'], inputCollector.object['organizations'], inputCollector.object['orgRoles'], inputCollector.object['groups'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments']);
+			users.populate(inputCollector.object['users'], inputCollector.object['organizations'], inputCollector.object['orgRoles'], inputCollector.object['groups'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments'], inputCollector.object['events']);
 		}
 		
 		protected function onSubmit(event:ViewEvent):void
@@ -158,7 +166,7 @@ package net.poweru.presenters
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'groups', 'choices', 'curriculumEnrollments']);
+			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'groups', 'choices', 'curriculumEnrollments', 'events']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			userProxy.adminUsersView();
@@ -167,6 +175,7 @@ package net.poweru.presenters
 			orgRoleProxy.getAll();
 			groupProxy.getAll();
 			curriculumEnrollmentProxy.curriculumEnrollmentsView();
+			eventProxy.getAll();
 		}
 		
 	}

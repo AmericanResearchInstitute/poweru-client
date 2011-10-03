@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:SelectSessionRoleCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.parts.code.*"
+	width="100%">
+	<mx:VBox>
+		<mx:CheckBox label="Enroll" id="enrollCheckBox"/>
+	</mx:VBox>
+	<mx:HBox width="100%" enabled="{enrollCheckBox.selected}">
+		<mx:VBox width="100%">
+			<mx:Label text="{session.title}"/>
+			<mx:Label text="{session.start}"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:ComboBox labelField="role_name" id="roleComboBox"/>
+		</mx:VBox>
+	</mx:HBox>
+</code:SelectSessionRoleCode>

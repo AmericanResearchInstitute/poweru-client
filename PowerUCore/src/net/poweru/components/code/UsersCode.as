@@ -50,6 +50,8 @@ package net.poweru.components.code
 		public var viewingActivityButton:Button;
 		[Bindable]
 		public var editButton:Button;
+		[Bindable]
+		public var eventGrid:DataGrid;
 		
 		public function UsersCode()
 		{
@@ -58,10 +60,10 @@ package net.poweru.components.code
 		
 		public function clear():void
 		{
-			populate([], [], [], [], [], []);
+			populate([], [], [], [], [], [], []);
 		}
 		
-		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array):void
+		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
 		{
 			grid.dataProvider.source = users;
 			grid.dataProvider.refresh();
@@ -95,6 +97,9 @@ package net.poweru.components.code
 			bulkDataSet.refresh();
 			
 			curriculumEnrollmentGrid.dataProvider = new DataSet(curriculumEnrollments);
+			
+			eventGrid.dataProvider.source = events;
+			eventGrid.dataProvider.refresh();
 		}
 
 		protected function onCreationComplete(event:FlexEvent):void
@@ -102,6 +107,7 @@ package net.poweru.components.code
 			grid.dataProvider = new ArrayCollection();
 			bulkGrid.dataProvider = new DataSet();
 			bulkDataSet.filterFunction = filterBulkUsers;
+			eventGrid.dataProvider = new DataSet();
 			organizationTree.dataProvider = new DataSet();
 			orgRoleCB.dataProvider = new DataSet();
 			statuses.dataProvider = new DataSet();
@@ -247,6 +253,11 @@ package net.poweru.components.code
 					(curriculum.users as Array).push(user['id']);
 				dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, curriculum, 'CurriculumEnrollment'));
 			}
+		}
+		
+		protected function onEnrollInEvent(event:Event):void
+		{
+			//var event:Object = eventGrid.selectedItem;
 		}
 		
 		protected function onUpdateStatus(event:Event):void

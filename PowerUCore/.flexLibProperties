@@ -237,6 +237,19 @@
     <classEntry path="net.poweru.proxies.SessionUserRoleRequirementProxy"/>
     <classEntry path="net.poweru.components.parts.code.AddSessionUserRoleCode"/>
     <classEntry path="net.poweru.components.parts.AddSessionUserRole"/>
+    <classEntry path="net.poweru.components.dialogs.code.BulkEnrollInEventCode"/>
+    <classEntry path="net.poweru.components.dialogs.BulkEnrollInEvent"/>
+    <classEntry path="net.poweru.components.interfaces.IBulkEnrollInEvent"/>
+    <classEntry path="net.poweru.components.parts.code.SelectSessionRoleCode"/>
+    <classEntry path="net.poweru.components.parts.SelectSessionRole"/>
+    <classEntry path="net.poweru.presenters.BulkEnrollInEventMediator"/>
+    <classEntry path="net.poweru.delegates.AssignmentManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.AssignmentProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditEnrollmentsCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditEnrollments"/>
+    <classEntry path="net.poweru.presenters.EditEnrollmentsMediator"/>
+    <classEntry path="net.poweru.components.parts.code.SURRAssignmentsCode"/>
+    <classEntry path="net.poweru.components.parts.SURRAssignments"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

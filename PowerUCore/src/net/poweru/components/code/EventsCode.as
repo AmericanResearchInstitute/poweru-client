@@ -48,25 +48,28 @@ package net.poweru.components.code
 		
 		public function setSessions(data:Array):void
 		{
-			var dataMatchesCurrentSelection:Boolean = true;
-			var currentID:Number = grid.selectedItem['id'];
-			
-			// make sure data we receive is the data we currently want
-			for each (var item:Object in data)
+			if (grid.selectedItem != null)
 			{
-				if (item['event'] != currentID)
+				var dataMatchesCurrentSelection:Boolean = true;
+				var currentID:Number = grid.selectedItem['id'];
+				
+				// make sure data we receive is the data we currently want
+				for each (var item:Object in data)
 				{
-					dataMatchesCurrentSelection = false;
-					break;
+					if (item['event'] != currentID)
+					{
+						dataMatchesCurrentSelection = false;
+						break;
+					}
 				}
-			}
-			
-			if (dataMatchesCurrentSelection)
-			{
-				var currentData:DataSet = new DataSet(sessionList.dataProvider.toArray());
-				currentData.mergeData(data);
-				sessionList.dataProvider.source = currentData.toArray();
-				sessionList.dataProvider.refresh();
+				
+				if (dataMatchesCurrentSelection)
+				{
+					var currentData:DataSet = new DataSet(sessionList.dataProvider.toArray());
+					currentData.mergeData(data);
+					sessionList.dataProvider.source = currentData.toArray();
+					sessionList.dataProvider.refresh();
+				}
 			}
 		}
 		

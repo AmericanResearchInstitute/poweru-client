@@ -13,6 +13,7 @@ package net.poweru
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.Users;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
+	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
@@ -26,6 +27,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateSessionUserRole;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.EditCurriculum;
+	import net.poweru.components.dialogs.EditEnrollments;
 	import net.poweru.components.dialogs.EditEvent;
 	import net.poweru.components.dialogs.EditEventTemplate;
 	import net.poweru.components.dialogs.EditExam;
@@ -44,6 +46,7 @@ package net.poweru
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
+	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
@@ -60,6 +63,7 @@ package net.poweru
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
+	import net.poweru.presenters.EditEnrollmentsMediator;
 	import net.poweru.presenters.EditEventMediator;
 	import net.poweru.presenters.EditEventTemplateMediator;
 	import net.poweru.presenters.EditExamMediator;
@@ -104,6 +108,10 @@ package net.poweru
 			{
 				case Places.ADDTASKSTOCURRICULUM:
 					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
+					break;
+				
+				case Places.BULKENROLLINEVENT:
+					component = getOrCreate(name, BulkEnrollInEvent, BulkEnrollInEventMediator);
 					break;
 				
 				case Places.CHOOSEORGANIZATION:
@@ -168,6 +176,10 @@ package net.poweru
 				
 				case Places.EDITCURRICULUM:
 					component = getOrCreate(name, EditCurriculum, EditCurriculumMediator);
+					break;
+				
+				case Places.EDITENROLLMENTS:
+					component = getOrCreate(name, EditEnrollments, EditEnrollmentsMediator);
 					break;
 				
 				case Places.EDITEVENT:

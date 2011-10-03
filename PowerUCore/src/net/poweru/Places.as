@@ -22,6 +22,7 @@ package net.poweru
 		
 		// Dialogs
 		public static const ADDTASKSTOCURRICULUM:String = 'AddTasksToCurriculum';
+		public static const BULKENROLLINEVENT:String = 'BulkEnrollInEvent';
 		public static const CHOOSEORGANIZATION:String = 'ChooseOrganization';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATECATEGORY:String = 'CreateCategory';
@@ -40,6 +41,7 @@ package net.poweru
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
+		public static const EDITENROLLMENTS:String = 'EditEnrollments';
 		public static const EDITEVENT:String = 'EditEvent';
 		public static const EDITEVENTTEMPLATE:String = 'EditEventTemplate';
 		public static const EDITEXAM:String = 'EditExam';

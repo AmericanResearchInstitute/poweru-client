@@ -6,6 +6,8 @@
 	height="100%">
 	<mx:Script>
 		<![CDATA[
+			import com.hillelcoren.components.autoComplete.classes.SelectedItem;
+			
 			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
@@ -54,7 +56,10 @@
 		</mx:Panel>
 		<mx:Panel width="100%" height="100%" title="Sessions">
 			<mx:List labelField="name" id="sessionList" width="100%" itemRenderer="net.poweru.components.item_renderers.SessionListRenderer"/>
-			<mx:Button label="Edit" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
+			<mx:HBox>
+				<mx:Button label="Edit" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
+				<mx:Button label="Enrolments" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITENROLLMENTS, sessionList.selectedItem]))}"/>
+			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>
 </code:EventsCode>

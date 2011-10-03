@@ -10,7 +10,7 @@
 		<mx:Label text="{'Status: ' + data.status}"/>
 	</mx:HBox>
 	<mx:HBox width="100%" height="100%">
-		<mx:Text text="{data.description}" width="100%"/>
+		<mx:Label text="{data.start}" width="100%"/>
 	</mx:HBox>
 	
 </ns:SessionListRendererCode>

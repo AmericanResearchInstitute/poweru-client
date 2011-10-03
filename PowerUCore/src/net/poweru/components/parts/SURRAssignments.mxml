@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:SURRAssignmentsCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.parts.code.*"
+	width="100%"
+	height="100%">
+	<mx:DataGrid id="enrollmentGrid" dataProvider="{assignments}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Last Name" dataField="last_name" labelFunction="{userLabel}"/>
+			<mx:DataGridColumn headerText="First Name" dataField="first_name" labelFunction="{userLabel}"/>
+			<mx:DataGridColumn headerText="Status" dataField="status"/>
+		</mx:columns>
+	</mx:DataGrid>
+</code:SURRAssignmentsCode>
