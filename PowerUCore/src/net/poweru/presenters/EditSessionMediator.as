@@ -6,6 +6,7 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
+	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.SessionProxy;
 	import net.poweru.proxies.SessionUserRoleProxy;
 	import net.poweru.utils.InputCollector;
@@ -19,11 +20,13 @@ package net.poweru.presenters
 		
 		protected var inputCollector:InputCollector;
 		protected var sessionUserRoleProxy:SessionUserRoleProxy;
+		protected var eventProxy:EventProxy;
 		
 		public function EditSessionMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionProxy, Places.EDITSESSION);
 			sessionUserRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionUserRoleProxy) as SessionUserRoleProxy;
+			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
 		}
 		
 		override public function listNotificationInterests():Array
@@ -42,7 +45,16 @@ package net.poweru.presenters
 			{
 				case NotificationNames.RECEIVEDONE:
 					if (notification.getType() == primaryProxy.getProxyName())
+					{
 						inputCollector.addInput('session', notification.getBody());
+						eventProxy.findByPK(inputCollector.object['session']['event'] as Number);
+					}
+					/*	We fetch the event separately instead of creating a view 
+						that merges the event info into the session because in a
+						case where the event has many sessions, there would be a
+						lot of duplicate event data sent over the wire */
+					else if (notification.getType() == eventProxy.getProxyName())
+						inputCollector.addInput('event', notification.getBody());
 					break;
 				
 				case NotificationNames.UPDATESESSIONUSERROLES:
@@ -58,7 +70,7 @@ package net.poweru.presenters
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['session', 'session_user_roles']);
+			inputCollector = new InputCollector(['event', 'session', 'session_user_roles']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
@@ -68,7 +80,7 @@ package net.poweru.presenters
 		protected function onInputsCollected(event:Event):void
 		{
 			var inputCollector:InputCollector = event.target as InputCollector;
-			editDialog.populate(inputCollector.object['session'], inputCollector.object['session_user_roles']);
+			editDialog.populate(inputCollector.object['session'], inputCollector.object['session_user_roles'], inputCollector.object['event']);
 		}
 	}
 }

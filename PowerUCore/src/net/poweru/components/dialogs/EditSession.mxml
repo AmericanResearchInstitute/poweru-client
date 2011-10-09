@@ -4,7 +4,8 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Session="net.poweru.generated.model.Session.*"
-	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml" xmlns:parts="net.poweru.components.parts.*">
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
+	xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -18,11 +19,11 @@
 			<Session:TitleInput id="titleInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Start">
-			<mx:DateField id="startDateInput" />
+			<mx:DateField id="startDateInput" change="onStartDateSelected(event)"/>
 			<yahoo:TimeInput id="startTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="End">
-			<mx:DateField id="endDateInput" />
+			<mx:DateField id="endDateInput" enabled="{startDateInput.selectedDate != null}"/>
 			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time">
