@@ -3,6 +3,8 @@ package net.poweru.components.dialogs.code
 	import com.yahoo.astra.mx.controls.TimeInput;
 	import com.yahoo.astra.mx.core.yahoo_mx_internal;
 	
+	import flash.events.Event;
+	
 	import mx.controls.DateField;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
@@ -16,8 +18,11 @@ package net.poweru.components.dialogs.code
 	
 	public class CreateSessionCode extends BaseCRUDDialog implements ICreateSession
 	{
+		protected static const ONEDAYINSECONDS:Number = 1000*60*60*24;
+		
 		public var nameInput:NameInput;
 		public var titleInput:TitleInput;
+		[Bindable]
 		public var startDateInput:DateField;
 		public var startTimeInput:TimeInput;
 		public var endDateInput:DateField;
@@ -26,6 +31,7 @@ package net.poweru.components.dialogs.code
 		public var urlInput:UrlInput;
 		public var descriptionInput:TextArea;
 		
+		[Bindable]
 		protected var event:Object;
 		
 		public function CreateSessionCode()
@@ -66,6 +72,42 @@ package net.poweru.components.dialogs.code
 		public function populateEventData(data:Object):void
 		{
 			event = data;
+			restrictStartDateRange();
+		}
+		
+		protected function get eventStart():Date
+		{
+			return event['start'] as Date;
+		}
+		
+		protected function get eventEnd():Date
+		{
+			return event['end'] as Date;
+		}
+		
+		/*	Makes sure the endDateInput cannot select a date before the event
+			and session have begun or after the event has ended. */
+		protected function restrictEndDateRange():void
+		{
+			// subtract one day
+			endDateInput.disabledRanges = [
+				{'rangeEnd': new Date(startDateInput.selectedDate.getTime() - ONEDAYINSECONDS)},
+				{'rangeStart' : new Date(eventEnd.getTime() + ONEDAYINSECONDS)}
+			];
+
+			// if the chosen start date is after the end date, erase the end date so the user must choose a new one
+			if (endDateInput.selectedDate != null && endDateInput.selectedDate.getTime() < startDateInput.selectedDate.getTime())
+				endDateInput.selectedDate = null;
+		}
+		
+		/* 	Makes sure the startDateInput cannot select a date outside the
+			date range for the event. */
+		protected function restrictStartDateRange():void
+		{
+			startDateInput.disabledRanges = [
+				{'rangeEnd': new Date(eventStart.getTime() - ONEDAYINSECONDS)},
+				{'rangeStart' : new Date(eventEnd.getTime() + ONEDAYINSECONDS)}
+			];
 		}
 		
 		public function clear():void
@@ -90,6 +132,11 @@ package net.poweru.components.dialogs.code
 				urlInput.validator
 			];
 			focusManager.setFocus(nameInput);
+		}
+		
+		protected function onStartDateSelected(event:Event):void
+		{
+			restrictEndDateRange();
 		}
 	}
 }

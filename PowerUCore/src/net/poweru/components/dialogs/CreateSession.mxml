@@ -18,11 +18,11 @@
 			<Session:TitleInput id="titleInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Start">
-			<mx:DateField id="startDateInput" />
+			<mx:DateField id="startDateInput" enabled="{event != null}" change="onStartDateSelected(event)"/>
 			<yahoo:TimeInput id="startTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="End">
-			<mx:DateField id="endDateInput" />
+			<mx:DateField id="endDateInput" enabled="{startDateInput.selectedDate != null}"/>
 			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time">

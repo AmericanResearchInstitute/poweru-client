@@ -50,6 +50,7 @@ package net.poweru.presenters
 		
 		protected function onCancel(event:ViewEvent):void
 		{
+			createDialog.clear();
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		

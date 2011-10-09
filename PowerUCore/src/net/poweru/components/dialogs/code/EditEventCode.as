@@ -52,6 +52,8 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = data['description'];
 			startInput.selectedDate = data['start'];
 			endInput.selectedDate = data['end'];
+			if (startInput.selectedDate != null)
+				restrictEndDate();
 		}		
 		
 		override public function getData():Object
@@ -67,6 +69,16 @@ package net.poweru.components.dialogs.code
 			};
 		}
 		
+		protected function restrictEndDate():void
+		{
+			// subtract one day
+			endInput.disabledRanges = [{'rangeEnd': new Date(startInput.selectedDate.getTime() - 1000*60*60*24)}];
+			
+			// if the newly chosen start date is after the end date, erase the end date so the user must choose a new one
+			if (endInput.selectedDate != null && endInput.selectedDate.getTime() < startInput.selectedDate.getTime())
+				endInput.selectedDate = null;
+		}
+		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
@@ -77,17 +89,13 @@ package net.poweru.components.dialogs.code
 				titleInput.validator,
 			];
 			for each (var validator:Validator in extraValidators)
-			validators.push(validator);
+				validators.push(validator);
 		}
 		
 		protected function onStartDateChosen(event:Event):void
 		{
-			// subtract one day
-			endInput.disabledRanges = [{'rangeEnd': new Date(startInput.selectedDate.getTime() - 1000*60*60*24)}];
-			
-			// if the newly chosen start date is after the end date, erase the end date so the user must choose a new one
-			if (endInput.selectedDate != null && endInput.selectedDate.getTime() < startInput.selectedDate.getTime())
-				endInput.selectedDate = null;
+			restrictEndDate();
 		}
+		
 	}
 }
