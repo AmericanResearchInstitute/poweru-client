@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:AddressInputCode
+	width="100%"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.widgets.code.*"
+	xmlns:Address="net.poweru.generated.model.Address.*">
+	<mx:HBox width="100%">
+		<mx:Label text="Street:"/>
+		<mx:TextArea id="labelInput" width="100%" maxChars="255"/>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<mx:Label text="City:"/>
+		<Address:LocalityInput id="localityInput" width="100%"/>
+		<mx:Label text="State:"/>
+		<Address:RegionInput id="regionInput" maxChars="2"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Label text="Country Code:"/>
+		<Address:CountryInput id="countryInput"/>
+		<mx:Spacer width="100%"/>
+		<mx:Label text="Zip"/>
+		<Address:PostalCodeInput id="postalCodeInput"/>
+	</mx:HBox>
+</code:AddressInputCode>

@@ -47,12 +47,15 @@ package net.poweru
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';
 		public static const UPDATEORGEMAILDOMAINS:String = 'UpdateOrgEmailDomains';
 		public static const UPDATEORGROLES:String = 'UpdateOrgRoles';
+		public static const UPDATEREGIONS:String = 'UpdateRegions';
+		public static const UPDATEROOMS:String = 'UpdateRooms';
 		public static const UPDATESESSIONS:String = 'UpdateSessions';
 		public static const UPDATESESSIONTEMPLATES:String = 'UpdateSessionTemplates';
 		public static const UPDATESESSIONUSERROLEREQUIREMENTS:String = 'UpdateSessionUserRoleRequirements';
 		public static const UPDATESESSIONUSERROLES:String = 'UpdateSessionUserRoles';
 		public static const UPDATEUSERS:String = 'UpdateUsers';
 		public static const UPDATEUSERVIDEOSVIEW:String = 'UpdateUserVideosView';
+		public static const UPDATEVENUES:String = 'UpdateVenues';
 		public static const UPDATEVIDEOS:String = 'UpdateVideos';
 		public static const UPDATEVIDEOCATEGORIES:String = 'UpdateVideoCategories';
 		public static const UPDATEVIDEOSESSIONS:String = 'UpdateVideoSessions';

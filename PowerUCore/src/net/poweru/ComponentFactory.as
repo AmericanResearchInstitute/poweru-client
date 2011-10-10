@@ -12,6 +12,7 @@ package net.poweru
 	import net.poweru.components.Organizations;
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.Users;
+	import net.poweru.components.Venues;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
@@ -26,6 +27,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateSessionTemplate;
 	import net.poweru.components.dialogs.CreateSessionUserRole;
 	import net.poweru.components.dialogs.CreateUser;
+	import net.poweru.components.dialogs.CreateVenue;
 	import net.poweru.components.dialogs.EditCurriculum;
 	import net.poweru.components.dialogs.EditEnrollments;
 	import net.poweru.components.dialogs.EditEvent;
@@ -60,6 +62,7 @@ package net.poweru
 	import net.poweru.presenters.CreateSessionTemplateMediator;
 	import net.poweru.presenters.CreateSessionUserRoleMediator;
 	import net.poweru.presenters.CreateUserMediator;
+	import net.poweru.presenters.CreateVenueMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
@@ -85,6 +88,7 @@ package net.poweru
 	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
+	import net.poweru.presenters.VenuesMediator;
 
 	public class ComponentFactory extends net.poweru.placemanager.ComponentFactory implements IComponentFactory
 	{
@@ -164,6 +168,10 @@ package net.poweru
 					
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
+					break;
+				
+				case Places.CREATEVENUE:
+					component = getOrCreate(name, CreateVenue, CreateVenueMediator);
 					break;
 				
 				case Places.CURRICULUMENROLLMENTS:
@@ -268,6 +276,10 @@ package net.poweru
 				
 				case Places.USERS:
 					component = getOrCreate(name, Users, UsersMediator);
+					break;
+				
+				case Places.VENUES:
+					component = getOrCreate(name, Venues, VenuesMediator);
 					break;
 				
 				default:

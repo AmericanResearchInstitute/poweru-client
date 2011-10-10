@@ -250,6 +250,26 @@
     <classEntry path="net.poweru.presenters.EditEnrollmentsMediator"/>
     <classEntry path="net.poweru.components.parts.code.SURRAssignmentsCode"/>
     <classEntry path="net.poweru.components.parts.SURRAssignments"/>
+    <classEntry path="net.poweru.delegates.VenueManagerDelegate"/>
+    <classEntry path="net.poweru.delegates.RoomManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.VenueProxy"/>
+    <classEntry path="net.poweru.proxies.RoomProxy"/>
+    <classEntry path="net.poweru.components.code.VenuesCode"/>
+    <classEntry path="net.poweru.components.Venues"/>
+    <classEntry path="net.poweru.components.interfaces.IVenues"/>
+    <classEntry path="net.poweru.components.item_renderers.code.RoomListRendererCode"/>
+    <classEntry path="net.poweru.components.item_renderers.RoomListRenderer"/>
+    <classEntry path="net.poweru.presenters.VenuesMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateVenueCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateVenue"/>
+    <classEntry path="net.poweru.delegates.RegionManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.RegionProxy"/>
+    <classEntry path="net.poweru.presenters.CreateVenueMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateVenue"/>
+    <classEntry path="net.poweru.components.widgets.code.AddressInputCode"/>
+    <classEntry path="net.poweru.components.widgets.AddressInput"/>
+    <classEntry path="net.poweru.components.item_renderers.code.AddressListRendererCode"/>
+    <classEntry path="net.poweru.components.item_renderers.AddressListRenderer"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

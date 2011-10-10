@@ -17,6 +17,7 @@ package net.poweru
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
 		public static const TASKS:String = 'Tasks';
 		public static const USERS:String = 'Users';
+		public static const VENUES:String = 'Venues';
 		public static const VIDEOS:String = 'Videos';
 		
 		
@@ -33,11 +34,13 @@ package net.poweru
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
+		public static const CREATEROOM:String = 'CreateRoom';
 		public static const CREATESESSION:String = 'CreateSession';
 		public static const CREATESESSIONTEMPLATE:String = 'CreateSessionTemplate';
 		public static const CREATESESSIONUSERROLE:String = 'CreateSessionUserRole';
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
+		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
@@ -47,11 +50,13 @@ package net.poweru
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
+		public static const EDITROOM:String = 'EditRoom';
 		public static const EDITSESSION:String = 'EditSession';
 		public static const EDITSESSIONTEMPLATE:String = 'EditSessionTemplate';
 		public static const EDITSESSIONUSERROLE:String = 'EditSessionUserRole';
 		public static const EDITTASK:String = 'EditTask';
 		public static const EDITUSER:String = 'EditUser';
+		public static const EDITVENUE:String = 'EditVenue';
 		public static const EDITVIDEO:String = 'EditVideo';
 		public static const HELPORGANIZATION:String = 'HelpOrganization';
 		public static const HELPUSER:String = 'HelpUser';
