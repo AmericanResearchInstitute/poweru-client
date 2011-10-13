@@ -1,11 +1,10 @@
 package net.poweru.components.dialogs.code
 {
-	import net.poweru.components.interfaces.IEditDialog;
+	import mx.events.FlexEvent;
+	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
+	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.widgets.code.IMultipleSelect;
-	
-	import flash.events.Event;
-	
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 
 	public class EditGroupCode extends BaseCRUDDialog implements IEditDialog
@@ -17,6 +16,7 @@ package net.poweru.components.dialogs.code
 		public function EditGroupCode()
 		{
 			super();
+			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
 		public function clear():void
@@ -46,8 +46,9 @@ package net.poweru.components.dialogs.code
 			title = 'Edit Group ' + data['name'];
 		}
 		
-		protected function onCreationComplete(event:Event):void
+		protected function onCreationComplete(event:FlexEvent):void
 		{
+			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [nameInput.validator];
 		}
 		

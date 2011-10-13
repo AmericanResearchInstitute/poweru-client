@@ -53,6 +53,15 @@ package net.poweru.components.widgets.code
 			};
 		}
 		
+		public function populate(data:Object):void
+		{
+			labelInput.text = data['label'];
+			localityInput.text = data['locality'];
+			regionInput.text = data['region'];
+			postalCodeInput.text = data['postal_code'];
+			countryInput.text = data['country'];
+		}
+		
 		public function clear():void
 		{
 			labelInput.text = '';

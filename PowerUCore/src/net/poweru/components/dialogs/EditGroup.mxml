@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <EditGroupCode
-	creationComplete="onCreationComplete(event)"
 	xmlns="net.poweru.components.dialogs.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:widgets="net.poweru.components.widgets.*"

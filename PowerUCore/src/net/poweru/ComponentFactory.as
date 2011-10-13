@@ -39,6 +39,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditSessionTemplate;
 	import net.poweru.components.dialogs.EditSessionUserRole;
 	import net.poweru.components.dialogs.EditUser;
+	import net.poweru.components.dialogs.EditVenue;
 	import net.poweru.components.dialogs.HelpOrganization;
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
@@ -76,6 +77,7 @@ package net.poweru
 	import net.poweru.presenters.EditSessionTemplateMediator;
 	import net.poweru.presenters.EditSessionUserRoleMediator;
 	import net.poweru.presenters.EditUserMediator;
+	import net.poweru.presenters.EditVenueMediator;
 	import net.poweru.presenters.EventTemplatesMediator;
 	import net.poweru.presenters.EventsMediator;
 	import net.poweru.presenters.ExamsMediator;
@@ -224,6 +226,10 @@ package net.poweru
 				
 				case Places.EDITUSER:
 					component = getOrCreate(name, EditUser, EditUserMediator);
+					break;
+				
+				case Places.EDITVENUE:
+					component = getOrCreate(name, EditVenue, EditVenueMediator);
 					break;
 				
 				case Places.EVENTS:

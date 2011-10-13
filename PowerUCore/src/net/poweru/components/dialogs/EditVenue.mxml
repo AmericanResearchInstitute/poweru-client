@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EditVenueCode
+	title="Edit Venue"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:Venue="net.poweru.generated.model.Venue.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Venue:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone">
+			<Venue:PhoneInput id="phoneInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Contact">
+			<Venue:ContactInput id="contactInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Hours">
+			<Venue:HoursOfOperationInput id="hoursInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Address">
+			<widgets:AddressInput id="addressInput"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+	
+</code:EditVenueCode>

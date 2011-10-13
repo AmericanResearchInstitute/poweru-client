@@ -270,6 +270,9 @@
     <classEntry path="net.poweru.components.widgets.AddressInput"/>
     <classEntry path="net.poweru.components.item_renderers.code.AddressListRendererCode"/>
     <classEntry path="net.poweru.components.item_renderers.AddressListRenderer"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditVenueCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditVenue"/>
+    <classEntry path="net.poweru.presenters.EditVenueMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
