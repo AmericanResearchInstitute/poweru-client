@@ -4,5 +4,5 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:ns="net.poweru.components.item_renderers.code.*">
 	<mx:Label text="{'Name: ' + data.name}"/>
-	<mx:Text text="{data.address}"/>
+	<mx:Label text="{'Capacity: ' + data.capacity}"/>
 </ns:RoomListRendererCode>

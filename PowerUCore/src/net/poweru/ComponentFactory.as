@@ -23,6 +23,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
 	import net.poweru.components.dialogs.CreateOrganization;
+	import net.poweru.components.dialogs.CreateRoom;
 	import net.poweru.components.dialogs.CreateSession;
 	import net.poweru.components.dialogs.CreateSessionTemplate;
 	import net.poweru.components.dialogs.CreateSessionUserRole;
@@ -35,6 +36,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditExam;
 	import net.poweru.components.dialogs.EditGroup;
 	import net.poweru.components.dialogs.EditOrganization;
+	import net.poweru.components.dialogs.EditRoom;
 	import net.poweru.components.dialogs.EditSession;
 	import net.poweru.components.dialogs.EditSessionTemplate;
 	import net.poweru.components.dialogs.EditSessionUserRole;
@@ -59,6 +61,7 @@ package net.poweru
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
 	import net.poweru.presenters.CreateOrganizationMediator;
+	import net.poweru.presenters.CreateRoomMediator;
 	import net.poweru.presenters.CreateSessionMediator;
 	import net.poweru.presenters.CreateSessionTemplateMediator;
 	import net.poweru.presenters.CreateSessionUserRoleMediator;
@@ -73,6 +76,7 @@ package net.poweru
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
+	import net.poweru.presenters.EditRoomMediator;
 	import net.poweru.presenters.EditSessionMediator;
 	import net.poweru.presenters.EditSessionTemplateMediator;
 	import net.poweru.presenters.EditSessionUserRoleMediator;
@@ -156,6 +160,10 @@ package net.poweru
 					component = getOrCreate(name, CreateOrganization, CreateOrganizationMediator);
 					break;
 				
+				case Places.CREATEROOM:
+					component = getOrCreate(name, CreateRoom, CreateRoomMediator);
+					break;
+				
 				case Places.CREATESESSION:
 					component = getOrCreate(name, CreateSession, CreateSessionMediator);
 					break;
@@ -210,6 +218,10 @@ package net.poweru
 				
 				case Places.EDITORGANIZATION:
 					component = getOrCreate(name, EditOrganization, EditOrganizationMediator);
+					break;
+				
+				case Places.EDITROOM:
+					component = getOrCreate(name, EditRoom, EditRoomMediator);
 					break;
 				
 				case Places.EDITSESSION:

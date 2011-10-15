@@ -273,6 +273,14 @@
     <classEntry path="net.poweru.components.dialogs.code.EditVenueCode"/>
     <classEntry path="net.poweru.components.dialogs.EditVenue"/>
     <classEntry path="net.poweru.presenters.EditVenueMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateRoom"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateRoomCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateRoom"/>
+    <classEntry path="net.poweru.presenters.CreateRoomMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditRoomCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditRoom"/>
+    <classEntry path="net.poweru.components.validators.RoomCapacityValidator"/>
+    <classEntry path="net.poweru.presenters.EditRoomMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

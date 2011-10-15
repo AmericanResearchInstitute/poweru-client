@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EditRoomCode
+	title="Edit Room"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:Room="net.poweru.generated.model.Room.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<Room:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Capacity" required="true">
+			<mx:TextInput id="capacityInput"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:EditRoomCode>
