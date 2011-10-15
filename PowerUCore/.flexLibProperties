@@ -137,7 +137,7 @@
     <classEntry path="net.poweru.utils.PowerUResult"/>
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
-    <classEntry path="net.poweru.utils.StringEqualityValidator"/>
+    <classEntry path="net.poweru.components.validators.StringEqualityValidator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateExamCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateExam"/>
     <classEntry path="net.poweru.presenters.CreateExamMediator"/>

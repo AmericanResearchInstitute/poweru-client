@@ -9,7 +9,7 @@
 	xmlns:User="net.poweru.generated.model.User.*"
 	xmlns:DomainAffiliation="net.poweru.generated.model.DomainAffiliation.*"
 	xmlns:widgets="net.poweru.components.widgets.*"
-	xmlns:utils="net.poweru.utils.*">
+	xmlns:validators="net.poweru.components.validators.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Constants;
@@ -49,7 +49,7 @@
 	<widgets:ReCaptcha id="captcha"/>
 	
 	<mx:Array id="validators">
-		<utils:StringEqualityValidator source="{password2}" property="text" foreignObject="{password1}" foreignProperty="text"/>
+		<validators:StringEqualityValidator source="{password2}" property="text" foreignObject="{password1}" foreignProperty="text"/>
 		<mx:StringValidator source="{password1}" property="text" required="true"/>
 	</mx:Array>
 	

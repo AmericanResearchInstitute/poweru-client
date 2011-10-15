@@ -6,9 +6,9 @@
 	xmlns="net.poweru.components.dialogs.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:widgets="net.poweru.components.widgets.*"
-	xmlns:utils="net.poweru.utils.*"
 	xmlns:User="net.poweru.generated.model.User.*"
-	xmlns:parts="net.poweru.components.parts.*">
+	xmlns:parts="net.poweru.components.parts.*"
+	xmlns:validators="net.poweru.components.validators.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Constants;
@@ -80,7 +80,7 @@
 	</states>
 	
 	<mx:Array id="validators">
-		<utils:StringEqualityValidator source="{password2Input}" property="text" foreignObject="{password1Input}" foreignProperty="text"/> 
+		<validators:StringEqualityValidator source="{password2Input}" property="text" foreignObject="{password1Input}" foreignProperty="text"/> 
 	</mx:Array>
 	
 </EditUserCode>
