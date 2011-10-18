@@ -25,6 +25,7 @@ package net.poweru
 		public static const ADDTASKSTOCURRICULUM:String = 'AddTasksToCurriculum';
 		public static const BULKENROLLINEVENT:String = 'BulkEnrollInEvent';
 		public static const CHOOSEORGANIZATION:String = 'ChooseOrganization';
+		public static const CHOOSEROOM:String = 'ChooseRoom';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATECATEGORY:String = 'CreateCategory';
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';

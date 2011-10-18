@@ -11,6 +11,7 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.AddSessionUserRole;
@@ -38,6 +39,10 @@ package net.poweru.components.dialogs.code
 		
 		protected var pk:Number;
 		protected var event:Object;
+		[Bindable]
+		protected var chosenVenue:Object;
+		[Bindable]
+		protected var chosenRoom:Object;
 		
 		public function EditSessionCode()
 		{
@@ -56,6 +61,9 @@ package net.poweru.components.dialogs.code
 			startTimeInput.value = new Date();
 			endDateInput.selectedDate = null;
 			endTimeInput.value = new Date();
+			
+			chosenRoom = null;
+			chosenVenue = null;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -79,13 +87,24 @@ package net.poweru.components.dialogs.code
 			endTimeInput.value = new Date((data['end'] as Date).time);
 			roles.dataProvider = data['session_user_role_requirements'];
 			
+			if (data.hasOwnProperty('room') && data['room'] != null)
+			{
+				chosenRoom = data['room'];
+				chosenVenue = {'name' : chosenRoom['venue_name']};
+			}
+			else
+			{
+				chosenRoom = null;
+				chosenVenue = null;
+			}
+			
 			restrictStartDateRange();
 			restrictEndDateRange();
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'name' : nameInput.text,
 				'title' : titleInput.text,
@@ -108,6 +127,11 @@ package net.poweru.components.dialogs.code
 				),
 				'session_user_role_requirements' : roles.dataProvider.toArray()
 			};
+			
+			if (chosenRoom != null && chosenRoom.hasOwnProperty('id'))
+				ret['room'] = chosenRoom['id'];
+			
+			return ret;
 		}
 		
 		protected function get eventStart():Date
@@ -118,6 +142,15 @@ package net.poweru.components.dialogs.code
 		protected function get eventEnd():Date
 		{
 			return event['end'] as Date;
+		}
+		
+		override public function receiveChoice(choice:Object, chooserName:String):void
+		{
+			if (chooserName == Places.CHOOSEROOM)
+			{
+				chosenVenue = choice['venue'];
+				chosenRoom = choice['room'];
+			}
 		}
 		
 		/*	Makes sure the endDateInput cannot select a date before the event

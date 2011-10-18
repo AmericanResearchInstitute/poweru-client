@@ -281,6 +281,10 @@
     <classEntry path="net.poweru.components.dialogs.EditRoom"/>
     <classEntry path="net.poweru.components.validators.RoomCapacityValidator"/>
     <classEntry path="net.poweru.presenters.EditRoomMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseRoomCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseRoom"/>
+    <classEntry path="net.poweru.presenters.ChooseRoomMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.interfaces.IChooseRoom"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

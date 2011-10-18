@@ -37,6 +37,7 @@ package net.poweru.presenters
 				displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 				displayObject.addEventListener(ViewEvent.SUBMIT, onSubmit);
 				displayObject.addEventListener(ViewEvent.CANCEL, onCancel);
+				displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			}
 		}
 		
@@ -48,13 +49,28 @@ package net.poweru.presenters
 				displayObject.removeEventListener(ViewEvent.SUBMIT, onSubmit);
 				displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 				displayObject.removeEventListener(ViewEvent.CANCEL, onCancel);
+				displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			}
+		}
+		
+		override public function listNotificationInterests():Array
+		{
+			var ret:Array = super.listNotificationInterests();
+			ret.push(NotificationNames.CHOICEMADE);
+			ret.push(NotificationNames.DIALOGPRESENTED);
+			ret.push(NotificationNames.LOGOUT);
+			return ret;
 		}
 		
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
 			{
+				case NotificationNames.CHOICEMADE:
+					// let the dialog decide if it is interested in this particular choice type
+					editDialog.receiveChoice(notification.getBody(), notification.getType());
+					break;
+				
 				case NotificationNames.LOGOUT:
 					if (editDialog)
 						editDialog.clear();

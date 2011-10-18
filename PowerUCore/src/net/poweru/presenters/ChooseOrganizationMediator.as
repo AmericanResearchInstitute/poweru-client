@@ -27,7 +27,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.SHOWDIALOG:
-					if (notification.getBody()[0] == Places.CHOOSEORGANIZATION)
+					if (notification.getBody()[0] == placeName)
 						populate();
 					break;
 				

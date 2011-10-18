@@ -8,6 +8,7 @@
 	xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -47,6 +48,12 @@
 		<mx:HBox horizontalAlign="right" width="100%" id="addRoleFI">
 			<parts:AddSessionUserRole id="addRole"/>
 		</mx:HBox>
+		<mx:FormItem label="Venue/Room">
+			<mx:HBox>
+				<mx:Label text="{chosenVenue.name + ' : ' + chosenRoom.name}"/>
+				<mx:Button label="Choose Venue/Room" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEROOM, null]))"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

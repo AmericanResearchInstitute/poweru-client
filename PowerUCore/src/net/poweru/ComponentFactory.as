@@ -48,11 +48,13 @@ package net.poweru
 	import net.poweru.components.dialogs.SelfRegister;
 	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
+	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
+	import net.poweru.presenters.ChooseRoomMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
@@ -126,6 +128,10 @@ package net.poweru
 				
 				case Places.CHOOSEORGANIZATION:
 					component = getOrCreate(name, ChooseOrganization, ChooseOrganizationMediator);
+					break;
+				
+				case Places.CHOOSEROOM:
+					component = getOrCreate(name, ChooseRoom, ChooseRoomMediator);
 					break;
 				
 				case Places.CONFIRMLOGOUT:

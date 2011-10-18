@@ -31,12 +31,11 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-				NotificationNames.UPDATESESSIONUSERROLES
-			];
+			var ret:Array = super.listNotificationInterests();
+			ret.push(NotificationNames.RECEIVEDONE);
+			ret.push(NotificationNames.UPDATESESSIONUSERROLES);
+			
+			return ret;
 		}
 		
 		override public function handleNotification(notification:INotification):void
