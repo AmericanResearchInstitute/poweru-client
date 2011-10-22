@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:CreateSessionTemplateCode
+	title="Create Session Template"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:SessionTemplate="net.poweru.generated.model.SessionTemplate.*">

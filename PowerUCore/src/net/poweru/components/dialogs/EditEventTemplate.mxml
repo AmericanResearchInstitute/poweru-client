@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:EditEventTemplateCode
+	title="Edit Event Template"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:EventTemplate="net.poweru.generated.model.EventTemplate.*">
