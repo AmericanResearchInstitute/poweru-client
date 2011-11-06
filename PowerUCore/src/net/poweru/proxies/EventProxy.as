@@ -21,7 +21,7 @@ package net.poweru.proxies
 				'end'
 			];
 			createArgNamesInOrder = ['name', 'title', 'description', 'start', 'end', 'organization'];
-			createOptionalArgNames = ['lead_time'];
+			createOptionalArgNames = ['lead_time', 'sessions'];
 		}
 	}
 }

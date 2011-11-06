@@ -31,6 +31,7 @@ package net.poweru
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';
 		public static const CREATECURRICULUM:String = 'CreateCurriculum';
 		public static const CREATEEVENT:String = 'CreateEvent';
+		public static const CREATEEVENTFROMTEMPLATE:String = 'CreateEventFromTemplate';
 		public static const CREATEEVENTTEMPLATE:String = 'CreateEventTemplate';
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEGROUP:String = 'CreateGroup';

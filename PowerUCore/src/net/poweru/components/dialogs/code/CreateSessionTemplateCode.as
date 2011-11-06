@@ -11,6 +11,7 @@ package net.poweru.components.dialogs.code
 	
 	public class CreateSessionTemplateCode extends BaseCRUDDialog implements ICreateSessionTemplate
 	{
+		public var shortNameInput:ShortnameInput;
 		public var fullNameInput:FullnameInput;
 		public var leadTimeInput:TextInput;
 		public var sequenceInput:TextInput;
@@ -31,6 +32,7 @@ package net.poweru.components.dialogs.code
 		
 		public function clear():void
 		{
+			shortNameInput.text = '';
 			fullNameInput.text = '';
 			leadTimeInput.text = '';
 			sequenceInput.text = '';
@@ -41,7 +43,7 @@ package net.poweru.components.dialogs.code
 		{
 			return {
 				'event_template' : eventTemplate['id'],
-				'shortname' : '',
+				'shortname' : shortNameInput.text,
 				'fullname' : fullNameInput.text,
 				'lead_time' : leadTimeInput.text,
 				'description' : descriptionInput.text,
@@ -57,9 +59,10 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [
+				shortNameInput.validator,
 				fullNameInput.validator
 			];
-			focusManager.setFocus(fullNameInput);
+			focusManager.setFocus(shortNameInput);
 		}
 	}
 }

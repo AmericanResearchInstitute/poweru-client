@@ -14,11 +14,21 @@ package net.poweru.components.dialogs.code
 		protected var choices:Object = new Object();
 		[Bindable]
 		public var submit:Button;
-		public var validators:Array;
+		protected var _validators:Array;
 		
 		public function BaseCRUDDialogCode()
 		{
 			super();
+		}
+		
+		public function get validators():Array
+		{
+			return _validators;
+		}
+		
+		public function set validators(data:Array):void
+		{
+			_validators = data;
 		}
 		
 		public function setChoices(choices:Object):void

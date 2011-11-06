@@ -13,8 +13,11 @@
 		]]>
 	</mx:Script>
 	<mx:Form>
-		<mx:FormItem label="Name">
-			<Session:NameInput id="nameInput"/>
+		<mx:FormItem label="Short Name">
+			<Session:ShortnameInput id="shortNameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Full Name">
+			<Session:FullnameInput id="fullNameInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Title">
 			<Session:TitleInput id="titleInput"/>

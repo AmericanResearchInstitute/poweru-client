@@ -19,6 +19,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
 	import net.poweru.components.dialogs.CreateEvent;
+	import net.poweru.components.dialogs.CreateEventFromTemplate;
 	import net.poweru.components.dialogs.CreateEventTemplate;
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateGroup;
@@ -58,6 +59,7 @@ package net.poweru
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
+	import net.poweru.presenters.CreateEventFromTemplateMediator;
 	import net.poweru.presenters.CreateEventMediator;
 	import net.poweru.presenters.CreateEventTemplateMediator;
 	import net.poweru.presenters.CreateExamMediator;
@@ -148,6 +150,10 @@ package net.poweru
 				
 				case Places.CREATEEVENT:
 					component = getOrCreate(name, CreateEvent, CreateEventMediator);
+					break;
+				
+				case Places.CREATEEVENTFROMTEMPLATE:
+					component = getOrCreate(name, CreateEventFromTemplate, CreateEventFromTemplateMediator);
 					break;
 				
 				case Places.CREATEEVENTTEMPLATE:

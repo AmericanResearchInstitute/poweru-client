@@ -178,13 +178,45 @@ package net.poweru.delegates
 		
 		public function create(...args):void
 		{
-			// convert Date objects to ISO8601
-			for (var i:Number=0; i<args.length; i++)
-				if (args[i] is Date)
-					args[i] = DateUtil.toW3CDTF(args[i]);
+			convertDatesToISO8601(args);
 			
 			var token:AsyncToken = remoteObject.getOperation('create').send.apply(this, args);
 			token.addResponder(responder);
+		}
+		
+		/*	convert Date instances to ISO8601 Strings, recursively descending into
+			dictionaries and arrays to find them. Passing an object to this method
+			that is not an Array or dictionary is harmless to that object as long
+			as it has no dynamically-added attributes which happen to be Dates. */
+		protected function convertDatesToISO8601(args:Object):void
+		{
+			if (args is Array)
+			{
+				var argsArray:Array = args as Array;
+				for (var i:Number=0; i<argsArray.length; i++)
+				{
+					if (argsArray[i] is Date)
+						argsArray[i] = DateUtil.toW3CDTF(argsArray[i]);
+					else
+						convertDatesToISO8601(argsArray[i]);
+				}
+			}
+			/*	args is not an array. It might be a dictionary, or might not be.
+				If it is a dictionary, the for..in loop will iterate over its
+				members. If it is some other kind of object (probably a String
+				or number, because we don't support anything else I think),
+				the for..in loop will be harmless since it only iterates over
+				dynamically-added attributes. */
+			else
+			{
+				for (var attr:String in args)
+				{
+					if (args[attr] is Date)
+						args[attr] = DateUtil.toW3CDTF(args[attr]);
+					else
+						convertDatesToISO8601(args[attr]);
+				}
+			}
 		}
 		
 		public function deleteObject(authToken:String, pk:Number):void

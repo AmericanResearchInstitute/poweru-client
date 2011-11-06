@@ -15,7 +15,8 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.AddSessionUserRole;
-	import net.poweru.generated.model.Session.NameInput;
+	import net.poweru.generated.model.Session.FullnameInput;
+	import net.poweru.generated.model.Session.ShortnameInput;
 	import net.poweru.generated.model.Session.TitleInput;
 	import net.poweru.generated.model.Session.UrlInput;
 	import net.poweru.model.DataSet;
@@ -24,7 +25,8 @@ package net.poweru.components.dialogs.code
 	{
 		protected static const ONEDAYINSECONDS:Number = 1000*60*60*24;
 		
-		public var nameInput:NameInput;
+		public var shortNameInput:ShortnameInput;
+		public var fullNameInput:FullnameInput;
 		public var titleInput:TitleInput;
 		[Bindable]
 		public var startDateInput:DateField;
@@ -53,7 +55,8 @@ package net.poweru.components.dialogs.code
 		public function clear():void
 		{
 			pk = -1;
-			nameInput.text = '';
+			shortNameInput.text = '';
+			fullNameInput.text = '';
 			titleInput.text = '';
 			leadTimeInput.text = '';
 			descriptionInput.text = '';
@@ -76,7 +79,8 @@ package net.poweru.components.dialogs.code
 			
 			pk = data['id'];
 			
-			nameInput.text = data['name'];
+			shortNameInput.text = data['shortname'];
+			fullNameInput.text = data['fullname'];
 			titleInput.text = data['title'];
 			leadTimeInput.text = data['lead_time'];
 			urlInput.text = data['url'];
@@ -106,7 +110,8 @@ package net.poweru.components.dialogs.code
 		{
 			var ret:Object = {
 				'id' : pk,
-				'name' : nameInput.text,
+				'shortname' : shortNameInput.text,
+				'fullname' : fullNameInput.text,
 				'title' : titleInput.text,
 				'lead_time' : leadTimeInput.text,
 				'url' : urlInput.text,
@@ -183,7 +188,8 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			roles.dataProvider = new DataSet();
 			validators = [
-				nameInput.validator,
+				shortNameInput.validator,
+				fullNameInput.validator,
 				titleInput.validator,
 				urlInput.validator
 			];

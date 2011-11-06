@@ -12,7 +12,8 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateSession;
-	import net.poweru.generated.model.Session.NameInput;
+	import net.poweru.generated.model.Session.FullnameInput;
+	import net.poweru.generated.model.Session.ShortnameInput;
 	import net.poweru.generated.model.Session.TitleInput;
 	import net.poweru.generated.model.Session.UrlInput;
 	
@@ -20,7 +21,8 @@ package net.poweru.components.dialogs.code
 	{
 		protected static const ONEDAYINSECONDS:Number = 1000*60*60*24;
 		
-		public var nameInput:NameInput;
+		public var shortNameInput:ShortnameInput;
+		public var fullNameInput:FullnameInput;
 		public var titleInput:TitleInput;
 		[Bindable]
 		public var startDateInput:DateField;
@@ -44,7 +46,8 @@ package net.poweru.components.dialogs.code
 		{
 			return {
 				'event' : event['id'],
-				'name' : nameInput.text,
+				'shortname' : shortNameInput.text,
+				'fullname' : fullNameInput.text,
 				'title' : titleInput.text,
 				'lead_time' : leadTimeInput.text,
 				'url' : urlInput.text,
@@ -112,7 +115,8 @@ package net.poweru.components.dialogs.code
 		
 		public function clear():void
 		{
-			nameInput.text = '';
+			shortNameInput.text = '';
+			fullNameInput.text = '';
 			titleInput.text = '';
 			leadTimeInput.text = '';
 			descriptionInput.text = '';
@@ -127,11 +131,12 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [
-				nameInput.validator,
+				shortNameInput.validator,
+				fullNameInput.validator,
 				titleInput.validator,
 				urlInput.validator
 			];
-			focusManager.setFocus(nameInput);
+			focusManager.setFocus(shortNameInput);
 		}
 		
 		protected function onStartDateSelected(event:Event):void

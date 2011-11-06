@@ -285,6 +285,13 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseRoom"/>
     <classEntry path="net.poweru.presenters.ChooseRoomMediator"/>
     <classEntry path="net.poweru.components.dialogs.choosers.interfaces.IChooseRoom"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateEventFromTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateEventFromTemplate"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateEventFromTemplateDialog"/>
+    <classEntry path="net.poweru.components.widgets.code.CreateSessionFromTemplateCode"/>
+    <classEntry path="net.poweru.components.widgets.CreateSessionFromTemplate"/>
+    <classEntry path="net.poweru.presenters.CreateEventFromTemplateMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.BaseDialogCode"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

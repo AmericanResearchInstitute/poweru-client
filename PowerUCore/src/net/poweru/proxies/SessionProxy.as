@@ -14,8 +14,8 @@ package net.poweru.proxies
 		public function SessionProxy()
 		{
 			super(NAME, SessionManagerDelegate, NotificationNames.UPDATESESSIONS, [], 'Session');
-			createArgNamesInOrder = ['start', 'end', 'status', 'confirmed', 'default_price', 'event'];
-			createOptionalArgNames = ['name', 'title', 'url', 'description'];
+			createArgNamesInOrder = ['start', 'end', 'status', 'confirmed', 'default_price', 'event', 'shortname', 'fullname'];
+			createOptionalArgNames = ['title', 'url', 'description', 'lead_time'];
 			dateTimeFields = ['start', 'end'];
 		}
 		

@@ -40,6 +40,7 @@
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENTTEMPLATE, grid.selectedItem.id]))}"/>
 				<mx:Button label="Add Session Template" id="addSessionTemplateButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSIONTEMPLATE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Create Event" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENTFROMTEMPLATE, grid.selectedItem.id]))}"/>
 			</mx:HBox>	
 		</mx:Panel>
 		<mx:Panel width="100%" title="Session Templates">

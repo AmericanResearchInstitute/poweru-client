@@ -10,7 +10,10 @@
 		]]>
 	</mx:Script>
 	<mx:Form>
-		<mx:FormItem label="Name">
+		<mx:FormItem label="Short Name">
+			<SessionTemplate:ShortnameInput id="shortNameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Full Name">
 			<SessionTemplate:FullnameInput id="fullNameInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time">
