@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:UploadFileDownloadCode
+	title="Create a File Download Task"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name" width="100%">
+			<FileDownload:NameInput id="nameInput" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Title" width="100%">
+			<FileDownload:TitleInput id="titleInput" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description" required="true" width="100%">
+			<mx:TextArea id="description" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="File" required="true" textAlign="left" >
+			<mx:HBox>
+				<mx:TextInput id="fileNameInput" editable="false"/>
+				<mx:Button id="upload" label="Select File" click="selectFile();"/>
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:HBox textAlign="left">
+			<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+			<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+		</mx:HBox>
+	</mx:Form>
+	<mx:HBox id="progressBox" visible="false">
+		<mx:ProgressBar width="100%" textAlign="center" labelPlacement="center" id="uploadProgress" label="Upload Progress"/>
+		<mx:Button id="uploadCancel" label="Cancel" click="onUploadCancel(event)"/>
+	</mx:HBox>
+	
+	<mx:Array id="validators">
+		<mx:StringValidator source="{description}" property="text" required="true"/>
+		<mx:StringValidator source="{fileNameInput}" property="text" required="true"/>
+	</mx:Array>
+</code:UploadFileDownloadCode>

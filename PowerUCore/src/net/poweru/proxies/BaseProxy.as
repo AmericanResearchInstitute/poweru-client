@@ -197,7 +197,7 @@ package net.poweru.proxies
 		}
 		
 		/*	Upload a file.  A single use auth token must be obtained from the
-			server, which is why we use an input collector. */ 
+			server, which is why we use an input collector.*/ 
 		protected function uploadFile(file:FileReference, data:Object, url:String, fieldName:String):void
 		{
 			var uploadInputCollector:InputCollector = new InputCollector(['file', 'request', 'fieldName', 'authToken']);

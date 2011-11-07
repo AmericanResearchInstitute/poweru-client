@@ -75,6 +75,11 @@ package net.poweru.proxies
 			return backendURL + 'vod_aws/upload_video_photo';
 		}
 		
+		public function get fileDownloadUploadURL():String
+		{
+			return backendURL + 'file_tasks/upload_file_for_download/';
+		}
+		
 		public function get usingSSL():Boolean
 		{
 			return (_backendURL.indexOf('https') == 0);

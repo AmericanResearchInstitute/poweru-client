@@ -9,6 +9,8 @@ package net.poweru
 		public static const EVENTS:String = 'Events';
 		public static const EVENTTEMPLATES:String = 'EventTemplates';
 		public static const EXAMS:String = 'Exams';
+		public static const FILEUPLOADS:String = 'FileUploads';
+		public static const FILEDOWNLOADS:String = 'FileDownloads';
 		public static const GROUPS:String = 'Groups';
 		public static const LOGIN:String = 'Login';
 		public static const MAIN:String = 'Main';
@@ -36,6 +38,7 @@ package net.poweru
 		public static const CREATEEXAM:String = 'CreateExam';
 		public static const CREATEEXAMFROMXML:String = 'CreateExamFromXML';
 		public static const CREATEGROUP:String = 'CreateGroup';
+		public static const CREATEFILEUPLOAD:String = 'CreateFileUpload';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
 		public static const CREATEROOM:String = 'CreateRoom';
 		public static const CREATESESSION:String = 'CreateSession';
@@ -52,6 +55,8 @@ package net.poweru
 		public static const EDITEVENTTEMPLATE:String = 'EditEventTemplate';
 		public static const EDITEXAM:String = 'EditExam';
 		public static const EDITGROUP:String = 'EditGroup';
+		public static const EDITFILEDOWNLOAD:String = 'EditFileDownload';
+		public static const EDITFILEUPLOAD:String = 'EditFileUpload';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
 		public static const EDITROOM:String = 'EditRoom';
 		public static const EDITSESSION:String = 'EditSession';
@@ -67,6 +72,7 @@ package net.poweru
 		public static const RESETPASSWORD:String = 'ResetPassword';
 		public static const SELFREGISTER:String = 'SelfRegister';
 		public static const UPLOADVIDEO:String = 'UploadVideo';
+		public static const UPLOADFILEDOWNLOAD:String = 'UploadFileDownload';
 		public static const VIEWINGACTIVITYREPORT:String = 'ViewingActivityReport';
 		public static const VIDEOWATCHERREPORT:String = 'VideoWatcherReport';
 	}

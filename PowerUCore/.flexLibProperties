@@ -295,6 +295,16 @@
     <classEntry path="net.poweru.components.dialogs.code.CreateExamFromXMLCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateExamFromXML"/>
     <classEntry path="net.poweru.presenters.CreateExamFromXMLMediator"/>
+    <classEntry path="net.poweru.components.code.FileDownloadsCode"/>
+    <classEntry path="net.poweru.components.FileDownloads"/>
+    <classEntry path="net.poweru.delegates.FileDownloadManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.FileDownloadProxy"/>
+    <classEntry path="net.poweru.presenters.FileDownloadsMediator"/>
+    <classEntry path="net.poweru.components.interfaces.IFileDownloads"/>
+    <classEntry path="net.poweru.components.dialogs.code.UploadFileDownloadCode"/>
+    <classEntry path="net.poweru.components.dialogs.UploadFileDownload"/>
+    <classEntry path="net.poweru.components.interfaces.IUploadFileDownload"/>
+    <classEntry path="net.poweru.presenters.UploadFileDownloadMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

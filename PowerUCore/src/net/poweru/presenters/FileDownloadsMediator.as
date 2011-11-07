@@ -6,30 +6,29 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IExams;
+	import net.poweru.components.interfaces.IFileDownloads;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
-	import net.poweru.proxies.ExamProxy;
+	import net.poweru.proxies.FileDownloadProxy;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class ExamsMediator extends BaseMediator implements IMediator
+	public class FileDownloadsMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'ExamsMediator';
+		public static const NAME:String = 'FileDownloadsMediator';
 		
 		protected var inputCollector:InputCollector;
 		protected var populatedSinceLastClear:Boolean;
 		
-		public function ExamsMediator(viewComponent:Object)
+		public function FileDownloadsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, ExamProxy);
+			super(NAME, viewComponent, FileDownloadProxy);
 		}
 		
-		protected function get exams():IExams
+		protected function get fileDownloads():IFileDownloads
 		{
-			return viewComponent as IExams;
+			return viewComponent as IFileDownloads;
 		}
 		
 		override protected function addEventListeners():void
@@ -52,7 +51,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEEXAMS,
+				NotificationNames.UPDATEFILEDOWNLOADS,
 			];
 		}
 		
@@ -61,18 +60,18 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					exams.clear();
+					fileDownloads.clear();
 					populatedSinceLastClear = false;
 					break;
 				
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.EXAMS && !populatedSinceLastClear)
+					if (notification.getBody() == Places.FILEDOWNLOADS && !populatedSinceLastClear)
 						populate();
 					break;
 				
-				// Happens when we save an exam, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEEXAMS:
-					inputCollector.addInput('exams', (primaryProxy.dataSet).toArray());
+				// Happens when we save a file download, and indicates that we should just refresh the view
+				case NotificationNames.UPDATEFILEDOWNLOADS:
+					inputCollector.addInput('file_downloads', (primaryProxy.dataSet).toArray());
 					break;
 				
 				default:
@@ -85,14 +84,14 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			exams.populate(inputCollector.object['exams']);
+			fileDownloads.populate(inputCollector.object['file_downloads']);
 		}
 		
 		override protected function populate():void
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['exams']);
+			inputCollector = new InputCollector(['file_downloads']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			primaryProxy.getAll();

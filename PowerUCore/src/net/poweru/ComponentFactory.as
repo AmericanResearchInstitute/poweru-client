@@ -7,6 +7,7 @@ package net.poweru
 	import net.poweru.components.EventTemplates;
 	import net.poweru.components.Events;
 	import net.poweru.components.Exams;
+	import net.poweru.components.FileDownloads;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
@@ -49,6 +50,7 @@ package net.poweru
 	import net.poweru.components.dialogs.ResetPassword;
 	import net.poweru.components.dialogs.SelfRegister;
 	import net.poweru.components.dialogs.UploadCSV;
+	import net.poweru.components.dialogs.UploadFileDownload;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.placemanager.ComponentFactory;
@@ -91,6 +93,7 @@ package net.poweru
 	import net.poweru.presenters.EventTemplatesMediator;
 	import net.poweru.presenters.EventsMediator;
 	import net.poweru.presenters.ExamsMediator;
+	import net.poweru.presenters.FileDownloadsMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.OrganizationsMediator;
@@ -98,6 +101,7 @@ package net.poweru
 	import net.poweru.presenters.SelfRegisterMediator;
 	import net.poweru.presenters.SessionUserRolesMediator;
 	import net.poweru.presenters.TasksMediator;
+	import net.poweru.presenters.UploadFileDownloadMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
@@ -274,6 +278,10 @@ package net.poweru
 					component = getOrCreate(name, Exams, ExamsMediator);
 					break;
 				
+				case Places.FILEDOWNLOADS:
+					component = getOrCreate(name, FileDownloads, FileDownloadsMediator);
+					break;
+				
 				case Places.GROUPS:
 					component = getOrCreate(name, Groups, GroupsMediator);
 					break;
@@ -308,6 +316,10 @@ package net.poweru
 				
 				case Places.SESSIONUSERROLES:
 					component = getOrCreate(name, SessionUserRoles, SessionUserRolesMediator);
+					break;
+				
+				case Places.UPLOADFILEDOWNLOAD:
+					component = getOrCreate(name, UploadFileDownload, UploadFileDownloadMediator);
 					break;
 				
 				case Places.USERS:

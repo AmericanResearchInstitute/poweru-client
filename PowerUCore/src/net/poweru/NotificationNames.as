@@ -44,6 +44,8 @@ package net.poweru
 		public static const UPDATEEVENTS:String = 'UpdateEvents';
 		public static const UPDATEEVENTTEMPLATES:String = 'UpdateEventTemplates';
 		public static const UPDATEEXAMS:String = 'UpdateExams';
+		public static const UPDATEFILEDOWNLOADS:String = 'UpdateFileDownloads';
+		public static const UPDATEFILEUPLOADS:String = 'UpdateFileUploads';
 		public static const UPDATETASKS:String = 'UpdateTasks';
 		public static const UPDATEVODADMINGROUPSVIEW:String = 'UpdateVODAdminGroupsView';
 		public static const UPDATEGROUPS:String = 'UpdateGroups';
