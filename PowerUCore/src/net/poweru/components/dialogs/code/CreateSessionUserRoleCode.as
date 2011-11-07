@@ -4,11 +4,11 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
-	import net.poweru.generated.model.SessionUserRole.NameInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateSessionUserRoleCode extends BaseCRUDDialog implements ICreateDialog
 	{
-		public var nameInput:NameInput;
+		public var nameInput:IGeneratedTextInput;
 		
 		public function CreateSessionUserRoleCode()
 		{

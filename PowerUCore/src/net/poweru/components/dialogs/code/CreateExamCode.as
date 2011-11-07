@@ -5,13 +5,12 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
-	import net.poweru.generated.model.Exam.NameInput;
-	import net.poweru.generated.model.Exam.TitleInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateExamCode extends BaseCRUDDialog implements ICreateDialog
 	{
-		public var nameInput:NameInput;
-		public var titleInput:TitleInput;
+		public var nameInput:IGeneratedTextInput;
+		public var titleInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		
 		public function CreateExamCode()

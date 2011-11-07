@@ -6,13 +6,12 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.generated.model.SessionTemplate.FullnameInput;
-	import net.poweru.generated.model.SessionTemplate.ShortnameInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditSessionTemplateCode extends BaseCRUDDialog implements IEditDialog
 	{
-		public var shortNameInput:ShortnameInput;
-		public var fullNameInput:FullnameInput;
+		public var shortNameInput:IGeneratedTextInput;
+		public var fullNameInput:IGeneratedTextInput;
 		public var leadTimeInput:TextInput;
 		public var sequenceInput:TextInput;
 		public var descriptionInput:TextArea;

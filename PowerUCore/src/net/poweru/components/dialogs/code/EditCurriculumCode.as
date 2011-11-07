@@ -4,11 +4,11 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.generated.model.Curriculum.NameInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditCurriculumCode extends BaseCRUDDialog implements IEditDialog
 	{
-		public var nameInput:NameInput;
+		public var nameInput:IGeneratedTextInput;
 		protected var pk:Number;
 		
 		public function EditCurriculumCode()

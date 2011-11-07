@@ -8,17 +8,14 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.components.interfaces.ICreateVenue;
 	import net.poweru.components.widgets.AddressInput;
-	import net.poweru.generated.model.Venue.ContactInput;
-	import net.poweru.generated.model.Venue.HoursOfOperationInput;
-	import net.poweru.generated.model.Venue.NameInput;
-	import net.poweru.generated.model.Venue.PhoneInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateVenueCode extends BaseCRUDDialog implements ICreateVenue
 	{
-		public var nameInput:NameInput;
-		public var phoneInput:PhoneInput;
-		public var contactInput:ContactInput;
-		public var hoursInput:HoursOfOperationInput;
+		public var nameInput:IGeneratedTextInput;
+		public var phoneInput:IGeneratedTextInput;
+		public var contactInput:IGeneratedTextInput;
+		public var hoursInput:IGeneratedTextInput;
 		public var addressInput:AddressInput;
 		
 		protected var regionID:Number;

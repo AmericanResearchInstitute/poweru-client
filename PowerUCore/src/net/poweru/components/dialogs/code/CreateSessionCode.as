@@ -12,25 +12,22 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateSession;
-	import net.poweru.generated.model.Session.FullnameInput;
-	import net.poweru.generated.model.Session.ShortnameInput;
-	import net.poweru.generated.model.Session.TitleInput;
-	import net.poweru.generated.model.Session.UrlInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateSessionCode extends BaseCRUDDialog implements ICreateSession
 	{
 		protected static const ONEDAYINSECONDS:Number = 1000*60*60*24;
 		
-		public var shortNameInput:ShortnameInput;
-		public var fullNameInput:FullnameInput;
-		public var titleInput:TitleInput;
+		public var shortNameInput:IGeneratedTextInput;
+		public var fullNameInput:IGeneratedTextInput;
+		public var titleInput:IGeneratedTextInput;
 		[Bindable]
 		public var startDateInput:DateField;
 		public var startTimeInput:TimeInput;
 		public var endDateInput:DateField;
 		public var endTimeInput:TimeInput;
 		public var leadTimeInput:TextInput;
-		public var urlInput:UrlInput;
+		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		
 		[Bindable]

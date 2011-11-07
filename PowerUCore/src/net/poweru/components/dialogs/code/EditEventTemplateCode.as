@@ -7,13 +7,12 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.generated.model.EventTemplate.NamePrefixInput;
-	import net.poweru.generated.model.EventTemplate.TitleInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditEventTemplateCode extends BaseCRUDDialog implements IEditDialog
 	{
-		public var titleInput:TitleInput;
-		public var namePrefixInput:NamePrefixInput;
+		public var titleInput:IGeneratedTextInput;
+		public var namePrefixInput:IGeneratedTextInput;
 		[Bindable]
 		public var leadTimeInput:TextInput;
 		public var descriptionInput:TextArea;

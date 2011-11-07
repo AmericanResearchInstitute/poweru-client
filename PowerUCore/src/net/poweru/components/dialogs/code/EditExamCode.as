@@ -5,13 +5,12 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.generated.model.Exam.NameInput;
-	import net.poweru.generated.model.Exam.TitleInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditExamCode extends BaseCRUDDialog implements IEditDialog
 	{
-		public var nameInput:NameInput;
-		public var titleInput:TitleInput;
+		public var nameInput:IGeneratedTextInput;
+		public var titleInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		protected var pk:Number;
 		
