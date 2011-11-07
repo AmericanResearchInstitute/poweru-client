@@ -292,6 +292,9 @@
     <classEntry path="net.poweru.components.widgets.CreateSessionFromTemplate"/>
     <classEntry path="net.poweru.presenters.CreateEventFromTemplateMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.BaseDialogCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateExamFromXMLCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateExamFromXML"/>
+    <classEntry path="net.poweru.presenters.CreateExamFromXMLMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

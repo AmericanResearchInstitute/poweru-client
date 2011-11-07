@@ -333,10 +333,9 @@ package net.poweru.proxies
 			trace('save fault');
 		}
 		
-		/*	For now, once an object is created, we then fetch that object. We
-			request all of the fields that have ever been requested since the
-			cache was last flushed.  Eventually, we should probably just have
-			the backend return the fields we want right here. */
+		/*	For now, once an object is created, we then fetch that object.
+			Eventually, we should probably just have the backend return the
+			fields we want right here. */
 		protected function onCreateSuccess(data:ResultEvent):void
 		{
 			var newPK:Number = data.result.value.id;

@@ -34,6 +34,7 @@ package net.poweru
 		public static const CREATEEVENTFROMTEMPLATE:String = 'CreateEventFromTemplate';
 		public static const CREATEEVENTTEMPLATE:String = 'CreateEventTemplate';
 		public static const CREATEEXAM:String = 'CreateExam';
+		public static const CREATEEXAMFROMXML:String = 'CreateExamFromXML';
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
 		public static const CREATEROOM:String = 'CreateRoom';

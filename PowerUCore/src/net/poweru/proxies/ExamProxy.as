@@ -17,5 +17,11 @@ package net.poweru.proxies
 			createArgNamesInOrder = ['name', 'title'];
 			createOptionalArgNames = ['description'];
 		}
+		
+		public function createFromXML(xml:String):void
+		{
+			new ExamManagerDelegate(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).createFromXML(loginProxy.authToken, xml);
+		}
+
 	}
 }
