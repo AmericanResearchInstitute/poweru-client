@@ -13,9 +13,6 @@
 		<mx:FormItem label="Name" width="100%">
 			<FileDownload:NameInput id="nameInput" width="100%"/>
 		</mx:FormItem>
-		<mx:FormItem label="Title" width="100%">
-			<FileDownload:TitleInput id="titleInput" width="100%"/>
-		</mx:FormItem>
 		<mx:FormItem label="Description" required="true" width="100%">
 			<mx:TextArea id="description" width="100%"/>
 		</mx:FormItem>

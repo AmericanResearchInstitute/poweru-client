@@ -37,6 +37,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditEvent;
 	import net.poweru.components.dialogs.EditEventTemplate;
 	import net.poweru.components.dialogs.EditExam;
+	import net.poweru.components.dialogs.EditFileDownload;
 	import net.poweru.components.dialogs.EditGroup;
 	import net.poweru.components.dialogs.EditOrganization;
 	import net.poweru.components.dialogs.EditRoom;
@@ -82,6 +83,7 @@ package net.poweru
 	import net.poweru.presenters.EditEventMediator;
 	import net.poweru.presenters.EditEventTemplateMediator;
 	import net.poweru.presenters.EditExamMediator;
+	import net.poweru.presenters.EditFileDownloadMediator;
 	import net.poweru.presenters.EditGroupMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditRoomMediator;
@@ -236,6 +238,10 @@ package net.poweru
 				
 				case Places.EDITGROUP:
 					component = getOrCreate(name, EditGroup, EditGroupMediator);
+					break;
+				
+				case Places.EDITFILEDOWNLOAD:
+					component = getOrCreate(name, EditFileDownload, EditFileDownloadMediator);
 					break;
 				
 				case Places.EDITORGANIZATION:

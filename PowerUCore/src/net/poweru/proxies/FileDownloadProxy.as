@@ -15,8 +15,8 @@ package net.poweru.proxies
 		public function FileDownloadProxy()
 		{
 			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, FIELDS);
-			createArgNamesInOrder = ['name', 'title'];
-			createOptionalArgNames = ['description'];
+			createArgNamesInOrder = ['name', 'description'];
+			createOptionalArgNames = ['title'];
 		}
 		
 		public function uploadFileDownload(file:FileReference, data:Object):void
