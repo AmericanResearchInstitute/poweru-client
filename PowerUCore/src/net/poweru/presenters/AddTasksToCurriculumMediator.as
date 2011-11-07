@@ -45,17 +45,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-				
-				case NotificationNames.DIALOGPRESENTED:
-					var body1:String = notification.getBody() as String;
-					if (body1 != null && body1 == Places.ADDTASKSTOCURRICULUM)
-						populate();
-					break;
-				
 				case NotificationNames.RECEIVEDONE:
 					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('curriculum', notification.getBody());
@@ -65,6 +54,9 @@ package net.poweru.presenters
 					var body2:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('tasks', body2.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

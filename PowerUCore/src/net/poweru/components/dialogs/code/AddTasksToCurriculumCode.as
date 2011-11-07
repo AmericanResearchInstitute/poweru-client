@@ -28,8 +28,8 @@ package net.poweru.components.dialogs.code
 				clear();
 			curriculum = data;
 			currentTaskIDs = new ArrayCollection;
-			for each (var item:Object in (data.tasks as Array))
-				currentTaskIDs.addItem(item.id);
+			for each (var item:Object in (data.curriculum_task_associations as Array))
+				currentTaskIDs.addItem(item.task);
 			choicesGrid.dataProvider.source = args[0];
 			choicesGrid.dataProvider.refresh();
 		}
@@ -44,17 +44,19 @@ package net.poweru.components.dialogs.code
 		
 		override public function getData():Object
 		{
-			var tasks:Array = curriculum.task_relationships as Array;
-			if (tasks == null)
-				tasks = []
+			var tasks:DataSet = new DataSet(curriculum.curriculum_task_associations as Array);
+			
 			for each (var item:Object in (selectedGrid.dataProvider as ArrayCollection))
 			{
-				var newItem:Object = {
-					'task' : item['id']
-				};
-				tasks.push(newItem);
+				if (tasks.findByKey('task', item['id']) == null)
+				{
+					var newItem:Object = {
+						'task' : item['id']
+					};
+					tasks.addItem(newItem);
+				}
 			}
-			curriculum['curriculum_task_associations'] = tasks;
+			curriculum['curriculum_task_associations'] = tasks.toArray();
 			return curriculum;
 		}
 		
