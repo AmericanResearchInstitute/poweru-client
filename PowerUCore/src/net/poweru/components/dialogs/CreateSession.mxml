@@ -28,7 +28,7 @@
 			<mx:DateField id="endDateInput" enabled="{startDateInput.selectedDate != null}"/>
 			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
-		<mx:FormItem label="Reminder Lead Time">
+		<mx:FormItem label="Reminder Lead Time" required="true">
 			<mx:TextInput id="leadTimeInput" />
 		</mx:FormItem>
 		<mx:FormItem label="URL">
@@ -42,4 +42,5 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" required="true" allowNegative="false" domain="int"/>
 </code:CreateSessionCode>
