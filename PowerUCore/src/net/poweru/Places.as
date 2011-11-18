@@ -17,6 +17,7 @@ package net.poweru
 		public static const NEWUSER:String = 'NewUser';
 		public static const ORGANIZATIONS:String = 'Organizations';
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
+		public static const STUDENTASSIGNMENTS:String = 'StudentAssignments';
 		public static const TASKS:String = 'Tasks';
 		public static const USERS:String = 'Users';
 		public static const VENUES:String = 'Venues';

@@ -308,6 +308,11 @@
     <classEntry path="net.poweru.components.dialogs.code.EditFileDownloadCode"/>
     <classEntry path="net.poweru.components.dialogs.EditFileDownload"/>
     <classEntry path="net.poweru.presenters.EditFileDownloadMediator"/>
+    <classEntry path="net.poweru.components.student.code.AssignmentsCode"/>
+    <classEntry path="net.poweru.components.student.Assignments"/>
+    <classEntry path="net.poweru.proxies.AssignmentsForUserProxy"/>
+    <classEntry path="net.poweru.components.student.interfaces.IAssignments"/>
+    <classEntry path="net.poweru.presenters.student.AssignmentsMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

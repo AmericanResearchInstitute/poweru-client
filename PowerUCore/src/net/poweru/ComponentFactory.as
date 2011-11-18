@@ -54,6 +54,7 @@ package net.poweru
 	import net.poweru.components.dialogs.UploadFileDownload;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
+	import net.poweru.components.student.Assignments;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
@@ -107,6 +108,7 @@ package net.poweru
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
+	import net.poweru.presenters.student.AssignmentsMediator;
 
 	public class ComponentFactory extends net.poweru.placemanager.ComponentFactory implements IComponentFactory
 	{
@@ -322,6 +324,10 @@ package net.poweru
 				
 				case Places.SESSIONUSERROLES:
 					component = getOrCreate(name, SessionUserRoles, SessionUserRolesMediator);
+					break;
+				
+				case Places.STUDENTASSIGNMENTS:
+					component = getOrCreate(name, Assignments, AssignmentsMediator);
 					break;
 				
 				case Places.UPLOADFILEDOWNLOAD:

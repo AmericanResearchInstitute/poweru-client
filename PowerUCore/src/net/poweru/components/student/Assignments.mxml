@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:AssignmentsCode
+	width="100%"
+	height="100%"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.student.code.*" >
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="name" labelFunction="{labelFromTask}"/>
+			<mx:AdvancedDataGridColumn dataField="title" labelFunction="{labelFromTask}"/>
+			<mx:AdvancedDataGridColumn dataField="type" labelFunction="{labelFromTask}"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	<mx:VBox width="35%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Open" enabled="{grid.selectedItem != null}"/>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+		</mx:HBox>
+		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Form>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.task.name}" />
+				</mx:FormItem>
+				<mx:FormItem label="Title:">
+					<mx:Label text="{grid.selectedItem.task.title}" />
+				</mx:FormItem>
+				<mx:FormItem label="Type:">
+					<mx:Label text="{grid.selectedItem.task.type}" />
+				</mx:FormItem>
+				<mx:FormItem label="Attempts:">
+					<mx:List id="attemptList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.attempts}"/>
+				</mx:FormItem>
+			</mx:Form>
+		</mx:Panel>
+	</mx:VBox>
+</code:AssignmentsCode>

@@ -69,8 +69,10 @@ package net.poweru.delegates
 			remoteObject = RemoteObjectFactory.getInstance().getRemoteObject(managerName);
 		}
 		
-		public function getFiltered(authToken:String, filters:Object, fields:Array):AsyncToken
+		public function getFiltered(authToken:String, filters:Object, fields:Array, getFilteredMethodName:String = null):AsyncToken
 		{
+			if (getFilteredMethodName == null)
+				getFilteredMethodName = this.getFilteredMethodName;
 			var token:AsyncToken = remoteObject.getOperation(getFilteredMethodName).send(authToken, filters, fields);
 			token.addResponder(responder);
 			return token;

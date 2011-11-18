@@ -36,6 +36,7 @@ package net.poweru.proxies
 
 	public class BaseProxy extends Proxy implements IProxy
 	{
+		protected var getFilteredMethodName:String = null;
 		protected var loginProxy:LoginProxy;
 		protected var primaryDelegateClass:Class;
 		protected var updatedDataNotification:String;
@@ -106,7 +107,7 @@ package net.poweru.proxies
 			results sent back for this request only. */
 		public function getFiltered(filters:Object):void
 		{
-			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
+			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
 		}
 		
 		/*	find records by IDs from local cache if possible, else from backend */
