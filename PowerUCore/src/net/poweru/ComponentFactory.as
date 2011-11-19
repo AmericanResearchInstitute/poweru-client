@@ -55,6 +55,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.student.Assignments;
+	import net.poweru.components.student.FileDownloadAssignments;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
@@ -109,6 +110,7 @@ package net.poweru
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
 	import net.poweru.presenters.student.AssignmentsMediator;
+	import net.poweru.presenters.student.FileDownloadAssignmentsMediator;
 
 	public class ComponentFactory extends net.poweru.placemanager.ComponentFactory implements IComponentFactory
 	{
@@ -288,6 +290,10 @@ package net.poweru
 				
 				case Places.FILEDOWNLOADS:
 					component = getOrCreate(name, FileDownloads, FileDownloadsMediator);
+					break;
+				
+				case Places.FILEDOWNLOADASSIGNMENTS:
+					component = getOrCreate(name, FileDownloadAssignments, FileDownloadAssignmentsMediator);
 					break;
 				
 				case Places.GROUPS:

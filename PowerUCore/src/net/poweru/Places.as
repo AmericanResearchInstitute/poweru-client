@@ -10,6 +10,7 @@ package net.poweru
 		public static const EVENTTEMPLATES:String = 'EventTemplates';
 		public static const EXAMS:String = 'Exams';
 		public static const FILEUPLOADS:String = 'FileUploads';
+		public static const FILEDOWNLOADASSIGNMENTS:String = 'FileDownloadAssignments';
 		public static const FILEDOWNLOADS:String = 'FileDownloads';
 		public static const GROUPS:String = 'Groups';
 		public static const LOGIN:String = 'Login';

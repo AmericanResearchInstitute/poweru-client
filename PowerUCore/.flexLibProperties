@@ -313,6 +313,11 @@
     <classEntry path="net.poweru.proxies.AssignmentsForUserProxy"/>
     <classEntry path="net.poweru.components.student.interfaces.IAssignments"/>
     <classEntry path="net.poweru.presenters.student.AssignmentsMediator"/>
+    <classEntry path="net.poweru.components.student.code.FileDownloadAssignmentsCode"/>
+    <classEntry path="net.poweru.components.student.FileDownloadAssignments"/>
+    <classEntry path="net.poweru.presenters.student.FileDownloadAssignmentsMediator"/>
+    <classEntry path="net.poweru.components.student.interfaces.IFileDownloadAssignments"/>
+    <classEntry path="net.poweru.proxies.FileDownloadAssignmentsForUserProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

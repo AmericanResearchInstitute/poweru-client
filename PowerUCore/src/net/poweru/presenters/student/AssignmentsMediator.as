@@ -1,24 +1,27 @@
 package net.poweru.presenters.student
 {
+	import flash.display.DisplayObject;
+	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.student.interfaces.IAssignments;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AssignmentsForUserProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	public class AssignmentsMediator extends BaseMediator implements IMediator
+	public class AssignmentsMediator extends Mediator implements IMediator
 	{
 		public static const NAME:String = 'StudentAssignmentsMediator';
 		
 		public function AssignmentsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, AssignmentsForUserProxy);
+			super(NAME, viewComponent);
+			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
 		protected function get assignments():IAssignments
@@ -26,52 +29,15 @@ package net.poweru.presenters.student
 			return displayObject as IAssignments;
 		}
 		
-		override protected function addEventListeners():void
+		protected function get displayObject():DisplayObject
 		{
-			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
-			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			return viewComponent as DisplayObject;
 		}
 		
-		override protected function removeEventListeners():void
+		protected function onCreationComplete(event:FlexEvent):void
 		{
-			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);	
-			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
-			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
-		}
-		
-		override public function listNotificationInterests():Array
-		{
-			return [
-				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEASSIGNMENTSFORUSER,
-				NotificationNames.LOGOUT
-			];
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{
-				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.STUDENTASSIGNMENTS)
-						populate();
-					break;
-				
-				// Happens when we save an Event, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEASSIGNMENTSFORUSER:
-					assignments.populate(primaryProxy.dataSet.toArray());
-					break;
-				
-				case NotificationNames.LOGOUT:
-					assignments.clear();
-					break;
-			}
-		}
-		
-		override protected function populate():void
-		{
-			primaryProxy.getAll();
+			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			sendNotification(NotificationNames.SETOTHERSPACE, assignments.fileDownloadsContainer, Places.FILEDOWNLOADASSIGNMENTS);
 		}
 	}
 }

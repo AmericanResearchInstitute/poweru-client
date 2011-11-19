@@ -1,8 +1,9 @@
 package net.poweru.components.student.interfaces
 {
+	import mx.core.IContainer;
+
 	public interface IAssignments
 	{
-		function populate(data:Array):void;
-		function clear():void;
+		function get fileDownloadsContainer():IContainer;
 	}
 }
