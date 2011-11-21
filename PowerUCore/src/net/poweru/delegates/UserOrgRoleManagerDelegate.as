@@ -7,6 +7,7 @@ package net.poweru.delegates
 		public function UserOrgRoleManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'UserOrgRoleManager');
+			getFilteredMethodName = 'user_org_role_detail_view';
 		}
 		
 	}

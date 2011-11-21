@@ -318,6 +318,14 @@
     <classEntry path="net.poweru.presenters.student.FileDownloadAssignmentsMediator"/>
     <classEntry path="net.poweru.components.student.interfaces.IFileDownloadAssignments"/>
     <classEntry path="net.poweru.proxies.FileDownloadAssignmentsForUserProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateOrgSlotCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateOrgSlot"/>
+    <classEntry path="net.poweru.proxies.UserOrgRoleProxy"/>
+    <classEntry path="net.poweru.presenters.CreateOrgSlotMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateOrgSlot"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditUserOrgRoleCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditUserOrgRole"/>
+    <classEntry path="net.poweru.presenters.EditUserOrgRoleMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

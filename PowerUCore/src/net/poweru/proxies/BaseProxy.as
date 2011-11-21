@@ -107,7 +107,8 @@ package net.poweru.proxies
 			results sent back for this request only. */
 		public function getFiltered(filters:Object):void
 		{
-			new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
+			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
+			token['filters'] = filters;
 		}
 		
 		/*	find records by IDs from local cache if possible, else from backend */
@@ -303,7 +304,8 @@ package net.poweru.proxies
 			
 			dataSet.mergeData(value);
 			haveData = true;
-			sendNotification(updatedDataNotification, new DataSet(value));
+			var filters:Object = data.token['filters'];
+			sendNotification(updatedDataNotification, new DataSet(value), filters.toString());
 		}
 		
 		protected function onGetFilteredError(data:ResultEvent):void

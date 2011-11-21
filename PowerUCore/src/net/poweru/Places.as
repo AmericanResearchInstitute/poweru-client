@@ -42,6 +42,7 @@ package net.poweru
 		public static const CREATEGROUP:String = 'CreateGroup';
 		public static const CREATEFILEUPLOAD:String = 'CreateFileUpload';
 		public static const CREATEORGANIZATION:String = 'CreateOrganization';
+		public static const CREATEORGANIZATIONSLOT:String = 'CreateOrganizationSlot';
 		public static const CREATEROOM:String = 'CreateRoom';
 		public static const CREATESESSION:String = 'CreateSession';
 		public static const CREATESESSIONTEMPLATE:String = 'CreateSessionTemplate';
@@ -66,6 +67,7 @@ package net.poweru
 		public static const EDITSESSIONUSERROLE:String = 'EditSessionUserRole';
 		public static const EDITTASK:String = 'EditTask';
 		public static const EDITUSER:String = 'EditUser';
+		public static const EDITUSERORGROLE:String = 'EditUserOrgRole';
 		public static const EDITVENUE:String = 'EditVenue';
 		public static const EDITVIDEO:String = 'EditVideo';
 		public static const HELPORGANIZATION:String = 'HelpOrganization';

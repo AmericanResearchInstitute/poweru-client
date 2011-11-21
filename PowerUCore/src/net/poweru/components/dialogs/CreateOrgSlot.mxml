@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateOrgSlotCode
+	title="Create Organization Slot"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	layout="vertical">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Organization" required="true">
+			<mx:Label text="{chosenOrganization.name}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Role" required="true">
+			<mx:ComboBox id="roleInput" labelField="name"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+	<mx:NumberValidator id="roleValidator" source="{roleInput}" property="selectedIndex" minValue="0" lowerThanMinError="Please select a role."/>
+</code:CreateOrgSlotCode>

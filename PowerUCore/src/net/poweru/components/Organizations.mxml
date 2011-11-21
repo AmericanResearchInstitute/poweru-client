@@ -17,9 +17,9 @@
 			public var myFolderIcon:Class;
 		]]>
 	</mx:Script>
-	<mx:Tree id="organizations" labelField="name" change="onSelectionChange(event)" dragEnabled="true" dropEnabled="true" dragComplete="onDragComplete(event)" dragEnter="onDragBegin(event)" width="50%" height="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
+	<mx:Tree id="organizations" labelField="name" change="onSelectionChange(event)" dragEnabled="true" dropEnabled="true" dragComplete="onDragComplete(event)" dragEnter="onDragBegin(event)" width="40%" height="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
 	
-	<mx:VBox width="50%" height="100%">
+	<mx:VBox width="60%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATION, null]))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
@@ -47,12 +47,16 @@
 					<model:DataSet/>
 				</mx:dataProvider>
 				<mx:columns>
-					<mx:AdvancedDataGridColumn headerText="Last Name" labelFunction="lastNameLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'last_name'])}"/>
-					<mx:AdvancedDataGridColumn headerText="First Name" labelFunction="firstNameLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'first_name'])}"/>
 					<mx:AdvancedDataGridColumn headerText="Role" labelFunction="roleLabel" sortCompareFunction="{SortCompareFunctionFactory(['role', 'name'])}"/>
+					<mx:AdvancedDataGridColumn headerText="Last Name" dataField="last_name" labelFunction="ownerLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'last_name'])}"/>
+					<mx:AdvancedDataGridColumn headerText="First Name" dataField="first_name" labelFunction="ownerLabel" sortCompareFunction="{SortCompareFunctionFactory(['owner', 'first_name'])}"/>
+					<mx:AdvancedDataGridColumn headerText="Slot" dataField="persistent"/>
 				</mx:columns>
 			</mx:AdvancedDataGrid>
-			<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSER, users.selectedItem['owner']['id']]))}"/>
+			<mx:HBox>
+				<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
+				<mx:Button label="Add Slot" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
+			</mx:HBox>
 		</mx:TitleWindow>
 	</mx:VBox>
 	

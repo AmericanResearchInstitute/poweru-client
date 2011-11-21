@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EditUserOrgRoleCode
+	title="Edit User Membership"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	layout="vertical">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:FormItem label="Organization" required="true">
+		<mx:Label text="{chosenOrganization.name}"/>
+	</mx:FormItem>
+	<mx:FormItem label="Role" required="true">
+		<mx:ComboBox id="roleInput" labelField="name"/>
+	</mx:FormItem>
+	<mx:FormItem label="Slot">
+		<mx:CheckBox id="persistentInput" enabled="{persistentInput.selected == false || user != null}"/>
+	</mx:FormItem>
+	<mx:FormItem  label="User">
+		<mx:HBox>
+			<mx:Label text="{user.first_name + ' ' + user.last_name}"/>
+			<mx:Button visible="{user != null &amp;&amp; persistentInput.selected == true}" label="Remove User" click="{removedUser = user; user = null}"/>
+			<mx:Button visible="{removedUser != null &amp;&amp; persistentInput.selected == true}" label="Undo Remove User" click="{user = removedUser; removedUser = null}"/>
+		</mx:HBox>
+	</mx:FormItem>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+	<mx:NumberValidator id="roleValidator" source="{roleInput}" property="selectedIndex" minValue="0" lowerThanMinError="Please select a role."/>
+</code:EditUserOrgRoleCode>

@@ -51,9 +51,11 @@ package net.poweru.components.code
 			users.dataProvider.refresh();
 		}
 		
-		public function populateUsers(org:Number, data:Array):void
+		public function populateUsers(data:Array):void
 		{
-			if (organizations.selectedItem != null && organizations.selectedItem['id'] == org)
+			/*	we assume that the mediator is sending us users for the most recently
+				requested org */
+			if (organizations.selectedItem != null)
 			{
 				users.dataProvider.source = data;
 				users.dataProvider.refresh();
@@ -158,14 +160,12 @@ package net.poweru.components.code
 			draggedItem = organizations.selectedItem;
 		}
 		
-		protected function lastNameLabel(item:Object, column:AdvancedDataGridColumn):String
+		protected function ownerLabel(item:Object, column:AdvancedDataGridColumn):String
 		{
-			return item['owner']['last_name'];
-		}
-		
-		protected function firstNameLabel(item:Object, column:AdvancedDataGridColumn):String
-		{
-			return item['owner']['first_name'];
+			var ret:String = '';
+			if (item.hasOwnProperty('owner') && item['owner'] != null && item['owner'].hasOwnProperty(column.dataField))
+				ret = item['owner'][column.dataField];
+			return ret;
 		}
 		
 		protected function roleLabel(item:Object, column:AdvancedDataGridColumn):String
