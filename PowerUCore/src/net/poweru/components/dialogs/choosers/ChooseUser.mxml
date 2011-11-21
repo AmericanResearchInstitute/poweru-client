@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:ChooseUserCode
+	title="Choose User"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.choosers.code.*"
+	layout="vertical">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
+		]]>
+	</mx:Script>
+	<mx:VBox width="65%" height="100%">
+		<mx:TitleWindow title="Filters" width="100%" dropShadowEnabled="false">
+			<mx:HBox>
+				<mx:FormItem label="Status:">
+					<mx:ComboBox id="statusFilterCB" change="grid.dataProvider.refresh()"/>
+				</mx:FormItem>
+				<mx:FormItem label="Organization:">
+					<mx:ComboBox id="orgFilterCB" labelField="name" change="grid.dataProvider.refresh()"/>
+				</mx:FormItem>
+			</mx:HBox>
+		</mx:TitleWindow>
+		<mx:AdvancedDataGrid id="grid" width="100%" height="100%">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
+				<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
+				<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
+				<mx:AdvancedDataGridColumn dataField="status" headerText="Status" sortCompareFunction="{SortCompareFunctionFactory(['status'])}"/>
+				<mx:AdvancedDataGridColumn dataField="alleged_organization" headerText="Claimed Org" sortCompareFunction="{SortCompareFunctionFactory(['alleged_organization'])}"/>
+			</mx:columns>
+		</mx:AdvancedDataGrid>
+	</mx:VBox>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:ChooseUserCode>

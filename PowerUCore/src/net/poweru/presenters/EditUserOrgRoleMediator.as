@@ -31,6 +31,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.CHOICEMADE,
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
 				NotificationNames.RECEIVEDONE,
@@ -41,7 +42,13 @@ package net.poweru.presenters
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
-			{				
+			{	
+				case NotificationNames.CHOICEMADE:
+					if (notification.getType() == Places.CHOOSEUSER)
+						editDialog.receiveChoice(notification.getBody(), notification.getType());
+					break;
+					
+					
 				case NotificationNames.RECEIVEDONE:
 					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('user_org_role', notification.getBody());

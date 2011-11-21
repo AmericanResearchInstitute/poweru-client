@@ -21,7 +21,7 @@ package net.poweru.components.dialogs.choosers.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function populate(data:Array):void
+		public function populate(data:Array, ...args):void
 		{
 			organizations.dataProvider.source = data;
 			organizations.dataProvider.refresh();
@@ -29,6 +29,11 @@ package net.poweru.components.dialogs.choosers.code
 			organizations.validateNow();
 			for each (var organization:Object in organizations.dataProvider)
 				organizations.expandChildrenOf(organization, true);
+		}
+		
+		public function clear():void
+		{
+			populate([]);
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

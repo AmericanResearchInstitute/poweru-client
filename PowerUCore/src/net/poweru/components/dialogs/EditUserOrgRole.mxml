@@ -6,6 +6,7 @@
 	layout="vertical">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -21,6 +22,7 @@
 	<mx:FormItem  label="User">
 		<mx:HBox>
 			<mx:Label text="{user.first_name + ' ' + user.last_name}"/>
+			<mx:Button visible="{user == null &amp;&amp; removedUser == null}" label="Choose User" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEUSER, null]))}"/>
 			<mx:Button visible="{user != null &amp;&amp; persistentInput.selected == true}" label="Remove User" click="{removedUser = user; user = null}"/>
 			<mx:Button visible="{removedUser != null &amp;&amp; persistentInput.selected == true}" label="Undo Remove User" click="{user = removedUser; removedUser = null}"/>
 		</mx:HBox>

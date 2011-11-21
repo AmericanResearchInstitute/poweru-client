@@ -5,6 +5,7 @@ package net.poweru.components.dialogs.code
 	import mx.events.FlexEvent;
 	import mx.validators.NumberValidator;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.model.DataSet;
@@ -59,7 +60,16 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'role' : roleInput.selectedItem.id,
 				'persistent' : persistentInput.selected,
-				'owner' : user
+				'owner' : (user != null) ? user.id : null
+			}
+		}
+		
+		override public function receiveChoice(choice:Object, chooserName:String):void
+		{
+			if (chooserName == Places.CHOOSEUSER)
+			{
+				user = choice;
+				removedUser = null;
 			}
 		}
 		

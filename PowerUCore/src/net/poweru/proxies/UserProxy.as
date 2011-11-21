@@ -13,7 +13,7 @@ package net.poweru.proxies
 	public class UserProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'UserProxy';
-		public static const FIELDS:Array = [];
+		public static const FIELDS:Array = ['first_name', 'last_name', 'email', 'status', 'alleged_organization'];
 		
 		public function UserProxy()
 		{

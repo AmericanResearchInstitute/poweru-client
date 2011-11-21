@@ -57,6 +57,7 @@ package net.poweru.presenters
 		{
 			sendNotification(NotificationNames.CHOICEMADE, event.body, placeName);
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			chooser.clear();
 		}
 		
 		protected function onCancel(event:ViewEvent):void

@@ -29,12 +29,17 @@ package net.poweru.components.dialogs.choosers.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function populate(data:Array):void
+		public function populate(data:Array, ...args):void
 		{
 			grid.dataProvider.source = data;
 			grid.dataProvider.refresh();
 			roomList.dataProvider.source = [];
 			roomList.dataProvider.refresh();
+		}
+		
+		public function clear():void
+		{
+			populate([]);
 		}
 		
 		public function setRooms(data:Array):void
