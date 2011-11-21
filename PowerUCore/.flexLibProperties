@@ -330,6 +330,12 @@
     <classEntry path="net.poweru.utils.PowerUResult"/>
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
+    <classEntry path="net.poweru.proxies.AdminUsersViewProxy"/>
+    <classEntry path="net.poweru.components.student.interfaces.IExamAssignments"/>
+    <classEntry path="net.poweru.components.student.code.ExamAssignmentsCode"/>
+    <classEntry path="net.poweru.components.student.ExamAssignments"/>
+    <classEntry path="net.poweru.proxies.ExamAssignmentsForUserProxy"/>
+    <classEntry path="net.poweru.presenters.student.ExamAssignmentsMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -1,19 +1,20 @@
 package net.poweru.presenters
 {
+	import flash.events.Event;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseEditDialogMediator;
+	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.GroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.OrganizationProxy;
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
-	
-	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -25,21 +26,18 @@ package net.poweru.presenters
 		protected var groupProxy:GroupProxy;
 		protected var organizationProxy:OrganizationProxy;
 		protected var orgRoleProxy:OrgRoleProxy;
+		protected var userProxy:UserProxy;
 		protected var inputCollector:InputCollector;
 		
 		public function EditUserMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, UserProxy, Places.EDITUSER);
+			super(NAME, viewComponent, AdminUsersViewProxy, Places.EDITUSER);
+			userProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(UserProxy) as UserProxy;
 			groupProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(GroupProxy) as GroupProxy;
 			organizationProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrganizationProxy) as OrganizationProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 			// placeholder
 			inputCollector = new InputCollector([]);
-		}
-		
-		protected function get userProxy():UserProxy
-		{
-			return primaryProxy as UserProxy;
 		}
 		
 		override public function listNotificationInterests():Array
@@ -85,7 +83,7 @@ package net.poweru.presenters
 					break;
 					
 				case NotificationNames.UPDATECHOICES:
-					if (notification.getType() == UserProxy.NAME)
+					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('choices', notification.getBody());
 					break;
 				

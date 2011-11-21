@@ -18,27 +18,8 @@ package net.poweru.proxies
 		public function UserProxy()
 		{
 			super(NAME, UserManagerDelegate, NotificationNames.UPDATEUSERS, FIELDS, 'User', ['status']);
-		}
-		
-		override public function create(argDict:Object):void
-		{
-			var argNamesInOrder:Array = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
-			var args:Array = [loginProxy.authToken];
-			for each (var argName:String in argNamesInOrder)
-			{
-				args.push(argDict[argName]);
-			}
-			if (argDict['optional_attributes'] != undefined)
-			{
-				args.push(argDict['optional_attributes']);
-			}
-			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
-		}
-		
-		public function adminUsersView():void
-		{
-			new UserManagerDelegate(new PowerUResponder(onAdminUsersViewSuccess, onAdminUsersViewError, onFault)).adminUsersView(loginProxy.authToken);
+			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
+			createOptionalArgNames = [];
 		}
 		
 		public function getUsersByGroupName(name:String):void
@@ -59,11 +40,6 @@ package net.poweru.proxies
 		public function changePassword(userId:Number, password:String, oldPassword:String):void
 		{
 			new UserManagerDelegate(new PowerUResponder(onPasswordChangeSuccess, onPasswordChangeSuccess, onFault)).changePassword(loginProxy.authToken, userId, password, oldPassword);
-		}
-		
-		override public function getOne(pk:Number):void
-		{
-			new UserManagerDelegate(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).adminUsersView(loginProxy.authToken, [pk]);
 		}
 		
 		
@@ -87,25 +63,6 @@ package net.poweru.proxies
 		protected function onGetUsersByGroupNameError(event:ResultEvent):void
 		{
 			trace('error getting users by group name');
-		}
-		
-		protected function onAdminUsersViewSuccess(event:ResultEvent):void
-		{
-			data = new DataSet(event.result.value);
-			sendNotification(NotificationNames.UPDATEADMINUSERSVIEW, ObjectUtil.copy(event.result.value));
-		}
-		
-		protected function onAdminUsersViewError(event:ResultEvent):void
-		{
-			
-		}
-		
-		override protected function onCreateSuccess(event:ResultEvent):void
-		{
-			sendNotification(NotificationNames.CREATEUSERSUCCESS, ObjectUtil.copy(event.result.value));
-			if (loginProxy.authToken) {
-				adminUsersView();
-			}
 		}
 		
 		override protected function onCreateError(data:ResultEvent):void

@@ -1,7 +1,7 @@
 package net.poweru.presenters
 {
 	import net.poweru.presenters.BaseCreateDialogMediator;
-	import net.poweru.proxies.UserProxy;
+	import net.poweru.proxies.AdminUsersViewProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 
@@ -11,7 +11,7 @@ package net.poweru.presenters
 		
 		public function CreateUserMediator(viewComponent:Object=null)
 		{
-			super(NAME, viewComponent, UserProxy);
+			super(NAME, viewComponent, AdminUsersViewProxy);
 		}
 		
 	}

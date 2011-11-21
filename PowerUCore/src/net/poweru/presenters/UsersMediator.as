@@ -13,6 +13,7 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
+	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.CurriculumEnrollmentProxy;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.GroupProxy;
@@ -37,17 +38,12 @@ package net.poweru.presenters
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
-			super(NAME, viewComponent, UserProxy);
+			super(NAME, viewComponent, AdminUsersViewProxy);
 			groupProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(GroupProxy) as GroupProxy;
 			adminOrganizationViewProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AdminOrganizationViewProxy) as AdminOrganizationViewProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
-		}
-		
-		protected function get userProxy():UserProxy
-		{
-			return primaryProxy as UserProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -112,11 +108,11 @@ package net.poweru.presenters
 					break;
 					
 				case NotificationNames.UPDATEADMINUSERSVIEW:
-					inputCollector.addInput('users', ObjectUtil.copy(notification.getBody()));
+					inputCollector.addInput('users', ObjectUtil.copy(primaryProxy.dataSet.toArray()));
 					break;
 					
 				case NotificationNames.UPDATECHOICES:
-					if (notification.getType() == UserProxy.NAME && inputCollector != null)
+					if (notification.getType() == primaryProxy.getProxyName() && inputCollector != null)
 						inputCollector.addInput('choices', ObjectUtil.copy(notification.getBody()));
 					break;
 				
@@ -169,8 +165,8 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'groups', 'choices', 'curriculumEnrollments', 'events']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			userProxy.adminUsersView();
-			userProxy.getChoices();
+			primaryProxy.getAll();
+			primaryProxy.getChoices();
 			adminOrganizationViewProxy.adminOrganizationsView();
 			orgRoleProxy.getAll();
 			groupProxy.getAll();
