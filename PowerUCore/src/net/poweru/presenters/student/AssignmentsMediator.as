@@ -38,6 +38,7 @@ package net.poweru.presenters.student
 		{
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			sendNotification(NotificationNames.SETOTHERSPACE, assignments.fileDownloadsContainer, Places.FILEDOWNLOADASSIGNMENTS);
+			sendNotification(NotificationNames.SETOTHERSPACE, assignments.examsContainer, Places.EXAMASSIGNMENTS);
 		}
 	}
 }

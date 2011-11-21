@@ -58,6 +58,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
 	import net.poweru.components.student.Assignments;
+	import net.poweru.components.student.ExamAssignments;
 	import net.poweru.components.student.FileDownloadAssignments;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
@@ -116,6 +117,7 @@ package net.poweru
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
 	import net.poweru.presenters.student.AssignmentsMediator;
+	import net.poweru.presenters.student.ExamAssignmentsMediator;
 	import net.poweru.presenters.student.FileDownloadAssignmentsMediator;
 
 	public class ComponentFactory extends net.poweru.placemanager.ComponentFactory implements IComponentFactory
@@ -304,6 +306,10 @@ package net.poweru
 				
 				case Places.EXAMS:
 					component = getOrCreate(name, Exams, ExamsMediator);
+					break;
+				
+				case Places.EXAMASSIGNMENTS:
+					component = getOrCreate(name, ExamAssignments, ExamAssignmentsMediator);
 					break;
 				
 				case Places.FILEDOWNLOADS:

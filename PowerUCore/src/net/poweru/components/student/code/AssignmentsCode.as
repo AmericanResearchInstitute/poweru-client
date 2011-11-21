@@ -8,6 +8,8 @@ package net.poweru.components.student.code
 	public class AssignmentsCode extends HBox implements IAssignments
 	{
 		public var _fileDownloadsContainer:HBox;
+		public var _examsContainer:HBox;
+		public var _eventsContainer:HBox;
 		
 		public function AssignmentsCode()
 		{
@@ -17,6 +19,16 @@ package net.poweru.components.student.code
 		public function get fileDownloadsContainer():IContainer
 		{
 			return _fileDownloadsContainer;
+		}
+		
+		public function get examsContainer():IContainer
+		{
+			return _examsContainer;
+		}
+		
+		public function get eventsContainer():IContainer
+		{
+			return _eventsContainer;
 		}
 
 	}

@@ -5,5 +5,7 @@ package net.poweru.components.student.interfaces
 	public interface IAssignments
 	{
 		function get fileDownloadsContainer():IContainer;
+		function get examsContainer():IContainer;
+		function get eventsContainer():IContainer;
 	}
 }

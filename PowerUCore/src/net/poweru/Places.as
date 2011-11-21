@@ -7,8 +7,10 @@ package net.poweru
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
 		public static const CURRICULUMS:String = 'Curriculums';
 		public static const EVENTS:String = 'Events';
+		public static const EVENTASSIGNMENTS:String = 'EventAssignments';
 		public static const EVENTTEMPLATES:String = 'EventTemplates';
 		public static const EXAMS:String = 'Exams';
+		public static const EXAMASSIGNMENTS:String = 'ExamAssignments';
 		public static const FILEUPLOADS:String = 'FileUploads';
 		public static const FILEDOWNLOADASSIGNMENTS:String = 'FileDownloadAssignments';
 		public static const FILEDOWNLOADS:String = 'FileDownloads';
