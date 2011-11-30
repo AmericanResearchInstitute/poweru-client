@@ -59,6 +59,7 @@
 			<mx:HBox>
 				<mx:Button label="Edit" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
 				<mx:Button label="Enrolments" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITENROLLMENTS, sessionList.selectedItem]))}"/>
+				<mx:Button label="Email Participants" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EMAILSESSIONPARTICIPANTS, sessionList.selectedItem]))}"/>
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>

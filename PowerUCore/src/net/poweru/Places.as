@@ -73,6 +73,7 @@ package net.poweru
 		public static const EDITUSERORGROLE:String = 'EditUserOrgRole';
 		public static const EDITVENUE:String = 'EditVenue';
 		public static const EDITVIDEO:String = 'EditVideo';
+		public static const EMAILSESSIONPARTICIPANTS:String = 'EmailSessionParticipants';
 		public static const HELPORGANIZATION:String = 'HelpOrganization';
 		public static const HELPUSER:String = 'HelpUser';
 		public static const IMPORTUSERS:String = 'ImportUsers';

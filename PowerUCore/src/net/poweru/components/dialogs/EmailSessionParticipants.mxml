@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EmailSessionParticipantsCode
+	title="Email Session Participants"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+		]]>
+	</mx:Script>
+	<mx:TextArea id="messageInput" minHeight="400" minWidth="600"/>
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onSubmit(event)"/>
+		<mx:Button label="Cancel" click="PopUpManager.removePopUp(this); clear()"/>
+	</mx:HBox>
+</code:EmailSessionParticipantsCode>

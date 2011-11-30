@@ -48,6 +48,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditUser;
 	import net.poweru.components.dialogs.EditUserOrgRole;
 	import net.poweru.components.dialogs.EditVenue;
+	import net.poweru.components.dialogs.EmailSessionParticipants;
 	import net.poweru.components.dialogs.HelpOrganization;
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
@@ -294,6 +295,10 @@ package net.poweru
 				
 				case Places.EDITVENUE:
 					component = getOrCreate(name, EditVenue, EditVenueMediator);
+					break;
+				
+				case Places.EMAILSESSIONPARTICIPANTS:
+					component = getOrCreate(name, EmailSessionParticipants);
 					break;
 				
 				case Places.EVENTS:

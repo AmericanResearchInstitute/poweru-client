@@ -44,6 +44,7 @@ package net.poweru.components.dialogs.code
 		// args[0] is an array of OrgRoles
 		public function populate(data:Object, ...args):void
 		{
+			clear();
 			var roles:Array = args[0] as Array;
 			roleInput.dataProvider.source = roles;
 			roleInput.dataProvider.refresh();
