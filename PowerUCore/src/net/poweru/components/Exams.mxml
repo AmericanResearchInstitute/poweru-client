@@ -39,6 +39,7 @@
 			</mx:Form>
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEXAM, grid.selectedItem.id]))}"/>
+				<mx:Button label="Assignments" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.VIEWEXAMASSIGNMENTS, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>

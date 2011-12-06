@@ -342,6 +342,10 @@
     <classEntry path="net.poweru.presenters.student.SessionAssignmentMediator"/>
     <classEntry path="net.poweru.components.student.interfaces.ISessionAssignments"/>
     <classEntry path="net.poweru.proxies.SessionAssignmentsForUserProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.ViewExamAssignmentsCode"/>
+    <classEntry path="net.poweru.components.dialogs.ViewExamAssignments"/>
+    <classEntry path="net.poweru.presenters.ViewExamAssignmentsMediator"/>
+    <classEntry path="net.poweru.proxies.ExamAssignmentsByTaskProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
