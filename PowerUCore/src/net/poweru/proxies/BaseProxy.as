@@ -271,12 +271,24 @@ package net.poweru.proxies
 			{
 				for each (var field:String in dateTimeFields)
 				{
-					if (item.hasOwnProperty(field))
-					{
-						item[field] = stringToDate(item[field]);
-					}
+					applyConversionFunction(item, field, stringToDate);
 				}
 			}
+		}
+		
+		/*	fieldName can be a multi-tier path delimited by '.'  This method will
+			descend into child Objects when a dotted fieldName is provided. For
+			example, a field name of 'user.first_name' will look for an attribute
+			'user' of item and then look for attribute 'first_name' on the user
+			object. There can be as many levels specified as you like. */
+		protected function applyConversionFunction(item:Object, fieldName:String, func:Function):void
+		{
+			var fieldNameArray:Array = fieldName.split('.');
+			if (fieldNameArray.length > 1 && item.hasOwnProperty(fieldNameArray[0]))
+				// recursively call myself with child item and sliced fieldName  
+				applyConversionFunction(item[fieldNameArray[0]], fieldNameArray.slice(1).join('.'), func);
+			else if (item.hasOwnProperty(fieldName))
+				item[fieldName] = func(item[fieldName]);
 		}
 		
 		protected function stringToDate(value:String):Date

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:SessionAssignmentsCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.student.code.*"
+	width="100%"
+	height="100%">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="title" headerText="Title" labelFunction="{labelFromTask}"/>
+			<mx:AdvancedDataGridColumn dataField="name" headerText="Name" labelFunction="{labelFromTask}"/>
+			<mx:AdvancedDataGridColumn dataField="start" headerText="Start" labelFunction="{labelFromSession}">
+				<mx:formatter>
+					<mx:DateFormatter formatString="M-D-YYYY"/>
+				</mx:formatter>
+			</mx:AdvancedDataGridColumn>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	<mx:VBox width="35%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+		</mx:HBox>
+		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Form>
+				<mx:FormItem label="Title:">
+					<mx:Label text="{grid.selectedItem.task.title}" />
+				</mx:FormItem>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.task.name}" />
+				</mx:FormItem>
+				<mx:FormItem label="Start:">
+					<mx:Label text="{(grid.selectedItem.task.session.start as Date).toDateString()}"/>
+				</mx:FormItem>
+				<mx:FormItem label="End:">
+					<mx:Label text="{(grid.selectedItem.task.session.end as Date).toDateString()}"/>
+				</mx:FormItem>
+			</mx:Form>
+		</mx:Panel>
+	</mx:VBox>
+</code:SessionAssignmentsCode>

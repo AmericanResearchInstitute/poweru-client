@@ -57,6 +57,7 @@ package net.poweru
 		public static const UPDATEORGROLES:String = 'UpdateOrgRoles';
 		public static const UPDATEREGIONS:String = 'UpdateRegions';
 		public static const UPDATEROOMS:String = 'UpdateRooms';
+		public static const UPDATESESSIONASSIGNMENTSFORUSER:String = 'UpdateSessionAssignmentsForUser';
 		public static const UPDATESESSIONS:String = 'UpdateSessions';
 		public static const UPDATESESSIONTEMPLATES:String = 'UpdateSessionTemplates';
 		public static const UPDATESESSIONUSERROLEREQUIREMENTS:String = 'UpdateSessionUserRoleRequirements';

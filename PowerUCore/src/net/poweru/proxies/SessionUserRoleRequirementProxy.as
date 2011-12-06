@@ -10,7 +10,7 @@ package net.poweru.proxies
 		public static const NAME:String = 'SessionUserRoleRequirementProxy';
 		public static const FIELDS:Array = ['session', 'session_user_role', 'max', 'min', 'credential_types'];
 		
-		public function SessionUserRoleRequirementProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, fields:Array, modelName:String=null, choiceFields:Array=null)
+		public function SessionUserRoleRequirementProxy()
 		{
 			super(NAME, SessionUserRoleRequirementManagerDelegate, NotificationNames.UPDATESESSIONUSERROLEREQUIREMENTS, FIELDS, 'SessionUserRoleRequirement');
 		}
