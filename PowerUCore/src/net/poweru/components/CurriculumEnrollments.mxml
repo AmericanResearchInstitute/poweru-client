@@ -27,10 +27,10 @@
 				<mx:FormItem label="Curriculum:">
 					<mx:Label text="{grid.selectedItem.curriculum_name}" />
 				</mx:FormItem>
-				<mx:FormItem label="First:">
+				<mx:FormItem label="Start:">
 					<mx:Label text="{grid.selectedItem.start}" />
 				</mx:FormItem>
-				<mx:FormItem label="Last:">
+				<mx:FormItem label="End:">
 					<mx:Label text="{grid.selectedItem.end}" />
 				</mx:FormItem>
 				<mx:FormItem label="Students:">
