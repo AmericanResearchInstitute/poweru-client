@@ -1,6 +1,7 @@
 package net.poweru.components.dialogs.code
 {
 	import mx.controls.DataGrid;
+	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseDialog;
@@ -26,6 +27,16 @@ package net.poweru.components.dialogs.code
 		public function clear():void
 		{
 			populate([]);
+		}
+		
+		protected function labelFromTask(item:Object, column:DataGridColumn):String
+		{
+			return item['task'][column.dataField];
+		}
+		
+		protected function userLastFirstLabel(item:Object, column:DataGridColumn):String
+		{
+			return item['user']['last_name'] + ', ' + item['user']['first_name'];
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

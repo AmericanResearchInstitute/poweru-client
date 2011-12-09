@@ -12,6 +12,7 @@ package net.poweru.proxies
 		public function ExamAssignmentsByTaskProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEEXAMASSIGNMENTSBYTASK, [], 'Assignment', []);
+			getFilteredMethodName = 'exam_assignments_detail_view';
 		}
 	}
 }
