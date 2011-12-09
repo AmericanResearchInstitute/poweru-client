@@ -56,6 +56,7 @@ package net.poweru
 	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.components.dialogs.UploadFileDownload;
 	import net.poweru.components.dialogs.ViewExamAssignments;
+	import net.poweru.components.dialogs.ViewFileDownloadAssignments;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
@@ -120,6 +121,7 @@ package net.poweru
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
 	import net.poweru.presenters.ViewExamAssignmentsMediator;
+	import net.poweru.presenters.ViewFileDownloadAssignmentsMediator;
 	import net.poweru.presenters.student.AssignmentsMediator;
 	import net.poweru.presenters.student.ExamAssignmentsMediator;
 	import net.poweru.presenters.student.FileDownloadAssignmentsMediator;
@@ -387,6 +389,10 @@ package net.poweru
 				
 				case Places.VIEWEXAMASSIGNMENTS:
 					component = getOrCreate(name, ViewExamAssignments, ViewExamAssignmentsMediator);
+					break;
+				
+				case Places.VIEWFILEDOWNLOADASSIGNMENTS:
+					component = getOrCreate(name, ViewFileDownloadAssignments, ViewFileDownloadAssignmentsMediator);
 					break;
 				
 				default:

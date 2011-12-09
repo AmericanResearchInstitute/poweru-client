@@ -48,6 +48,7 @@ package net.poweru
 		public static const UPDATEEXAMASSIGNMENTSFORUSER:String = 'UpdateExamAssignmentsForUser';
 		public static const UPDATEEXAMASSIGNMENTSDETAIL:String = 'UpdateExamAssignmentsDetail';
 		public static const UPDATEFILEDOWNLOADS:String = 'UpdateFileDownloads';
+		public static const UPDATEFILEDOWNLOADASSIGNMENTSDETAIL:String = 'UpdateFileDownloadAssignmentsDetail';
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSFORUSER:String = 'UpdateFileDownloadAssignmentsForUser';
 		public static const UPDATEFILEUPLOADS:String = 'UpdateFileUploads';
 		public static const UPDATETASKS:String = 'UpdateTasks';
