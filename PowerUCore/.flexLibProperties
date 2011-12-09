@@ -345,7 +345,7 @@
     <classEntry path="net.poweru.components.dialogs.code.ViewExamAssignmentsCode"/>
     <classEntry path="net.poweru.components.dialogs.ViewExamAssignments"/>
     <classEntry path="net.poweru.presenters.ViewExamAssignmentsMediator"/>
-    <classEntry path="net.poweru.proxies.ExamAssignmentsByTaskProxy"/>
+    <classEntry path="net.poweru.proxies.ExamAssignmentsDetailProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

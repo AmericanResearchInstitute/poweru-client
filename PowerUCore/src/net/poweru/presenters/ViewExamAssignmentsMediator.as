@@ -4,7 +4,7 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
 	import net.poweru.placemanager.PlaceNotFound;
-	import net.poweru.proxies.ExamAssignmentsByTaskProxy;
+	import net.poweru.proxies.ExamAssignmentsDetailProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -15,7 +15,7 @@ package net.poweru.presenters
 		
 		public function ViewExamAssignmentsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, ExamAssignmentsByTaskProxy);
+			super(NAME, viewComponent, ExamAssignmentsDetailProxy);
 		}
 		
 		override protected function populate():void
@@ -29,7 +29,7 @@ package net.poweru.presenters
 		{
 			var ret:Array = super.listNotificationInterests();
 			ret.push(
-				NotificationNames.UPDATEEXAMASSIGNMENTSBYTASK,
+				NotificationNames.UPDATEEXAMASSIGNMENTSDETAIL,
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED
 			);
@@ -52,7 +52,7 @@ package net.poweru.presenters
 					}
 					break;
 					
-				case NotificationNames.UPDATEEXAMASSIGNMENTSBYTASK:
+				case NotificationNames.UPDATEEXAMASSIGNMENTSDETAIL:
 					reportDialog.populate((notification.getBody() as DataSet).toArray());
 					break;
 				
