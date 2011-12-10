@@ -16,5 +16,9 @@ package net.poweru
 			'Mrs.',
 			'Miss',
 		];
+		
+		public static const BULKASSIGN:String = 'BulkAssign';
+		public static const CURRICULUMENROLLMENT:String = 'CurriculumEnrollment';
+		
 	}
 }

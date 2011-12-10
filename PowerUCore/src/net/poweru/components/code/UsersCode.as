@@ -25,6 +25,7 @@ package net.poweru.components.code
 	import net.poweru.model.DataSet;
 	import net.poweru.model.HierarchicalDataSet;
 	import net.poweru.utils.CompareLabels;
+	import net.poweru.utils.PKArrayCollection;
 	
 	public class UsersCode extends HBox implements IUsers
 	{
@@ -53,6 +54,8 @@ package net.poweru.components.code
 		public var editButton:Button;
 		[Bindable]
 		public var eventGrid:DataGrid;
+		[Bindable]
+		public var taskToAssign:Object;
 		
 		public function UsersCode()
 		{
@@ -101,6 +104,18 @@ package net.poweru.components.code
 			
 			eventGrid.dataProvider.source = events;
 			eventGrid.dataProvider.refresh();
+			
+			taskToAssign = null;
+		}
+		
+		public function receiveChoice(choice:Object, type:String):void
+		{
+			switch (type)
+			{
+				case Places.CHOOSEEXAM:
+					taskToAssign = choice;
+					break;
+			}
 		}
 
 		protected function onCreationComplete(event:FlexEvent):void
@@ -244,6 +259,12 @@ package net.poweru.components.code
 				if (itemsAdded)
 					dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, user));
 			}
+		}
+		
+		protected function onAssignTask(event:Event):void
+		{
+			var userIDs:PKArrayCollection = new PKArrayCollection(bulkGrid.selectedItems);
+			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, {'users': userIDs.toArray(), 'task': taskToAssign.id}, 'BulkAssign'))
 		}
 		
 		protected function onShowViewingActivityReport(event:MouseEvent):void

@@ -39,7 +39,7 @@ package net.poweru.proxies
 		
 		public function changePassword(userId:Number, password:String, oldPassword:String):void
 		{
-			new UserManagerDelegate(new PowerUResponder(onPasswordChangeSuccess, onPasswordChangeSuccess, onFault)).changePassword(loginProxy.authToken, userId, password, oldPassword);
+			new UserManagerDelegate(new PowerUResponder(onPasswordChangeSuccess, onPasswordChangeFailure, onFault)).changePassword(loginProxy.authToken, userId, password, oldPassword);
 		}
 		
 		

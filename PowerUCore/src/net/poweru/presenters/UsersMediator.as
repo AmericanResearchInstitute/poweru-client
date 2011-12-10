@@ -6,6 +6,7 @@ package net.poweru.presenters
 	import mx.utils.ObjectUtil;
 	
 	import net.poweru.ApplicationFacade;
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IUsers;
@@ -14,6 +15,7 @@ package net.poweru.presenters
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
+	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.proxies.CurriculumEnrollmentProxy;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.GroupProxy;
@@ -35,6 +37,7 @@ package net.poweru.presenters
 		protected var orgRoleProxy:OrgRoleProxy;
 		protected var curriculumEnrollmentProxy:CurriculumEnrollmentProxy;
 		protected var eventProxy:EventProxy;
+		protected var assignmentProxy:AssignmentProxy;
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
@@ -44,6 +47,7 @@ package net.poweru.presenters
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
+			assignmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentProxy) as AssignmentProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -70,6 +74,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.CHOICEMADE,
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEADMINORGANIZATIONSVIEW,
@@ -88,6 +93,10 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
+				case NotificationNames.CHOICEMADE:
+					users.receiveChoice(notification.getBody(), notification.getType());
+					break;
+					
 				case NotificationNames.LOGOUT:
 					users.clear();
 					populatedSinceLastClear = false;
@@ -150,12 +159,19 @@ package net.poweru.presenters
 		
 		protected function onSubmit(event:ViewEvent):void
 		{
-			if (event.subType == 'CurriculumEnrollment')
+			switch (event.subType)
 			{
-				curriculumEnrollmentProxy.save(event.body);
-			}
-			else
-				primaryProxy.save(event.body);
+				case Constants.BULKASSIGN:
+					assignmentProxy.bulkCreate(event.body.task, event.body.users);
+					break;
+				
+				case Constants.CURRICULUMENROLLMENT:
+					curriculumEnrollmentProxy.save(event.body);
+					break;
+				
+				default:
+					primaryProxy.save(event.body);
+			}	
 		}
 		
 		override protected function populate():void

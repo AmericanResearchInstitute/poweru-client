@@ -6,6 +6,7 @@ package net.poweru
 	{
 		public static const ADMINORGANIZATIONUSERSVIEW:String = 'AdminOrganizationUsersView';
 		public static const BACKENDREADY:String = 'BackendReady';
+		public static const BULKASSIGNSUCCESS:String = 'BulkAssignSuccess';
 		public static const CAPTCHACHALLENGE:String = 'CaptchaChallenge';
 		public static const CHOICEMADE:String = 'ChoiceMade';
 		public static const CREATEUSERSUCCESS:String = 'CreateUserSuccess';

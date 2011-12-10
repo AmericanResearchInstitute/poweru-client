@@ -45,6 +45,7 @@ package net.poweru.presenters
 		{
 			var ret:Array = super.listNotificationInterests();
 			ret.push(NotificationNames.UPDATEROOMS);
+			ret.push(NotificationNames.LOGOUT);
 			return ret;
 		}
 		
@@ -52,11 +53,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.SHOWDIALOG:
-					if (notification.getBody()[0] == placeName)
-						populate();
-					break;
-				
 				case updateNotification:
 					chooser.populate((notification.getBody() as DataSet).toArray());
 					break;
@@ -64,6 +60,9 @@ package net.poweru.presenters
 				case NotificationNames.UPDATEROOMS:
 					chooseRoom.setRooms((notification.getBody() as DataSet).toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

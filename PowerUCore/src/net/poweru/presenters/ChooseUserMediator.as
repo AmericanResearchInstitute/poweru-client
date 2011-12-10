@@ -53,11 +53,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.SHOWDIALOG:
-					if (notification.getBody()[0] == placeName)
-						populate();
-					break;
-				
 				case NotificationNames.UPDATECHOICES:
 					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('user_status_choices', notification.getBody()['status']);

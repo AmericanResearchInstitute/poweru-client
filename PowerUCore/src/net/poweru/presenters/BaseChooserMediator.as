@@ -7,6 +7,7 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
 	
 	/*	Base class for mediators that present an IChooser dialog. These
 		are dialogs that are used to make a choice when a user is filling
@@ -63,6 +64,21 @@ package net.poweru.presenters
 		protected function onCancel(event:ViewEvent):void
 		{
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+		}
+		
+		override public function handleNotification(notification:INotification):void
+		{
+			switch (notification.getName())
+			{
+				case NotificationNames.LOGOUT:
+					chooser.clear();
+					break;
+				
+				case NotificationNames.SHOWDIALOG:
+					if (notification.getBody()[0] == placeName)
+						populate();
+					break;
+			}
 		}
 	}
 }

@@ -350,6 +350,9 @@
     <classEntry path="net.poweru.components.dialogs.code.ViewFileDownloadAssignmentsCode"/>
     <classEntry path="net.poweru.components.dialogs.ViewFileDownloadAssignments"/>
     <classEntry path="net.poweru.presenters.ViewFileDownloadAssignmentsMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseExamCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseExam"/>
+    <classEntry path="net.poweru.presenters.ChooseExamMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

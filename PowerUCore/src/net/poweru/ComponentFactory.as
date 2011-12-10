@@ -57,6 +57,7 @@ package net.poweru
 	import net.poweru.components.dialogs.UploadFileDownload;
 	import net.poweru.components.dialogs.ViewExamAssignments;
 	import net.poweru.components.dialogs.ViewFileDownloadAssignments;
+	import net.poweru.components.dialogs.choosers.ChooseExam;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
@@ -68,6 +69,7 @@ package net.poweru
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
+	import net.poweru.presenters.ChooseExamMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ChooseRoomMediator;
 	import net.poweru.presenters.ChooseUserMediator;
@@ -153,6 +155,10 @@ package net.poweru
 				
 				case Places.BULKENROLLINEVENT:
 					component = getOrCreate(name, BulkEnrollInEvent, BulkEnrollInEventMediator);
+					break;
+				
+				case Places.CHOOSEEXAM:
+					component = getOrCreate(name, ChooseExam, ChooseExamMediator);
 					break;
 				
 				case Places.CHOOSEORGANIZATION:

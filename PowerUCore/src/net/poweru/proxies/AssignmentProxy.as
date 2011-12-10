@@ -1,7 +1,10 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.AssignmentManagerDelegate;
+	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -14,6 +17,21 @@ package net.poweru.proxies
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEASSIGNMENTS, FIELDS, 'Assignment');
 			createArgNamesInOrder = ['task', 'user'];
+		}
+		
+		public function bulkCreate(taskID:Number, userIDs:Array):void
+		{
+			new AssignmentManagerDelegate(new PowerUResponder(onBulkCreateSuccess, onBulkCreateFailure, onFault)).bulkCreate(loginProxy.authToken, taskID, userIDs);
+		}
+		
+		protected function onBulkCreateSuccess(event:ResultEvent):void
+		{
+			sendNotification(NotificationNames.BULKASSIGNSUCCESS);
+		}
+		
+		protected function onBulkCreateFailure(event:ResultEvent):void
+		{
+			trace('bulk assignment failure');
 		}
 	}
 }

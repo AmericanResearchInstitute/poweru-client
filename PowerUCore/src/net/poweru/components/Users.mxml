@@ -125,6 +125,17 @@
 						<mx:Button id="addToGroupButton" label="Add to Group" enabled="{bulkGrid.selectedItems.length > 0}" click="onAddToGroup(event)"/>
 					</mx:Form>
 				</mx:VBox>
+				<mx:VBox width="100%" label="Assign to Exam" horizontalAlign="center">
+					<mx:Form>
+						<mx:FormItem label="Exam">
+							<mx:HBox>
+								<mx:Label text="{taskToAssign.name}"/>
+								<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, null]))"/>
+							</mx:HBox>
+						</mx:FormItem>
+						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; taskToAssign != null}" click="onAssignTask(event)"/>
+					</mx:Form>
+				</mx:VBox>
 				<mx:VBox width="100%" label="Add to Learning Initiative" horizontalAlign="center">
 					<mx:DataGrid id="curriculumEnrollmentGrid">
 						<mx:columns>
