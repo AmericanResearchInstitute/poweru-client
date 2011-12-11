@@ -129,11 +129,22 @@
 					<mx:Form>
 						<mx:FormItem label="Exam">
 							<mx:HBox>
-								<mx:Label text="{taskToAssign.name}"/>
+								<mx:Label text="{examToAssign.name}"/>
 								<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, null]))"/>
 							</mx:HBox>
 						</mx:FormItem>
-						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; taskToAssign != null}" click="onAssignTask(event)"/>
+						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; examToAssign != null}" click="onAssignExam(event)"/>
+					</mx:Form>
+				</mx:VBox>
+				<mx:VBox width="100%" label="Assign to File Download" horizontalAlign="center">
+					<mx:Form>
+						<mx:FormItem label="File Download">
+							<mx:HBox>
+								<mx:Label text="{fileDownloadToAssign.name}"/>
+								<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, null]))"/>
+							</mx:HBox>
+						</mx:FormItem>
+						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; fileDownloadToAssign != null}" click="onAssignFileDownload(event)"/>
 					</mx:Form>
 				</mx:VBox>
 				<mx:VBox width="100%" label="Add to Learning Initiative" horizontalAlign="center">

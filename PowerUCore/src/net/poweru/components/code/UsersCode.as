@@ -55,7 +55,9 @@ package net.poweru.components.code
 		[Bindable]
 		public var eventGrid:DataGrid;
 		[Bindable]
-		public var taskToAssign:Object;
+		public var examToAssign:Object;
+		[Bindable]
+		public var fileDownloadToAssign:Object;
 		
 		public function UsersCode()
 		{
@@ -105,7 +107,7 @@ package net.poweru.components.code
 			eventGrid.dataProvider.source = events;
 			eventGrid.dataProvider.refresh();
 			
-			taskToAssign = null;
+			examToAssign = null;
 		}
 		
 		public function receiveChoice(choice:Object, type:String):void
@@ -113,7 +115,11 @@ package net.poweru.components.code
 			switch (type)
 			{
 				case Places.CHOOSEEXAM:
-					taskToAssign = choice;
+					examToAssign = choice;
+					break;
+				
+				case Places.CHOOSEFILEDOWNLOAD:
+					fileDownloadToAssign = choice;
 					break;
 			}
 		}
@@ -202,6 +208,12 @@ package net.poweru.components.code
 			return ret;
 		}
 		
+		protected function assignTask(taskID:Number):void
+		{
+			var userIDs:PKArrayCollection = new PKArrayCollection(bulkGrid.selectedItems);
+			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, {'users': userIDs.toArray(), 'task': taskID}, 'BulkAssign'))
+		}
+		
 		// Add users in bulk to the selected group.
 		protected function onAddToGroup(event:Event):void
 		{
@@ -261,10 +273,14 @@ package net.poweru.components.code
 			}
 		}
 		
-		protected function onAssignTask(event:Event):void
+		protected function onAssignExam(event:Event):void
 		{
-			var userIDs:PKArrayCollection = new PKArrayCollection(bulkGrid.selectedItems);
-			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, {'users': userIDs.toArray(), 'task': taskToAssign.id}, 'BulkAssign'))
+			assignTask(examToAssign.id);
+		}
+		
+		protected function onAssignFileDownload(event:Event):void
+		{
+			assignTask(fileDownloadToAssign.id);
 		}
 		
 		protected function onShowViewingActivityReport(event:MouseEvent):void
