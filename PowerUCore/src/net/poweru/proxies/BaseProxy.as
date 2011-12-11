@@ -99,7 +99,7 @@ package net.poweru.proxies
 		public function getOne(pk:Number):void
 		{
 			var filters:Object = {'exact' : {'id' : pk}};
-			new primaryDelegateClass(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).getFiltered(loginProxy.authToken, filters, fields);
+			new primaryDelegateClass(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
 		}
 		
 		/*	get many from the backend based on filters.
