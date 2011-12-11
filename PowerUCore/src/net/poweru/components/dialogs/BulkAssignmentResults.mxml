@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:BulkAssignmentResultsCode
+	title="Bulk Assignment Results"
+	minWidth="500"
+	minHeight="400"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:DataGrid id="grid" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn dataField="last_name"/>
+			<mx:DataGridColumn dataField="first_name"/>
+			<mx:DataGridColumn dataField="assignmentStatus"/>
+		</mx:columns>
+	</mx:DataGrid>
+</code:BulkAssignmentResultsCode>

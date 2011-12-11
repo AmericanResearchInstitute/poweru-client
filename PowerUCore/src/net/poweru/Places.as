@@ -29,6 +29,7 @@ package net.poweru
 		
 		// Dialogs
 		public static const ADDTASKSTOCURRICULUM:String = 'AddTasksToCurriculum';
+		public static const BULKASSIGNMENTRESULTS:String = 'BulkAssignmentResults';
 		public static const BULKENROLLINEVENT:String = 'BulkEnrollInEvent';
 		public static const CHOOSEEXAM:String = 'ChooseExam';
 		public static const CHOOSEORGANIZATION:String = 'ChooseOrganization';

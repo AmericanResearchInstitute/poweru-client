@@ -26,7 +26,8 @@ package net.poweru.proxies
 		
 		protected function onBulkCreateSuccess(event:ResultEvent):void
 		{
-			sendNotification(NotificationNames.BULKASSIGNSUCCESS);
+			// This will trigger BulkAssignmentResultsCommand
+			sendNotification(NotificationNames.BULKASSIGNSUCCESS, event.result.value);
 		}
 		
 		protected function onBulkCreateFailure(event:ResultEvent):void

@@ -353,6 +353,10 @@
     <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseExamCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseExam"/>
     <classEntry path="net.poweru.presenters.ChooseExamMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.BulkAssignmentResultsCode"/>
+    <classEntry path="net.poweru.components.dialogs.BulkAssignmentResults"/>
+    <classEntry path="net.poweru.presenters.BulkAssignmentResultsMediator"/>
+    <classEntry path="net.poweru.commands.BulkAssignmentSuccessCommand"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
