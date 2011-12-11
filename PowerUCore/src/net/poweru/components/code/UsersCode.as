@@ -108,6 +108,7 @@ package net.poweru.components.code
 			eventGrid.dataProvider.refresh();
 			
 			examToAssign = null;
+			fileDownloadToAssign = null;
 		}
 		
 		public function receiveChoice(choice:Object, type:String):void

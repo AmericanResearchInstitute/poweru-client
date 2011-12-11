@@ -126,23 +126,27 @@
 					</mx:Form>
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to Exam" horizontalAlign="center">
-					<mx:Form>
-						<mx:FormItem label="Exam">
-							<mx:HBox>
-								<mx:Label text="{examToAssign.name}"/>
-								<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, null]))"/>
-							</mx:HBox>
+					<mx:Spacer height="12"/>
+					<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, null]))"/>
+					<mx:Form width="100%">
+						<mx:FormItem label="Name">
+							<mx:Label text="{examToAssign.name}"/>
+						</mx:FormItem>
+						<mx:FormItem label="Description">
+							<mx:Text text="{examToAssign.description}"/>
 						</mx:FormItem>
 						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; examToAssign != null}" click="onAssignExam(event)"/>
 					</mx:Form>
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to File Download" horizontalAlign="center">
-					<mx:Form>
-						<mx:FormItem label="File Download">
-							<mx:HBox>
-								<mx:Label text="{fileDownloadToAssign.name}"/>
-								<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, null]))"/>
-							</mx:HBox>
+					<mx:Spacer height="12"/>
+					<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, null]))"/>
+					<mx:Form width="100%">
+						<mx:FormItem label="Name">
+							<mx:Label text="{fileDownloadToAssign.name}"/>
+						</mx:FormItem>
+						<mx:FormItem label="Description">
+							<mx:Text text="{fileDownloadToAssign.description}"/>
 						</mx:FormItem>
 						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; fileDownloadToAssign != null}" click="onAssignFileDownload(event)"/>
 					</mx:Form>
