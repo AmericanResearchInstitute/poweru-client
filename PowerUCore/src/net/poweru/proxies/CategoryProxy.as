@@ -12,7 +12,7 @@ package net.poweru.proxies
 	public class CategoryProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'CategoryProxy';
-		public static const FIELDS:Array = [];
+		public static const FIELDS:Array = ['name'];
 		
 		public function CategoryProxy()
 		{
