@@ -3,6 +3,8 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
+	import mx.validators.NumberValidator;
+	import mx.validators.NumberValidatorDomainType;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateSessionTemplate;
@@ -54,12 +56,37 @@ package net.poweru.components.dialogs.code
 			};
 		}
 		
+		protected function createLeadTimeValidator():NumberValidator
+		{
+			var validator:NumberValidator = new NumberValidator();
+			validator.allowNegative = false;
+			validator.domain = NumberValidatorDomainType.INT;
+			validator.source = leadTimeInput;
+			validator.property = 'text';
+			validator.required = true;
+			return validator;
+		}
+		
+		protected function createSequenceValidator():NumberValidator
+		{
+			var validator:NumberValidator = new NumberValidator();
+			validator.allowNegative = false;
+			validator.domain = NumberValidatorDomainType.INT;
+			validator.source = sequenceInput;
+			validator.property = 'text';
+			validator.required = true;
+			return validator;
+		}
+		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			
 			validators = [
 				shortNameInput.validator,
-				fullNameInput.validator
+				fullNameInput.validator,
+				createLeadTimeValidator(),
+				createSequenceValidator()
 			];
 			focusManager.setFocus(shortNameInput);
 		}

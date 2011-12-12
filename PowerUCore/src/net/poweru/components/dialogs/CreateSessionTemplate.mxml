@@ -16,10 +16,10 @@
 		<mx:FormItem label="Full Name">
 			<SessionTemplate:FullnameInput id="fullNameInput"/>
 		</mx:FormItem>
-		<mx:FormItem label="Reminder Lead Time">
+		<mx:FormItem label="Reminder Lead Time" required="true">
 			<mx:TextInput id="leadTimeInput" />
 		</mx:FormItem>
-		<mx:FormItem label="Sequence">
+		<mx:FormItem label="Sequence" required="true">
 			<mx:TextInput id="sequenceInput" />
 		</mx:FormItem>
 		<mx:FormItem label="Description">
