@@ -2,6 +2,7 @@ package net.poweru
 {
 	public class Places extends Object
 	{
+		public static const ACHIEVEMENTS:String = 'Achievements';
 		public static const ASSIGNMENTS:String = 'Assignments';
 		public static const CATEGORIES:String = 'Categories';
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
@@ -38,6 +39,7 @@ package net.poweru
 		public static const CHOOSEROOM:String = 'ChooseRoom';
 		public static const CHOOSEUSER:String = 'ChooseUser';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
+		public static const CREATEACHIEVEMENT:String = 'CreateAchievement';
 		public static const CREATECATEGORY:String = 'CreateCategory';
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';
 		public static const CREATECURRICULUM:String = 'CreateCurriculum';
@@ -57,6 +59,7 @@ package net.poweru
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
+		public static const EDITACHIEVEMENT:String = 'EditAchievement';
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';

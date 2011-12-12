@@ -2,6 +2,7 @@ package net.poweru
 {
 	import flash.display.DisplayObject;
 	
+	import net.poweru.components.Achievements;
 	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
 	import net.poweru.components.EventTemplates;
@@ -18,6 +19,7 @@ package net.poweru
 	import net.poweru.components.dialogs.BulkAssignmentResults;
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
+	import net.poweru.components.dialogs.CreateAchievement;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
 	import net.poweru.components.dialogs.CreateEvent;
@@ -69,6 +71,7 @@ package net.poweru
 	import net.poweru.components.student.SessionAssignments;
 	import net.poweru.placemanager.ComponentFactory;
 	import net.poweru.placemanager.IComponentFactory;
+	import net.poweru.presenters.AchievementsMediator;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
@@ -78,6 +81,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseRoomMediator;
 	import net.poweru.presenters.ChooseUserMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
+	import net.poweru.presenters.CreateAchievementMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
 	import net.poweru.presenters.CreateEventFromTemplateMediator;
@@ -153,6 +157,10 @@ package net.poweru
 			
 			switch (name)
 			{
+				case Places.ACHIEVEMENTS:
+					component = getOrCreate(name, Achievements, AchievementsMediator);
+					break;
+				
 				case Places.ADDTASKSTOCURRICULUM:
 					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
 					break;
@@ -187,6 +195,10 @@ package net.poweru
 				
 				case Places.CONFIRMLOGOUT:
 					component = getOrCreate(name, ConfirmLogout, ConfirmLogoutMediator);
+					break;
+				
+				case Places.CREATEACHIEVEMENT:
+					component = getOrCreate(name, CreateAchievement, CreateAchievementMediator);
 					break;
 				
 				case Places.CREATECURRICULUM:

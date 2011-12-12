@@ -361,6 +361,15 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseFileDownload"/>
     <classEntry path="net.poweru.presenters.ChooseFileDownloadMediator"/>
     <classEntry path="net.poweru.presenters.BaseTaskChooserMediator"/>
+    <classEntry path="net.poweru.components.code.AchievementsCode"/>
+    <classEntry path="net.poweru.components.Achievements"/>
+    <classEntry path="net.poweru.delegates.AchievementManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.AchievementProxy"/>
+    <classEntry path="net.poweru.components.interfaces.IAchievements"/>
+    <classEntry path="net.poweru.presenters.AchievementsMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateAchievementCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateAchievement"/>
+    <classEntry path="net.poweru.presenters.CreateAchievementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
