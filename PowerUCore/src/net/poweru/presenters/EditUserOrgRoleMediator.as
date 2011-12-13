@@ -30,13 +30,11 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.CHOICEMADE,
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-				NotificationNames.UPDATEORGROLES,
-			];
+			var ret:Array = super.listNotificationInterests();
+			ret = ret.concat([
+				NotificationNames.UPDATEORGROLES
+			]);
+			return ret;
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -47,12 +45,6 @@ package net.poweru.presenters
 					if (notification.getType() == Places.CHOOSEUSER)
 						editDialog.receiveChoice(notification.getBody(), notification.getType());
 					break;
-					
-					
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('user_org_role', notification.getBody());
-					break;
 				
 				case NotificationNames.UPDATEORGROLES:
 					var roles:DataSet = notification.getBody() as DataSet;
@@ -62,6 +54,11 @@ package net.poweru.presenters
 				default:
 					super.handleNotification(notification);
 			}
+		}
+		
+		override protected function onReceivedOne(notification:INotification):void
+		{
+			inputCollector.addInput('user_org_role', notification.getBody());
 		}
 		
 		override protected function populate():void

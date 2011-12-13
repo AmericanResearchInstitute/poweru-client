@@ -23,25 +23,9 @@ package net.poweru.presenters
 			super(NAME, viewComponent, FileDownloadProxy, Places.EDITFILEDOWNLOAD);
 		}
 		
-		override public function listNotificationInterests():Array
+		override protected function onReceivedOne(notification:INotification):void
 		{
-			var ret:Array = super.listNotificationInterests();
-			ret.push(NotificationNames.RECEIVEDONE);
-			return ret;
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{				
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('file_download', notification.getBody());
-					break;
-				
-				default:
-					super.handleNotification(notification);
-			}
+			inputCollector.addInput('file_download', notification.getBody());
 		}
 		
 		override protected function populate():void

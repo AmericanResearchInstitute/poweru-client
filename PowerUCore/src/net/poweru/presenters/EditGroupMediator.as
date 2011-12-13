@@ -33,23 +33,17 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-				NotificationNames.UPDATECATEGORIES,
-			];
+			var ret:Array = super.listNotificationInterests();
+			ret = ret.concat([
+				NotificationNames.UPDATECATEGORIES
+			])
+			return ret;
 		}
 
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
 			{				
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('group', notification.getBody());
-					break;
-				
 				case NotificationNames.UPDATECATEGORIES:
 					var categories:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('categories', (notification.getBody() as ArrayCollection).toArray());
@@ -58,6 +52,11 @@ package net.poweru.presenters
 				default:
 					super.handleNotification(notification);
 			}
+		}
+		
+		override protected function onReceivedOne(notification:INotification):void
+		{
+			inputCollector.addInput('group', notification.getBody());
 		}
 		
 		override protected function onSubmit(event:ViewEvent):void

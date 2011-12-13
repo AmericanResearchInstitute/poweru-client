@@ -59,6 +59,7 @@ package net.poweru.presenters
 			ret.push(NotificationNames.CHOICEMADE);
 			ret.push(NotificationNames.DIALOGPRESENTED);
 			ret.push(NotificationNames.LOGOUT);
+			ret.push(NotificationNames.RECEIVEDONE);
 			return ret;
 		}
 		
@@ -81,6 +82,12 @@ package net.poweru.presenters
 					if (body != null && body == placeName)
 						populate();
 					break;
+				
+				case NotificationNames.RECEIVEDONE:
+					var type:String = notification.getType();
+					if (type == primaryProxy.getProxyName())
+						onReceivedOne(notification);
+					break;
 			}
 		}
 		
@@ -94,6 +101,7 @@ package net.poweru.presenters
 		// override this in a subclass, or at least listen for NotificationNames.RECEIVEDONE
 		override protected function populate():void
 		{
+			editDialog.clear();
 			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
 		}
 		
@@ -102,12 +110,11 @@ package net.poweru.presenters
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		
-		// If this came from our primaryProxy, this will populate the editDialog
+		/*	If this came from our primaryProxy, this will populate the editDialog
+			This only gets called if the sending proxy matched out primaryProxy. */
 		protected function onReceivedOne(notification:INotification):void
 		{
-			var type:String = notification.getType();
-			if (type == primaryProxy.getProxyName())
-				editDialog.populate(notification.getBody() as Object);
+			editDialog.populate(notification.getBody() as Object);
 		}
 		
 	}

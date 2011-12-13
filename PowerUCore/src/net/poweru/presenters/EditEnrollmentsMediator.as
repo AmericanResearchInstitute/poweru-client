@@ -37,17 +37,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-				
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == placeName)
-						populate();
-					break;
-				
 				case NotificationNames.UPDATEASSIGNMENTS:
 					var assignments:DataSet = notification.getBody() as DataSet;
 					var correctData:Boolean = true;
@@ -63,6 +52,9 @@ package net.poweru.presenters
 					if (correctData)
 						inputCollector.addInput('assignments', assignments.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

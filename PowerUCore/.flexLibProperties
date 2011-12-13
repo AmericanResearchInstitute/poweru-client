@@ -370,6 +370,9 @@
     <classEntry path="net.poweru.components.dialogs.code.CreateAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateAchievement"/>
     <classEntry path="net.poweru.presenters.CreateAchievementMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditAchievementCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditAchievement"/>
+    <classEntry path="net.poweru.presenters.EditAchievementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -15,35 +15,6 @@ package net.poweru.presenters
 		{
 			super(NAME, viewComponent, CurriculumProxy, Places.EDITCURRICULUM);
 		}
-		
-		override public function listNotificationInterests():Array
-		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-			];
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-				
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == Places.EDITEXAM)
-						populate();
-					break;
-				
-				case NotificationNames.RECEIVEDONE:
-					onReceivedOne(notification);
-					break;
-			}
-		}
+
 	}
 }

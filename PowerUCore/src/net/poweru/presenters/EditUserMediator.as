@@ -36,8 +36,6 @@ package net.poweru.presenters
 			groupProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(GroupProxy) as GroupProxy;
 			organizationProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrganizationProxy) as OrganizationProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
-			// placeholder
-			inputCollector = new InputCollector([]);
 		}
 		
 		override public function listNotificationInterests():Array
@@ -58,25 +56,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-					
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == Places.EDITUSER)
-					{
-						editDialog.setState(loginProxy.applicationState);
-						populate();
-					}
-					break;
-					
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('userData', notification.getBody());
-					break;
-				
 				case NotificationNames.STATECHANGE:
 					if (editDialog)
 						editDialog.setState(notification.getBody() as String);
@@ -101,7 +80,15 @@ package net.poweru.presenters
 					var orgRoles:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('organization_roles', orgRoles.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
+		}
+		
+		override protected function onReceivedOne(notification:INotification):void
+		{
+			inputCollector.addInput('userData', notification.getBody());
 		}
 		
 		override protected function onSubmit(event:ViewEvent):void
@@ -120,6 +107,8 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
+			editDialog.setState(loginProxy.applicationState);
+			
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 				

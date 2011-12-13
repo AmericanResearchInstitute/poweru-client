@@ -34,39 +34,28 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-				NotificationNames.UPDATEORGROLES
-			];
+			var ret:Array = super.listNotificationInterests();
+			ret.push(NotificationNames.UPDATEORGROLES);
+			return ret;
 		}
 		
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-					
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == placeName)
-						populate();
-					break;
-				
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('orgData', notification.getBody());
-					break;
-
 				case NotificationNames.UPDATEORGROLES:
 					var orgRoles:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('organization_roles', orgRoles.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
+		}
+		
+		override protected function onReceivedOne(notification:INotification):void
+		{
+			inputCollector.addInput('orgData', notification.getBody());
 		}
 
 		override protected function onSubmit(event:ViewEvent):void
@@ -90,7 +79,7 @@ package net.poweru.presenters
 				}
 				return false;
 			};
-			var currentOrgEmailDomains:Array = primaryProxy.findByPK(inputCollector.object['orgData']['id'])['org_email_domains'];
+			var currentOrgEmailDomains:Array = primaryProxy.dataSet.findByPK(inputCollector.object['orgData']['id'])['org_email_domains'];
 			var newOrgEmailDomains:Array = event.body.org_email_domains;
 			for each (var currentOrgEmailDomain:Object in currentOrgEmailDomains)
 			{

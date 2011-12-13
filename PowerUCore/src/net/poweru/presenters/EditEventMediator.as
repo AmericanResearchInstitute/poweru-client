@@ -22,35 +22,9 @@ package net.poweru.presenters
 			super(NAME, viewComponent, EventProxy, Places.EDITEVENT);
 		}
 		
-		override public function listNotificationInterests():Array
+		override protected function onReceivedOne(notification:INotification):void
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-			];
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-				
-				case NotificationNames.DIALOGPRESENTED:
-					var body:String = notification.getBody() as String;
-					if (body != null && body == placeName)
-						populate();
-					break;
-				
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('event', notification.getBody());
-					break;
-			}
+			inputCollector.addInput('event', notification.getBody());
 		}
 		
 		override protected function onSubmit(event:ViewEvent):void

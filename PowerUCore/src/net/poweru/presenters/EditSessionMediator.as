@@ -32,7 +32,6 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			var ret:Array = super.listNotificationInterests();
-			ret.push(NotificationNames.RECEIVEDONE);
 			ret.push(NotificationNames.UPDATESESSIONUSERROLES);
 			
 			return ret;

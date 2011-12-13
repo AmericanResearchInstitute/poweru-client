@@ -20,44 +20,5 @@ package net.poweru.presenters
 		{
 			super(NAME, viewComponent, VenueProxy, Places.EDITVENUE);
 		}
-		
-		override public function listNotificationInterests():Array
-		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-			];
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{				
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('venue', notification.getBody());
-					break;
-				
-				default:
-					super.handleNotification(notification);
-			}
-		}
-		
-		override protected function populate():void
-		{
-			if (inputCollector)
-				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['venue']);
-			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
-			
-			primaryProxy.findByPK(initialDataProxy.getInitialData(placeName) as Number);
-		}
-		
-		protected function onInputsCollected(event:Event):void
-		{
-			var inputCollector:InputCollector = event.target as InputCollector;
-			editDialog.populate(inputCollector.object['venue']);
-		}
 	}
 }

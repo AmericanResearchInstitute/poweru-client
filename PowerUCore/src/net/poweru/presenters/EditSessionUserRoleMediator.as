@@ -21,27 +21,9 @@ package net.poweru.presenters
 			super(NAME, viewComponent, SessionUserRoleProxy, Places.EDITSESSIONUSERROLE);
 		}
 		
-		override public function listNotificationInterests():Array
+		override protected function onReceivedOne(notification:INotification):void
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE
-			];
-		}
-		
-		override public function handleNotification(notification:INotification):void
-		{
-			switch (notification.getName())
-			{
-				case NotificationNames.RECEIVEDONE:
-					if (notification.getType() == primaryProxy.getProxyName())
-						inputCollector.addInput('session_user_role', notification.getBody());
-					break;
-				
-				default:
-					super.handleNotification(notification);
-			}
+			inputCollector.addInput('session_user_role', notification.getBody());
 		}
 		
 		override protected function populate():void
