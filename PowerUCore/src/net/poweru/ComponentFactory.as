@@ -36,6 +36,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateSessionUserRole;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
+	import net.poweru.components.dialogs.EditAchievement;
 	import net.poweru.components.dialogs.EditCurriculum;
 	import net.poweru.components.dialogs.EditEnrollments;
 	import net.poweru.components.dialogs.EditEvent;
@@ -100,6 +101,7 @@ package net.poweru
 	import net.poweru.presenters.CreateVenueMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumsMediator;
+	import net.poweru.presenters.EditAchievementMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
 	import net.poweru.presenters.EditEnrollmentsMediator;
 	import net.poweru.presenters.EditEventMediator;
@@ -271,6 +273,10 @@ package net.poweru
 				
 				case Places.CURRICULUMS:
 					component = getOrCreate(name, Curriculums, CurriculumsMediator);
+					break;
+				
+				case Places.EDITACHIEVEMENT:
+					component = getOrCreate(name, EditAchievement, EditAchievementMediator);
 					break;
 				
 				case Places.EDITCURRICULUM:
