@@ -36,6 +36,13 @@
 				<mx:FormItem label="Description:">
 					<mx:Label text="{grid.selectedItem.description}" />
 				</mx:FormItem>
+				<mx:FormItem label="Achievements:" width="100%">
+					<mx:DataGrid id="achievements" dataProvider="{grid.selectedItem.achievements}" width="100%">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:FormItem>
 			</mx:Form>
 			<mx:HBox id="buttonBox">
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEXAM, grid.selectedItem.id]))}"/>
