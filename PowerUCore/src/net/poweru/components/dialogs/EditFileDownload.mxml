@@ -2,13 +2,16 @@
 <code:EditFileDownloadCode
 	title="Edit File Download"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*" xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:Form defaultButton="{submit}">
+	<mx:Form defaultButton="{submit}" width="100%">
 		<mx:FormItem label="Name">
 			<FileDownload:NameInput id="nameInput"/>
 		</mx:FormItem>
@@ -18,6 +21,18 @@
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="Achievements" width="100%">
+			<mx:DataGrid id="achievements" dataProvider="{achievementDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, null]))}"/>
+			<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemove(event)}"/>
+		</mx:HBox>
+		
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

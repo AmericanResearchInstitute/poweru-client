@@ -360,7 +360,7 @@
     <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseFileDownloadCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseFileDownload"/>
     <classEntry path="net.poweru.presenters.ChooseFileDownloadMediator"/>
-    <classEntry path="net.poweru.presenters.BaseTaskChooserMediator"/>
+    <classEntry path="net.poweru.presenters.BaseSimpleChooserMediator"/>
     <classEntry path="net.poweru.components.code.AchievementsCode"/>
     <classEntry path="net.poweru.components.Achievements"/>
     <classEntry path="net.poweru.delegates.AchievementManagerDelegate"/>
@@ -373,6 +373,9 @@
     <classEntry path="net.poweru.components.dialogs.code.EditAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.EditAchievement"/>
     <classEntry path="net.poweru.presenters.EditAchievementMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseAchievementCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseAchievement"/>
+    <classEntry path="net.poweru.presenters.ChooseAchievementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

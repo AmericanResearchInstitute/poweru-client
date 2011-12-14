@@ -3,6 +3,7 @@ package net.poweru.components.code
 	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IFileDownloads;

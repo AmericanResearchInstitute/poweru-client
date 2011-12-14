@@ -10,13 +10,13 @@ package net.poweru.proxies
 	public class FileDownloadProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'FileDownloadProxy';
-		public static const FIELDS:Array = ['name', 'title', 'description'];
 		
 		public function FileDownloadProxy()
 		{
-			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, FIELDS);
+			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, []);
 			createArgNamesInOrder = ['name', 'description'];
 			createOptionalArgNames = ['title'];
+			getFilteredMethodName = 'achievement_detail_view';
 		}
 		
 		public function uploadFileDownload(file:FileReference, data:Object):void

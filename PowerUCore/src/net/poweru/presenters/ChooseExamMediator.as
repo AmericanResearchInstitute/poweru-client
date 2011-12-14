@@ -11,7 +11,7 @@ package net.poweru.presenters
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class ChooseExamMediator extends BaseTaskChooserMediator implements IMediator
+	public class ChooseExamMediator extends BaseSimpleChooserMediator implements IMediator
 	{
 		public static const NAME:String = 'ChooseExamMediator';
 

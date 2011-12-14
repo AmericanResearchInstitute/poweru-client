@@ -332,7 +332,8 @@ package net.poweru.proxies
 		
 		protected function onSaveSuccess(data:ResultEvent):void
 		{
-			dataSet.addOrReplace(data.token['updatedItem']);
+			var newPK:Number = data.token['updatedItem']['id'];
+			getFiltered({'exact' : {'id' : newPK}});
 			saveCounter.decrement();
 		}
 		

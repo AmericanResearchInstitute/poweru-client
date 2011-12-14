@@ -9,12 +9,15 @@ package net.poweru.presenters
 	import org.puremvc.as3.interfaces.INotification;
 	
 	/*	Base mediator that can retrieve all records from its proxy and populate
-		them to an IChooser */
-	public class BaseTaskChooserMediator extends BaseChooserMediator implements IMediator
+		them to an IChooser. If you need to populate other data as well, you can
+		override the populate() method to add your own requirements and fetch them,
+		the listNotificationInterests() method, the handleNotification() method,
+		and the onInputsCollected() method. */
+	public class BaseSimpleChooserMediator extends BaseChooserMediator implements IMediator
 	{
 		protected var inputCollector:InputCollector;
 		
-		public function BaseTaskChooserMediator(mediatorName:String, viewComponent:Object, placeName:String, updateNotification:String, primaryProxyClass:Class=null)
+		public function BaseSimpleChooserMediator(mediatorName:String, viewComponent:Object, placeName:String, updateNotification:String, primaryProxyClass:Class=null)
 		{
 			super(mediatorName, viewComponent, placeName, updateNotification, primaryProxyClass);
 		}
@@ -24,7 +27,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case updateNotification:
-					inputCollector.addInput('tasks', (notification.getBody() as DataSet).toArray());
+					inputCollector.addInput('data', (notification.getBody() as DataSet).toArray());
 					break;
 				
 				default:
@@ -37,14 +40,14 @@ package net.poweru.presenters
 			if (inputCollector != null)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 			
-			inputCollector = new InputCollector(['tasks']);
+			inputCollector = new InputCollector(['data']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			primaryProxy.getAll();
 		}
 		
 		protected function onInputsCollected(event:Event):void
 		{
-			chooser.populate(inputCollector.object['tasks']);
+			chooser.populate(inputCollector.object['data']);
 		}
 	}
 }

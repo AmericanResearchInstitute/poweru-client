@@ -32,6 +32,7 @@ package net.poweru
 		public static const ADDTASKSTOCURRICULUM:String = 'AddTasksToCurriculum';
 		public static const BULKASSIGNMENTRESULTS:String = 'BulkAssignmentResults';
 		public static const BULKENROLLINEVENT:String = 'BulkEnrollInEvent';
+		public static const CHOOSEACHIEVEMENT:String = 'ChooseAchievement';
 		public static const CHOOSEEXAM:String = 'ChooseExam';
 		public static const CHOOSEFILEDOWNLOAD:String = 'ChooseFileDownload';
 		public static const CHOOSEFILEUPLOAD:String = 'ChooseFileUpload';
