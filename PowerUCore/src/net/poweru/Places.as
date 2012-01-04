@@ -57,6 +57,7 @@ package net.poweru
 		public static const CREATESESSION:String = 'CreateSession';
 		public static const CREATESESSIONTEMPLATE:String = 'CreateSessionTemplate';
 		public static const CREATESESSIONUSERROLE:String = 'CreateSessionUserRole';
+		public static const CREATESESSIONUSERROLEREQUIREMENT:String = 'CreateSessionUserRoleRequirement';
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
@@ -76,6 +77,7 @@ package net.poweru
 		public static const EDITSESSION:String = 'EditSession';
 		public static const EDITSESSIONTEMPLATE:String = 'EditSessionTemplate';
 		public static const EDITSESSIONUSERROLE:String = 'EditSessionUserRole';
+		public static const EDITSESSIONUSERROLEREQUIREMENT:String = 'EditSessionUserRoleRequirement';
 		public static const EDITTASK:String = 'EditTask';
 		public static const EDITUSER:String = 'EditUser';
 		public static const EDITUSERORGROLE:String = 'EditUserOrgRole';

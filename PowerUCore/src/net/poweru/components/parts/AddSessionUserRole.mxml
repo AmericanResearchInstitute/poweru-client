@@ -2,13 +2,13 @@
 <code:AddSessionUserRoleCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.parts.code.*">
-	<mx:Button id="removeButton" label="Remove"/>
+	<mx:Button id="editButton" label="Edit"/>
 	<mx:Button id="addButton" label="Add Role" click="currentState='adding'"/>
 	
 	<code:states>
 		<mx:State name="adding">
 			<mx:RemoveChild target="{addButton}"/>
-			<mx:RemoveChild target="{removeButton}"/>
+			<mx:RemoveChild target="{editButton}"/>
 			<mx:AddChild>
 				<mx:ComboBox dataProvider="{roleData}" labelField="name" id="roleCB"/>
 			</mx:AddChild>

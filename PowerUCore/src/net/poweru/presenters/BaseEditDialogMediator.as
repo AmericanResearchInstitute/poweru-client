@@ -96,6 +96,7 @@ package net.poweru.presenters
 		{
 			primaryProxy.save(editDialog.getData());
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			editDialog.clear();
 		}
 		
 		// override this in a subclass, or at least listen for NotificationNames.RECEIVEDONE
@@ -108,6 +109,7 @@ package net.poweru.presenters
 		protected function onCancel(event:ViewEvent):void
 		{
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			editDialog.clear();
 		}
 		
 		/*	If this came from our primaryProxy, this will populate the editDialog

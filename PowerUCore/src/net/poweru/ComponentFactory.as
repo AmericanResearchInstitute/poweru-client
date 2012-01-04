@@ -34,6 +34,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateSession;
 	import net.poweru.components.dialogs.CreateSessionTemplate;
 	import net.poweru.components.dialogs.CreateSessionUserRole;
+	import net.poweru.components.dialogs.CreateSessionUserRoleRequirement;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
 	import net.poweru.components.dialogs.EditAchievement;
@@ -99,6 +100,7 @@ package net.poweru
 	import net.poweru.presenters.CreateSessionMediator;
 	import net.poweru.presenters.CreateSessionTemplateMediator;
 	import net.poweru.presenters.CreateSessionUserRoleMediator;
+	import net.poweru.presenters.CreateSessionUserRoleRequirementMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CreateVenueMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
@@ -263,6 +265,10 @@ package net.poweru
 				
 				case Places.CREATESESSIONUSERROLE:
 					component = getOrCreate(name, CreateSessionUserRole, CreateSessionUserRoleMediator);
+					break;
+				
+				case Places.CREATESESSIONUSERROLEREQUIREMENT:
+					component = getOrCreate(name, CreateSessionUserRoleRequirement, CreateSessionUserRoleRequirementMediator);
 					break;
 					
 				case Places.CREATEUSER:

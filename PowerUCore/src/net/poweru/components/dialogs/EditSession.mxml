@@ -12,7 +12,7 @@
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
-	<mx:Form>
+	<mx:Form id="form">
 		<mx:FormItem label="Short Name">
 			<Session:ShortnameInput id="shortNameInput"/>
 		</mx:FormItem>
@@ -48,8 +48,9 @@
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:FormItem>
-		<mx:HBox horizontalAlign="right" width="100%" id="addRoleFI">
-			<parts:AddSessionUserRole id="addRole"/>
+		<mx:HBox horizontalAlign="right" width="100%">
+			<mx:Button label="Edit" enabled="{roles.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSIONUSERROLEREQUIREMENT, roles.selectedItem.id]))"/>
+			<mx:Button label="Add Role" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSIONUSERROLEREQUIREMENT, getData()]))"/>
 		</mx:HBox>
 		<mx:FormItem label="Venue/Room">
 			<mx:HBox>
@@ -60,7 +61,7 @@
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
-		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+		<mx:Button label="Cancel" click="clear(); dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
 	
 </code:EditSessionCode>

@@ -5,11 +5,15 @@ package net.poweru.components.dialogs.code
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.containers.Form;
+	import mx.containers.FormItem;
 	import mx.controls.DataGrid;
 	import mx.controls.DateField;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
+	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
+	import mx.managers.IFocusManagerComponent;
 	
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
@@ -33,8 +37,9 @@ package net.poweru.components.dialogs.code
 		public var leadTimeInput:TextInput;
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
+		[Bindable]
 		public var roles:DataGrid;
-		public var addRole:AddSessionUserRole;
+		public var form:Form;
 		
 		protected var pk:Number;
 		protected var event:Object;
@@ -42,6 +47,11 @@ package net.poweru.components.dialogs.code
 		protected var chosenVenue:Object;
 		[Bindable]
 		protected var chosenRoom:Object;
+		
+		/*	We keep track of which controls have been changed by the user. Upon
+			receiving data through the populate() method, those controls which
+			have local changes will not be updated. */
+		protected var changedControls:Array;
 		
 		public function EditSessionCode()
 		{
@@ -64,29 +74,26 @@ package net.poweru.components.dialogs.code
 			
 			chosenRoom = null;
 			chosenVenue = null;
+			changedControls = [];
 		}
 		
 		public function populate(data:Object, ...args):void
 		{
-			var sessionUserRoles:Array = args[0] as Array;
-			event = args[1];
-			
-			addRole.roleData.source = sessionUserRoles;
-			addRole.roleData.refresh();
+			event = args[0];
 			
 			pk = data['id'];
+			updateControlIfUnchanged(shortNameInput, 'text', data['shortname']);
+			updateControlIfUnchanged(fullNameInput, 'text', data['fullname']);
+			updateControlIfUnchanged(titleInput, 'text', data['title']);
+			updateControlIfUnchanged(urlInput, 'text', data['url']);
+			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
 			
-			shortNameInput.text = data['shortname'];
-			fullNameInput.text = data['fullname'];
-			titleInput.text = data['title'];
-			leadTimeInput.text = data['lead_time'];
-			urlInput.text = data['url'];
-			descriptionInput.text = data['description'];
-			startDateInput.selectedDate = new Date((data['start'] as Date).time);
-			startTimeInput.value = new Date((data['start'] as Date).time);
-			endDateInput.selectedDate = new Date((data['end'] as Date).time);
-			endTimeInput.value = new Date((data['end'] as Date).time);
-			roles.dataProvider = data['session_user_role_requirements'];
+			updateControlIfUnchanged(startDateInput, 'selectedDate', new Date((data['start'] as Date).time));
+			updateControlIfUnchanged(startTimeInput, 'value', new Date((data['start'] as Date).time));
+			updateControlIfUnchanged(endDateInput, 'selectedDate', new Date((data['end'] as Date).time));
+			updateControlIfUnchanged(endTimeInput, 'value', new Date((data['end'] as Date).time));
+			updateControlIfUnchanged(roles, 'dataProvider', data['session_user_role_requirements']);
+
 			
 			if (data.hasOwnProperty('room') && data['room'] != null)
 			{
@@ -101,6 +108,15 @@ package net.poweru.components.dialogs.code
 			
 			restrictStartDateRange();
 			restrictEndDateRange();
+		}
+		
+		protected function updateControlIfUnchanged(control:Object, propertyName:String, newValue:Object):void
+		{
+			if (!control.hasOwnProperty(propertyName))
+				trace('EditSession control does not have property ' + propertyName + '!');
+			
+			else if (changedControls.indexOf(control) == -1)
+				control[propertyName] = newValue;
 		}
 		
 		override public function getData():Object
@@ -190,28 +206,28 @@ package net.poweru.components.dialogs.code
 				titleInput.validator,
 				urlInput.validator
 			];
+			changedControls = [];
 			
-			addRole.addEventListener(MouseEvent.CLICK, onRoleAdded);
-			addRole.removeButton.addEventListener(FlexEvent.BUTTON_DOWN, onClickRemove);
-		}
-		
-		protected function onClickRemove(event:FlexEvent):void
-		{
-			roles.dataProvider.removeItemAt(roles.dataProvider.getItemIndex(roles.selectedItem));
-		}
-		
-		protected function onRoleAdded(event:MouseEvent):void
-		{
-			if (event.target == addRole.confirmButton)
+			/* listen for which controls get local changes */
+			var formItem:FormItem;
+			for each (var child:Object in form.getChildren())
 			{
-				var newSURR:Object = addRole.selectedRole;
-				roles.dataProvider.addItem(newSURR);
+				formItem = child as FormItem;
+				if (formItem != null)
+					for each (var control:Object in formItem.getChildren())
+						control.addEventListener(Event.CHANGE, onControlChanged);
 			}
 		}
 		
 		protected function onStartDateSelected(event:Event):void
 		{
 			restrictEndDateRange();
+		}
+		
+		/*	Add a changed control to the list of changed controls */
+		protected function onControlChanged(event:Event):void
+		{
+			changedControls.push(event.target);
 		}
 	}
 }

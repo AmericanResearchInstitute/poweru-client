@@ -15,10 +15,6 @@ package net.poweru.components.parts.code
 		public var minInput:TextInput;
 		public var maxInput:TextInput;
 		public var roleCB:ComboBox;
-		[Bindable]
-		public var addButton:Button;
-		[Bindable]
-		public var removeButton:Button;
 		
 		public function AddSessionUserRoleCode()
 		{
@@ -40,6 +36,14 @@ package net.poweru.components.parts.code
 				'min' : minInput.text,
 				'max' : maxInput.text
 			};
+		}
+		
+		public function clear():void
+		{
+			currentState = '';
+			minInput.text = '';
+			maxInput.text = '';
+			roleCB.selectedItem = null;
 		}
 	}
 }

@@ -376,6 +376,10 @@
     <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseAchievement"/>
     <classEntry path="net.poweru.presenters.ChooseAchievementMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateSessionUserRoleRequirementCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateSessionUserRoleRequirement"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateSessionUserRoleRequirementDialog"/>
+    <classEntry path="net.poweru.presenters.CreateSessionUserRoleRequirementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

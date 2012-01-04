@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateSessionUserRoleRequirementCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Role Name" required="true">
+			<mx:ComboBox id="rolesCB" labelField="name"/>
+		</mx:FormItem>
+		<mx:FormItem label="Min Enrollments" required="true">
+			<mx:TextInput id="minInput" restrict="0-9"/>
+		</mx:FormItem>
+		<mx:FormItem label="Max Enrollments" required="true">
+			<mx:TextInput id="maxInput" restrict="0-9"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+	
+	<code:validators>
+		<mx:NumberValidator source="{minInput}" property="text" allowNegative="false" domain="int" required="true"/>
+		<mx:NumberValidator source="{minInput}" property="text" allowNegative="false" domain="int" required="true"/>
+		<mx:NumberValidator source="{rolesCB}" property="selectedIndex" minValue="0" required="true"/>
+	</code:validators>
+</code:CreateSessionUserRoleRequirementCode>
