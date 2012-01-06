@@ -92,7 +92,9 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(startTimeInput, 'value', new Date((data['start'] as Date).time));
 			updateControlIfUnchanged(endDateInput, 'selectedDate', new Date((data['end'] as Date).time));
 			updateControlIfUnchanged(endTimeInput, 'value', new Date((data['end'] as Date).time));
-			updateControlIfUnchanged(roles, 'dataProvider', data['session_user_role_requirements']);
+			
+			roles.dataProvider.source = data['session_user_role_requirements'];
+			roles.dataProvider.refresh()
 
 			
 			if (data.hasOwnProperty('room') && data['room'] != null)

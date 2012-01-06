@@ -380,6 +380,9 @@
     <classEntry path="net.poweru.components.dialogs.CreateSessionUserRoleRequirement"/>
     <classEntry path="net.poweru.components.interfaces.ICreateSessionUserRoleRequirementDialog"/>
     <classEntry path="net.poweru.presenters.CreateSessionUserRoleRequirementMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditSessionUserRoleRequirementCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditSessionUserRoleRequirement"/>
+    <classEntry path="net.poweru.presenters.EditSessionUserRoleRequirementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
