@@ -9,6 +9,10 @@ package net.poweru.delegates
 		{
 			super(responder, 'SessionUserRoleRequirementManager');
 			getFilteredMethodName = 'surr_view';
+			mangleMap = {
+				'session' : mangleForeignKey,
+				'session_user_role' : mangleForeignKey
+			};
 		}
 	}
 }

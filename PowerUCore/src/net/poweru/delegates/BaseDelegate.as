@@ -243,7 +243,10 @@ package net.poweru.delegates
 		
 		protected function mangleForeignKey(value:Object, attributeName:String, oldItem:Object, newItem:Object):Object
 		{
-			return value ? value : null;
+			if (value != null && value.hasOwnProperty('id'))
+				return value['id'];
+			else
+				return value ? value : null;
 		}
 		
 		protected function mangleDate(value:Date, attributeName:String=null, oldItem:Object=null, newItem:Object=null):String
