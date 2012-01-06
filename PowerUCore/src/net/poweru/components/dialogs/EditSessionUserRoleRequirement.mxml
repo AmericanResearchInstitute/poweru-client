@@ -4,7 +4,9 @@
 	xmlns:code="net.poweru.components.dialogs.code.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
 	<mx:Form defaultButton="{submit}">
@@ -17,6 +19,17 @@
 		<mx:FormItem label="Max Enrollments" required="true">
 			<mx:TextInput id="maxInput" restrict="0-9"/>
 		</mx:FormItem>
+		<mx:FormItem label="Achievements" width="100%">
+			<mx:DataGrid id="achievements" dataProvider="{achievementDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:FormItem>
+		<mx:HBox>
+			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, null]))}"/>
+			<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemove(event)}"/>
+		</mx:HBox>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

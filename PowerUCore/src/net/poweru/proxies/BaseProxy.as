@@ -442,7 +442,7 @@ package net.poweru.proxies
 			convertIncomingData(value);
 			var item:Object = value[0];
 			dataSet.addOrReplace(item);
-			sendNotification(NotificationNames.RECEIVEDONE, item, getProxyName());
+			sendNotification(NotificationNames.RECEIVEDONE, ObjectUtil.copy(item), getProxyName());
 		}
 		
 		protected function onGetOneError(data:ResultEvent):void
