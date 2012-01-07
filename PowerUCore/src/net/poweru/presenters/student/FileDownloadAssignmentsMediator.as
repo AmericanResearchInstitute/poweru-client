@@ -7,8 +7,8 @@ package net.poweru.presenters.student
 	import net.poweru.components.student.interfaces.IFileDownloadAssignments;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.presenters.BaseMediator;
-	import net.poweru.proxies.FileDownloadProxy;
 	import net.poweru.proxies.FileDownloadAssignmentsForUserProxy;
+	import net.poweru.proxies.FileDownloadProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,11 +27,17 @@ package net.poweru.presenters.student
 			return displayObject as IFileDownloadAssignments;
 		}
 		
+		protected function get fileDownloadAssignmentsForUserProxy():FileDownloadAssignmentsForUserProxy
+		{
+			return primaryProxy as FileDownloadAssignmentsForUserProxy;
+		}
+		
 		override protected function addEventListeners():void
 		{
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.addEventListener(ViewEvent.SUBMIT, onSubmit);
 		}
 		
 		override protected function removeEventListeners():void
@@ -39,6 +45,7 @@ package net.poweru.presenters.student
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);	
 			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
+			displayObject.removeEventListener(ViewEvent.SUBMIT, onSubmit);
 		}
 		
 		override public function listNotificationInterests():Array
@@ -73,6 +80,11 @@ package net.poweru.presenters.student
 		override protected function populate():void
 		{
 			primaryProxy.getAll();
+		}
+		
+		protected function onSubmit(event:ViewEvent):void
+		{
+			fileDownloadAssignmentsForUserProxy.getDownloadURLForAssignment(event.body as Number);
 		}
 	}
 }

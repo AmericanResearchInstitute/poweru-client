@@ -383,6 +383,7 @@
     <classEntry path="net.poweru.components.dialogs.code.EditSessionUserRoleRequirementCode"/>
     <classEntry path="net.poweru.components.dialogs.EditSessionUserRoleRequirement"/>
     <classEntry path="net.poweru.presenters.EditSessionUserRoleRequirementMediator"/>
+    <classEntry path="net.poweru.commands.OpenFileDownloadURLCommand"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

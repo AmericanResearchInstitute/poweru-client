@@ -17,7 +17,10 @@
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Open" enabled="{grid.selectedItem != null}"/>
+			<!--Sometimes a FileDownload's file isn't in place yet, so it can't be opened.
+				We can have reasonable confidence that the file is in place if a size is
+				reported greater than 0.-->
+			<mx:Button label="Open" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.task.file_size > 0}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem.id))"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">

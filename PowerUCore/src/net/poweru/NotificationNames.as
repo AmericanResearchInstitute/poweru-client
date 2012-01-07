@@ -12,10 +12,11 @@ package net.poweru
 		public static const CREATEUSERSUCCESS:String = 'CreateUserSuccess';
 		public static const CREATEUSERPERMISSIONDENIED:String = 'CreateUserPermissionDenied';
 		
-		// body will be the Place name of the precented dialog
+		// body will be the Place name of the presented dialog
 		public static const DIALOGPRESENTED:String = SpaceMediator.DIALOGPRESENTED;
 		
 		public static const GETCOMPONENT:String = 'GetComponent';
+		public static const FILEDOWNLOADURLRECEIVED:String = 'FileDownloadURLReceived';
 		public static const LOGINFAILURE:String = 'LoginFailure';
 		public static const LOGINSUCCESS:String = 'LoginSuccess';
 		public static const LOGOUT:String = SpaceMediator.LOGOUT;
