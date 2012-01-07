@@ -40,9 +40,6 @@ package net.poweru.proxies
 					deleteCookie('delme');
 				}
 			}
-			
-			trace(baseURL);
-			trace(backendURL);
 		}
 		
 		public function get canUseCookies():Boolean
