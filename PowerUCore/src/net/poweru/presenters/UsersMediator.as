@@ -13,6 +13,7 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseMediator;
+	import net.poweru.proxies.AchievementProxy;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.AssignmentProxy;
@@ -20,7 +21,6 @@ package net.poweru.presenters
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.GroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
-	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -38,6 +38,7 @@ package net.poweru.presenters
 		protected var curriculumEnrollmentProxy:CurriculumEnrollmentProxy;
 		protected var eventProxy:EventProxy;
 		protected var assignmentProxy:AssignmentProxy;
+		protected var achievementProxy:AchievementProxy;
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
@@ -48,6 +49,7 @@ package net.poweru.presenters
 			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
 			assignmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentProxy) as AssignmentProxy;
+			achievementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AchievementProxy) as AchievementProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -56,6 +58,7 @@ package net.poweru.presenters
 			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.addEventListener(ViewEvent.SUBMIT, onSubmit);
+			displayObject.addEventListener(ViewEvent.FETCH, onFetch);
 		}
 		
 		override protected function removeEventListeners():void
@@ -64,6 +67,7 @@ package net.poweru.presenters
 			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.removeEventListener(ViewEvent.SUBMIT, onSubmit);
+			displayObject.removeEventListener(ViewEvent.FETCH, onFetch);
 		}
 		
 		protected function get users():IUsers
@@ -86,7 +90,7 @@ package net.poweru.presenters
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
 				NotificationNames.UPDATEEVENTS
-				];
+			];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -172,6 +176,11 @@ package net.poweru.presenters
 				default:
 					primaryProxy.save(event.body);
 			}	
+		}
+		
+		protected function onFetch(event:ViewEvent):void
+		{
+			// TODO
 		}
 		
 		override protected function populate():void

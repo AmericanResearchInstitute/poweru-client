@@ -16,6 +16,7 @@ package net.poweru.components.code
 	import mx.controls.Tree;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
+	import mx.events.ListEvent;
 	import mx.utils.ObjectUtil;
 	
 	import net.poweru.Constants;
@@ -58,6 +59,8 @@ package net.poweru.components.code
 		public var examToAssign:Object;
 		[Bindable]
 		public var fileDownloadToAssign:Object;
+		[Bindable]
+		public var achievementGrid:DataGrid;
 		
 		public function UsersCode()
 		{
@@ -136,6 +139,7 @@ package net.poweru.components.code
 			statuses.dataProvider = new DataSet();
 			statusFilterCB.dataProvider = new DataSet();
 			orgFilterCB.dataProvider = new DataSet();
+			achievementGrid.dataProvider = new DataSet();
 			
 			var statusSort:Sort = new Sort();
 			statusSort.compareFunction = CompareLabels;
@@ -287,6 +291,12 @@ package net.poweru.components.code
 		protected function onShowViewingActivityReport(event:MouseEvent):void
 		{
 			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.VIEWINGACTIVITYREPORT, [grid.selectedItem.id]]));
+		}
+		
+		protected function onUserSelected(event:ListEvent):void
+		{
+			if (grid.selectedItem != null)
+				dispatchEvent(new ViewEvent(ViewEvent.FETCH, grid.selectedItem.id));
 		}
 		
 		// Determine if a user already has the specified userOrgRole

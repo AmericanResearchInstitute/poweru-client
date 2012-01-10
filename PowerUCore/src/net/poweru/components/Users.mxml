@@ -23,7 +23,7 @@
 	
 	<mx:TabNavigator width="100%" height="100%">
 		<mx:HBox label="Edit" height="100%" width="100%">
-			<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+			<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="onUserSelected(event)">
 				<mx:columns>
 					<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
 					<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
@@ -66,6 +66,14 @@
 								<mx:columns>
 									<mx:DataGridColumn headerText="Organization" dataField="organization_name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
 									<mx:DataGridColumn headerText="Role" dataField="role_name" sortCompareFunction="{SortCompareFunctionFactory(['role_name'])}"/>
+								</mx:columns>
+							</mx:DataGrid>
+						</mx:FormItem>
+						<mx:FormItem label="Achievements:">
+							<mx:DataGrid id="achievementGrid">
+								<mx:columns>
+									<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
+									<mx:DataGridColumn headerText="Date" dataField="date"/>
 								</mx:columns>
 							</mx:DataGrid>
 						</mx:FormItem>
