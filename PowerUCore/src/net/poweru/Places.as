@@ -5,6 +5,8 @@ package net.poweru
 		public static const ACHIEVEMENTS:String = 'Achievements';
 		public static const ASSIGNMENTS:String = 'Assignments';
 		public static const CATEGORIES:String = 'Categories';
+		public static const CREDENTIALMANAGEMENT:String = 'CredentialManagement';
+		public static const CREDENTIALTYPES:String = 'CredentialTypes';
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
 		public static const CURRICULUMMANAGEMENT:String = 'CurriculumManagement';
 		public static const CURRICULUMS:String = 'Curriculums';
@@ -44,6 +46,7 @@ package net.poweru
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATEACHIEVEMENT:String = 'CreateAchievement';
 		public static const CREATECATEGORY:String = 'CreateCategory';
+		public static const CREATECREDENTIALTYPE:String = 'CreateCredentialType';
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';
 		public static const CREATECURRICULUM:String = 'CreateCurriculum';
 		public static const CREATEEVENT:String = 'CreateEvent';
@@ -65,6 +68,7 @@ package net.poweru
 		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';
 		public static const EDITCATEGORY:String = 'EditCategory';
+		public static const EDITCREDENTIALTYPE:String = 'EditCredentialType';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
 		public static const EDITENROLLMENTS:String = 'EditEnrollments';

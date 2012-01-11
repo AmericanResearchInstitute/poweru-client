@@ -392,6 +392,12 @@
     <classEntry path="net.poweru.presenters.UserManagementMediator"/>
     <classEntry path="net.poweru.components.collections.CurriculumManagement"/>
     <classEntry path="net.poweru.presenters.CurriculumManagementMediator"/>
+    <classEntry path="net.poweru.components.collections.CredentialManagement"/>
+    <classEntry path="net.poweru.presenters.CredentialManagementMediator"/>
+    <classEntry path="net.poweru.components.code.CredentialTypesCode"/>
+    <classEntry path="net.poweru.components.interfaces.ICredentialTypes"/>
+    <classEntry path="net.poweru.components.CredentialTypes"/>
+    <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

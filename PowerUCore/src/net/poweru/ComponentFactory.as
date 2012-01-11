@@ -3,6 +3,7 @@ package net.poweru
 	import flash.display.DisplayObject;
 	
 	import net.poweru.components.Achievements;
+	import net.poweru.components.CredentialTypes;
 	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
 	import net.poweru.components.EventTemplates;
@@ -15,6 +16,7 @@ package net.poweru
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
+	import net.poweru.components.collections.CredentialManagement;
 	import net.poweru.components.collections.CurriculumManagement;
 	import net.poweru.components.collections.UserManagement;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
@@ -106,6 +108,8 @@ package net.poweru
 	import net.poweru.presenters.CreateSessionUserRoleRequirementMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CreateVenueMediator;
+	import net.poweru.presenters.CredentialManagementMediator;
+	import net.poweru.presenters.CredentialTypesMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.CurriculumManagementMediator;
 	import net.poweru.presenters.CurriculumsMediator;
@@ -283,6 +287,14 @@ package net.poweru
 				
 				case Places.CREATEVENUE:
 					component = getOrCreate(name, CreateVenue, CreateVenueMediator);
+					break;
+				
+				case Places.CREDENTIALMANAGEMENT:
+					component = getOrCreate(name, CredentialManagement, CredentialManagementMediator);
+					break;
+				
+				case Places.CREDENTIALTYPES:
+					component = getOrCreate(name, CredentialTypes, CredentialTypesMediator);
 					break;
 				
 				case Places.CURRICULUMENROLLMENTS:
