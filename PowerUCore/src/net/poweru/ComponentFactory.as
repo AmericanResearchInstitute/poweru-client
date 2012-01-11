@@ -24,6 +24,7 @@ package net.poweru
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateAchievement;
+	import net.poweru.components.dialogs.CreateCredentialType;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
 	import net.poweru.components.dialogs.CreateEvent;
@@ -91,6 +92,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseUserMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateAchievementMediator;
+	import net.poweru.presenters.CreateCredentialTypeMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
 	import net.poweru.presenters.CreateEventFromTemplateMediator;
@@ -219,6 +221,10 @@ package net.poweru
 				
 				case Places.CREATEACHIEVEMENT:
 					component = getOrCreate(name, CreateAchievement, CreateAchievementMediator);
+					break;
+				
+				case Places.CREATECREDENTIALTYPE:
+					component = getOrCreate(name, CreateCredentialType, CreateCredentialTypeMediator);
 					break;
 				
 				case Places.CREATECURRICULUM:

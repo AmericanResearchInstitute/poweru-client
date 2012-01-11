@@ -398,6 +398,9 @@
     <classEntry path="net.poweru.components.interfaces.ICredentialTypes"/>
     <classEntry path="net.poweru.components.CredentialTypes"/>
     <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateCredentialTypeCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateCredentialType"/>
+    <classEntry path="net.poweru.presenters.CreateCredentialTypeMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

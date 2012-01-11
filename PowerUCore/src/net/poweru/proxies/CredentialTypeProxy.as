@@ -17,6 +17,7 @@ package net.poweru.proxies
 		public function CredentialTypeProxy()
 		{
 			super(NAME, CredentialTypeManagerDelegate, NotificationNames.UPDATECREDENTIALTYPES, FIELDS, 'CredentialType', []);
+			createArgNamesInOrder = ['name', 'description'];
 		}
 	}
 }
