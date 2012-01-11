@@ -6,6 +6,7 @@ package net.poweru
 		public static const ASSIGNMENTS:String = 'Assignments';
 		public static const CATEGORIES:String = 'Categories';
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
+		public static const CURRICULUMMANAGEMENT:String = 'CurriculumManagement';
 		public static const CURRICULUMS:String = 'Curriculums';
 		public static const EVENTS:String = 'Events';
 		public static const EVENTASSIGNMENTS:String = 'EventAssignments';
@@ -23,6 +24,7 @@ package net.poweru
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
 		public static const STUDENTASSIGNMENTS:String = 'StudentAssignments';
 		public static const TASKS:String = 'Tasks';
+		public static const USERMANAGEMENT:String = 'UserManagement';
 		public static const USERS:String = 'Users';
 		public static const VENUES:String = 'Venues';
 		public static const VIDEOS:String = 'Videos';

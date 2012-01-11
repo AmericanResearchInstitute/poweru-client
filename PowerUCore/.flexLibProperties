@@ -388,6 +388,10 @@
     <classEntry path="net.poweru.proxies.CredentialTypeProxy"/>
     <classEntry path="net.poweru.components.parts.PlaceContainer"/>
     <classEntry path="net.poweru.presenters.BasePlaceContainerMediator"/>
+    <classEntry path="net.poweru.components.collections.UserManagement"/>
+    <classEntry path="net.poweru.presenters.UserManagementMediator"/>
+    <classEntry path="net.poweru.components.collections.CurriculumManagement"/>
+    <classEntry path="net.poweru.presenters.CurriculumManagementMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

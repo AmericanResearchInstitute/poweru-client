@@ -15,6 +15,8 @@ package net.poweru
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
+	import net.poweru.components.collections.CurriculumManagement;
+	import net.poweru.components.collections.UserManagement;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.BulkAssignmentResults;
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
@@ -105,6 +107,7 @@ package net.poweru
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CreateVenueMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
+	import net.poweru.presenters.CurriculumManagementMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditAchievementMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
@@ -135,6 +138,7 @@ package net.poweru
 	import net.poweru.presenters.SessionUserRolesMediator;
 	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.UploadFileDownloadMediator;
+	import net.poweru.presenters.UserManagementMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
 	import net.poweru.presenters.UsersMediator;
 	import net.poweru.presenters.VenuesMediator;
@@ -285,6 +289,10 @@ package net.poweru
 					component = getOrCreate(name, CurriculumEnrollments, CurriculumEnrollmentMediator);
 					break;
 				
+				case Places.CURRICULUMMANAGEMENT:
+					component = getOrCreate(name, CurriculumManagement, CurriculumManagementMediator);
+					break;
+				
 				case Places.CURRICULUMS:
 					component = getOrCreate(name, Curriculums, CurriculumsMediator);
 					break;
@@ -431,6 +439,10 @@ package net.poweru
 				
 				case Places.UPLOADFILEDOWNLOAD:
 					component = getOrCreate(name, UploadFileDownload, UploadFileDownloadMediator);
+					break;
+				
+				case Places.USERMANAGEMENT:
+					component = getOrCreate(name, UserManagement, UserManagementMediator);
 					break;
 				
 				case Places.USERS:

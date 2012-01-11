@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%"
+	xmlns:parts="net.poweru.components.parts.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+		]]>
+	</mx:Script>
+	<mx:TabNavigator width="100%" height="100%">
+		<parts:PlaceContainer label="Curriculums" placeName="{Places.CURRICULUMS}"/>
+		<parts:PlaceContainer label="Learning Initiatives" placeName="{Places.CURRICULUMENROLLMENTS}"/>
+	</mx:TabNavigator>
+</mx:HBox>
