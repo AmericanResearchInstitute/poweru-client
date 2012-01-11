@@ -18,6 +18,7 @@ package net.poweru.proxies
 		{
 			super(NAME, CredentialTypeManagerDelegate, NotificationNames.UPDATECREDENTIALTYPES, FIELDS, 'CredentialType', []);
 			createArgNamesInOrder = ['name', 'description'];
+			getFilteredMethodName = 'achievement_detail_view';
 		}
 	}
 }
