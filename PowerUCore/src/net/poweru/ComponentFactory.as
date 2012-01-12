@@ -59,6 +59,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditSessionTemplate;
 	import net.poweru.components.dialogs.EditSessionUserRole;
 	import net.poweru.components.dialogs.EditSessionUserRoleRequirement;
+	import net.poweru.components.dialogs.EditTaskBundle;
 	import net.poweru.components.dialogs.EditUser;
 	import net.poweru.components.dialogs.EditUserOrgRole;
 	import net.poweru.components.dialogs.EditVenue;
@@ -136,6 +137,7 @@ package net.poweru
 	import net.poweru.presenters.EditSessionTemplateMediator;
 	import net.poweru.presenters.EditSessionUserRoleMediator;
 	import net.poweru.presenters.EditSessionUserRoleRequirementMediator;
+	import net.poweru.presenters.EditTaskBundleMediator;
 	import net.poweru.presenters.EditUserMediator;
 	import net.poweru.presenters.EditUserOrgRoleMediator;
 	import net.poweru.presenters.EditVenueMediator;
@@ -389,6 +391,10 @@ package net.poweru
 				
 				case Places.EDITSESSIONUSERROLEREQUIREMENT:
 					component = getOrCreate(name, EditSessionUserRoleRequirement, EditSessionUserRoleRequirementMediator);
+					break;
+				
+				case Places.EDITTASKBUNDLE:
+					component = getOrCreate(name, EditTaskBundle, EditTaskBundleMediator);
 					break;
 				
 				case Places.EDITUSER:

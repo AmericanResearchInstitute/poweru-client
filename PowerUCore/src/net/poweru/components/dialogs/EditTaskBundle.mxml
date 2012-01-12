@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:CreateTaskBundleCode
-	title="Create Task Bundle"
+<code:EditTaskBundleCode
+	title="Edit Task Bundle"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:TaskBundle="net.poweru.generated.model.TaskBundle.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
 	<mx:Form defaultButton="{submit}">
@@ -16,9 +18,20 @@
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="Tasks" width="100%">
+			<mx:DataGrid id="tasks" dataProvider="{taskDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, null]))}"/>
+				<mx:Button label="Remove" enabled="{tasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:CreateTaskBundleCode>
+</code:EditTaskBundleCode>
