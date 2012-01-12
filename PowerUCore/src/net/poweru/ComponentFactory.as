@@ -78,6 +78,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.dialogs.choosers.ChooseTask;
+	import net.poweru.components.dialogs.choosers.ChooseTaskBundle;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
 	import net.poweru.components.student.Assignments;
 	import net.poweru.components.student.ExamAssignments;
@@ -94,6 +95,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseFileDownloadMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ChooseRoomMediator;
+	import net.poweru.presenters.ChooseTaskBundleMediator;
 	import net.poweru.presenters.ChooseTaskMediator;
 	import net.poweru.presenters.ChooseUserMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
@@ -223,6 +225,10 @@ package net.poweru
 				
 				case Places.CHOOSETASK:
 					component = getOrCreate(name, ChooseTask, ChooseTaskMediator);
+					break;
+				
+				case Places.CHOOSETASKBUNDLE:
+					component = getOrCreate(name, ChooseTaskBundle, ChooseTaskBundleMediator);
 					break;
 				
 				case Places.CHOOSEUSER:

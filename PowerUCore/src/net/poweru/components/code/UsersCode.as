@@ -56,6 +56,8 @@ package net.poweru.components.code
 		[Bindable]
 		public var eventGrid:DataGrid;
 		[Bindable]
+		public var taskBundleToAssign:Object;
+		[Bindable]
 		public var examToAssign:Object;
 		[Bindable]
 		public var fileDownloadToAssign:Object;
@@ -124,6 +126,10 @@ package net.poweru.components.code
 				
 				case Places.CHOOSEFILEDOWNLOAD:
 					fileDownloadToAssign = choice;
+					break;
+				
+				case Places.CHOOSETASKBUNDLE:
+					taskBundleToAssign = choice;
 					break;
 			}
 		}
@@ -275,6 +281,17 @@ package net.poweru.components.code
 				}
 				if (itemsAdded)
 					dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, user));
+			}
+		}
+		
+		protected function onAssignTaskBundle(event:Event):void
+		{
+			if (taskBundleToAssign != null && taskBundleToAssign.hasOwnProperty('tasks'))
+			{
+				for each (var task:Object in taskBundleToAssign['tasks'])
+				{
+					assignTask(task['id']);
+				}
 			}
 		}
 		

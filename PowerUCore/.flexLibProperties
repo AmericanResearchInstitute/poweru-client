@@ -419,6 +419,11 @@
     <classEntry path="net.poweru.components.dialogs.code.EditTaskBundleCode"/>
     <classEntry path="net.poweru.components.dialogs.EditTaskBundle"/>
     <classEntry path="net.poweru.presenters.EditTaskBundleMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseTaskBundleCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseTaskBundle"/>
+    <classEntry path="net.poweru.presenters.ChooseTaskBundleMediator"/>
+    <classEntry path="net.poweru.components.parts.code.BulkAssignmentResultsGridCode"/>
+    <classEntry path="net.poweru.components.parts.BulkAssignmentResultsGrid"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

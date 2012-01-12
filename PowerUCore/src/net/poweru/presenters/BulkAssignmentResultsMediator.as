@@ -50,36 +50,50 @@ package net.poweru.presenters
 			var requirements:Array = [];
 			requirements.push('raw_results');
 			
-			var rawResults:Object = initialDataProxy.getInitialData(placeName);
+			var rawResults:Array = initialDataProxy.getInitialData(placeName) as Array;
+
+			// Get all user PKs out of the result set
+			var userIDs:Array = [];
+			for each (var resultSet:Object in rawResults)
+			{
+				for (var userID:String in resultSet)
+				{
+					if (userIDs.indexOf(userID) == -1)
+						userIDs.push(userID);
+				}
+			}
+			
+			requirements = requirements.concat(userIDs);
 			
 			if (inputCollector != null)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 			inputCollector = new InputCollector(requirements);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			for (var userID:String in rawResults)
-				requirements.push(userID);
-			
-			// move rawResults into the collector to prevent state 
 			inputCollector.addInput('raw_results', rawResults);
 			
 			/*	These should already be cached in the proxy following the
 				assignment workflow. */
-			for (var userID2:String in rawResults)
-				primaryProxy.getOne(Number(userID2));
+			for each (var userID2:String in userIDs)
+				primaryProxy.findByPK(Number(userID2));
 		}
 		
 		override protected function onInputsCollected(event:Event):void
 		{
 			var data:Array = [];
+			var inputCollector:InputCollector = event.target as InputCollector;
 			
-			for (var userID:String in inputCollector.object['raw_results'])
+			for each (var resultSet:Object in inputCollector.object['raw_results'])
 			{
-				var user:Object = inputCollector.object[userID];
-				user['assignmentStatus'] = inputCollector.object['raw_results'][userID]['status']; 
-				data.push(user);
+				var resultArray:Array = [];
+				for (var userID:String in resultSet)
+				{
+					var user:Object = inputCollector.object[userID];
+					user['assignmentStatus'] = resultSet[userID]['status']; 
+					resultArray.push(user);
+				}
+				data.push(resultArray);
 			}
-			
 			reportDialog.populate(data);
 		}
 	}

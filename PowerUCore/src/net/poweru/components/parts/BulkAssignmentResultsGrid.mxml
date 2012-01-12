@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:BulkAssignmentResultsGridCode
+	height="100%"
+	width="100%"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.parts.code.*">
+	<mx:DataGrid id="grid" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn dataField="last_name" headerText="Last Name"/>
+			<mx:DataGridColumn dataField="first_name" headerText="First Name"/>
+			<mx:DataGridColumn dataField="assignmentStatus" headerText="Status"/>
+		</mx:columns>
+	</mx:DataGrid>
+</code:BulkAssignmentResultsGridCode>

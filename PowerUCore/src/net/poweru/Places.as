@@ -44,6 +44,7 @@ package net.poweru
 		public static const CHOOSEORGANIZATION:String = 'ChooseOrganization';
 		public static const CHOOSEROOM:String = 'ChooseRoom';
 		public static const CHOOSETASK:String = 'ChooseTask';
+		public static const CHOOSETASKBUNDLE:String = 'ChooseTaskBundle';
 		public static const CHOOSEUSER:String = 'ChooseUser';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATEACHIEVEMENT:String = 'CreateAchievement';
