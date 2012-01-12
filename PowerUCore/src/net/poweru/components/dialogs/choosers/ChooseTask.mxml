@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:ChooseFileDownloadCode
-	title="Choose File Download Task"
+<code:ChooseTaskCode
+	title="Choose Task"
 	minWidth="500"
 	minHeight="400"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
@@ -13,10 +13,11 @@
 	<mx:DataGrid id="grid" width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn dataField="name" headerText="Name"/>
+			<mx:DataGridColumn dataField="type" headerText="Type"/>
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:ChooseFileDownloadCode>
+</code:ChooseTaskCode>

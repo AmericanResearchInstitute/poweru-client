@@ -404,6 +404,9 @@
     <classEntry path="net.poweru.components.dialogs.code.EditCredentialTypeCode"/>
     <classEntry path="net.poweru.components.dialogs.EditCredentialType"/>
     <classEntry path="net.poweru.presenters.EditCredentialTypeMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseTaskCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseTask"/>
+    <classEntry path="net.poweru.presenters.ChooseTaskMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

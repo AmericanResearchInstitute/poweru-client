@@ -19,9 +19,13 @@ package net.poweru.components.dialogs.code
 		public var descriptionInput:TextArea;
 		[Bindable]
 		public var achievements:DataGrid;
+		[Bindable]
+		public var prerequisites:DataGrid;
 		
 		[Bindable]
 		protected var achievementDataSet:DataSet;
+		[Bindable]
+		protected var prerequisiteDataSet:DataSet;
 		protected var pk:Number;
 		
 		public function EditFileDownloadCode()
@@ -38,6 +42,8 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = '';
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
+			prerequisiteDataSet.source = [];
+			prerequisiteDataSet.refresh();
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -48,6 +54,8 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = data['description'];
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
+			prerequisiteDataSet.source = data['prerequisite_tasks'];
+			prerequisiteDataSet.refresh();
 		}
 		
 		override public function getData():Object
@@ -57,15 +65,24 @@ package net.poweru.components.dialogs.code
 				'name' : nameInput.text,
 				'title' : titleInput.text,
 				'description' : descriptionInput.text,
-				'achievements' : achievementDataSet.toArray()
+				'achievements' : achievementDataSet.toArray(),
+				'prerequisite_tasks' : prerequisiteDataSet.toArray()
 			}
 		}
 		
 		override public function receiveChoice(choice:Object, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEACHIEVEMENT && achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+			switch (chooserName)
 			{
-				achievementDataSet.addItem(choice);
+				case Places.CHOOSEACHIEVEMENT:
+					if (achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+						achievementDataSet.addItem(choice);
+					break;
+				
+				case Places.CHOOSETASK:
+					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
+						prerequisiteDataSet.addItem(choice);
+					break;
 			}
 		}
 		
@@ -73,15 +90,25 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			achievementDataSet = new DataSet();
+			prerequisiteDataSet = new DataSet();
 			validators = [nameInput.validator, titleInput.validator];
 		}
 		
-		protected function onRemove(event:Event):void
+		protected function onRemoveAchievement(event:Event):void
 		{
 			if (achievements.selectedItem != null)
 			{
 				achievementDataSet.removeByPK(achievements.selectedItem['id']);
 				achievementDataSet.refresh();
+			}
+		}
+		
+		protected function onRemoveTask(event:Event):void
+		{
+			if (prerequisites.selectedItem != null)
+			{
+				prerequisiteDataSet.removeByPK(prerequisites.selectedItem['id']);
+				prerequisiteDataSet.refresh();
 			}
 		}
 	}
