@@ -41,6 +41,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateSessionTemplate;
 	import net.poweru.components.dialogs.CreateSessionUserRole;
 	import net.poweru.components.dialogs.CreateSessionUserRoleRequirement;
+	import net.poweru.components.dialogs.CreateTaskBundle;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
 	import net.poweru.components.dialogs.EditAchievement;
@@ -112,6 +113,7 @@ package net.poweru
 	import net.poweru.presenters.CreateSessionTemplateMediator;
 	import net.poweru.presenters.CreateSessionUserRoleMediator;
 	import net.poweru.presenters.CreateSessionUserRoleRequirementMediator;
+	import net.poweru.presenters.CreateTaskBundleMediator;
 	import net.poweru.presenters.CreateUserMediator;
 	import net.poweru.presenters.CreateVenueMediator;
 	import net.poweru.presenters.CredentialManagementMediator;
@@ -296,7 +298,11 @@ package net.poweru
 				case Places.CREATESESSIONUSERROLEREQUIREMENT:
 					component = getOrCreate(name, CreateSessionUserRoleRequirement, CreateSessionUserRoleRequirementMediator);
 					break;
-					
+				
+				case Places.CREATETASKBUNDLE:
+					component = getOrCreate(name, CreateTaskBundle, CreateTaskBundleMediator);
+					break;
+				
 				case Places.CREATEUSER:
 					component = getOrCreate(name, CreateUser, CreateUserMediator);
 					break;

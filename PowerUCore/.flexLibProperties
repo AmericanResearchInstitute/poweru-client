@@ -413,6 +413,9 @@
     <classEntry path="net.poweru.components.code.TaskBundlesCode"/>
     <classEntry path="net.poweru.components.TaskBundles"/>
     <classEntry path="net.poweru.presenters.TaskBundlesMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateTaskBundleCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateTaskBundle"/>
+    <classEntry path="net.poweru.presenters.CreateTaskBundleMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

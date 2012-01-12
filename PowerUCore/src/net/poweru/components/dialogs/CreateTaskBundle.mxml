@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateTaskBundleCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:TaskBundle="net.poweru.generated.model.TaskBundle.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Name">
+			<TaskBundle:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description">
+			<mx:TextArea id="descriptionInput"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:CreateTaskBundleCode>
