@@ -26,7 +26,7 @@
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
-			<mx:Form>
+			<mx:Form width="100%">
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
 				</mx:FormItem>
@@ -40,6 +40,14 @@
 					<mx:DataGrid id="achievements" dataProvider="{grid.selectedItem.achievements}" width="100%">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:FormItem>
+				<mx:FormItem label="Prerequisites" width="100%">
+					<mx:DataGrid dataProvider="{grid.selectedItem.prerequisite_tasks}" width="100%">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+							<mx:DataGridColumn headerText="Type" dataField="type" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
 						</mx:columns>
 					</mx:DataGrid>
 				</mx:FormItem>

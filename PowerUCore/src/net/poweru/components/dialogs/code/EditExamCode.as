@@ -19,7 +19,11 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var achievements:DataGrid;
 		[Bindable]
+		public var prerequisites:DataGrid;
+		[Bindable]
 		protected var achievementDataSet:DataSet;
+		[Bindable]
+		protected var prerequisiteDataSet:DataSet;
 		
 		public function EditExamCode()
 		{
@@ -34,6 +38,8 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = '';
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
+			prerequisiteDataSet.source = [];
+			prerequisiteDataSet.refresh();
 		}
 		
 		override public function getData():Object
@@ -43,7 +49,8 @@ package net.poweru.components.dialogs.code
 				'name' : nameInput.text,
 				'title' : titleInput.text,
 				'description' : descriptionInput.text,
-				'achievements' : achievementDataSet.toArray()
+				'achievements' : achievementDataSet.toArray(),
+				'prerequisite_tasks' : prerequisiteDataSet.toArray()
 			}
 		}
 		
@@ -55,15 +62,25 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = data['description'];
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
+			prerequisiteDataSet.source = data['prerequisite_tasks'];
+			prerequisiteDataSet.refresh();
 			
 			title = 'Edit Exam ' + data['name'];
 		}
 		
 		override public function receiveChoice(choice:Object, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEACHIEVEMENT && achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+			switch (chooserName)
 			{
-				achievementDataSet.addItem(choice);
+				case Places.CHOOSEACHIEVEMENT:
+					if (achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+						achievementDataSet.addItem(choice);
+					break;
+				
+				case Places.CHOOSETASK:
+					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
+						prerequisiteDataSet.addItem(choice);
+					break;
 			}
 		}
 		
@@ -72,14 +89,24 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [nameInput.validator, titleInput.validator];
 			achievementDataSet = new DataSet();
+			prerequisiteDataSet = new DataSet();
 		}
 		
-		protected function onRemove(event:Event):void
+		protected function onRemoveAchievement(event:Event):void
 		{
 			if (achievements.selectedItem != null)
 			{
 				achievementDataSet.removeByPK(achievements.selectedItem['id']);
 				achievementDataSet.refresh();
+			}
+		}
+		
+		protected function onRemoveTask(event:Event):void
+		{
+			if (prerequisites.selectedItem != null)
+			{
+				prerequisiteDataSet.removeByPK(prerequisites.selectedItem['id']);
+				prerequisiteDataSet.refresh();
 			}
 		}
 	}
