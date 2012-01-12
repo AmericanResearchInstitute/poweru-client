@@ -25,6 +25,7 @@ package net.poweru
 		public static const ORGANIZATIONS:String = 'Organizations';
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
 		public static const STUDENTASSIGNMENTS:String = 'StudentAssignments';
+		public static const TASKBUNDLES:String = 'TaskBundles';
 		public static const TASKS:String = 'Tasks';
 		public static const USERMANAGEMENT:String = 'UserManagement';
 		public static const USERS:String = 'Users';
@@ -65,6 +66,7 @@ package net.poweru
 		public static const CREATESESSIONUSERROLE:String = 'CreateSessionUserRole';
 		public static const CREATESESSIONUSERROLEREQUIREMENT:String = 'CreateSessionUserRoleRequirement';
 		public static const CREATETASK:String = 'CreateTask';
+		public static const CREATETASKBUNDLE:String = 'CreateTaskBundle';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';
@@ -86,6 +88,7 @@ package net.poweru
 		public static const EDITSESSIONUSERROLE:String = 'EditSessionUserRole';
 		public static const EDITSESSIONUSERROLEREQUIREMENT:String = 'EditSessionUserRoleRequirement';
 		public static const EDITTASK:String = 'EditTask';
+		public static const EDITTASKBUNDLE:String = 'EditTaskBundle';
 		public static const EDITUSER:String = 'EditUser';
 		public static const EDITUSERORGROLE:String = 'EditUserOrgRole';
 		public static const EDITVENUE:String = 'EditVenue';

@@ -14,6 +14,7 @@ package net.poweru
 	import net.poweru.components.Login;
 	import net.poweru.components.Organizations;
 	import net.poweru.components.SessionUserRoles;
+	import net.poweru.components.TaskBundles;
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
 	import net.poweru.components.collections.CredentialManagement;
@@ -146,6 +147,7 @@ package net.poweru
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
 	import net.poweru.presenters.SessionUserRolesMediator;
+	import net.poweru.presenters.TaskBundlesMediator;
 	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.UploadFileDownloadMediator;
 	import net.poweru.presenters.UserManagementMediator;
@@ -465,6 +467,10 @@ package net.poweru
 				
 				case Places.STUDENTASSIGNMENTS:
 					component = getOrCreate(name, Assignments, AssignmentsMediator);
+					break;
+				
+				case Places.TASKBUNDLES:
+					component = getOrCreate(name, TaskBundles, TaskBundlesMediator);
 					break;
 				
 				case Places.UPLOADFILEDOWNLOAD:

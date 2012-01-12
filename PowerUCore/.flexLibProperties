@@ -407,6 +407,12 @@
     <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseTaskCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseTask"/>
     <classEntry path="net.poweru.presenters.ChooseTaskMediator"/>
+    <classEntry path="net.poweru.delegates.TaskBundleManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.TaskBundleProxy"/>
+    <classEntry path="net.poweru.components.interfaces.ITaskBundles"/>
+    <classEntry path="net.poweru.components.code.TaskBundlesCode"/>
+    <classEntry path="net.poweru.components.TaskBundles"/>
+    <classEntry path="net.poweru.presenters.TaskBundlesMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

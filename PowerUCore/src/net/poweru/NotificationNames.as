@@ -55,8 +55,6 @@ package net.poweru
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSDETAIL:String = 'UpdateFileDownloadAssignmentsDetail';
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSFORUSER:String = 'UpdateFileDownloadAssignmentsForUser';
 		public static const UPDATEFILEUPLOADS:String = 'UpdateFileUploads';
-		public static const UPDATETASKS:String = 'UpdateTasks';
-		public static const UPDATEVODADMINGROUPSVIEW:String = 'UpdateVODAdminGroupsView';
 		public static const UPDATEGROUPS:String = 'UpdateGroups';
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';
 		public static const UPDATEORGEMAILDOMAINS:String = 'UpdateOrgEmailDomains';
@@ -68,6 +66,8 @@ package net.poweru
 		public static const UPDATESESSIONTEMPLATES:String = 'UpdateSessionTemplates';
 		public static const UPDATESESSIONUSERROLEREQUIREMENTS:String = 'UpdateSessionUserRoleRequirements';
 		public static const UPDATESESSIONUSERROLES:String = 'UpdateSessionUserRoles';
+		public static const UPDATETASKBUNDLESS:String = 'UpdateTaskBundles';
+		public static const UPDATETASKS:String = 'UpdateTasks';
 		public static const UPDATEUSERS:String = 'UpdateUsers';
 		public static const UPDATEUSERORGROLES:String = 'UpdateUserOrgRoles';
 		public static const UPDATEUSERVIDEOSVIEW:String = 'UpdateUserVideosView';
@@ -75,6 +75,7 @@ package net.poweru
 		public static const UPDATEVIDEOS:String = 'UpdateVideos';
 		public static const UPDATEVIDEOCATEGORIES:String = 'UpdateVideoCategories';
 		public static const UPDATEVIDEOSESSIONS:String = 'UpdateVideoSessions';
+		public static const UPDATEVODADMINGROUPSVIEW:String = 'UpdateVODAdminGroupsView';
 		public static const UPLOADCOMPLETE:String = 'UploadComplete';
 		public static const UPLOADFAILED:String = 'UploadFailed';
 		public static const USERSBYGROUPNAME:String = 'UsersByGroupName';
