@@ -25,11 +25,22 @@
 					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
 				</mx:columns>
 			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, null]))}"/>
+				<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemoveAchievement(event)}"/>
+			</mx:HBox>
 		</mx:FormItem>
-		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, null]))}"/>
-			<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemove(event)}"/>
-		</mx:HBox>
+		<mx:FormItem label="Prerequisites" width="100%">
+			<mx:DataGrid id="prerequisites" dataProvider="{prerequisiteDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, null]))}"/>
+				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

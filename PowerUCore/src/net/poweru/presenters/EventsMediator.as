@@ -10,6 +10,7 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.SessionProxy;
+	import net.poweru.proxies.SessionUserRoleRequirementProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -19,11 +20,14 @@ package net.poweru.presenters
 		public static const NAME:String = 'EventsMediator';
 		
 		protected var sessionProxy:SessionProxy;
+		// We only need this so we can clear its cache when "Refresh" is clicked.
+		protected var sessionUserRoleRequirementProxy:SessionUserRoleRequirementProxy;
 		
 		public function EventsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventProxy);
 			sessionProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionProxy) as SessionProxy;
+			sessionUserRoleRequirementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionUserRoleRequirementProxy) as SessionUserRoleRequirementProxy;
 		}
 		
 		protected function get events():IEvents
@@ -50,6 +54,7 @@ package net.poweru.presenters
 		override protected function onRefresh(event:ViewEvent):void
 		{
 			sessionProxy.clear();
+			sessionUserRoleRequirementProxy.clear();
 			super.onRefresh(event);
 		}
 		

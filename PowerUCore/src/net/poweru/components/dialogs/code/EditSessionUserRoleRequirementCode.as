@@ -22,9 +22,13 @@ package net.poweru.components.dialogs.code
 		public var maxInput:TextInput;
 		[Bindable]
 		public var achievements:DataGrid;
+		[Bindable]
+		public var prerequisites:DataGrid;
 		
 		[Bindable]
 		protected var achievementDataSet:DataSet;
+		[Bindable]
+		protected var prerequisiteDataSet:DataSet;
 		protected var session:Number;
 		protected var pk:Number;
 		
@@ -43,6 +47,8 @@ package net.poweru.components.dialogs.code
 			maxInput.text = '';
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
+			prerequisiteDataSet.source = [];
+			prerequisiteDataSet.refresh();
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -55,13 +61,8 @@ package net.poweru.components.dialogs.code
 			rolesCB.dataProvider.refresh();
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
-		}
-		
-		protected function onCreationComplete(event:FlexEvent):void
-		{
-			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			rolesCB.dataProvider = new DataSet();
-			achievementDataSet = new DataSet();
+			prerequisiteDataSet.source = data['prerequisite_tasks'];
+			prerequisiteDataSet.refresh();
 		}
 		
 		override public function getData():Object
@@ -72,24 +73,50 @@ package net.poweru.components.dialogs.code
 				'session_user_role' : {'id' : rolesCB.selectedItem.id, 'name' : rolesCB.selectedItem.name},
 				'min' : minInput.text,
 				'max' : maxInput.text,
-				'achievements' : achievementDataSet.toArray()
+				'achievements' : achievementDataSet.toArray(),
+				'prerequisite_tasks' : prerequisiteDataSet.toArray()
 			};
 		}
 		
 		override public function receiveChoice(choice:Object, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEACHIEVEMENT && achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+			switch (chooserName)
 			{
-				achievementDataSet.addItem(choice);
+				case Places.CHOOSEACHIEVEMENT:
+					if (achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
+						achievementDataSet.addItem(choice);
+					break;
+				
+				case Places.CHOOSETASK:
+					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
+						prerequisiteDataSet.addItem(choice);
+					break;
 			}
 		}
 		
-		protected function onRemove(event:Event):void
+		protected function onCreationComplete(event:FlexEvent):void
+		{
+			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			rolesCB.dataProvider = new DataSet();
+			achievementDataSet = new DataSet();
+			prerequisiteDataSet = new DataSet();
+		}
+		
+		protected function onRemoveAchievement(event:Event):void
 		{
 			if (achievements.selectedItem != null)
 			{
 				achievementDataSet.removeByPK(achievements.selectedItem['id']);
 				achievementDataSet.refresh();
+			}
+		}
+		
+		protected function onRemoveTask(event:Event):void
+		{
+			if (prerequisites.selectedItem != null)
+			{
+				prerequisiteDataSet.removeByPK(prerequisites.selectedItem['id']);
+				prerequisiteDataSet.refresh();
 			}
 		}
 	}
