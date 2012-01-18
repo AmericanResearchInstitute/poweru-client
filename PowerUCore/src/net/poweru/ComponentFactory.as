@@ -149,6 +149,7 @@ package net.poweru
 	import net.poweru.presenters.FileDownloadsMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
+	import net.poweru.presenters.OrgUploadCSVMediator;
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
@@ -457,6 +458,10 @@ package net.poweru
 				
 				case Places.HELPORGANIZATION:
 					component = getOrCreate(name, HelpOrganization);
+					break;
+				
+				case Places.IMPORTORGANIZATIONS:
+					component = getOrCreate(name, UploadCSV, OrgUploadCSVMediator);
 					break;
 				
 				case Places.IMPORTUSERS:

@@ -97,6 +97,7 @@ package net.poweru
 		public static const EMAILSESSIONPARTICIPANTS:String = 'EmailSessionParticipants';
 		public static const HELPORGANIZATION:String = 'HelpOrganization';
 		public static const HELPUSER:String = 'HelpUser';
+		public static const IMPORTORGANIZATIONS:String = 'ImportOrganizations';
 		public static const IMPORTUSERS:String = 'ImportUsers';
 		public static const RESETPASSWORD:String = 'ResetPassword';
 		public static const SELFREGISTER:String = 'SelfRegister';

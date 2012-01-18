@@ -424,6 +424,7 @@
     <classEntry path="net.poweru.presenters.ChooseTaskBundleMediator"/>
     <classEntry path="net.poweru.components.parts.code.BulkAssignmentResultsGridCode"/>
     <classEntry path="net.poweru.components.parts.BulkAssignmentResultsGrid"/>
+    <classEntry path="net.poweru.presenters.OrgUploadCSVMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

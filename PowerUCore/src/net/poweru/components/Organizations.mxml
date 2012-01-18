@@ -23,6 +23,7 @@
 		<mx:HBox>
 			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATION, null]))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:Button label="Import" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTORGANIZATIONS, '']))}"/>
 			<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPORGANIZATION, null]))}"/>
 		</mx:HBox>
 		<mx:TitleWindow title="Details" width="100%">
