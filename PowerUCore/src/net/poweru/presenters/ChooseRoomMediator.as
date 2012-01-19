@@ -1,13 +1,17 @@
 package net.poweru.presenters
 {
+	import flash.events.Event;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooseRoom;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.proxies.RoomProxy;
 	import net.poweru.proxies.VenueProxy;
+	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -17,11 +21,14 @@ package net.poweru.presenters
 		public static const NAME:String = 'ChooseRoomMediator';
 		
 		protected var roomProxy:RoomProxy;
+		protected var initialDataProxy:InitialDataProxy;
+		protected var inputCollector:InputCollector;
 		
 		public function ChooseRoomMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, Places.CHOOSEROOM, NotificationNames.UPDATEVENUES, VenueProxy);
 			roomProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RoomProxy) as RoomProxy;
+			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get chooseRoom():IChooseRoom
@@ -54,7 +61,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case updateNotification:
-					chooser.populate((notification.getBody() as DataSet).toArray());
+					inputCollector.addInput('venues', (notification.getBody() as DataSet).toArray());
 					break;
 				
 				case NotificationNames.UPDATEROOMS:
@@ -66,9 +73,24 @@ package net.poweru.presenters
 			}
 		}
 		
+		protected function onInputsCollected(event:Event):void
+		{
+			chooser.populate(inputCollector.object['venues'], inputCollector.object['session']);
+		}
+		
 		override protected function populate():void
 		{
-			primaryProxy.getAll();
+			if (inputCollector != null)
+				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
+			inputCollector = new InputCollector(['venues', 'session']);
+			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
+			
+			inputCollector.addInput('session', initialDataProxy.getInitialData(placeName));
+			
+			(primaryProxy as VenueProxy).getAvailableVenues(
+				inputCollector.object['session']['start'] as Date,
+				inputCollector.object['session']['end'] as Date
+			);
 		}
 		
 		protected function onFetchRooms(event:ViewEvent):void

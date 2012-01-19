@@ -55,7 +55,7 @@
 		<mx:FormItem label="Venue/Room">
 			<mx:HBox>
 				<mx:Label text="{chosenVenue.name + ' : ' + chosenRoom.name}"/>
-				<mx:Button label="Choose Venue/Room" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEROOM, null]))"/>
+				<mx:Button label="Choose Venue/Room" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEROOM, getData()]))"/>
 			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>

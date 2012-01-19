@@ -20,7 +20,10 @@ package net.poweru.components.dialogs.choosers.code
 		[Bindable]
 		public var roomList:List;
 		
-		[Bindable] protected var addressString:String;
+		[Bindable]
+		protected var addressString:String;
+		[Bindable]
+		protected var session:Object;
 		
 		
 		public function ChooseRoomCode()
@@ -29,10 +32,12 @@ package net.poweru.components.dialogs.choosers.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
+		//	args[0] must be a session object
 		public function populate(data:Array, ...args):void
 		{
 			grid.dataProvider.source = data;
 			grid.dataProvider.refresh();
+			session = args[0];
 			roomList.dataProvider.source = [];
 			roomList.dataProvider.refresh();
 		}

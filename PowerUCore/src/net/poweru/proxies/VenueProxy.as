@@ -1,7 +1,10 @@
 package net.poweru.proxies
 {
+	import mx.rpc.AsyncToken;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.VenueManagerDelegate;
+	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -15,6 +18,12 @@ package net.poweru.proxies
 			super(NAME, VenueManagerDelegate, NotificationNames.UPDATEVENUES, FIELDS, 'Venue');
 			createArgNamesInOrder = ['name', 'phone', 'region'];
 			createOptionalArgNames = ['address', 'contact', 'hours_of_operation'];
+		}
+		
+		public function getAvailableVenues(start:Date, end:Date):void
+		{
+			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getAvailableVenues(loginProxy.authToken, start, end, FIELDS);
+			token['filters'] = {};
 		}
 	}
 }
