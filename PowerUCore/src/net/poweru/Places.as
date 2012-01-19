@@ -48,6 +48,7 @@ package net.poweru
 		public static const CHOOSEUSER:String = 'ChooseUser';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATEACHIEVEMENT:String = 'CreateAchievement';
+		public static const CREATEBLACKOUTPERIOD:String = 'CreateBlackoutPeriod';
 		public static const CREATECATEGORY:String = 'CreateCategory';
 		public static const CREATECREDENTIALTYPE:String = 'CreateCredentialType';
 		public static const CREATECURRICULUMENROLLMENT:String = 'CreateCurriculumEnrollments';
@@ -71,6 +72,7 @@ package net.poweru
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';
+		public static const EDITBLACKOUTPERIOD:String = 'EditBlackoutPeriod';
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCREDENTIALTYPE:String = 'EditCredentialType';
 		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';

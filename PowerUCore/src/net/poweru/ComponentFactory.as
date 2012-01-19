@@ -25,6 +25,7 @@ package net.poweru
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
 	import net.poweru.components.dialogs.CreateAchievement;
+	import net.poweru.components.dialogs.CreateBlackoutPeriod;
 	import net.poweru.components.dialogs.CreateCredentialType;
 	import net.poweru.components.dialogs.CreateCurriculum;
 	import net.poweru.components.dialogs.CreateCurriculumEnrollment;
@@ -45,6 +46,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
 	import net.poweru.components.dialogs.EditAchievement;
+	import net.poweru.components.dialogs.EditBlackoutPeriod;
 	import net.poweru.components.dialogs.EditCredentialType;
 	import net.poweru.components.dialogs.EditCurriculum;
 	import net.poweru.components.dialogs.EditEnrollments;
@@ -100,6 +102,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseUserMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateAchievementMediator;
+	import net.poweru.presenters.CreateBlackoutPeriodMediator;
 	import net.poweru.presenters.CreateCredentialTypeMediator;
 	import net.poweru.presenters.CreateCurriculumEnrollmentMediator;
 	import net.poweru.presenters.CreateCurriculumMediator;
@@ -125,6 +128,7 @@ package net.poweru
 	import net.poweru.presenters.CurriculumManagementMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditAchievementMediator;
+	import net.poweru.presenters.EditBlackoutPeriodMediator;
 	import net.poweru.presenters.EditCredentialTypeMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
 	import net.poweru.presenters.EditEnrollmentsMediator;
@@ -244,6 +248,10 @@ package net.poweru
 					component = getOrCreate(name, CreateAchievement, CreateAchievementMediator);
 					break;
 				
+				case Places.CREATEBLACKOUTPERIOD:
+					component = getOrCreate(name, CreateBlackoutPeriod, CreateBlackoutPeriodMediator);
+					break;
+				
 				case Places.CREATECREDENTIALTYPE:
 					component = getOrCreate(name, CreateCredentialType, CreateCredentialTypeMediator);
 					break;
@@ -342,6 +350,10 @@ package net.poweru
 				
 				case Places.EDITACHIEVEMENT:
 					component = getOrCreate(name, EditAchievement, EditAchievementMediator);
+					break;
+				
+				case Places.EDITBLACKOUTPERIOD:
+					component = getOrCreate(name, EditBlackoutPeriod, EditBlackoutPeriodMediator);
 					break;
 				
 				case Places.EDITCREDENTIALTYPE:

@@ -49,7 +49,8 @@ package net.poweru.model
 		}
 		
 		/*	returns as many of the requested items as it finds, but does not
-			raise an error if one or more are not found. */
+			raise an error if one or more are not found. This only works when
+			values represent unique items. */
 		public function findMembersByKey(key:String, values:Array):DataSet
 		{
 			var results:Array = [];

@@ -1,6 +1,9 @@
 package net.poweru.presenters
 {
+	import com.gskinner.motion.plugins.CurrentFramePlugin;
+	
 	import mx.events.FlexEvent;
+	import mx.utils.StringUtil;
 	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
@@ -8,6 +11,7 @@ package net.poweru.presenters
 	import net.poweru.components.interfaces.IVenues;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.proxies.BlackoutPeriodProxy;
 	import net.poweru.proxies.RoomProxy;
 	import net.poweru.proxies.VenueProxy;
 	
@@ -19,11 +23,13 @@ package net.poweru.presenters
 		public static const NAME:String = 'VenuesMediator';
 		
 		protected var roomProxy:RoomProxy;
+		protected var blackoutPeriodProxy:BlackoutPeriodProxy;
 		
 		public function VenuesMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, VenueProxy);
 			roomProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RoomProxy) as RoomProxy;
+			blackoutPeriodProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BlackoutPeriodProxy) as BlackoutPeriodProxy;
 		}
 		
 		protected function get venues():IVenues
@@ -36,7 +42,7 @@ package net.poweru.presenters
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			displayObject.addEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
-			displayObject.addEventListener(ViewEvent.FETCH, onFetchRooms);
+			displayObject.addEventListener(ViewEvent.FETCH, onFetch);
 		}
 		
 		override protected function removeEventListeners():void
@@ -44,12 +50,13 @@ package net.poweru.presenters
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);	
 			displayObject.removeEventListener(ViewEvent.REFRESH, onRefresh);
 			displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
-			displayObject.removeEventListener(ViewEvent.FETCH, onFetchRooms);
+			displayObject.removeEventListener(ViewEvent.FETCH, onFetch);
 		}
 		
 		override protected function onRefresh(event:ViewEvent):void
 		{
 			roomProxy.clear();
+			blackoutPeriodProxy.clear();
 			super.onRefresh(event);
 		}
 		
@@ -58,7 +65,8 @@ package net.poweru.presenters
 			return [
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEVENUES,
-				NotificationNames.UPDATEROOMS
+				NotificationNames.UPDATEROOMS,
+				NotificationNames.UPDATEBLACKOUTPERIODS
 			];
 		}
 		
@@ -73,12 +81,20 @@ package net.poweru.presenters
 				
 				// Happens when we save an Event, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEVENUES:
+					venues.clear();
 					venues.populate(primaryProxy.dataSet.toArray());
 					break;
 				
 				case NotificationNames.UPDATEROOMS:
 					venues.setRooms((notification.getBody() as DataSet).toArray());
 					break;
+				
+				case NotificationNames.UPDATEBLACKOUTPERIODS:
+					venues.setBlackoutPeriods((notification.getBody() as DataSet).toArray());
+					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
@@ -87,11 +103,21 @@ package net.poweru.presenters
 			primaryProxy.getAll();
 		}
 		
-		protected function onFetchRooms(event:ViewEvent):void
+		protected function onFetch(event:ViewEvent):void
 		{
-			var room_ids:Array = event.body as Array;
-			if (room_ids.length > 0)
-				roomProxy.findByIDs(room_ids);
+			var venueID:Number = event.body as Number;
+			var currentDate:Date = new Date();
+			var dateString:String = StringUtil.substitute('{0}-{1}-{2}',
+				currentDate.getUTCFullYear(),
+				currentDate.getUTCMonth() + 1,
+				currentDate.getUTCDay()
+			);
+			
+			roomProxy.getFiltered({'exact':{'venue':venueID}});
+			blackoutPeriodProxy.getFiltered({
+				'exact':{'venue':venueID},
+				'greater_than':{'end':dateString}
+			});
 		}
 	}
 }

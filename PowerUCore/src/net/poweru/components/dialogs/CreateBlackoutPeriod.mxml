@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateBlackoutPeriodCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}" width="100%">
+		<mx:FormItem label="Venue">
+			<mx:Label text="{venue.name}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Start">
+			<mx:DateField id="startDateInput" change="onStartDateSelected(event)"/>
+			<yahoo:TimeInput id="startTimeInput" showSeconds="{false}"/>
+		</mx:FormItem>
+		<mx:FormItem label="End">
+			<mx:DateField id="endDateInput" enabled="{startDateInput.selectedDate != null}"/>
+			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description" width="100%">
+			<mx:TextArea id="descriptionInput" height="100%" width="100%"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:CreateBlackoutPeriodCode>

@@ -40,6 +40,7 @@ package net.poweru
 		public static const UPDATEACHIEVEMENTS:String = 'UpdateAchievements';
 		public static const UPDATEASSIGNMENTS:String = 'UpdateAssignments';
 		public static const UPDATEASSIGNMENTSFORUSER:String = 'UpdateAssignmentsForUser';
+		public static const UPDATEBLACKOUTPERIODS:String = 'UpdateBlackoutPeriods';
 		public static const UPDATECATEGORIES:String = 'UpdateCategories';
 		public static const UPDATECHOICES:String = 'UpdateChoices';
 		public static const UPDATECREDENTIALTYPES:String = 'UpdateCredentialTypes';

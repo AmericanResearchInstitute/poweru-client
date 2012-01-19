@@ -4,6 +4,7 @@ package net.poweru.components.code
 	
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.controls.List;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
@@ -18,6 +19,8 @@ package net.poweru.components.code
 		public var grid:AdvancedDataGrid;
 		[Bindable]
 		public var roomList:List;
+		[Bindable]
+		public var blackoutGrid:DataGrid;
 		[Bindable]
 		protected var addressString:String;
 		
@@ -39,16 +42,16 @@ package net.poweru.components.code
 		public function clear():void
 		{
 			populate([]);
+			setBlackoutPeriods([]);
 			roomList.dataProvider.source = [];
 			roomList.dataProvider.refresh();
 			addressString = '';
 		}
 		
-		protected function onCreationComplete(event:FlexEvent):void
+		public function setBlackoutPeriods(data:Array):void
 		{
-			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
-			roomList.dataProvider = new DataSet();
+			blackoutGrid.dataProvider.source = data;
+			blackoutGrid.dataProvider.refresh();
 		}
 		
 		public function setRooms(data:Array):void
@@ -82,10 +85,20 @@ package net.poweru.components.code
 		{
 			roomList.dataProvider.source = [];
 			roomList.dataProvider.refresh();
-			dispatchEvent(new ViewEvent(ViewEvent.FETCH, (event.target as AdvancedDataGrid).selectedItem['rooms']));
+			blackoutGrid.dataProvider.source = [];
+			blackoutGrid.dataProvider.refresh();
+			dispatchEvent(new ViewEvent(ViewEvent.FETCH, (event.target as AdvancedDataGrid).selectedItem['id']));
 			
 			var address:Object = grid.selectedItem.address;
 			addressString = address.label + '\n' + address.locality + ', ' + address.region + ' ' + address.postal_code + ' ' + address.country;
+		}
+		
+		protected function onCreationComplete(event:FlexEvent):void
+		{
+			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			grid.dataProvider = new DataSet();
+			roomList.dataProvider = new DataSet();
+			blackoutGrid.dataProvider = new DataSet();
 		}
 	}
 }
