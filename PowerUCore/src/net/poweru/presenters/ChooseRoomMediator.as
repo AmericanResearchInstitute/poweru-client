@@ -97,7 +97,11 @@ package net.poweru.presenters
 		{
 			var room_ids:Array = event.body as Array;
 			if (room_ids.length > 0)
-				roomProxy.findByIDs(room_ids);
+				roomProxy.getAvailableRooms(
+					inputCollector.object['session']['start'] as Date,
+					inputCollector.object['session']['end'] as Date,
+					room_ids
+				);
 		}
 	}
 }

@@ -22,7 +22,7 @@ package net.poweru.proxies
 		
 		public function getAvailableVenues(start:Date, end:Date):void
 		{
-			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getAvailableVenues(loginProxy.authToken, start, end, FIELDS);
+			var token:AsyncToken = new VenueManagerDelegate(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getAvailableVenues(loginProxy.authToken, start, end, FIELDS);
 			token['filters'] = {};
 		}
 	}
