@@ -17,6 +17,7 @@ package net.poweru
 	import net.poweru.components.TaskBundles;
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
+	import net.poweru.components.collections.Assignments;
 	import net.poweru.components.collections.CredentialManagement;
 	import net.poweru.components.collections.CurriculumManagement;
 	import net.poweru.components.collections.UserManagement;
@@ -82,7 +83,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseTask;
 	import net.poweru.components.dialogs.choosers.ChooseTaskBundle;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
-	import net.poweru.components.student.Assignments;
+	import net.poweru.components.student.CurriculumEnrollments;
 	import net.poweru.components.student.ExamAssignments;
 	import net.poweru.components.student.FileDownloadAssignments;
 	import net.poweru.components.student.SessionAssignments;
@@ -168,6 +169,7 @@ package net.poweru
 	import net.poweru.presenters.ViewExamAssignmentsMediator;
 	import net.poweru.presenters.ViewFileDownloadAssignmentsMediator;
 	import net.poweru.presenters.student.AssignmentsMediator;
+	import net.poweru.presenters.student.CurriculumEnrollmentMediator;
 	import net.poweru.presenters.student.ExamAssignmentsMediator;
 	import net.poweru.presenters.student.FileDownloadAssignmentsMediator;
 	import net.poweru.presenters.student.SessionAssignmentMediator;
@@ -337,7 +339,7 @@ package net.poweru
 					break;
 				
 				case Places.CURRICULUMENROLLMENTS:
-					component = getOrCreate(name, CurriculumEnrollments, CurriculumEnrollmentMediator);
+					component = getOrCreate(name, net.poweru.components.CurriculumEnrollments, net.poweru.presenters.CurriculumEnrollmentMediator);
 					break;
 				
 				case Places.CURRICULUMMANAGEMENT:
@@ -502,6 +504,10 @@ package net.poweru
 				
 				case Places.STUDENTASSIGNMENTS:
 					component = getOrCreate(name, Assignments, AssignmentsMediator);
+					break;
+				
+				case Places.STUDENTCURRICULUMENROLLMENTS:
+					component = getOrCreate(name, net.poweru.components.student.CurriculumEnrollments, net.poweru.presenters.student.CurriculumEnrollmentMediator);
 					break;
 				
 				case Places.TASKBUNDLES:

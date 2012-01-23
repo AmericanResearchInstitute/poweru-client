@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CurriculumEnrollmentsCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.student.code.*"
+	width="100%"
+	height="100%">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:AdvancedDataGrid id="grid" width="50%" height="100%" change="onSelect(event)">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="curriculum_name" headerText="Name"/>
+			<mx:AdvancedDataGridColumn dataField="start" headerText="Start"/>
+			<mx:AdvancedDataGridColumn dataField="end" headerText="End"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+	<mx:VBox width="50%" height="100%">
+		<mx:HBox>
+			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+		</mx:HBox>
+		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Form>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.curriculum_name}" />
+				</mx:FormItem>
+				<mx:FormItem label="Start:">
+					<mx:Label text="{grid.selectedItem.start}" />
+				</mx:FormItem>
+				<mx:FormItem label="End:">
+					<mx:Label text="{grid.selectedItem.end}" />
+				</mx:FormItem>
+			</mx:Form>
+		</mx:Panel>
+		<mx:Panel width="100%" height="100%" title="Assignments">
+			<mx:DataGrid id="assignmentGrid" height="100%" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn dataField="name" headerText="Name" labelFunction="{getLabelFromTask}"/>
+					<mx:DataGridColumn dataField="status" headerText="Status"/>
+					<mx:DataGridColumn dataField="prerequisites_met" headerText="Prereqs Met"/>
+					<mx:DataGridColumn dataField="type" headerText="Type" labelFunction="{getLabelFromTask}"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Panel>
+	</mx:VBox>
+</code:CurriculumEnrollmentsCode>

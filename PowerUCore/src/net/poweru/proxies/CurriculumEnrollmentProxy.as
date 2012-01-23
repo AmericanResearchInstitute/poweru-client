@@ -10,7 +10,7 @@ package net.poweru.proxies
 	public class CurriculumEnrollmentProxy extends BaseProxy
 	{
 		public static const NAME:String = 'CurriculumEnrollmentProxy';
-		public static const FIELDS:Array = [];
+		public static const FIELDS:Array = ['curriculum_name', 'start', 'end'];
 		
 		public function CurriculumEnrollmentProxy()
 		{
@@ -27,6 +27,11 @@ package net.poweru.proxies
 		override public function getOne(pk:Number):void
 		{
 			new CurriculumEnrollmentManagerDelegate(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).curriculumEnrollmentsView(loginProxy.authToken, [pk]);
+		}
+		
+		public function getStudentCurriculumEnrollments():void
+		{
+			getFiltered({'exact' : {'users__id' : loginProxy.userPK}});
 		}
 		
 		// Result handlers

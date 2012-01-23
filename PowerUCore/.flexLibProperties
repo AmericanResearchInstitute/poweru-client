@@ -175,9 +175,7 @@
     <classEntry path="net.poweru.components.parts.code.AddSessionUserRoleCode"/>
     <classEntry path="net.poweru.components.parts.code.SURRAssignmentsCode"/>
     <classEntry path="net.poweru.components.parts.code.SelectSessionRoleCode"/>
-    <classEntry path="net.poweru.components.student.Assignments"/>
     <classEntry path="net.poweru.components.student.FileDownloadAssignments"/>
-    <classEntry path="net.poweru.components.student.code.AssignmentsCode"/>
     <classEntry path="net.poweru.components.student.code.FileDownloadAssignmentsCode"/>
     <classEntry path="net.poweru.components.student.interfaces.IAssignments"/>
     <classEntry path="net.poweru.components.student.interfaces.IFileDownloadAssignments"/>
@@ -435,6 +433,11 @@
     <classEntry path="net.poweru.components.dialogs.code.EditBlackoutPeriodCode"/>
     <classEntry path="net.poweru.components.dialogs.EditBlackoutPeriod"/>
     <classEntry path="net.poweru.presenters.EditBlackoutPeriodMediator"/>
+    <classEntry path="net.poweru.components.student.code.CurriculumEnrollmentsCode"/>
+    <classEntry path="net.poweru.components.student.CurriculumEnrollments"/>
+    <classEntry path="net.poweru.presenters.student.CurriculumEnrollmentMediator"/>
+    <classEntry path="net.poweru.components.collections.Assignments"/>
+    <classEntry path="net.poweru.components.student.interfaces.ICurriculumEnrollments"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
