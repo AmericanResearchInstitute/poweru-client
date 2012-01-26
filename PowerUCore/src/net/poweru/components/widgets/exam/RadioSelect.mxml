@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:RadioSelectCode
+	width="100%"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.widgets.exam.code.*">
+	<mx:RadioButtonGroup id="radioButtonGroup"/>
+	<mx:Text text="{_question.label}" width="100%"/>
+	<mx:Label text="Required" visible="{_question.required}" fontStyle="italic" color="#F81324"/>
+	<mx:VBox id="buttonBox" width="100%" height="100%" paddingLeft="32"/>
+</code:RadioSelectCode>

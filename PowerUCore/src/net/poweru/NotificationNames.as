@@ -15,6 +15,9 @@ package net.poweru
 		// body will be the Place name of the presented dialog
 		public static const DIALOGPRESENTED:String = SpaceMediator.DIALOGPRESENTED;
 		
+		public static const EXAMRESPONSEADDED:String = 'ExamResponseAdded';
+		public static const EXAMSESSIONCREATED:String = 'ExamSessionCreated';
+		public static const EXAMSESSIONFINISHED:String = 'ExamSessionFinished';
 		public static const GETCOMPONENT:String = 'GetComponent';
 		public static const FILEDOWNLOADURLRECEIVED:String = 'FileDownloadURLReceived';
 		public static const LOGINFAILURE:String = 'LoginFailure';
@@ -52,6 +55,7 @@ package net.poweru
 		public static const UPDATEEXAMS:String = 'UpdateExams';
 		public static const UPDATEEXAMASSIGNMENTSFORUSER:String = 'UpdateExamAssignmentsForUser';
 		public static const UPDATEEXAMASSIGNMENTSDETAIL:String = 'UpdateExamAssignmentsDetail';
+		public static const UPDATEEXAMSESSIONS:String = 'UpdateExamSessions';
 		public static const UPDATEFILEDOWNLOADS:String = 'UpdateFileDownloads';
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSDETAIL:String = 'UpdateFileDownloadAssignmentsDetail';
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSFORUSER:String = 'UpdateFileDownloadAssignmentsForUser';

@@ -2,6 +2,8 @@ package net.poweru
 {
 	import mx.core.Container;
 	
+	import net.poweru.commands.ExamSessionFinishedCommand;
+	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.facade.Facade;
@@ -45,6 +47,13 @@ package net.poweru
 		public function startup(stage:Container):void
 		{
 			sendNotification(NotificationNames.STARTUP, stage);
+		}
+		
+		override protected function initializeController():void
+		{
+			super.initializeController();
+			
+			registerCommand(NotificationNames.EXAMSESSIONFINISHED, ExamSessionFinishedCommand);
 		}
 		
 	}

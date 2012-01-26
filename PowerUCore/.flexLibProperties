@@ -438,6 +438,18 @@
     <classEntry path="net.poweru.presenters.student.CurriculumEnrollmentMediator"/>
     <classEntry path="net.poweru.components.collections.Assignments"/>
     <classEntry path="net.poweru.components.student.interfaces.ICurriculumEnrollments"/>
+    <classEntry path="net.poweru.delegates.ExamSessionManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.ExamSessionProxy"/>
+    <classEntry path="net.poweru.components.interfaces.IAdministerExamSession"/>
+    <classEntry path="net.poweru.components.dialogs.code.AdministerExamSessionCode"/>
+    <classEntry path="net.poweru.components.dialogs.AdministerExamSession"/>
+    <classEntry path="net.poweru.components.widgets.exam.code.IExamQuestionWidget"/>
+    <classEntry path="net.poweru.components.widgets.exam.code.RadioSelectCode"/>
+    <classEntry path="net.poweru.components.widgets.exam.RadioSelect"/>
+    <classEntry path="net.poweru.presenters.AdministerExamSessionMediator"/>
+    <classEntry path="net.poweru.components.widgets.exam.code.CheckboxSelectMultipleCode"/>
+    <classEntry path="net.poweru.components.widgets.exam.CheckboxSelectMultiple"/>
+    <classEntry path="net.poweru.commands.ExamSessionFinishedCommand"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

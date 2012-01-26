@@ -20,5 +20,9 @@ package net.poweru
 		public static const BULKASSIGN:String = 'BulkAssign';
 		public static const CURRICULUMENROLLMENT:String = 'CurriculumEnrollment';
 		
+		// Exam widget types
+		public static const RADIOSELECT:String = 'RadioSelect';
+		public static const CHECKBOXSELECTMULTIPLE:String = 'CheckboxSelectMultiple';
+		
 	}
 }

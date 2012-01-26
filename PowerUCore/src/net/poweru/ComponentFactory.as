@@ -22,6 +22,7 @@ package net.poweru
 	import net.poweru.components.collections.CurriculumManagement;
 	import net.poweru.components.collections.UserManagement;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
+	import net.poweru.components.dialogs.AdministerExamSession;
 	import net.poweru.components.dialogs.BulkAssignmentResults;
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
@@ -91,6 +92,7 @@ package net.poweru
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AchievementsMediator;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
+	import net.poweru.presenters.AdministerExamSessionMediator;
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseAchievementMediator;
@@ -200,6 +202,10 @@ package net.poweru
 				
 				case Places.ADDTASKSTOCURRICULUM:
 					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
+					break;
+				
+				case Places.ADMINISTEREXAMSESSION:
+					component = getOrCreate(name, AdministerExamSession, AdministerExamSessionMediator);
 					break;
 				
 				case Places.BULKASSIGNMENTRESULTS:

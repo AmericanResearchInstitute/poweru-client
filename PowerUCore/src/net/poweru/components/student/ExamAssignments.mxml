@@ -6,6 +6,7 @@
 	height="100%">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -17,7 +18,7 @@
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Open" enabled="{grid.selectedItem != null}"/>
+			<mx:Button label="Open" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.status != 'completed'}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.ADMINISTEREXAMSESSION, grid.selectedItem.id]))"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
@@ -27,6 +28,9 @@
 				</mx:FormItem>
 				<mx:FormItem label="Title:">
 					<mx:Label text="{grid.selectedItem.task.title}" />
+				</mx:FormItem>
+				<mx:FormItem label="Status:">
+					<mx:Label text="{grid.selectedItem.status}"/>
 				</mx:FormItem>
 				<mx:FormItem label="Attempts:">
 					<mx:List id="attemptList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.attempts}"/>
