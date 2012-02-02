@@ -6,9 +6,10 @@
 	height="100%"
 	creationPolicy="all"
 	creationComplete="{onCreationComplete(event)}"
-	cornerRadius="15">
+	cornerRadius="15" xmlns:components="com.hillelcoren.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ListCollectionView;
 			import mx.core.Container;
 			
 			import net.poweru.Places;
@@ -23,14 +24,19 @@
 	
 	<mx:TabNavigator width="100%" height="100%">
 		<mx:HBox label="Edit" height="100%" width="100%">
-			<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="onUserSelected(event)">
-				<mx:columns>
-					<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
-					<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
-					<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
-					<mx:AdvancedDataGridColumn labelFunction="labelUsername" headerText="Username" sortCompareFunction="{SortCompareFunctionFactory(['default_username_and_domain', 'username'])}"/>
-				</mx:columns>
-			</mx:AdvancedDataGrid>
+			<mx:VBox height="100%" width="65%">
+				<mx:FormItem label="Search Last Name">
+					<components:AutoComplete dataProvider="{gridDataProvider}" labelField="last_name"/>
+				</mx:FormItem>
+				<mx:AdvancedDataGrid id="grid" dataProvider="{gridDataProvider}" width="100%" height="100%" change="onUserSelected(event)">
+					<mx:columns>
+						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
+						<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
+						<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
+						<mx:AdvancedDataGridColumn labelFunction="labelUsername" headerText="Username" sortCompareFunction="{SortCompareFunctionFactory(['default_username_and_domain', 'username'])}"/>
+					</mx:columns>
+				</mx:AdvancedDataGrid>
+			</mx:VBox>
 			<mx:VBox width="35%" height="100%">
 				<mx:HBox>
 					<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEUSER, '']))}"/>

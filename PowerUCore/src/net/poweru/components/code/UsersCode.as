@@ -63,6 +63,8 @@ package net.poweru.components.code
 		public var fileDownloadToAssign:Object;
 		[Bindable]
 		public var achievementGrid:DataGrid;
+		[Bindable]
+		protected var gridDataProvider:DataSet;
 		
 		public function UsersCode()
 		{
@@ -76,8 +78,8 @@ package net.poweru.components.code
 		
 		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
 		{
-			grid.dataProvider.source = users;
-			grid.dataProvider.refresh();
+			gridDataProvider.source = users;
+			gridDataProvider.refresh();
 			
 			organizationDataSet.source = organizations;
 			organizationDataSet.refresh();
@@ -136,7 +138,7 @@ package net.poweru.components.code
 
 		protected function onCreationComplete(event:FlexEvent):void
 		{
-			grid.dataProvider = new ArrayCollection();
+			gridDataProvider = new DataSet();
 			bulkGrid.dataProvider = new DataSet();
 			bulkDataSet.filterFunction = filterBulkUsers;
 			eventGrid.dataProvider = new DataSet();
