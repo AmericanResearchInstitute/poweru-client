@@ -384,7 +384,21 @@ package net.poweru.proxies
 		
 		protected function onFault(info:FaultEvent):void
 		{
-			trace('fault');
+			// gets manager name
+			var msg:String = 'fault: ' + info.token.message.destination;
+			try
+			{
+				// trys to add method name
+				msg = msg.concat('.', info.token.message['operation']);
+			}
+			catch (err:ReferenceError)
+			{
+				// We gave it a try. Just leave the method name off				
+			}
+			finally
+			{
+				trace(msg);
+			}
 		}
 		
 		protected function onUploadComplete(event:Event):void
