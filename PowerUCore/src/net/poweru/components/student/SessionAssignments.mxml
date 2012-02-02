@@ -6,6 +6,7 @@
 	height="100%">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -23,6 +24,7 @@
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:Button label="Calendar View" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.STUDENTCALENDAR, null]))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
 			<mx:Form>
