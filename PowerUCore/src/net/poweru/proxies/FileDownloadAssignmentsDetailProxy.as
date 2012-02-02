@@ -12,7 +12,7 @@ package net.poweru.proxies
 		public function FileDownloadAssignmentsDetailProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADASSIGNMENTSDETAIL, [], 'Assignment', []);
-			getFilteredMethodName = 'file_download_assignments_detail_view';
+			getFilteredMethodName = 'detailed_file_download_view';
 		}
 	}
 }

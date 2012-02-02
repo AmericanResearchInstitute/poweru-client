@@ -17,7 +17,7 @@ package net.poweru.proxies
 		public function FileDownloadAssignmentsForUserProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADASSIGNMENTSFORUSER, []);
-			getFilteredMethodName = 'file_download_assignments_for_user';
+			getFilteredMethodName = 'file_download_view';
 		}
 		
 		public function getDownloadURLForAssignment(assignmentID:Number):void

@@ -13,7 +13,7 @@ package net.poweru.proxies
 		public function SessionAssignmentsForUserProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATESESSIONASSIGNMENTSFORUSER, [], 'Assignment', []);
-			getFilteredMethodName = 'session_assignments_for_user';
+			getFilteredMethodName = 'session_view';
 			dateTimeFields = ['task.session.start', 'task.session.end'];
 		}
 	}

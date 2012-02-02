@@ -8,7 +8,7 @@ package net.poweru.delegates
 		public function AssignmentManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'AssignmentManager');
-			getFilteredMethodName = 'detailed_user_view';
+			getFilteredMethodName = 'detailed_view';
 		}
 		
 		public function bulkCreate(authToken:String, taskID:Number, userIDs:Array):AsyncToken

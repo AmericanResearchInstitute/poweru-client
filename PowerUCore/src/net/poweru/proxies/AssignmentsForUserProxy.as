@@ -13,7 +13,7 @@ package net.poweru.proxies
 		public function AssignmentsForUserProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEASSIGNMENTSFORUSER, FIELDS);
-			getFilteredMethodName = 'assignments_for_user';
+			getFilteredMethodName = 'view';
 		}
 		
 		public function getByUserAndCurriculumEnrollment(curriculumEnrollmentID:Number):void
