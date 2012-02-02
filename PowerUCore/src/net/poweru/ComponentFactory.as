@@ -72,6 +72,7 @@ package net.poweru
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
 	import net.poweru.components.dialogs.SelfRegister;
+	import net.poweru.components.dialogs.Transcript;
 	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.components.dialogs.UploadFileDownload;
 	import net.poweru.components.dialogs.ViewExamAssignments;
@@ -163,6 +164,7 @@ package net.poweru
 	import net.poweru.presenters.SessionUserRolesMediator;
 	import net.poweru.presenters.TaskBundlesMediator;
 	import net.poweru.presenters.TasksMediator;
+	import net.poweru.presenters.TranscriptMediator;
 	import net.poweru.presenters.UploadFileDownloadMediator;
 	import net.poweru.presenters.UserManagementMediator;
 	import net.poweru.presenters.UserUploadCSVMediator;
@@ -518,6 +520,10 @@ package net.poweru
 				
 				case Places.TASKBUNDLES:
 					component = getOrCreate(name, TaskBundles, TaskBundlesMediator);
+					break;
+				
+				case Places.TRANSCRIPT:
+					component = getOrCreate(name, Transcript, TranscriptMediator);
 					break;
 				
 				case Places.UPLOADFILEDOWNLOAD:

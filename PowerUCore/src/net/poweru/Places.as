@@ -106,6 +106,7 @@ package net.poweru
 		public static const RESETPASSWORD:String = 'ResetPassword';
 		public static const SELFREGISTER:String = 'SelfRegister';
 		public static const STUDENTCALENDAR:String = 'StudentCalendar';
+		public static const TRANSCRIPT:String = 'Transcript';
 		public static const UPLOADVIDEO:String = 'UploadVideo';
 		public static const UPLOADFILEDOWNLOAD:String = 'UploadFileDownload';
 		public static const VIDEOWATCHERREPORT:String = 'VideoWatcherReport';

@@ -17,5 +17,12 @@ package net.poweru.delegates
 			token.addResponder(responder);
 			return token;
 		}
+		
+		public function transcriptView(authToken:String, filters:Object, fields:Array, userID:Object=null):AsyncToken
+		{
+			var token:AsyncToken = remoteObject.getOperation('transcript_view').send(authToken, filters, fields, userID);
+			token.addResponder(responder);
+			return token;
+		}
 	}
 }

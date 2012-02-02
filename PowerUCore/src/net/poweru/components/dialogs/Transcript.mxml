@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:TranscriptCode
+	title="Transcript"
+	minWidth="800"
+	minHeight="600"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:DataGrid id="grid" height="100%" width="100%" dataProvider="{dataSet}">
+		<mx:columns>
+			<mx:DataGridColumn dataField="name" headerText="Name" labelFunction="{getLabelFromTask}"/>
+			<mx:DataGridColumn dataField="date_started" headerText="Started"/>
+			<mx:DataGridColumn dataField="date_completed" headerText="Completed"/>
+			<mx:DataGridColumn dataField="type" headerText="Type" labelFunction="{getLabelFromTask}"/>
+		</mx:columns>
+	</mx:DataGrid>
+</code:TranscriptCode>

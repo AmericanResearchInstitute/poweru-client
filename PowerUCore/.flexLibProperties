@@ -450,6 +450,9 @@
     <classEntry path="net.poweru.components.widgets.exam.code.CheckboxSelectMultipleCode"/>
     <classEntry path="net.poweru.components.widgets.exam.CheckboxSelectMultiple"/>
     <classEntry path="net.poweru.commands.ExamSessionFinishedCommand"/>
+    <classEntry path="net.poweru.components.dialogs.code.TranscriptCode"/>
+    <classEntry path="net.poweru.components.dialogs.Transcript"/>
+    <classEntry path="net.poweru.presenters.TranscriptMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

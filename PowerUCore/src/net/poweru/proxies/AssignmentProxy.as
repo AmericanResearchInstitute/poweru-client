@@ -28,10 +28,18 @@ package net.poweru.proxies
 			new AssignmentManagerDelegate(new PowerUResponder(onBulkCreateSuccess, onBulkCreateFailure, onFault)).bulkCreate(loginProxy.authToken, taskID, userIDs);
 		}
 		
+		public function transcriptView(filters:Object, fields:Array, userID:Object=null):void
+		{
+			new AssignmentManagerDelegate(new PowerUResponder(onTranscriptSuccess, onTranscriptFailure, onFault)).transcriptView(loginProxy.authToken, filters, fields, userID);
+		}
+		
 		protected function incrementOutstandingRequestCounter():void
 		{
 			outstandingBulkRequests += 1;
 		}
+		
+		
+		// event handlers
 		
 		protected function onBulkCreateSuccess(event:ResultEvent):void
 		{
@@ -50,6 +58,16 @@ package net.poweru.proxies
 			if (outstandingBulkRequests > 0)
 				outstandingBulkRequests -= 1;
 			trace('bulk assignment failure');
+		}
+		
+		protected function onTranscriptSuccess(event:ResultEvent):void
+		{
+			sendNotification(NotificationNames.UPDATETRANSCRIPT, event.result.value);
+		}
+		
+		protected function onTranscriptFailure(event:ResultEvent):void
+		{
+			trace('user transcript failure');
 		}
 	}
 }

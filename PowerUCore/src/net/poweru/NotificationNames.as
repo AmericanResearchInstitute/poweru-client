@@ -73,6 +73,7 @@ package net.poweru
 		public static const UPDATESESSIONUSERROLES:String = 'UpdateSessionUserRoles';
 		public static const UPDATETASKBUNDLESS:String = 'UpdateTaskBundles';
 		public static const UPDATETASKS:String = 'UpdateTasks';
+		public static const UPDATETRANSCRIPT:String = 'UpdateTranscript';
 		public static const UPDATEUSERS:String = 'UpdateUsers';
 		public static const UPDATEUSERORGROLES:String = 'UpdateUserOrgRoles';
 		public static const UPDATEUSERVIDEOSVIEW:String = 'UpdateUserVideosView';
