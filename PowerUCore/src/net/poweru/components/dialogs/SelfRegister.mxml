@@ -44,6 +44,9 @@
 		<mx:FormItem label="Organization" toolTip="If you wish to be associated with an organization, please type it's name here. Your membership will be confirmed at a later time.">
 			<mx:TextInput id="organization"/>
 		</mx:FormItem>
+		<mx:FormItem label="Organization Access ID" toolTip="If you wish to be associated with an organization and have its access ID, enter it here.">
+			<mx:TextInput id="organizationExternalID"/>
+		</mx:FormItem>
 	</mx:Form>
 	
 	<widgets:ReCaptcha id="captcha"/>

@@ -19,7 +19,7 @@ package net.poweru.proxies
 		{
 			super(NAME, UserManagerDelegate, NotificationNames.UPDATEUSERS, FIELDS, 'User', ['status']);
 			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
-			createOptionalArgNames = ['alleged_organization', 'recaptcha_challenge', 'recaptcha_response'];
+			createOptionalArgNames = ['alleged_organization', 'recaptcha_challenge', 'recaptcha_response', 'external_uid'];
 		}
 		
 		public function getUsersByGroupName(name:String):void

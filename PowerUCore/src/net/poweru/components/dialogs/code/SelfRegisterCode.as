@@ -22,6 +22,7 @@ package net.poweru.components.dialogs.code
 		[Bindable] public var password2:TextInput;
 		[Bindable] public var username:IGeneratedTextInput;
 		[Bindable] public var organization:TextInput;
+		[Bindable] public var organizationExternalID:TextInput;
 		[Bindable] public var captcha:ReCaptcha;
 		
 		protected var captchaChallenge:String;
@@ -43,6 +44,7 @@ package net.poweru.components.dialogs.code
 				'username' : username.text,
 				'password' : password1.text,
 				'status' : 'pending',
+				'external_uid' : organizationExternalID.text,
 				'alleged_organization' : organization.text,
 				'recaptcha_challenge' : captchaChallenge,
 				'recaptcha_response' : captcha.response.text
@@ -60,6 +62,7 @@ package net.poweru.components.dialogs.code
 			password1.text = '';
 			password2.text = '';
 			organization.text = '';
+			organizationExternalID.text = '';
 			clearCaptcha();
 		}
 		
