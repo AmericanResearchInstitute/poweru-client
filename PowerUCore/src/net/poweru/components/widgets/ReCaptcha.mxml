@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas
+<code:ReCaptchaCode
 	width="340"
 	height="174"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.widgets.code.*"
 	backgroundColor="#D2E9FA"
 	borderStyle="solid"
 	borderThickness="0"
@@ -28,7 +29,7 @@
 	
 	<mx:TextInput id="response" x="10" y="117"/>
 	<mx:StringValidator id="validator" source="{response}" property="text" required="true"/>
-	<mx:Button label="Load New" x="242" y="117" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+	<mx:Button label="Load New" x="242" y="117" click="{onLoadNew(event)}"/>
 	<mx:Label text="Powered by reCAPTCHA" x="98.5" y="147"/>
 	<mx:Label text="Type the two words:" x="10" y="93"/>
-</mx:Canvas>
+</code:ReCaptchaCode>

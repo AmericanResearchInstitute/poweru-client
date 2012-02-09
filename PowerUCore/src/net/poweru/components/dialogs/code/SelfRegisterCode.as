@@ -62,6 +62,7 @@ package net.poweru.components.dialogs.code
 			password1.text = '';
 			password2.text = '';
 			organization.text = '';
+			captcha.clear();
 		}
 		
 		public function setCaptchaChallenge(challengeID:String, imageURL:String):void

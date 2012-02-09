@@ -65,6 +65,12 @@ package net.poweru.proxies
 			trace('error getting users by group name');
 		}
 		
+		override protected function onCreateSuccess(data:ResultEvent):void
+		{
+			super.onCreateSuccess(data);
+			sendNotification(NotificationNames.CREATEUSERSUCCESS, data.result['value']);
+		}
+		
 		override protected function onCreateError(data:ResultEvent):void
 		{
 			if (data.result['error'][0] == 23 && (loginProxy.authToken == null || loginProxy.authToken == ''))
