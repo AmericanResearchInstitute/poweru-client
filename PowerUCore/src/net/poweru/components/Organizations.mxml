@@ -31,6 +31,12 @@
 				<mx:FormItem label="Name:">
 					<mx:Label id="orgName" text="{organizations.selectedItem.name}"/>
 				</mx:FormItem>
+				<mx:FormItem label="External ID:">
+					<mx:Label text="{organizations.selectedItem.external_uid}"/>
+				</mx:FormItem>
+				<mx:FormItem label="External ID Auto Enroll:">
+					<mx:Label text="{organizations.selectedItem.use_external_uid}"/>
+				</mx:FormItem>
 				<mx:FormItem label="Email Domains:">
 					<mx:DataGrid id="orgEmailDomains" dataProvider="{organizations.selectedItem.org_email_domains}">
 						<mx:columns>

@@ -15,6 +15,13 @@
 		<mx:FormItem label="Name">
 			<Organization:NameInput id="nameInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="External ID">
+			<Organization:ExternalUidInput id="externalUIDInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="External ID Auto Enroll"
+					 toolTip="If this is checked, a new user can enter the External ID when they register and be automatically placed into this organization. This effectively turns the External ID into a password that gains entry to the organization.">
+			<mx:CheckBox id="externalUIDAutoEnroll"/>
+		</mx:FormItem>
 		<mx:FormItem label="Email Domains:">
 			<mx:DataGrid id="orgEmailDomains" dataProvider="{orgEmailDomainDataSet}">
 				<mx:columns>
