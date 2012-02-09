@@ -88,13 +88,17 @@ package net.poweru.presenters
 				// Tell user that captcha failed and load a new challenge
 				case NotificationNames.CREATEUSERPERMISSIONDENIED:
 					Alert.show("CAPTCHA verification failed.  Please try again.");
+					selfRegister.clearCaptcha();
 					populate();
 					break;
 				
 				case NotificationNames.DIALOGPRESENTED:
 					var body:String = notification.getBody() as String;
 					if (body != null && body == Places.SELFREGISTER)
+					{
+						selfRegister.clearCaptcha();
 						populate();
+					}
 					break;
 			}
 		}

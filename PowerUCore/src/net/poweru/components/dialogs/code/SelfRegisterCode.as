@@ -43,11 +43,9 @@ package net.poweru.components.dialogs.code
 				'username' : username.text,
 				'password' : password1.text,
 				'status' : 'pending',
-				'optional_attributes' : {
-					'alleged_organization' : organization.text,
-					'recaptcha_challenge' : captchaChallenge,
-					'recaptcha_response' : captcha.response.text
-				}
+				'alleged_organization' : organization.text,
+				'recaptcha_challenge' : captchaChallenge,
+				'recaptcha_response' : captcha.response.text
 			};
 		}
 		
@@ -62,6 +60,11 @@ package net.poweru.components.dialogs.code
 			password1.text = '';
 			password2.text = '';
 			organization.text = '';
+			clearCaptcha();
+		}
+		
+		public function clearCaptcha():void
+		{
 			captcha.clear();
 		}
 		
