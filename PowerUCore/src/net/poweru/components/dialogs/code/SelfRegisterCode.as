@@ -17,7 +17,7 @@ package net.poweru.components.dialogs.code
 		[Bindable] public var last:IGeneratedTextInput;
 		[Bindable] public var email:IGeneratedTextInput;
 		[Bindable] public var titleInput:TitleComboBox;
-		[Bindable] public var phone:IGeneratedTextInput
+		[Bindable] public var phone:IGeneratedTextInput;
 		[Bindable] public var password1:TextInput;
 		[Bindable] public var password2:TextInput;
 		[Bindable] public var username:IGeneratedTextInput;
