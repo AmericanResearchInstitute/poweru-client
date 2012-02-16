@@ -13,6 +13,8 @@ package net.poweru.components.code
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
+	import mx.controls.TextArea;
+	import mx.controls.TextInput;
 	import mx.controls.Tree;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
@@ -25,6 +27,7 @@ package net.poweru.components.code
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.model.HierarchicalDataSet;
+	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.CompareLabels;
 	import net.poweru.utils.PKArrayCollection;
 	
@@ -65,6 +68,8 @@ package net.poweru.components.code
 		public var achievementGrid:DataGrid;
 		[Bindable]
 		protected var gridDataProvider:DataSet;
+		public var emailSubjectInput:TextInput;
+		public var emailBodyInput:TextArea;
 		
 		public function UsersCode()
 		{
@@ -221,6 +226,12 @@ package net.poweru.components.code
 			return ret;
 		}
 		
+		public function emailSent():void
+		{
+			emailSubjectInput.text = '';
+			emailBodyInput.text = '';
+		}
+		
 		protected function assignTask(taskID:Number):void
 		{
 			var userIDs:PKArrayCollection = new PKArrayCollection(bulkGrid.selectedItems);
@@ -305,6 +316,16 @@ package net.poweru.components.code
 		protected function onAssignFileDownload(event:Event):void
 		{
 			assignTask(fileDownloadToAssign.id);
+		}
+		
+		protected function onSendEmail(event:Event):void
+		{
+			var info:Object = {
+				'users' : new PKArrayCollection(bulkGrid.selectedItems).toArray(),
+				'body' : emailBodyInput.text,
+				'subject' : emailSubjectInput.text
+			};
+			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, info, Constants.SENDEMAIL));	
 		}
 		
 		protected function onShowViewingActivityReport(event:MouseEvent):void

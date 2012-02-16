@@ -465,6 +465,8 @@
     <classEntry path="net.poweru.components.dialogs.code.EditMessageTemplateCode"/>
     <classEntry path="net.poweru.components.dialogs.EditMessageTemplate"/>
     <classEntry path="net.poweru.presenters.EditMessageTemplateMediator"/>
+    <classEntry path="net.poweru.commands.SendEmailSuccessCommand"/>
+    <classEntry path="net.poweru.commands.SendEmailErrorCommand"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

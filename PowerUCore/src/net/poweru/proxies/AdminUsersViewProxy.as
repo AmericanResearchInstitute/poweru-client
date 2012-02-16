@@ -2,6 +2,7 @@ package net.poweru.proxies
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.UserManagerDelegate;
+	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -15,6 +16,11 @@ package net.poweru.proxies
 			getFilteredMethodName = 'admin_users_view';
 			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
 			createOptionalArgNames = [];
+		}
+		
+		public function sendEmail(users:Array, subject:String, body:String):void
+		{
+			new UserManagerDelegate(new PowerUResponder(onSendEmailSuccess, onSendEmailError, onFault)).sendEmail(loginProxy.authToken, users, subject, body);
 		}
 	}
 }

@@ -3,6 +3,8 @@ package net.poweru
 	import mx.core.Container;
 	
 	import net.poweru.commands.ExamSessionFinishedCommand;
+	import net.poweru.commands.SendEmailErrorCommand;
+	import net.poweru.commands.SendEmailSuccessCommand;
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.IProxy;
@@ -54,6 +56,8 @@ package net.poweru
 			super.initializeController();
 			
 			registerCommand(NotificationNames.EXAMSESSIONFINISHED, ExamSessionFinishedCommand);
+			registerCommand(NotificationNames.EMAILSENT, SendEmailSuccessCommand);
+			registerCommand(NotificationNames.EMAILSENDERROR, SendEmailErrorCommand);
 		}
 		
 	}

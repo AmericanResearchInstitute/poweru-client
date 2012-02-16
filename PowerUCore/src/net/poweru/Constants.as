@@ -19,6 +19,7 @@ package net.poweru
 		
 		public static const BULKASSIGN:String = 'BulkAssign';
 		public static const CURRICULUMENROLLMENT:String = 'CurriculumEnrollment';
+		public static const SENDEMAIL:String = 'SendEmail';
 		
 		// Exam widget types
 		public static const RADIOSELECT:String = 'RadioSelect';

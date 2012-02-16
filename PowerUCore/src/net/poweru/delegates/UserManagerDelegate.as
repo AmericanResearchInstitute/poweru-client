@@ -85,6 +85,12 @@ package net.poweru.delegates
 			token.addResponder(responder);
 		}
 		
+		public function sendEmail(authToken:String, users:Array, subject:String, body:String):void
+		{
+			var token:AsyncToken = remoteObject.getOperation('send_email').send(authToken, users, subject, body);
+			token.addResponder(responder);
+		}
+		
 		
 		/*	Organization relationships are different than most M2M because there can be more than one relationship
 			between user and org as long as a different role is specified.  This makes removing these relationships

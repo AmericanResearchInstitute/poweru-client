@@ -493,5 +493,16 @@ package net.poweru.proxies
 		{
 			trace('error obtaining single use auth token');
 		}
+		
+		protected function onSendEmailSuccess(event:ResultEvent):void
+		{
+			sendNotification(NotificationNames.EMAILSENT);
+		}
+		
+		protected function onSendEmailError(event:ResultEvent):void
+		{
+			trace('error sending email');
+			sendNotification(NotificationNames.EMAILSENDERROR);
+		}
 	}
 }

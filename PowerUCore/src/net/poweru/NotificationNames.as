@@ -15,6 +15,8 @@ package net.poweru
 		// body will be the Place name of the presented dialog
 		public static const DIALOGPRESENTED:String = SpaceMediator.DIALOGPRESENTED;
 		
+		public static const EMAILSENT:String = 'EmailSent';
+		public static const EMAILSENDERROR:String = 'EmailSendError';
 		public static const EXAMRESPONSEADDED:String = 'ExamResponseAdded';
 		public static const EXAMSESSIONCREATED:String = 'ExamSessionCreated';
 		public static const EXAMSESSIONFINISHED:String = 'ExamSessionFinished';

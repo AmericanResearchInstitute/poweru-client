@@ -131,6 +131,17 @@
 						</mx:Form>
 					</mx:VBox>
 				</mx:VBox>
+				<mx:VBox width="100%" height="100%" label="Send Email" horizontalAlign="center">
+					<mx:Form width="100%" height="100%">
+						<mx:FormItem label="Subject:" width="100%">
+							<mx:TextInput id="emailSubjectInput" width="100%"/>
+						</mx:FormItem>
+						<mx:FormItem label="Body:" width="100%" height="100%">
+							<mx:TextArea id="emailBodyInput" width="100%" height="100%"/>
+						</mx:FormItem>
+						<mx:Button id="sendEmailButton" label="Send" enabled="{bulkGrid.selectedItems.length > 0}" click="onSendEmail(event)"/>
+					</mx:Form>
+				</mx:VBox>
 				<mx:VBox width="100%" label="Add to Group" horizontalAlign="center">
 					<mx:Form>
 						<mx:FormItem label="Group:">

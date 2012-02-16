@@ -52,6 +52,11 @@ package net.poweru.presenters
 			achievementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AchievementProxy) as AchievementProxy;
 		}
 		
+		protected function get adminUsersViewProxy():AdminUsersViewProxy
+		{
+			return primaryProxy as AdminUsersViewProxy;
+		}
+		
 		override protected function addEventListeners():void
 		{
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
@@ -79,6 +84,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.CHOICEMADE,
+				NotificationNames.EMAILSENT,
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEADMINORGANIZATIONSVIEW,
@@ -99,6 +105,10 @@ package net.poweru.presenters
 			{
 				case NotificationNames.CHOICEMADE:
 					users.receiveChoice(notification.getBody(), notification.getType());
+					break;
+				
+				case NotificationNames.EMAILSENT:
+					users.emailSent();
 					break;
 					
 				case NotificationNames.LOGOUT:
@@ -171,6 +181,10 @@ package net.poweru.presenters
 				
 				case Constants.CURRICULUMENROLLMENT:
 					curriculumEnrollmentProxy.save(event.body);
+					break;
+				
+				case Constants.SENDEMAIL:
+					adminUsersViewProxy.sendEmail(event.body.users, event.body.subject, event.body.body);
 					break;
 				
 				default:
