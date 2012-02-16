@@ -7,6 +7,7 @@ package net.poweru.presenters
 	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
+	import net.poweru.components.interfaces.IPopulatedComponent;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.BaseProxy;
 	import net.poweru.proxies.LoginProxy;
@@ -35,6 +36,11 @@ package net.poweru.presenters
 		protected function get displayObject():DisplayObject
 		{
 			return viewComponent as DisplayObject;
+		}
+		
+		protected function get populatedComponent():IPopulatedComponent
+		{
+			return viewComponent as IPopulatedComponent;
 		}
 		
 		protected function addEventListeners():void

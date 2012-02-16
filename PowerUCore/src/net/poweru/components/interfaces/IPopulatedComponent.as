@@ -1,6 +1,6 @@
 package net.poweru.components.interfaces
 {
-	public interface ICredentialTypes
+	public interface IPopulatedComponent
 	{
 		function populate(data:Array):void;
 		function clear():void;

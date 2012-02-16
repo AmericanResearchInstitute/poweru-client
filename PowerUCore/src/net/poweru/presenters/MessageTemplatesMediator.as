@@ -7,22 +7,22 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.proxies.CredentialTypeProxy;
+	import net.poweru.proxies.MessageTemplateProxy;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class CredentialTypesMediator extends BaseMediator implements IMediator
+	public class MessageTemplatesMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'CredentialTypesMediator';
+		public static const NAME:String = 'MessageTemplatesMediator';
 		
 		protected var inputCollector:InputCollector;
 		protected var populatedSinceLastClear:Boolean;
 		
-		public function CredentialTypesMediator(viewComponent:Object)
+		public function MessageTemplatesMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, CredentialTypeProxy);
+			super(NAME, viewComponent, MessageTemplateProxy);
 		}
 		
 		override protected function addEventListeners():void
@@ -44,7 +44,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATECREDENTIALTYPES,
+				NotificationNames.UPDATEMESSAGETEMPLATES,
 			];
 		}
 		
@@ -58,12 +58,12 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.CREDENTIALTYPES && !populatedSinceLastClear)
+					if (notification.getBody() == Places.MESSAGETEMPLATES && !populatedSinceLastClear)
 						populate();
 					break;
 				
-				// Happens when we save a credential type, and indicates that we should just refresh the view
-				case NotificationNames.UPDATECREDENTIALTYPES:
+				// Happens when we save a message template, and indicates that we should just refresh the view
+				case NotificationNames.UPDATEMESSAGETEMPLATES:
 					inputCollector.addInput('data', (primaryProxy.dataSet).toArray());
 					break;
 				

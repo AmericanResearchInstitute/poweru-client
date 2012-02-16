@@ -3,6 +3,7 @@ package net.poweru
 	public class Places extends Object
 	{
 		public static const ACHIEVEMENTS:String = 'Achievements';
+		public static const ADMIN:String = 'Admin';
 		public static const ASSIGNMENTS:String = 'Assignments';
 		public static const CATEGORIES:String = 'Categories';
 		public static const CREDENTIALMANAGEMENT:String = 'CredentialManagement';
@@ -21,6 +22,7 @@ package net.poweru
 		public static const GROUPS:String = 'Groups';
 		public static const LOGIN:String = 'Login';
 		public static const MAIN:String = 'Main';
+		public static const MESSAGETEMPLATES:String = 'MessageTemplates';
 		public static const NEWUSER:String = 'NewUser';
 		public static const ORGANIZATIONS:String = 'Organizations';
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
@@ -86,6 +88,7 @@ package net.poweru
 		public static const EDITGROUP:String = 'EditGroup';
 		public static const EDITFILEDOWNLOAD:String = 'EditFileDownload';
 		public static const EDITFILEUPLOAD:String = 'EditFileUpload';
+		public static const EDITMESSAGETEMPLATE:String = 'EditMessageTemplate';
 		public static const EDITORGANIZATION:String = 'EditOrganization';
 		public static const EDITROOM:String = 'EditRoom';
 		public static const EDITSESSION:String = 'EditSession';

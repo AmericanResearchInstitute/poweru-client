@@ -393,7 +393,7 @@
     <classEntry path="net.poweru.components.collections.CredentialManagement"/>
     <classEntry path="net.poweru.presenters.CredentialManagementMediator"/>
     <classEntry path="net.poweru.components.code.CredentialTypesCode"/>
-    <classEntry path="net.poweru.components.interfaces.ICredentialTypes"/>
+    <classEntry path="net.poweru.components.interfaces.IPopulatedComponent"/>
     <classEntry path="net.poweru.components.CredentialTypes"/>
     <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateCredentialTypeCode"/>
@@ -454,6 +454,14 @@
     <classEntry path="net.poweru.components.dialogs.Transcript"/>
     <classEntry path="net.poweru.presenters.TranscriptMediator"/>
     <classEntry path="net.poweru.components.widgets.code.ReCaptchaCode"/>
+    <classEntry path="net.poweru.components.collections.Admin"/>
+    <classEntry path="net.poweru.components.code.MessageTemplatesCode"/>
+    <classEntry path="net.poweru.components.MessageTemplates"/>
+    <classEntry path="net.poweru.delegates.MessageTemplateManagerDelegate"/>
+    <classEntry path="net.poweru.delegates.MessageTypeManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.MessageTemplateProxy"/>
+    <classEntry path="net.poweru.presenters.MessageTemplatesMediator"/>
+    <classEntry path="net.poweru.presenters.AdminMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

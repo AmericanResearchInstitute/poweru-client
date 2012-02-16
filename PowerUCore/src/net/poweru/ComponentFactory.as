@@ -12,11 +12,13 @@ package net.poweru
 	import net.poweru.components.FileDownloads;
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
+	import net.poweru.components.MessageTemplates;
 	import net.poweru.components.Organizations;
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.TaskBundles;
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
+	import net.poweru.components.collections.Admin;
 	import net.poweru.components.collections.Assignments;
 	import net.poweru.components.collections.CredentialManagement;
 	import net.poweru.components.collections.CurriculumManagement;
@@ -93,6 +95,7 @@ package net.poweru
 	import net.poweru.placemanager.IComponentFactory;
 	import net.poweru.presenters.AchievementsMediator;
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
+	import net.poweru.presenters.AdminMediator;
 	import net.poweru.presenters.AdministerExamSessionMediator;
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
@@ -157,6 +160,7 @@ package net.poweru
 	import net.poweru.presenters.FileDownloadsMediator;
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
+	import net.poweru.presenters.MessageTemplatesMediator;
 	import net.poweru.presenters.OrgUploadCSVMediator;
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
@@ -204,6 +208,10 @@ package net.poweru
 				
 				case Places.ADDTASKSTOCURRICULUM:
 					component = getOrCreate(name, AddTasksToCurriculum, AddTasksToCurriculumMediator);
+					break;
+				
+				case Places.ADMIN:
+					component = getOrCreate(name, Admin, AdminMediator);
 					break;
 				
 				case Places.ADMINISTEREXAMSESSION:
@@ -492,6 +500,10 @@ package net.poweru
 				
 				case Places.LOGIN:
 					component = getOrCreate(name, Login, LoginMediator);
+					break;
+				
+				case Places.MESSAGETEMPLATES:
+					component = getOrCreate(name, MessageTemplates, MessageTemplatesMediator);
 					break;
 					
 				case Places.ORGANIZATIONS:

@@ -2,17 +2,18 @@ package net.poweru.components.code
 {
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class CredentialTypesCode extends HBox implements IPopulatedComponent
+	public class MessageTemplatesCode extends HBox implements IPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;
 		
-		public function CredentialTypesCode()
+		public function MessageTemplatesCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
@@ -27,6 +28,16 @@ package net.poweru.components.code
 		public function clear():void
 		{
 			populate([]);
+		}
+		
+		protected function labelFromMessageType(item:Object, column:AdvancedDataGridColumn):String
+		{
+			return item['message_type'][column.dataField] as String;
+		}
+		
+		protected function labelFromMessageFormat(item:Object, column:AdvancedDataGridColumn):String
+		{
+			return item['message_format'][column.dataField] as String;
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
