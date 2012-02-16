@@ -462,6 +462,9 @@
     <classEntry path="net.poweru.proxies.MessageTemplateProxy"/>
     <classEntry path="net.poweru.presenters.MessageTemplatesMediator"/>
     <classEntry path="net.poweru.presenters.AdminMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditMessageTemplateCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditMessageTemplate"/>
+    <classEntry path="net.poweru.presenters.EditMessageTemplateMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

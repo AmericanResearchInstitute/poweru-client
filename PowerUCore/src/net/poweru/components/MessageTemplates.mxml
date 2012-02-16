@@ -38,7 +38,7 @@
 				
 			</mx:Form>
 			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCREDENTIALTYPE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITMESSAGETEMPLATE, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EditMessageTemplateCode
+	title="Edit Message Template"
+	minWidth="600"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}" width="100%">
+		<mx:FormItem label="Type:">
+			<mx:Label text="{template.message_type.name}" />
+		</mx:FormItem>
+		<mx:FormItem label="Format:">
+			<mx:Label text="{template.message_format.slug}" />
+		</mx:FormItem>
+		<mx:FormItem label="Subject:" width="100%">
+			<mx:TextArea id="subjectInput" maxChars="255" minHeight="140" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Body:" width="100%">
+			<mx:TextArea id="bodyInput" minHeight="350" width="100%"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:EditMessageTemplateCode>

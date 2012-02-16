@@ -59,6 +59,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditExam;
 	import net.poweru.components.dialogs.EditFileDownload;
 	import net.poweru.components.dialogs.EditGroup;
+	import net.poweru.components.dialogs.EditMessageTemplate;
 	import net.poweru.components.dialogs.EditOrganization;
 	import net.poweru.components.dialogs.EditRoom;
 	import net.poweru.components.dialogs.EditSession;
@@ -144,6 +145,7 @@ package net.poweru
 	import net.poweru.presenters.EditExamMediator;
 	import net.poweru.presenters.EditFileDownloadMediator;
 	import net.poweru.presenters.EditGroupMediator;
+	import net.poweru.presenters.EditMessageTemplateMediator;
 	import net.poweru.presenters.EditOrganizationMediator;
 	import net.poweru.presenters.EditRoomMediator;
 	import net.poweru.presenters.EditSessionMediator;
@@ -404,6 +406,10 @@ package net.poweru
 				
 				case Places.EDITFILEDOWNLOAD:
 					component = getOrCreate(name, EditFileDownload, EditFileDownloadMediator);
+					break;
+				
+				case Places.EDITMESSAGETEMPLATE:
+					component = getOrCreate(name, EditMessageTemplate, EditMessageTemplateMediator);
 					break;
 				
 				case Places.EDITORGANIZATION:

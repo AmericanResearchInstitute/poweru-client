@@ -6,7 +6,7 @@ package net.poweru.delegates
 	{
 		public function MessageTemplateManagerDelegate(responder:IResponder)
 		{
-			super(responder, 'MessageTemplateManager');
+			super(responder, 'MessageTemplateManager', ['message_format', 'message_type']);
 		}
 	}
 }
