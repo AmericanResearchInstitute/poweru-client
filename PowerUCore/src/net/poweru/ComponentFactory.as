@@ -3,6 +3,7 @@ package net.poweru
 	import flash.display.DisplayObject;
 	
 	import net.poweru.components.Achievements;
+	import net.poweru.components.Assignments;
 	import net.poweru.components.CredentialTypes;
 	import net.poweru.components.CurriculumEnrollments;
 	import net.poweru.components.Curriculums;
@@ -19,7 +20,7 @@ package net.poweru
 	import net.poweru.components.Users;
 	import net.poweru.components.Venues;
 	import net.poweru.components.collections.Admin;
-	import net.poweru.components.collections.Assignments;
+	import net.poweru.components.collections.AssignmentsTab;
 	import net.poweru.components.collections.CredentialManagement;
 	import net.poweru.components.collections.CurriculumManagement;
 	import net.poweru.components.collections.UserManagement;
@@ -99,6 +100,7 @@ package net.poweru
 	import net.poweru.presenters.AddTasksToCurriculumMediator;
 	import net.poweru.presenters.AdminMediator;
 	import net.poweru.presenters.AdministerExamSessionMediator;
+	import net.poweru.presenters.AssignmentsMediator;
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseAchievementMediator;
@@ -220,6 +222,10 @@ package net.poweru
 				
 				case Places.ADMINISTEREXAMSESSION:
 					component = getOrCreate(name, AdministerExamSession, AdministerExamSessionMediator);
+					break;
+				
+				case Places.ASSIGNMENTS:
+					component = getOrCreate(name, Assignments, net.poweru.presenters.AssignmentsMediator);
 					break;
 				
 				case Places.BULKASSIGNMENTRESULTS:
@@ -535,7 +541,7 @@ package net.poweru
 					break;
 				
 				case Places.STUDENTASSIGNMENTS:
-					component = getOrCreate(name, Assignments, AssignmentsMediator);
+					component = getOrCreate(name, AssignmentsTab, net.poweru.presenters.student.AssignmentsMediator);
 					break;
 				
 				case Places.STUDENTCURRICULUMENROLLMENTS:

@@ -4,15 +4,15 @@ package net.poweru.components.code
 	import mx.controls.AdvancedDataGrid;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.ITaskBundles;
+	import net.poweru.components.interfaces.IPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class TaskBundlesCode extends HBox implements ITaskBundles
+	public class BasePopulatedComponentCode extends HBox implements IPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;
 		
-		public function TaskBundlesCode()
+		public function BasePopulatedComponentCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);

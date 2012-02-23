@@ -407,8 +407,7 @@
     <classEntry path="net.poweru.presenters.ChooseTaskMediator"/>
     <classEntry path="net.poweru.delegates.TaskBundleManagerDelegate"/>
     <classEntry path="net.poweru.proxies.TaskBundleProxy"/>
-    <classEntry path="net.poweru.components.interfaces.ITaskBundles"/>
-    <classEntry path="net.poweru.components.code.TaskBundlesCode"/>
+    <classEntry path="net.poweru.components.code.BasePopulatedComponentCode"/>
     <classEntry path="net.poweru.components.TaskBundles"/>
     <classEntry path="net.poweru.presenters.TaskBundlesMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateTaskBundleCode"/>
@@ -436,7 +435,7 @@
     <classEntry path="net.poweru.components.student.code.CurriculumEnrollmentsCode"/>
     <classEntry path="net.poweru.components.student.CurriculumEnrollments"/>
     <classEntry path="net.poweru.presenters.student.CurriculumEnrollmentMediator"/>
-    <classEntry path="net.poweru.components.collections.Assignments"/>
+    <classEntry path="net.poweru.components.collections.AssignmentsTab"/>
     <classEntry path="net.poweru.components.student.interfaces.ICurriculumEnrollments"/>
     <classEntry path="net.poweru.delegates.ExamSessionManagerDelegate"/>
     <classEntry path="net.poweru.proxies.ExamSessionProxy"/>
@@ -475,6 +474,9 @@
     <classEntry path="net.poweru.components.dialogs.CreateTaskFee"/>
     <classEntry path="net.poweru.components.interfaces.ICreateTaskFee"/>
     <classEntry path="net.poweru.presenters.CreateTaskFeeMediator"/>
+    <classEntry path="net.poweru.components.Assignments"/>
+    <classEntry path="net.poweru.presenters.AssignmentsMediator"/>
+    <classEntry path="net.poweru.components.code.AssignmentsCode"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

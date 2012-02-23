@@ -8,22 +8,22 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IPopulatedComponent;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.proxies.TaskBundleProxy;
+	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class TaskBundlesMediator extends BaseMediator implements IMediator
+	public class AssignmentsMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'TaskBundlesMediator';
+		public static const NAME:String = 'AssignmentsMediator';
 		
 		protected var inputCollector:InputCollector;
 		protected var populatedSinceLastClear:Boolean;
 		
-		public function TaskBundlesMediator(viewComponent:Object)
+		public function AssignmentsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, TaskBundleProxy);
+			super(NAME, viewComponent, AssignmentProxy);
 		}
 		
 		override protected function addEventListeners():void
@@ -45,7 +45,7 @@ package net.poweru.presenters
 			return [
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATETASKBUNDLESS,
+				NotificationNames.UPDATEASSIGNMENTS,
 			];
 		}
 		
@@ -59,12 +59,11 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.SETSPACE:
-					if (notification.getBody() == Places.TASKBUNDLES && !populatedSinceLastClear)
+					if (notification.getBody() == Places.ASSIGNMENTS && !populatedSinceLastClear)
 						populate();
 					break;
 				
-				// Happens when we save a ctask bundle, and indicates that we should just refresh the view
-				case NotificationNames.UPDATETASKBUNDLESS:
+				case NotificationNames.UPDATEASSIGNMENTS:
 					inputCollector.addInput('data', (primaryProxy.dataSet).toArray());
 					break;
 				
@@ -88,7 +87,7 @@ package net.poweru.presenters
 			inputCollector = new InputCollector(['data']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			primaryProxy.getAll();
+			primaryProxy.getFiltered({'member' : {'status' : ['unpaid', 'pending', 'assigned']}});
 		}
 	}
 }

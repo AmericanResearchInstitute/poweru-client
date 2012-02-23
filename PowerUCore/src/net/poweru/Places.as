@@ -77,6 +77,7 @@ package net.poweru
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';
+		public static const EDITASSIGNMENT:String = 'EditAssignment';
 		public static const EDITBLACKOUTPERIOD:String = 'EditBlackoutPeriod';
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCREDENTIALTYPE:String = 'EditCredentialType';

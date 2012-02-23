@@ -11,7 +11,7 @@ package net.poweru.proxies
 	public class AssignmentProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'AssignmentProxy';
-		public static const FIELDS:Array = ['task', 'user', 'status'];
+		public static const FIELDS:Array = ['task', 'user', 'status', 'status_change_log'];
 		
 		protected var outstandingBulkRequests:Number = 0;
 		protected var queuedBulkResults:Array = [];
