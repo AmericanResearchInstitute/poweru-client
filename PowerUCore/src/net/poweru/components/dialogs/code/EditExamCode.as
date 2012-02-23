@@ -62,9 +62,9 @@ package net.poweru.components.dialogs.code
 		public function populate(data:Object, ...args):void
 		{
 			pk = data['id'];
-			nameInput.text = data['name'];
-			titleInput.text = data['title'];
-			descriptionInput.text = data['description'];
+			updateControlIfUnchanged(nameInput, 'text', data['name']);
+			updateControlIfUnchanged(titleInput, 'text', data['title']);
+			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = data['prerequisite_tasks'];

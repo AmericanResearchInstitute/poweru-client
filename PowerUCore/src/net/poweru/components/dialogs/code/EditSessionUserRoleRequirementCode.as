@@ -2,6 +2,7 @@ package net.poweru.components.dialogs.code
 {
 	import flash.events.Event;
 	
+	import mx.containers.Form;
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextInput;
@@ -10,6 +11,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.parts.EditTaskFees;
 	import net.poweru.model.DataSet;
 	
 	public class EditSessionUserRoleRequirementCode extends BaseCRUDDialog implements IEditDialog
@@ -24,6 +26,8 @@ package net.poweru.components.dialogs.code
 		public var achievements:DataGrid;
 		[Bindable]
 		public var prerequisites:DataGrid;
+		public var editTaskFees:EditTaskFees;
+		public var form:Form;
 		
 		[Bindable]
 		protected var achievementDataSet:DataSet;
@@ -31,6 +35,7 @@ package net.poweru.components.dialogs.code
 		protected var prerequisiteDataSet:DataSet;
 		protected var session:Number;
 		protected var pk:Number;
+		
 		
 		public function EditSessionUserRoleRequirementCode()
 		{
@@ -49,20 +54,23 @@ package net.poweru.components.dialogs.code
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
 			prerequisiteDataSet.refresh();
+			editTaskFees.clear();
 		}
 		
 		public function populate(data:Object, ...args):void
 		{
 			pk = data['id'];
 			session = data['session'];
-			minInput.text = data['min'];
-			maxInput.text = data['max'];
+			updateControlIfUnchanged(minInput, 'text', data['min']);
+			updateControlIfUnchanged(maxInput, 'text', data['max']);
 			rolesCB.dataProvider.source = args[0];
 			rolesCB.dataProvider.refresh();
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = data['prerequisite_tasks'];
 			prerequisiteDataSet.refresh();
+			editTaskFees.taskID = pk;
+			editTaskFees.dataSet = new DataSet(data['task_fees']);
 		}
 		
 		override public function getData():Object
@@ -100,6 +108,7 @@ package net.poweru.components.dialogs.code
 			rolesCB.dataProvider = new DataSet();
 			achievementDataSet = new DataSet();
 			prerequisiteDataSet = new DataSet();
+			addControlChangeListener(form);
 		}
 		
 		protected function onRemoveAchievement(event:Event):void

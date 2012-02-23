@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:EditSessionUserRoleRequirementCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*">
+	xmlns:code="net.poweru.components.dialogs.code.*" xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -9,7 +9,7 @@
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:Form defaultButton="{submit}">
+	<mx:Form id="form" defaultButton="{submit}">
 		<mx:FormItem label="Role Name" required="true">
 			<mx:ComboBox id="rolesCB" labelField="name"/>
 		</mx:FormItem>
@@ -40,6 +40,9 @@
 				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, null]))}"/>
 				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="Fees" width="100%">
+			<parts:EditTaskFees id="editTaskFees"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
