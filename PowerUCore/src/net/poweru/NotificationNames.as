@@ -37,6 +37,8 @@ package net.poweru
 		public static const SPACEREADY:String = SpaceMediator.SPACEREADY;
 		public static const STARTUP:String = 'StartUp';
 		public static const STATECHANGE:String = 'StateChange';
+		public static const TASKFEECREATED:String = 'TaskFeeCreated';
+		public static const TASKFEEDELETED:String = 'TaskFeeDeleted';
 		public static const UPDATEADMINCATEGORIESVIEW:String = 'UpdateAdminCategoriesView';
 		public static const UPDATEADMINCURRICULUMSVIEW:String = 'UpdateAdminCurriculumsView';
 		public static const UPDATEADMINUSERSVIEW:String = 'UpdateAdminUsersView';

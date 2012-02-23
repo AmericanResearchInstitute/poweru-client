@@ -2,6 +2,7 @@ package net.poweru.components.dialogs.code
 {
 	import flash.events.Event;
 	
+	import mx.containers.Form;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
@@ -9,6 +10,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.parts.EditTaskFees;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.DataSet;
 	
@@ -21,6 +23,8 @@ package net.poweru.components.dialogs.code
 		public var achievements:DataGrid;
 		[Bindable]
 		public var prerequisites:DataGrid;
+		public var editTaskFees:EditTaskFees;
+		public var form:Form;
 		
 		[Bindable]
 		protected var achievementDataSet:DataSet;
@@ -44,18 +48,22 @@ package net.poweru.components.dialogs.code
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
 			prerequisiteDataSet.refresh();
+			editTaskFees.clear();
 		}
 		
 		public function populate(data:Object, ...args):void
 		{
 			pk = data['id'];
-			nameInput.text = data['name'];
-			titleInput.text = data['title'];
-			descriptionInput.text = data['description'];
+			updateControlIfUnchanged(nameInput, 'text', data['name']);
+			updateControlIfUnchanged(titleInput, 'text', data['title']);
+			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
 			achievementDataSet.source = data['achievements'];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = data['prerequisite_tasks'];
 			prerequisiteDataSet.refresh();
+			
+			editTaskFees.taskID = pk;
+			editTaskFees.dataSet = new DataSet(data['task_fees']);
 		}
 		
 		override public function getData():Object
@@ -92,6 +100,7 @@ package net.poweru.components.dialogs.code
 			achievementDataSet = new DataSet();
 			prerequisiteDataSet = new DataSet();
 			validators = [nameInput.validator, titleInput.validator];
+			addControlChangeListener(form);
 		}
 		
 		protected function onRemoveAchievement(event:Event):void

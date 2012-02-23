@@ -25,5 +25,7 @@ package net.poweru
 		public static const RADIOSELECT:String = 'RadioSelect';
 		public static const CHECKBOXSELECTMULTIPLE:String = 'CheckboxSelectMultiple';
 		
+		public static const TASK_FEE:String = 'TaskFee';
+		
 	}
 }

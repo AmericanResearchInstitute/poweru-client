@@ -78,6 +78,13 @@ package net.poweru.delegates
 			return token;
 		}
 		
+		public function deleteObject(authToken:String, id:Number):AsyncToken
+		{
+			var token:AsyncToken = remoteObject.getOperation('delete').send(authToken, id);
+			token.addResponder(responder);
+			return token;
+		}
+		
 		public function update(authToken:String, oldItem:Object, newItem:Object):void
 		{
 			var updateDict:Object = {};
@@ -219,12 +226,6 @@ package net.poweru.delegates
 						convertDatesToISO8601(args[attr]);
 				}
 			}
-		}
-		
-		public function deleteObject(authToken:String, pk:Number):void
-		{
-			var token:AsyncToken = remoteObject.getOperation('delete').send(authToken, pk);
-			token.addResponder(responder);
 		}
 
 		// processes named attributes through pre-defined manglers

@@ -2,10 +2,13 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
+	import net.poweru.ApplicationFacade;
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.FileDownloadProxy;
+	import net.poweru.proxies.TaskFeeProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
 	
@@ -17,10 +20,37 @@ package net.poweru.presenters
 		public static const NAME:String = 'EditFileDownloadMediator';
 		
 		protected var inputCollector:InputCollector;
+		protected var taskFeeProxy:TaskFeeProxy;
 		
 		public function EditFileDownloadMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadProxy, Places.EDITFILEDOWNLOAD);
+			taskFeeProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(TaskFeeProxy) as TaskFeeProxy;
+		}
+		
+		override public function listNotificationInterests():Array
+		{
+			var ret:Array = super.listNotificationInterests();
+			ret.push(NotificationNames.TASKFEECREATED);
+			ret.push(NotificationNames.TASKFEEDELETED);
+			return ret;
+		}
+		
+		override public function handleNotification(notification:INotification):void
+		{
+			switch (notification.getName())
+			{
+				// refresh our task if we have one, because a task fee was changed
+				case NotificationNames.TASKFEECREATED:
+				case NotificationNames.TASKFEEDELETED:
+					var currentData:Object = editDialog.getData();
+					if (currentData.hasOwnProperty('id') && currentData.id != null)
+						primaryProxy.getOne(currentData.id);
+					break;
+				
+				default:
+					super.handleNotification(notification);
+			}
 		}
 		
 		override protected function onReceivedOne(notification:INotification):void
@@ -42,6 +72,12 @@ package net.poweru.presenters
 		{
 			var inputCollector:InputCollector = event.target as InputCollector;
 			editDialog.populate(inputCollector.object['file_download']);
+		}
+		
+		override protected function onDelete(event:ViewEvent):void
+		{
+			if (event.subType == Constants.TASK_FEE)
+				taskFeeProxy.deleteObject(event.body as Number);
 		}
 	}
 }

@@ -2,6 +2,8 @@ package net.poweru.components.dialogs.code
 {
 	import flash.events.Event;
 	
+	import mx.containers.Form;
+	import mx.containers.FormItem;
 	import mx.controls.Button;
 	import mx.validators.Validator;
 	
@@ -15,6 +17,11 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var submit:Button;
 		protected var _validators:Array;
+		
+		/*	We keep track of which controls have been changed by the user. Upon
+		receiving data through the populate() method, those controls which
+		have local changes will not be updated. */
+		protected var changedControls:Array = [];
 		
 		public function BaseCRUDDialogCode()
 		{
@@ -55,6 +62,37 @@ package net.poweru.components.dialogs.code
 			{
 				trace(err.message);
 			}
+		}
+		
+		protected function updateControlIfUnchanged(control:Object, propertyName:String, newValue:Object):void
+		{
+			if (!control.hasOwnProperty(propertyName))
+				trace('EditSession control does not have property ' + propertyName + '!');
+				
+			else if (changedControls.indexOf(control) == -1)
+				control[propertyName] = newValue;
+		}
+		
+		protected function addControlChangeListener(form:Form):void
+		{
+			if (form == null)
+				return;
+			
+			/* listen for which controls get local changes */
+			var formItem:FormItem;
+			for each (var child:Object in form.getChildren())
+			{
+				formItem = child as FormItem;
+				if (formItem != null)
+					for each (var control:Object in formItem.getChildren())
+						control.addEventListener(Event.CHANGE, onControlChanged);
+			}
+		}
+		
+		/*	Add a changed control to the list of changed controls */
+		protected function onControlChanged(event:Event):void
+		{
+			changedControls.push(event.target);
 		}
 		
 		protected function onValidatedSubmit(event:Event):void

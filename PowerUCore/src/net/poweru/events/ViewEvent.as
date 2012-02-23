@@ -6,6 +6,7 @@ package net.poweru.events
 	{
 		public static const CONFIRM:String = "Confirm";
 		public static const CANCEL:String = "Cancel";
+		public static const DELETE:String = "Delete";
 		public static const FETCH:String = "Fetch";
 		public static const LOGOUT:String = "Logout";
 		public static const REFRESH:String = "Refresh";

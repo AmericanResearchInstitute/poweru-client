@@ -467,6 +467,14 @@
     <classEntry path="net.poweru.presenters.EditMessageTemplateMediator"/>
     <classEntry path="net.poweru.commands.SendEmailSuccessCommand"/>
     <classEntry path="net.poweru.commands.SendEmailErrorCommand"/>
+    <classEntry path="net.poweru.components.parts.code.EditTaskFeesCode"/>
+    <classEntry path="net.poweru.components.parts.EditTaskFees"/>
+    <classEntry path="net.poweru.delegates.TaskFeeManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.TaskFeeProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateTaskFeeCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateTaskFee"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateTaskFee"/>
+    <classEntry path="net.poweru.presenters.CreateTaskFeeMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

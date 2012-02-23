@@ -153,7 +153,7 @@ package net.poweru.proxies
 		
 		public function deleteObject(pk:Number):void
 		{
-			
+			new primaryDelegateClass(new PowerUResponder(onDeleteSuccess, onDeleteError, onFault)).deleteObject(loginProxy.authToken, pk);
 		}
 		
 		public function save(data:Object, oldItem:Object=null):void

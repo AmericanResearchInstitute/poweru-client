@@ -73,6 +73,7 @@ package net.poweru
 		public static const CREATESESSIONUSERROLEREQUIREMENT:String = 'CreateSessionUserRoleRequirement';
 		public static const CREATETASK:String = 'CreateTask';
 		public static const CREATETASKBUNDLE:String = 'CreateTaskBundle';
+		public static const CREATETASKFEE:String = 'CreateTaskFee';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';

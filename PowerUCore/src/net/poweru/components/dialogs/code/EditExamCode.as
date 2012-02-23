@@ -1,5 +1,6 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.containers.Form;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
@@ -7,6 +8,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.parts.EditTaskFees;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.DataSet;
 	
@@ -24,6 +26,8 @@ package net.poweru.components.dialogs.code
 		protected var achievementDataSet:DataSet;
 		[Bindable]
 		protected var prerequisiteDataSet:DataSet;
+		public var editTaskFees:EditTaskFees;
+		public var form:Form;
 		
 		public function EditExamCode()
 		{
@@ -40,6 +44,7 @@ package net.poweru.components.dialogs.code
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
 			prerequisiteDataSet.refresh();
+			editTaskFees.clear();
 		}
 		
 		override public function getData():Object
@@ -66,6 +71,9 @@ package net.poweru.components.dialogs.code
 			prerequisiteDataSet.refresh();
 			
 			title = 'Edit Exam ' + data['name'];
+			
+			editTaskFees.taskID = pk;
+			editTaskFees.dataSet = new DataSet(data['task_fees']);
 		}
 		
 		override public function receiveChoice(choice:Object, chooserName:String):void
@@ -90,6 +98,7 @@ package net.poweru.components.dialogs.code
 			validators = [nameInput.validator, titleInput.validator];
 			achievementDataSet = new DataSet();
 			prerequisiteDataSet = new DataSet();
+			addControlChangeListener(form);
 		}
 		
 		protected function onRemoveAchievement(event:Event):void

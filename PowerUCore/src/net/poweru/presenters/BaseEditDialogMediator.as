@@ -37,6 +37,7 @@ package net.poweru.presenters
 				displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 				displayObject.addEventListener(ViewEvent.SUBMIT, onSubmit);
 				displayObject.addEventListener(ViewEvent.CANCEL, onCancel);
+				displayObject.addEventListener(ViewEvent.DELETE, onDelete);
 				displayObject.addEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			}
 		}
@@ -49,6 +50,7 @@ package net.poweru.presenters
 				displayObject.removeEventListener(ViewEvent.SUBMIT, onSubmit);
 				displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 				displayObject.removeEventListener(ViewEvent.CANCEL, onCancel);
+				displayObject.removeEventListener(ViewEvent.DELETE, onDelete);
 				displayObject.removeEventListener(ViewEvent.SHOWDIALOG, onShowDialog);
 			}
 		}
@@ -110,6 +112,12 @@ package net.poweru.presenters
 		{
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 			editDialog.clear();
+		}
+		
+		protected function onDelete(event:ViewEvent):void
+		{
+			primaryProxy.deleteObject(event.body as Number);
+			onCancel(event);
 		}
 		
 		/*	If this came from our primaryProxy, this will populate the editDialog

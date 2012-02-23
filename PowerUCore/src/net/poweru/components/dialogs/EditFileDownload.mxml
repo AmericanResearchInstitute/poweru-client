@@ -3,7 +3,8 @@
 	title="Edit File Download"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
+	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*"
+	xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -11,7 +12,7 @@
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:Form defaultButton="{submit}" width="100%">
+	<mx:Form id="form" defaultButton="{submit}" width="100%">
 		<mx:FormItem label="Name">
 			<FileDownload:NameInput id="nameInput"/>
 		</mx:FormItem>
@@ -42,6 +43,9 @@
 				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, null]))}"/>
 				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="Fees" width="100%">
+			<parts:EditTaskFees id="editTaskFees"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

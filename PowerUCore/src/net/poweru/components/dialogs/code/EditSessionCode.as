@@ -48,10 +48,6 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		protected var chosenRoom:Object;
 		
-		/*	We keep track of which controls have been changed by the user. Upon
-			receiving data through the populate() method, those controls which
-			have local changes will not be updated. */
-		protected var changedControls:Array;
 		
 		public function EditSessionCode()
 		{
@@ -110,15 +106,6 @@ package net.poweru.components.dialogs.code
 			
 			restrictStartDateRange();
 			restrictEndDateRange();
-		}
-		
-		protected function updateControlIfUnchanged(control:Object, propertyName:String, newValue:Object):void
-		{
-			if (!control.hasOwnProperty(propertyName))
-				trace('EditSession control does not have property ' + propertyName + '!');
-			
-			else if (changedControls.indexOf(control) == -1)
-				control[propertyName] = newValue;
 		}
 		
 		override public function getData():Object
@@ -208,17 +195,8 @@ package net.poweru.components.dialogs.code
 				titleInput.validator,
 				urlInput.validator
 			];
-			changedControls = [];
 			
-			/* listen for which controls get local changes */
-			var formItem:FormItem;
-			for each (var child:Object in form.getChildren())
-			{
-				formItem = child as FormItem;
-				if (formItem != null)
-					for each (var control:Object in formItem.getChildren())
-						control.addEventListener(Event.CHANGE, onControlChanged);
-			}
+			addControlChangeListener(form);
 		}
 		
 		protected function onStartDateSelected(event:Event):void
@@ -226,10 +204,6 @@ package net.poweru.components.dialogs.code
 			restrictEndDateRange();
 		}
 		
-		/*	Add a changed control to the list of changed controls */
-		protected function onControlChanged(event:Event):void
-		{
-			changedControls.push(event.target);
-		}
+		
 	}
 }
