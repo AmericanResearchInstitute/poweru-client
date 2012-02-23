@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EditAssignmentCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*" xmlns:Assignment="net.poweru.generated.model.Assignment.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Form defaultButton="{submit}">
+		<mx:FormItem label="Last:">
+			<mx:Label text="{assignment.user.last_name}" />
+		</mx:FormItem>
+		<mx:FormItem label="First:">
+			<mx:Label text="{assignment.user.first_name}" />
+		</mx:FormItem>
+		<mx:FormItem label="Type:">
+			<mx:Label text="{assignment.task.type}" />
+		</mx:FormItem>
+		<mx:FormItem label="Status:">
+			<mx:ComboBox id="statusInput" dataProvider="{STATUSES}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Status Log:">
+			<mx:Text maxWidth="300" text="{assignment.status_change_log}" />
+		</mx:FormItem>
+	</mx:Form>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
+		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
+	</mx:HBox>
+</code:EditAssignmentCode>

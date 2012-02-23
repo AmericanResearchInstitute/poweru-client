@@ -477,6 +477,9 @@
     <classEntry path="net.poweru.components.Assignments"/>
     <classEntry path="net.poweru.presenters.AssignmentsMediator"/>
     <classEntry path="net.poweru.components.code.AssignmentsCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditAssignmentCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditAssignment"/>
+    <classEntry path="net.poweru.presenters.EditAssignmentMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

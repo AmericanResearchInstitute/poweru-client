@@ -52,6 +52,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
 	import net.poweru.components.dialogs.EditAchievement;
+	import net.poweru.components.dialogs.EditAssignment;
 	import net.poweru.components.dialogs.EditBlackoutPeriod;
 	import net.poweru.components.dialogs.EditCredentialType;
 	import net.poweru.components.dialogs.EditCurriculum;
@@ -140,6 +141,7 @@ package net.poweru
 	import net.poweru.presenters.CurriculumManagementMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditAchievementMediator;
+	import net.poweru.presenters.EditAssignmentMediator;
 	import net.poweru.presenters.EditBlackoutPeriodMediator;
 	import net.poweru.presenters.EditCredentialTypeMediator;
 	import net.poweru.presenters.EditCurriculumMediator;
@@ -382,6 +384,10 @@ package net.poweru
 				
 				case Places.EDITACHIEVEMENT:
 					component = getOrCreate(name, EditAchievement, EditAchievementMediator);
+					break;
+				
+				case Places.EDITASSIGNMENT:
+					component = getOrCreate(name, EditAssignment, EditAssignmentMediator);
 					break;
 				
 				case Places.EDITBLACKOUTPERIOD:

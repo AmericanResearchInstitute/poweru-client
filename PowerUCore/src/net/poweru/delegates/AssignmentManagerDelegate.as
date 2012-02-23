@@ -7,7 +7,7 @@ package net.poweru.delegates
 	{
 		public function AssignmentManagerDelegate(responder:IResponder)
 		{
-			super(responder, 'AssignmentManager');
+			super(responder, 'AssignmentManager', ['task', 'user']);
 			getFilteredMethodName = 'detailed_view';
 		}
 		
