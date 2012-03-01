@@ -5,7 +5,6 @@ package net.poweru.presenters
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IAdministerExamSession;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.proxies.ExamSessionProxy;
@@ -28,11 +27,6 @@ package net.poweru.presenters
 		protected function get examSessionProxy():ExamSessionProxy
 		{
 			return primaryProxy as ExamSessionProxy;
-		}
-		
-		protected function get dialog():IAdministerExamSession
-		{
-			return displayObject as IAdministerExamSession;
 		}
 		
 		override protected function addEventListeners():void
@@ -71,18 +65,17 @@ package net.poweru.presenters
 					var body:Object = notification.getBody();
 					var questionPools:Array = body['question_pools'] as Array;
 					if (questionPools != null && questionPools.length > 0)
-						dialog.populate(body);
+						objectPopulatedComponent.populate(body);
 					else
 					{
 						// no more questions left, so don't show the dialog.
-						dialog.clear();
+						objectPopulatedComponent.clear();
 						sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 					}
 					break;
 				
-				case NotificationNames.LOGOUT:
-					dialog.clear();
-					break;
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
@@ -98,7 +91,7 @@ package net.poweru.presenters
 		
 		protected function onSubmit(event:ViewEvent):void
 		{
-			dialog.clear();
+			objectPopulatedComponent.clear();
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 			var responses:Array = event.body as Array;
 			for each (var response:Object in responses)
@@ -113,7 +106,7 @@ package net.poweru.presenters
 		
 		protected function onCancel(event:ViewEvent):void
 		{
-			dialog.clear();
+			objectPopulatedComponent.clear();
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 	}

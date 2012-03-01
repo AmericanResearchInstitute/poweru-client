@@ -94,7 +94,7 @@ package net.poweru.presenters
 				}
 				data.push(resultArray);
 			}
-			reportDialog.populate(data);
+			arrayPopulatedComponent.populate(data);
 		}
 	}
 }

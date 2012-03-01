@@ -160,6 +160,9 @@ package net.poweru.presenters
 					var ds:DataSet = notification.getBody() as DataSet;
 					inputCollector.addInput('orgRoles', ObjectUtil.copy(ds.toArray()));
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

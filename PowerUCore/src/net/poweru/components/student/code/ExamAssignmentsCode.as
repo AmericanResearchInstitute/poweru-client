@@ -6,10 +6,10 @@ package net.poweru.components.student.code
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.student.interfaces.IExamAssignments;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class ExamAssignmentsCode extends HBox implements IExamAssignments
+	public class ExamAssignmentsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

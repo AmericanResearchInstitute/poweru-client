@@ -1,8 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface IAdministerExamSession
+	public interface IObjectPopulatedComponent extends IClearableComponent
 	{
 		function populate(data:Object):void;
-		function clear():void;
 	}
 }

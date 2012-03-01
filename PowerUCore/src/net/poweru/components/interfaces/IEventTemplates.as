@@ -1,9 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface IEventTemplates
+	public interface IEventTemplates extends IArrayPopulatedComponent
 	{
-		function populate(data:Array):void;
-		function clear():void;
 		function setSessionTemplates(data:Array):void;
 	}
 }

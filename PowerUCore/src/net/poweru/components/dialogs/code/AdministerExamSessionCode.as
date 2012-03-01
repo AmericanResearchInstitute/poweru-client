@@ -9,13 +9,13 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.Constants;
 	import net.poweru.components.dialogs.BaseDialog;
-	import net.poweru.components.interfaces.IAdministerExamSession;
+	import net.poweru.components.interfaces.IObjectPopulatedComponent;
 	import net.poweru.components.widgets.exam.CheckboxSelectMultiple;
 	import net.poweru.components.widgets.exam.RadioSelect;
 	import net.poweru.components.widgets.exam.code.IExamQuestionWidget;
 	import net.poweru.events.ViewEvent;
 	
-	public class AdministerExamSessionCode extends BaseDialog implements IAdministerExamSession
+	public class AdministerExamSessionCode extends BaseDialog implements IObjectPopulatedComponent
 	{
 		public var questionBox:VBox;
 		

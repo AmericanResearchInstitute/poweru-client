@@ -5,10 +5,10 @@ package net.poweru.components.code
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.IPopulatedComponent;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class MessageTemplatesCode extends HBox implements IPopulatedComponent
+	public class MessageTemplatesCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

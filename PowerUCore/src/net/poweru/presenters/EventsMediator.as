@@ -61,6 +61,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEEVENTS,
 				NotificationNames.UPDATESESSIONS
@@ -84,6 +85,9 @@ package net.poweru.presenters
 				case NotificationNames.UPDATESESSIONS:
 					events.setSessions((notification.getBody() as DataSet).toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

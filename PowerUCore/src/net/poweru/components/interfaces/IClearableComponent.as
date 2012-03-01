@@ -1,8 +1,8 @@
 package net.poweru.components.interfaces
 {
-	public interface IAchievements
+	public interface IClearableComponent
 	{
-		function populate(data:Array):void;
+		// clear all controls
 		function clear():void;
 	}
 }

@@ -7,10 +7,10 @@ package net.poweru.components.code
 	import mx.controls.AdvancedDataGrid;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.IExams;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class ExamsCode extends HBox implements IExams
+	public class ExamsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

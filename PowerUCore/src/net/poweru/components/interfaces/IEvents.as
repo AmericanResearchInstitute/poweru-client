@@ -1,9 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface IEvents
+	public interface IEvents extends IArrayPopulatedComponent
 	{
-		function populate(data:Array):void;
-		function clear():void;
 		function setSessions(data:Array):void;
 	}
 }

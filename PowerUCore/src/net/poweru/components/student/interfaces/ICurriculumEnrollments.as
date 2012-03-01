@@ -1,9 +1,9 @@
 package net.poweru.components.student.interfaces
 {
-	public interface ICurriculumEnrollments
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
+
+	public interface ICurriculumEnrollments extends IArrayPopulatedComponent
 	{
-		function populate(data:Array):void;
-		function clear():void;
 		function setAssignments(data:Array):void;
 	}
 }

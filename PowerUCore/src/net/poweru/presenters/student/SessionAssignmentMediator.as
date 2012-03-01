@@ -4,7 +4,6 @@ package net.poweru.presenters.student
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.student.interfaces.ISessionAssignments;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.EventProxy;
@@ -20,11 +19,6 @@ package net.poweru.presenters.student
 		public function SessionAssignmentMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionAssignmentsForUserProxy);
-		}
-		
-		protected function get assignments():ISessionAssignments
-		{
-			return displayObject as ISessionAssignments;
 		}
 		
 		override protected function addEventListeners():void
@@ -60,12 +54,11 @@ package net.poweru.presenters.student
 					break;
 				
 				case NotificationNames.UPDATESESSIONASSIGNMENTSFORUSER:
-					assignments.populate(primaryProxy.dataSet.toArray());
+					arrayPopulatedComponent.populate(primaryProxy.dataSet.toArray());
 					break;
 				
-				case NotificationNames.LOGOUT:
-					assignments.clear();
-					break;
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

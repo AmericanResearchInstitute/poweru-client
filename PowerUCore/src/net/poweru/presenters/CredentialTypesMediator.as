@@ -53,7 +53,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					populatedComponent.clear();
+					arrayPopulatedComponent.clear();
 					populatedSinceLastClear = false;
 					break;
 				
@@ -77,7 +77,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			populatedComponent.populate(inputCollector.object['data']);
+			arrayPopulatedComponent.populate(inputCollector.object['data']);
 		}
 		
 		override protected function populate():void

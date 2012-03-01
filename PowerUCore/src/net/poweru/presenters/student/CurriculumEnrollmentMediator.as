@@ -67,10 +67,6 @@ package net.poweru.presenters.student
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					curriculumEnrollments.clear();
-					break;
-					
 				case NotificationNames.SETSPACE:
 					if (notification.getBody() == Places.STUDENTCURRICULUMENROLLMENTS)
 						populate();
@@ -83,6 +79,9 @@ package net.poweru.presenters.student
 				case NotificationNames.UPDATECURRICULUMENROLLMENTS:
 					curriculumEnrollments.populate((notification.getBody() as DataSet).toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

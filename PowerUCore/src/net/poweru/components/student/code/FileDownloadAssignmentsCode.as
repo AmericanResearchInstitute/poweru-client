@@ -6,10 +6,10 @@ package net.poweru.components.student.code
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.student.interfaces.IFileDownloadAssignments;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class FileDownloadAssignmentsCode extends HBox implements IFileDownloadAssignments
+	public class FileDownloadAssignmentsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

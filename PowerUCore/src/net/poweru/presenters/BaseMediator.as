@@ -7,12 +7,15 @@ package net.poweru.presenters
 	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
-	import net.poweru.components.interfaces.IPopulatedComponent;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
+	import net.poweru.components.interfaces.IClearableComponent;
+	import net.poweru.components.interfaces.IObjectPopulatedComponent;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.BaseProxy;
 	import net.poweru.proxies.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	public class BaseMediator extends Mediator implements IMediator
@@ -38,9 +41,19 @@ package net.poweru.presenters
 			return viewComponent as DisplayObject;
 		}
 		
-		protected function get populatedComponent():IPopulatedComponent
+		protected function get arrayPopulatedComponent():IArrayPopulatedComponent
 		{
-			return viewComponent as IPopulatedComponent;
+			return viewComponent as IArrayPopulatedComponent;
+		}
+		
+		protected function get objectPopulatedComponent():IObjectPopulatedComponent
+		{
+			return viewComponent as IObjectPopulatedComponent;
+		}
+		
+		protected function get clearableComponent():IClearableComponent
+		{
+			return viewComponent as IClearableComponent;
 		}
 		
 		protected function addEventListeners():void
@@ -51,6 +64,20 @@ package net.poweru.presenters
 		
 		protected function populate():void
 		{}
+		
+		override public function handleNotification(notification:INotification):void
+		{
+			switch (notification.getName())
+			{
+				case NotificationNames.LOGOUT:
+					if (clearableComponent != null)
+						clearableComponent.clear();
+					break;
+				
+				default:
+					super.handleNotification(notification);
+			}
+		}
 		
 		override public function setViewComponent(viewComponent:Object):void
 		{

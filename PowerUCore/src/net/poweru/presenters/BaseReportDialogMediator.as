@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
-	import net.poweru.components.interfaces.IReportDialog;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.utils.InputCollector;
@@ -56,15 +55,10 @@ package net.poweru.presenters
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}
 		
-		protected function get reportDialog():IReportDialog
-		{
-			return displayObject as IReportDialog;
-		}
-		
 		// pass the data to the view component
 		protected function onInputsCollected(event:Event):void
 		{
-			reportDialog.populate(inputCollector.object['data']);
+			arrayPopulatedComponent.populate(inputCollector.object['data']);
 		}
 		
 		override public function listNotificationInterests():Array
@@ -81,10 +75,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					reportDialog.clear();
-					break;
-				
 				case NotificationNames.DIALOGPRESENTED:
 					if (notification.getBody() == placeName)
 						populate();

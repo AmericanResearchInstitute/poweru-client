@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IFileDownloads;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.FileDownloadProxy;
 	import net.poweru.utils.InputCollector;
@@ -24,11 +23,6 @@ package net.poweru.presenters
 		public function FileDownloadsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadProxy);
-		}
-		
-		protected function get fileDownloads():IFileDownloads
-		{
-			return viewComponent as IFileDownloads;
 		}
 		
 		override protected function addEventListeners():void
@@ -60,7 +54,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					fileDownloads.clear();
+					clearableComponent.clear();
 					populatedSinceLastClear = false;
 					break;
 				
@@ -84,7 +78,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			fileDownloads.populate(inputCollector.object['file_downloads']);
+			arrayPopulatedComponent.populate(inputCollector.object['file_downloads']);
 		}
 		
 		override protected function populate():void

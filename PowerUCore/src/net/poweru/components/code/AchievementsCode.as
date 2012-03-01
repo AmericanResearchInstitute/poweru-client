@@ -5,10 +5,10 @@ package net.poweru.components.code
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.IAchievements;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class AchievementsCode extends HBox implements IAchievements
+	public class AchievementsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:DataGrid;

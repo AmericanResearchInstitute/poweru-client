@@ -6,9 +6,9 @@ package net.poweru.components.code
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.IFileDownloads;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	
-	public class FileDownloadsCode extends HBox implements IFileDownloads
+	public class FileDownloadsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

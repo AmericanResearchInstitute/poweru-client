@@ -1,10 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface ICreateDialog
+	public interface ICreateDialog extends IClearableComponent
 	{
-		// clear all controls
-		function clear():void;
-		
 		// Returns the data that this dialog collects from the user
 		function getData():Object;
 		

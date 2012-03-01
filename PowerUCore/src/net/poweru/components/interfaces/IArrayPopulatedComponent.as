@@ -1,8 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface ISessionUserRoles
+	public interface IArrayPopulatedComponent extends IClearableComponent
 	{
 		function populate(data:Array):void;
-		function clear():void;
 	}
 }

@@ -1,10 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface IEditDialog
+	public interface IEditDialog extends IClearableComponent
 	{
-		// clear all controls
-		function clear():void;
-		
 		// Returns the data that this dialog collects from the user
 		function getData():Object;
 		

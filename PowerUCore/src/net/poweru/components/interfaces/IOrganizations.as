@@ -1,9 +1,7 @@
 package net.poweru.components.interfaces
 {
-	public interface IOrganizations
+	public interface IOrganizations extends IArrayPopulatedComponent
 	{
-		function populate(data:Array):void;
-		function clear():void;
 		function populateUsers(data:Array):void;
 	}
 }

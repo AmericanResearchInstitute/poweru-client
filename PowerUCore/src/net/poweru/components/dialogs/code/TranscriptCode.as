@@ -4,10 +4,10 @@ package net.poweru.components.dialogs.code
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseDialog;
-	import net.poweru.components.interfaces.IReportDialog;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class TranscriptCode extends BaseDialog implements IReportDialog
+	public class TranscriptCode extends BaseDialog implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		protected var dataSet:DataSet;

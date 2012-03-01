@@ -4,7 +4,6 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.ISessionUserRoles;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.SessionUserRoleProxy;
 	
@@ -18,11 +17,6 @@ package net.poweru.presenters
 		public function SessionUserRolesMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionUserRoleProxy);
-		}
-		
-		protected function get sessionUserRoles():ISessionUserRoles
-		{
-			return viewComponent as ISessionUserRoles;
 		}
 		
 		override protected function addEventListeners():void
@@ -42,6 +36,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATESESSIONUSERROLES,
 			];
@@ -58,8 +53,11 @@ package net.poweru.presenters
 				
 				// Happens when we save a group, and indicates that we should just refresh the view
 				case NotificationNames.UPDATESESSIONUSERROLES:
-					sessionUserRoles.populate(primaryProxy.dataSet.toArray());
+					arrayPopulatedComponent.populate(primaryProxy.dataSet.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

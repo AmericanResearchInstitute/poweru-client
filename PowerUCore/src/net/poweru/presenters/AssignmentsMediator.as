@@ -6,7 +6,7 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IPopulatedComponent;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.utils.InputCollector;
@@ -54,7 +54,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					populatedComponent.clear();
+					arrayPopulatedComponent.clear();
 					populatedSinceLastClear = false;
 					break;
 				
@@ -77,7 +77,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			populatedComponent.populate(inputCollector.object['data']);
+			arrayPopulatedComponent.populate(inputCollector.object['data']);
 		}
 		
 		override protected function populate():void

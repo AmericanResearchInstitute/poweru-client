@@ -62,6 +62,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEORGANIZATIONS,
 				NotificationNames.UPDATEORGEMAILDOMAINS,
@@ -86,6 +87,7 @@ package net.poweru.presenters
 				
 				case NotificationNames.SETSPACE:
 					if (notification.getBody() == Places.ORGANIZATIONS)
+						clearableComponent.clear();
 						populate();
 					break;
 					
@@ -96,8 +98,11 @@ package net.poweru.presenters
 					break;
 					
 				case NotificationNames.UPDATEADMINORGANIZATIONSVIEW:
-					organizations.populate(notification.getBody() as Array);
+					arrayPopulatedComponent.populate(notification.getBody() as Array);
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

@@ -4,7 +4,6 @@ package net.poweru.presenters.student
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.student.interfaces.IFileDownloadAssignments;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.FileDownloadAssignmentsForUserProxy;
@@ -20,11 +19,6 @@ package net.poweru.presenters.student
 		public function FileDownloadAssignmentsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadAssignmentsForUserProxy);
-		}
-		
-		protected function get assignments():IFileDownloadAssignments
-		{
-			return displayObject as IFileDownloadAssignments;
 		}
 		
 		protected function get fileDownloadAssignmentsForUserProxy():FileDownloadAssignmentsForUserProxy
@@ -68,12 +62,10 @@ package net.poweru.presenters.student
 				
 				// Happens when we save an Event, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEFILEDOWNLOADASSIGNMENTSFORUSER:
-					assignments.populate(primaryProxy.dataSet.toArray());
+					arrayPopulatedComponent.populate(primaryProxy.dataSet.toArray());
 					break;
 				
-				case NotificationNames.LOGOUT:
-					assignments.clear();
-					break;
+				super.handleNotification(notification);
 			}
 		}
 		

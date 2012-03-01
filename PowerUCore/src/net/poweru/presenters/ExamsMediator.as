@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IExams;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.ExamProxy;
@@ -25,11 +24,6 @@ package net.poweru.presenters
 		public function ExamsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, ExamProxy);
-		}
-		
-		protected function get exams():IExams
-		{
-			return viewComponent as IExams;
 		}
 		
 		override protected function addEventListeners():void
@@ -61,7 +55,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					exams.clear();
+					clearableComponent.clear();
 					populatedSinceLastClear = false;
 					break;
 				
@@ -85,7 +79,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			exams.populate(inputCollector.object['exams']);
+			arrayPopulatedComponent.populate(inputCollector.object['exams']);
 		}
 		
 		override protected function populate():void

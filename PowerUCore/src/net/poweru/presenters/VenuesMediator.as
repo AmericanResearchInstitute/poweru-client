@@ -63,6 +63,7 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEVENUES,
 				NotificationNames.UPDATEROOMS,

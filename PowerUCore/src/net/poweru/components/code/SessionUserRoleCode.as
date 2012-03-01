@@ -4,10 +4,10 @@ package net.poweru.components.code
 	import mx.controls.List;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.components.interfaces.ISessionUserRoles;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	
-	public class SessionUserRoleCode extends HBox implements ISessionUserRoles
+	public class SessionUserRoleCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var list:List;

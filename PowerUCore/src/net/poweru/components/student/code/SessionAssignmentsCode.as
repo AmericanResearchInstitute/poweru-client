@@ -7,11 +7,11 @@ package net.poweru.components.student.code
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
 	
-	import net.poweru.components.student.interfaces.ISessionAssignments;
+	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	
-	public class SessionAssignmentsCode extends HBox implements ISessionAssignments
+	public class SessionAssignmentsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

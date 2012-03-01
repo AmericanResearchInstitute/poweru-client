@@ -175,7 +175,6 @@ package net.poweru
 	import net.poweru.presenters.SelfRegisterMediator;
 	import net.poweru.presenters.SessionUserRolesMediator;
 	import net.poweru.presenters.TaskBundlesMediator;
-	import net.poweru.presenters.TasksMediator;
 	import net.poweru.presenters.TranscriptMediator;
 	import net.poweru.presenters.UploadFileDownloadMediator;
 	import net.poweru.presenters.UserManagementMediator;

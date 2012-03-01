@@ -41,19 +41,19 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.LOGOUT:
-					reportDialog.clear();
+					arrayPopulatedComponent.clear();
 					break;
 					
 				case NotificationNames.DIALOGPRESENTED:
 					if (notification.getBody() == Places.VIEWEXAMASSIGNMENTS)
 					{
-						reportDialog.clear();
+						arrayPopulatedComponent.clear();
 						populate();
 					}
 					break;
 					
 				case NotificationNames.UPDATEEXAMASSIGNMENTSDETAIL:
-					reportDialog.populate((notification.getBody() as DataSet).toArray());
+					arrayPopulatedComponent.populate((notification.getBody() as DataSet).toArray());
 					break;
 				
 				default:

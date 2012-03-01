@@ -142,17 +142,12 @@
     <classEntry path="net.poweru.components.interfaces.IEditDialog"/>
     <classEntry path="net.poweru.components.interfaces.IEventTemplates"/>
     <classEntry path="net.poweru.components.interfaces.IEvents"/>
-    <classEntry path="net.poweru.components.interfaces.IExams"/>
-    <classEntry path="net.poweru.components.interfaces.IFileDownloads"/>
-    <classEntry path="net.poweru.components.interfaces.IGroups"/>
     <classEntry path="net.poweru.components.interfaces.ILogin"/>
     <classEntry path="net.poweru.components.interfaces.IMain"/>
     <classEntry path="net.poweru.components.interfaces.IMultiState"/>
     <classEntry path="net.poweru.components.interfaces.IOrganizations"/>
-    <classEntry path="net.poweru.components.interfaces.IReportDialog"/>
     <classEntry path="net.poweru.components.interfaces.IResetPassword"/>
     <classEntry path="net.poweru.components.interfaces.ISelfRegister"/>
-    <classEntry path="net.poweru.components.interfaces.ISessionUserRoles"/>
     <classEntry path="net.poweru.components.interfaces.IUploadCSV"/>
     <classEntry path="net.poweru.components.interfaces.IUploadFileDownload"/>
     <classEntry path="net.poweru.components.interfaces.IUsers"/>
@@ -178,7 +173,6 @@
     <classEntry path="net.poweru.components.student.FileDownloadAssignments"/>
     <classEntry path="net.poweru.components.student.code.FileDownloadAssignmentsCode"/>
     <classEntry path="net.poweru.components.student.interfaces.IAssignments"/>
-    <classEntry path="net.poweru.components.student.interfaces.IFileDownloadAssignments"/>
     <classEntry path="net.poweru.components.validators.RoomCapacityValidator"/>
     <classEntry path="net.poweru.components.validators.StringEqualityValidator"/>
     <classEntry path="net.poweru.components.widgets.AddressInput"/>
@@ -283,7 +277,6 @@
     <classEntry path="net.poweru.presenters.ResetPasswordMediator"/>
     <classEntry path="net.poweru.presenters.SelfRegisterMediator"/>
     <classEntry path="net.poweru.presenters.SessionUserRolesMediator"/>
-    <classEntry path="net.poweru.presenters.TasksMediator"/>
     <classEntry path="net.poweru.presenters.UploadFileDownloadMediator"/>
     <classEntry path="net.poweru.presenters.UserUploadCSVMediator"/>
     <classEntry path="net.poweru.presenters.UsersMediator"/>
@@ -329,7 +322,6 @@
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.proxies.AdminUsersViewProxy"/>
-    <classEntry path="net.poweru.components.student.interfaces.IExamAssignments"/>
     <classEntry path="net.poweru.components.student.code.ExamAssignmentsCode"/>
     <classEntry path="net.poweru.components.student.ExamAssignments"/>
     <classEntry path="net.poweru.proxies.ExamAssignmentsForUserProxy"/>
@@ -338,7 +330,6 @@
     <classEntry path="net.poweru.components.dialogs.EmailSessionParticipants"/>
     <classEntry path="net.poweru.components.student.SessionAssignments"/>
     <classEntry path="net.poweru.presenters.student.SessionAssignmentMediator"/>
-    <classEntry path="net.poweru.components.student.interfaces.ISessionAssignments"/>
     <classEntry path="net.poweru.proxies.SessionAssignmentsForUserProxy"/>
     <classEntry path="net.poweru.components.dialogs.code.ViewExamAssignmentsCode"/>
     <classEntry path="net.poweru.components.dialogs.ViewExamAssignments"/>
@@ -363,7 +354,6 @@
     <classEntry path="net.poweru.components.Achievements"/>
     <classEntry path="net.poweru.delegates.AchievementManagerDelegate"/>
     <classEntry path="net.poweru.proxies.AchievementProxy"/>
-    <classEntry path="net.poweru.components.interfaces.IAchievements"/>
     <classEntry path="net.poweru.presenters.AchievementsMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.CreateAchievement"/>
@@ -393,7 +383,7 @@
     <classEntry path="net.poweru.components.collections.CredentialManagement"/>
     <classEntry path="net.poweru.presenters.CredentialManagementMediator"/>
     <classEntry path="net.poweru.components.code.CredentialTypesCode"/>
-    <classEntry path="net.poweru.components.interfaces.IPopulatedComponent"/>
+    <classEntry path="net.poweru.components.interfaces.IArrayPopulatedComponent"/>
     <classEntry path="net.poweru.components.CredentialTypes"/>
     <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateCredentialTypeCode"/>
@@ -439,7 +429,6 @@
     <classEntry path="net.poweru.components.student.interfaces.ICurriculumEnrollments"/>
     <classEntry path="net.poweru.delegates.ExamSessionManagerDelegate"/>
     <classEntry path="net.poweru.proxies.ExamSessionProxy"/>
-    <classEntry path="net.poweru.components.interfaces.IAdministerExamSession"/>
     <classEntry path="net.poweru.components.dialogs.code.AdministerExamSessionCode"/>
     <classEntry path="net.poweru.components.dialogs.AdministerExamSession"/>
     <classEntry path="net.poweru.components.widgets.exam.code.IExamQuestionWidget"/>
@@ -480,6 +469,8 @@
     <classEntry path="net.poweru.components.dialogs.code.EditAssignmentCode"/>
     <classEntry path="net.poweru.components.dialogs.EditAssignment"/>
     <classEntry path="net.poweru.presenters.EditAssignmentMediator"/>
+    <classEntry path="net.poweru.components.interfaces.IObjectPopulatedComponent"/>
+    <classEntry path="net.poweru.components.interfaces.IClearableComponent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

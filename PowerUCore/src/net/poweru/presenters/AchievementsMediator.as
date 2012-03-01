@@ -5,7 +5,6 @@ package net.poweru.presenters
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
-	import net.poweru.components.interfaces.IAchievements;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.AchievementProxy;
 	import net.poweru.utils.InputCollector;
@@ -22,11 +21,6 @@ package net.poweru.presenters
 		public function AchievementsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, AchievementProxy);
-		}
-		
-		protected function get achievements():IAchievements
-		{
-			return viewComponent as IAchievements;
 		}
 		
 		override protected function addEventListeners():void
@@ -57,10 +51,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					achievements.clear();
-					break;
-				
 				case NotificationNames.UPDATEACHIEVEMENTS:
 					inputCollector.addInput('achievements', primaryProxy.dataSet.toArray());
 					break;
@@ -82,7 +72,7 @@ package net.poweru.presenters
 		
 		protected function onInputsCollected(event:Event):void
 		{
-			achievements.populate(inputCollector.object['achievements']);
+			arrayPopulatedComponent.populate(inputCollector.object['achievements']);
 		}
 	}
 }
