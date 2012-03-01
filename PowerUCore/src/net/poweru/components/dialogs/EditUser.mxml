@@ -73,6 +73,8 @@
 			<mx:RemoveChild target="{addOrganizationFI}"/>
 		</mx:State>
 		<mx:State name="{StateNames.STUDENT}" basedOn="{StateNames.USER}"/>
+		<mx:State name="{StateNames.PENDING_USER}" basedOn="{StateNames.USER}"/>
+		<mx:State name="{StateNames.NO_ORG_USER}" basedOn="{StateNames.USER}"/>
 		<mx:State name="{StateNames.SUPERADMIN}">
 			<mx:RemoveChild target="{oldPassword}"/>
 		</mx:State>

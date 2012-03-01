@@ -1,13 +1,6 @@
 package net.poweru.proxies
 {
 	import com.adobe.utils.DateUtil;
-	import net.poweru.ApplicationFacade;
-	import net.poweru.NotificationNames;
-	import net.poweru.Places;
-	import net.poweru.StateNames;
-	import net.poweru.delegates.UserManagerDelegate;
-	import net.poweru.model.DataSet;
-	import net.poweru.utils.PowerUResponder;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -15,6 +8,14 @@ package net.poweru.proxies
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	
+	import net.poweru.ApplicationFacade;
+	import net.poweru.NotificationNames;
+	import net.poweru.Places;
+	import net.poweru.StateNames;
+	import net.poweru.delegates.UserManagerDelegate;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -209,12 +210,16 @@ package net.poweru.proxies
 		{
 			var newState:String = '';
 			
-			if (userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
+			if (currentUser['status'] == 'pending')
+				newState = StateNames.PENDING_USER;
+			else if (userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
 				newState = StateNames.SUPERADMIN;
 			else if (userGroups.findByKey('name', GroupProxy.CATEGORYMANAGERGROUP))
 				newState = StateNames.CATEGORYMANAGER;
 			else if (userGroups.findByKey('name', GroupProxy.STUDENTGROUP))
 				newState = StateNames.STUDENT;
+			else if ((currentUser['organizations'] as Array).length == 0)
+				newState = StateNames.NO_ORG_USER;
 			else
 				newState = StateNames.USER;
 				

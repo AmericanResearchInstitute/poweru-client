@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalAlign="center">
+	<mx:Spacer height="100"/>
+	<mx:Panel width="60%" title="Welcome!">
+		<mx:Text width="100%" text="Please wait while an admin verifies your organization membership. In the mean time, feel free to update your profile and make sure it is correct."/>
+	</mx:Panel>
+</mx:VBox>

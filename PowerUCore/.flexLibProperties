@@ -471,6 +471,8 @@
     <classEntry path="net.poweru.presenters.EditAssignmentMediator"/>
     <classEntry path="net.poweru.components.interfaces.IObjectPopulatedComponent"/>
     <classEntry path="net.poweru.components.interfaces.IClearableComponent"/>
+    <classEntry path="net.poweru.components.PendingUser"/>
+    <classEntry path="net.poweru.components.NoOrgUser"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

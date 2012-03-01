@@ -23,8 +23,9 @@ package net.poweru
 		public static const LOGIN:String = 'Login';
 		public static const MAIN:String = 'Main';
 		public static const MESSAGETEMPLATES:String = 'MessageTemplates';
-		public static const NEWUSER:String = 'NewUser';
+		public static const NO_ORG_USER:String = 'NoOrgUser';
 		public static const ORGANIZATIONS:String = 'Organizations';
+		public static const PENDING_USER:String = 'PendingUser';
 		public static const SESSIONUSERROLES:String = 'SessionUserRoles';
 		public static const STUDENTASSIGNMENTS:String = 'StudentAssignments';
 		public static const STUDENTCURRICULUMENROLLMENTS:String = 'StudentCurriculumEnrollments';

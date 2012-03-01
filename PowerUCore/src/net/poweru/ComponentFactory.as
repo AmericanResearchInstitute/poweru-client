@@ -14,7 +14,9 @@ package net.poweru
 	import net.poweru.components.Groups;
 	import net.poweru.components.Login;
 	import net.poweru.components.MessageTemplates;
+	import net.poweru.components.NoOrgUser;
 	import net.poweru.components.Organizations;
+	import net.poweru.components.PendingUser;
 	import net.poweru.components.SessionUserRoles;
 	import net.poweru.components.TaskBundles;
 	import net.poweru.components.Users;
@@ -528,9 +530,17 @@ package net.poweru
 				case Places.MESSAGETEMPLATES:
 					component = getOrCreate(name, MessageTemplates, MessageTemplatesMediator);
 					break;
+				
+				case Places.NO_ORG_USER:
+					component = getOrCreate(name, NoOrgUser);
+					break;
 					
 				case Places.ORGANIZATIONS:
 					component = getOrCreate(name, Organizations, OrganizationsMediator);
+					break;
+				
+				case Places.PENDING_USER:
+					component = getOrCreate(name, PendingUser);
 					break;
 				
 				case Places.RESETPASSWORD:
