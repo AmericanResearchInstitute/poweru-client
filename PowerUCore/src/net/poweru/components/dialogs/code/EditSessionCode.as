@@ -91,6 +91,7 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(urlInput, 'text', data['url']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
+			updateControlIfUnchanged(leadTimeInput, 'text', data['lead_time']);
 			
 			updateControlIfUnchanged(startDateInput, 'selectedDate', new Date((data['start'] as Date).time));
 			updateControlIfUnchanged(startTimeInput, 'value', new Date((data['start'] as Date).time));
