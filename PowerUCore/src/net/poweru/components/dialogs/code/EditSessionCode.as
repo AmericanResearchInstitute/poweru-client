@@ -14,6 +14,8 @@ package net.poweru.components.dialogs.code
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	import mx.managers.IFocusManagerComponent;
+	import mx.validators.DateValidator;
+	import mx.validators.NumberValidator;
 	
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
@@ -32,8 +34,10 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var startDateInput:DateField;
 		public var startTimeInput:TimeInput;
+		[Bindable]
 		public var endDateInput:DateField;
 		public var endTimeInput:TimeInput;
+		[Bindable]
 		public var leadTimeInput:TextInput;
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
@@ -47,6 +51,10 @@ package net.poweru.components.dialogs.code
 		protected var chosenVenue:Object;
 		[Bindable]
 		protected var chosenRoom:Object;
+		
+		public var leadTimeInputValidator:NumberValidator;
+		public var startDateValidator:DateValidator;
+		public var endDateValidator:DateValidator;
 		
 		
 		public function EditSessionCode()
@@ -190,7 +198,10 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			roles.dataProvider = new DataSet();
 			validators = [
+				endDateValidator,
+				leadTimeInputValidator,
 				shortNameInput.validator,
+				startDateValidator,
 				fullNameInput.validator,
 				titleInput.validator,
 				urlInput.validator

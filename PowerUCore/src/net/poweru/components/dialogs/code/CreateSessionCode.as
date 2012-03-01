@@ -9,6 +9,7 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
+	import mx.validators.DateValidator;
 	import mx.validators.NumberValidator;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
@@ -25,6 +26,7 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var startDateInput:DateField;
 		public var startTimeInput:TimeInput;
+		[Bindable]
 		public var endDateInput:DateField;
 		public var endTimeInput:TimeInput;
 		[Bindable]
@@ -32,6 +34,8 @@ package net.poweru.components.dialogs.code
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		public var leadTimeInputValidator:NumberValidator;
+		public var startDateValidator:DateValidator;
+		public var endDateValidator:DateValidator;
 		
 		[Bindable]
 		protected var event:Object;
@@ -135,7 +139,9 @@ package net.poweru.components.dialogs.code
 				fullNameInput.validator,
 				titleInput.validator,
 				urlInput.validator,
-				leadTimeInputValidator
+				leadTimeInputValidator,
+				startDateValidator,
+				endDateValidator
 			];
 			focusManager.setFocus(shortNameInput);
 		}
