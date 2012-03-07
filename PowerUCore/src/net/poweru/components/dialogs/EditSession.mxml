@@ -5,7 +5,7 @@
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Session="net.poweru.generated.model.Session.*"
 	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
-	xmlns:parts="net.poweru.components.parts.*">
+	xmlns:parts="net.poweru.components.parts.*" xmlns:validators="net.poweru.components.validators.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -66,5 +66,6 @@
 	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" required="true" allowNegative="false" domain="int"/>
 	<mx:DateValidator id="startDateValidator" source="{startDateInput}" property="selectedDate" required="true" validateAsString="false"/>
 	<mx:DateValidator id="endDateValidator" source="{endDateInput}" property="selectedDate" required="true" validateAsString="false"/>
+	<validators:URLValidator id="urlValidator" source="{urlInput}" property="text" required="false"/>
 	
 </code:EditSessionCode>

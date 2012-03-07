@@ -473,6 +473,8 @@
     <classEntry path="net.poweru.components.interfaces.IClearableComponent"/>
     <classEntry path="net.poweru.components.PendingUser"/>
     <classEntry path="net.poweru.components.NoOrgUser"/>
+    <classEntry path="net.poweru.components.validators.URLValidator"/>
+    <classEntry path="net.poweru.tests.validators.TestURLValidator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

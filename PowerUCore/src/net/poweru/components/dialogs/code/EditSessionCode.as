@@ -21,6 +21,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.AddSessionUserRole;
+	import net.poweru.components.validators.URLValidator;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.DataSet;
 	
@@ -39,6 +40,7 @@ package net.poweru.components.dialogs.code
 		public var endTimeInput:TimeInput;
 		[Bindable]
 		public var leadTimeInput:TextInput;
+		[Bindable]
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		[Bindable]
@@ -55,6 +57,7 @@ package net.poweru.components.dialogs.code
 		public var leadTimeInputValidator:NumberValidator;
 		public var startDateValidator:DateValidator;
 		public var endDateValidator:DateValidator;
+		public var urlValidator:URLValidator;
 		
 		
 		public function EditSessionCode()
@@ -205,7 +208,8 @@ package net.poweru.components.dialogs.code
 				startDateValidator,
 				fullNameInput.validator,
 				titleInput.validator,
-				urlInput.validator
+				urlInput.validator,
+				urlValidator
 			];
 			
 			addControlChangeListener(form);
