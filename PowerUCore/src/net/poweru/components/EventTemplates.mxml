@@ -13,8 +13,8 @@
 	</mx:Script>
 	<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="{onEventTemplateSelected(event)}">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
 			<mx:AdvancedDataGridColumn dataField="name_prefix" headerText="Name Prefix"/>
+			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
 		</mx:columns>
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">

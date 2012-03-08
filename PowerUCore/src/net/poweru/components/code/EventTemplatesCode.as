@@ -11,6 +11,7 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IEventTemplates;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class EventTemplatesCode extends HBox implements IEventTemplates
 	{
@@ -69,7 +70,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name_prefix');
 			sessionTemplateList.dataProvider = new DataSet();
 			var sort:Sort = new Sort();
 			sort.fields = [new SortField('sequence', false, false, true)];
