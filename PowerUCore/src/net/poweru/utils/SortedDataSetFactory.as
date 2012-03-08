@@ -2,7 +2,6 @@ package net.poweru.utils
 {
 	import mx.collections.ArrayCollection;
 	import mx.collections.Sort;
-	import mx.collections.SortField;
 	
 	import net.poweru.model.DataSet;
 
@@ -18,7 +17,7 @@ package net.poweru.utils
 		{
 			var ret:DataSet = new DataSet();
 			ret.sort = new Sort();
-			ret.sort.fields = [new SortField(fieldName)];
+			ret.sort.fields = [new NestedSortField(fieldName)];
 			return ret;
 		}
 	}

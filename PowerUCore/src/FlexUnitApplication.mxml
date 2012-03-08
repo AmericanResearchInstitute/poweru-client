@@ -6,12 +6,18 @@
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.tests.validators.TestURLValidator;
+			import net.poweru.tests.components.parts.TestNestedDataGridColumn;
+			import net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn;
+			import net.poweru.tests.utils.TestNestedDateUtils;
 			import net.poweru.tests.utils.TestSortedDataSetFactory;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				testsToRun.push(net.poweru.tests.utils.TestSortedDataSetFactory);
+				testsToRun.push(net.poweru.tests.utils.TestNestedDateUtils);
+				testsToRun.push(net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn);
+				testsToRun.push(net.poweru.tests.components.parts.TestNestedDataGridColumn);
 				testsToRun.push(net.poweru.tests.validators.TestURLValidator);
 				return testsToRun;
 			}

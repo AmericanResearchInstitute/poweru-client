@@ -465,7 +465,6 @@
     <classEntry path="net.poweru.presenters.CreateTaskFeeMediator"/>
     <classEntry path="net.poweru.components.Assignments"/>
     <classEntry path="net.poweru.presenters.AssignmentsMediator"/>
-    <classEntry path="net.poweru.components.code.AssignmentsCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditAssignmentCode"/>
     <classEntry path="net.poweru.components.dialogs.EditAssignment"/>
     <classEntry path="net.poweru.presenters.EditAssignmentMediator"/>
@@ -477,6 +476,13 @@
     <classEntry path="net.poweru.tests.validators.TestURLValidator"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
     <classEntry path="net.poweru.tests.utils.TestSortedDataSetFactory"/>
+    <classEntry path="net.poweru.utils.NestedSortField"/>
+    <classEntry path="net.poweru.components.parts.NestedAdvancedDataGridColumn"/>
+    <classEntry path="net.poweru.components.parts.NestedDataGridColumn"/>
+    <classEntry path="net.poweru.utils.NestedDataUtils"/>
+    <classEntry path="net.poweru.tests.utils.TestNestedDateUtils"/>
+    <classEntry path="net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn"/>
+    <classEntry path="net.poweru.tests.components.parts.TestNestedDataGridColumn"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

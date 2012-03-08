@@ -13,7 +13,7 @@ package net.poweru.tests.utils
 		{
 		}
 		
-		[Test( description = 'Test SortedDataSetFactory.stringSort()' )]
+		[Test(description = 'Test SortedDataSetFactory.stringSort()')]
 		public function testStringSorted():void 
 		{
 			var dataSet:DataSet = SortedDataSetFactory.stringSort('name');

@@ -1,6 +1,9 @@
 package net.poweru.components.code
 {
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+	
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 
 	public class AssignmentsCode extends BasePopulatedComponentCode
 	{
@@ -9,14 +12,9 @@ package net.poweru.components.code
 			super();
 		}
 		
-		protected function labelFromUser(item:Object, column:AdvancedDataGridColumn):String
+		override protected function getNewDataSet():DataSet
 		{
-			return item['user'][column.dataField] as String;
-		}
-		
-		protected function labelFromTask(item:Object, column:AdvancedDataGridColumn):String
-		{
-			return item['task'][column.dataField] as String;
+			return SortedDataSetFactory.stringSort('user.last_name');
 		}
 	}
 }

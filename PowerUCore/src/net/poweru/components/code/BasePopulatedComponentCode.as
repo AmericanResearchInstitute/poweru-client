@@ -32,7 +32,12 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = getNewDataSet();
+		}
+		
+		protected function getNewDataSet():DataSet
+		{
+			return new DataSet();
 		}
 	}
 }
