@@ -16,7 +16,7 @@ package net.poweru.tests.utils
 		[Test(description = 'Test SortedDataSetFactory.stringSort()')]
 		public function testStringSorted():void 
 		{
-			var dataSet:DataSet = SortedDataSetFactory.stringSort('name');
+			var dataSet:DataSet = SortedDataSetFactory.singleFieldSort('name');
 			Assert.assertNotNull(dataSet);
 			Assert.assertNotNull(dataSet.sort);
 			Assert.assertTrue(dataSet.sort.fields);

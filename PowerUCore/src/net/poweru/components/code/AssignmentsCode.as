@@ -14,7 +14,7 @@ package net.poweru.components.code
 		
 		override protected function getNewDataSet():DataSet
 		{
-			return SortedDataSetFactory.stringSort('user.last_name');
+			return SortedDataSetFactory.singleFieldSort('user.last_name');
 		}
 	}
 }

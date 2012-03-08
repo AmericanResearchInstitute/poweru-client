@@ -6,6 +6,7 @@ package net.poweru.components.code
 	
 	import net.poweru.components.interfaces.ICurriculumEnrollments;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class CurriculumEnrollmentsCode extends HBox implements ICurriculumEnrollments
 	{
@@ -33,7 +34,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataProvider = new DataSet();
+			dataProvider = SortedDataSetFactory.singleFieldSort('start');
 		}
 		
 		protected function formatName(item:Object):String

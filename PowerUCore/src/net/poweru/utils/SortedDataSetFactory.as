@@ -11,9 +11,10 @@ package net.poweru.utils
 		{
 		}
 		
-		/*	Return a DataSet which sorts the specified field name as a string
-			with default sorting options. */
-		public static function stringSort(fieldName:String):DataSet
+		/*	Return a DataSet which sorts the specified field name with default
+			sorting options. This uses the compareFunction from Sort, which is
+			fairly generic and should auto-detect the type. */
+		public static function singleFieldSort(fieldName:String):DataSet
 		{
 			var ret:DataSet = new DataSet();
 			ret.sort = new Sort();
