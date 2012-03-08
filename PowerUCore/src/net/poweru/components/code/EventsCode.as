@@ -10,6 +10,7 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IEvents;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class EventsCode extends HBox implements IEvents
 	{
@@ -42,7 +43,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('start');
 			sessionList.dataProvider = new DataSet();
 		}
 		
