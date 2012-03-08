@@ -7,6 +7,7 @@ package net.poweru.components.code
 	
 	import net.poweru.components.interfaces.ICurriculums;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class CurriculumsCode extends HBox implements ICurriculums
 	{
@@ -14,7 +15,7 @@ package net.poweru.components.code
 		public var curriculumList:List;
 		
 		[Bindable]
-		protected var dataProvider:ArrayCollection;
+		protected var dataProvider:DataSet;
 		
 		public function CurriculumsCode()
 		{
@@ -36,8 +37,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			curriculumList.dataProvider = new ArrayCollection();
-			dataProvider = new ArrayCollection();
+			dataProvider = SortedDataSetFactory.singleFieldSort('name');
 		}
 	}
 }
