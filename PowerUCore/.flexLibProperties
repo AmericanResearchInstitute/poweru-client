@@ -475,6 +475,8 @@
     <classEntry path="net.poweru.components.NoOrgUser"/>
     <classEntry path="net.poweru.components.validators.URLValidator"/>
     <classEntry path="net.poweru.tests.validators.TestURLValidator"/>
+    <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
+    <classEntry path="net.poweru.tests.utils.TestSortedDataSetFactory"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
