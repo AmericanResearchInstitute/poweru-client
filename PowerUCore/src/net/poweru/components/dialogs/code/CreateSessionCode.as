@@ -14,6 +14,7 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateSession;
+	import net.poweru.components.validators.URLValidator;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateSessionCode extends BaseCRUDDialog implements ICreateSession
@@ -31,11 +32,13 @@ package net.poweru.components.dialogs.code
 		public var endTimeInput:TimeInput;
 		[Bindable]
 		public var leadTimeInput:TextInput;
+		[Bindable]
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		public var leadTimeInputValidator:NumberValidator;
 		public var startDateValidator:DateValidator;
 		public var endDateValidator:DateValidator;
+		public var urlValidator:URLValidator;
 		
 		[Bindable]
 		protected var event:Object;
@@ -141,7 +144,8 @@ package net.poweru.components.dialogs.code
 				urlInput.validator,
 				leadTimeInputValidator,
 				startDateValidator,
-				endDateValidator
+				endDateValidator,
+				urlValidator
 			];
 			focusManager.setFocus(shortNameInput);
 		}
