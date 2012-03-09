@@ -12,6 +12,7 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IVenues;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class VenuesCode extends HBox implements IVenues
 	{
@@ -96,7 +97,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
 			roomList.dataProvider = new DataSet();
 			blackoutGrid.dataProvider = new DataSet();
 		}
