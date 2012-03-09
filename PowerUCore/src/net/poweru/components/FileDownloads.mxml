@@ -13,9 +13,9 @@
 	</mx:Script>
 	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="name" headerText="Name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
-			<mx:AdvancedDataGridColumn dataField="title" headerText="Title" sortCompareFunction="{SortCompareFunctionFactory(['title'])}"/>
-			<mx:AdvancedDataGridColumn dataField="description" headerText="Description" sortCompareFunction="{SortCompareFunctionFactory(['description'])}"/>
+			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
+			<mx:AdvancedDataGridColumn dataField="title" headerText="Title" />
+			<mx:AdvancedDataGridColumn dataField="description" headerText="Description"/>
 		</mx:columns>
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
