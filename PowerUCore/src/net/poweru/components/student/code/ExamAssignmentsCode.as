@@ -1,9 +1,8 @@
 package net.poweru.components.student.code
 {
 	import mx.containers.HBox;
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.controls.List;
-	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
@@ -12,7 +11,7 @@ package net.poweru.components.student.code
 	public class ExamAssignmentsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
 		public var attemptList:List;
 		
 		public function ExamAssignmentsCode()
@@ -36,11 +35,6 @@ package net.poweru.components.student.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			grid.dataProvider = new DataSet();
-		}
-		
-		protected function labelFromTask(item:Object, column:AdvancedDataGridColumn):String
-		{
-			return item.task[column.dataField];
 		}
 	}
 }
