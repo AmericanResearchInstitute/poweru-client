@@ -115,7 +115,7 @@ package net.poweru.components.code
 			bulkDataSet.source = users;
 			bulkDataSet.refresh();
 			
-			curriculumEnrollmentGrid.dataProvider = SortedDataSetFactory.singleFieldSort('start');
+			curriculumEnrollmentGrid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 			curriculumEnrollmentGrid.dataProvider.source = curriculumEnrollments;
 			curriculumEnrollmentGrid.dataProvider.refresh();
 			

@@ -34,7 +34,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataProvider = SortedDataSetFactory.singleFieldSort('start');
+			dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 		}
 		
 		protected function formatName(item:Object):String

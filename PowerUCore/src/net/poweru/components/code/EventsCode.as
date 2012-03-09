@@ -43,7 +43,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = SortedDataSetFactory.singleFieldSort('start');
+			grid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 			sessionList.dataProvider = new DataSet();
 		}
 		
