@@ -6,7 +6,7 @@
 	height="100%"
 	creationPolicy="all"
 	creationComplete="{onCreationComplete(event)}"
-	cornerRadius="15" xmlns:components="com.hillelcoren.components.*">
+	cornerRadius="15" xmlns:components="com.hillelcoren.components.*" xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.collections.ListCollectionView;
@@ -33,7 +33,7 @@
 						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
 						<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>
 						<mx:AdvancedDataGridColumn dataField="email" headerText="Email" sortCompareFunction="{SortCompareFunctionFactory(['email'])}"/>
-						<mx:AdvancedDataGridColumn labelFunction="labelUsername" headerText="Username" sortCompareFunction="{SortCompareFunctionFactory(['default_username_and_domain', 'username'])}"/>
+						<parts:NestedAdvancedDataGridColumn nestedName="default_username_and_domain.username" headerText="Username"/>
 					</mx:columns>
 				</mx:AdvancedDataGrid>
 			</mx:VBox>

@@ -30,6 +30,7 @@ package net.poweru.components.code
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.CompareLabels;
 	import net.poweru.utils.PKArrayCollection;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class UsersCode extends HBox implements IUsers
 	{
@@ -143,8 +144,8 @@ package net.poweru.components.code
 
 		protected function onCreationComplete(event:FlexEvent):void
 		{
-			gridDataProvider = new DataSet();
-			bulkGrid.dataProvider = new DataSet();
+			gridDataProvider = SortedDataSetFactory.singleFieldSort('last_name');
+			bulkGrid.dataProvider = SortedDataSetFactory.singleFieldSort('last_name');
 			bulkDataSet.filterFunction = filterBulkUsers;
 			eventGrid.dataProvider = new DataSet();
 			organizationTree.dataProvider = new DataSet();
