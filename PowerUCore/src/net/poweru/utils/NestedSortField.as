@@ -1,6 +1,5 @@
 package net.poweru.utils
 {
-	import mx.collections.Sort;
 	import mx.collections.SortField;
 	
 	public class NestedSortField extends SortField
@@ -12,7 +11,7 @@ package net.poweru.utils
 		{
 			super(name, caseInsensitive, descending, numeric);
 			namePieces = name.split('.');
-			pureCompareFunction = new Sort().compareFunction;
+			pureCompareFunction = new SortField(null, caseInsensitive, descending, numeric).compareFunction;
 			compareFunction = nestedCompareFunction;
 		}
 		

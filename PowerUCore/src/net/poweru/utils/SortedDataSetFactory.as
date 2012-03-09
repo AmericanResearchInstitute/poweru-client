@@ -18,7 +18,7 @@ package net.poweru.utils
 		{
 			var ret:DataSet = new DataSet();
 			ret.sort = new Sort();
-			ret.sort.fields = [new NestedSortField(fieldName)];
+			ret.sort.fields = [new NestedSortField(fieldName, true)];
 			return ret;
 		}
 	}
