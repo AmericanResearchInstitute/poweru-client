@@ -1,55 +1,93 @@
 package net.poweru.model
 {
 	import net.poweru.utils.PKArrayCollection;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	// All the features of DataSet, but hierarchical and suitable for a tree control
 	public class HierarchicalDataSet extends DataSet
 	{
-		public function HierarchicalDataSet(source:Array=null)
+		protected var keyMap:Object;
+		protected var key:String;
+		protected var sortField:String;
+		
+		public function HierarchicalDataSet(source:Array=null, key:String = 'id', sortField:String = null)
 		{
+			keyMap = {};
+			this.key = key;
+			this.sortField = sortField;
 			super(source);
-			if (this.source)
+		}
+		
+		// put data into hierarchical form
+		protected function processIncomingSource(data:Array):void
+		{
+			for each (var item1:Object in data)
+				keyMap[item1[key]] = item1;
+			
+			var pks:PKArrayCollection = new PKArrayCollection(data);
+			
+			for each (var pk:Number in pks)
 			{
-				var pks:PKArrayCollection = new PKArrayCollection(source);
-				
-				for each (var pk:Number in pks)
+				var item:Object = findByPK(pk);
+				if (!item.hasOwnProperty('children'))
+					item['children'] = [];
+				if (!item.hasOwnProperty('parent') && item.hasOwnProperty('id'))
+					continue;
+				if (item['parent'] != null)
 				{
-					var item:Object = findByPK(pk);
-					if (!item.hasOwnProperty('children'))
-						item['children'] = [];
-					if (!item.hasOwnProperty('parent') && item.hasOwnProperty('id'))
-						continue;
-					if (item['parent'] != null)
-					{
-						removeByPK(item['id']);
-						var parent:Object = findByPK(item['parent']);
-						if (!parent.hasOwnProperty('children'))
-							parent['children'] = [];
-						(parent['children'] as Array).push(item);
-					}
+					removeByPK(item['id']);
+					var parent:Object = findByPK(item['parent']);
+					if (!parent.hasOwnProperty('children'))
+						parent['children'] = [];
+					(parent['children'] as Array).push(item);
 				}
 			}
 		}
 		
+		// sort the data and then have it processed into hierarchical form
+		override public function set source(s:Array):void
+		{
+			// sort the data
+			if (sortField)
+			{
+				var sortedDataSet:DataSet = SortedDataSetFactory.singleFieldSort(sortField);
+				sortedDataSet.source = s;
+				sortedDataSet.refresh();
+				var sortedArray:Array = sortedDataSet.toArray();
+				super.source = sortedArray;
+			}
+			else
+				super.source = s;
+			
+			processIncomingSource(sortedArray);
+		}
+		
 		override public function findByKey(key:String, value:Object, source:Array=null):Object
 		{
+			if (key == this.key && keyMap.hasOwnProperty(value))
+				return keyMap[value];
+			
 			// allows us to do recursion
 			source = source ? source : this.source;
+			
+			var ret:Object = null;
 				
 			for each (var item:Object in source)
 				if (item.hasOwnProperty(key) && item[key] == value)
-					return item;
+					ret = item;
 				else if (item.hasOwnProperty('children'))
 				{
-					var ret:Object = findByKey(key, value, item['children']);
-					if (ret != null)
-						return ret;
+					ret = findByKey(key, value, item['children']);
 				}
-			return null;
+			if (ret != null)
+				keyMap[ret[key]] = ret;
+			return ret;
 		}
 		
 		override public function removeByKey(key:String, value:Object, array:Array=null):void
 		{
+			if (keyMap.hasOwnProperty(key))
+				delete keyMap[key];
 			array = array ? array : source;
 			
 			for each (var item:Object in array)
@@ -69,6 +107,8 @@ package net.poweru.model
 		
 		override public function addItem(item:Object):void
 		{
+			keyMap[item[key]] = item;
+			
 			if (item.hasOwnProperty('parent') && item['parent'])
 			{
 				var parent:Object = findByPK(item['parent']);

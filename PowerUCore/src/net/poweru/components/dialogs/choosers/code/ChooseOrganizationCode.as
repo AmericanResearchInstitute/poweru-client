@@ -39,7 +39,7 @@ package net.poweru.components.dialogs.choosers.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			organizations.dataProvider = new HierarchicalDataSet();
+			organizations.dataProvider = new HierarchicalDataSet([], 'id', 'name');
 		}
 	}
 }

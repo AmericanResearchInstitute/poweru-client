@@ -35,7 +35,7 @@ package net.poweru.components.code
 			users.dataProvider.refresh();
 			
 			if (organizations.dataProvider == null)
-				organizations.dataProvider = new HierarchicalDataSet();
+				organizations.dataProvider = new HierarchicalDataSet([], 'id', 'name');
 			organizations.dataProvider.source = data;
 			organizations.dataProvider.refresh();
 			// make sure all nodes are open
