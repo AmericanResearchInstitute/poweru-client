@@ -1,16 +1,19 @@
 package net.poweru.components.code
 {
 	import mx.containers.HBox;
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class BasePopulatedComponentCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
+		// The default datagrid will sort by this field, which can be a nested field.
+		public var sortedFieldName:String;
 		
 		public function BasePopulatedComponentCode()
 		{
@@ -35,9 +38,10 @@ package net.poweru.components.code
 			grid.dataProvider = getNewDataSet();
 		}
 		
+		// Here in case a subclass wants something more special
 		protected function getNewDataSet():DataSet
 		{
-			return new DataSet();
+			return SortedDataSetFactory.singleFieldSort(sortedFieldName);
 		}
 	}
 }

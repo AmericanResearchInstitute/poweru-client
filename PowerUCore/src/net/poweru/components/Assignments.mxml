@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:AssignmentsCode
+<code:BasePopulatedComponentCode
+	sortedFieldName="user.last_name"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.code.*"
 	width="100%"
@@ -11,14 +12,14 @@
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<parts:NestedAdvancedDataGridColumn nestedName="user.last_name" headerText="Last Name"/>
-			<parts:NestedAdvancedDataGridColumn  nestedName="user.first_name" headerText="First Name"/>
-			<parts:NestedAdvancedDataGridColumn  nestedName="task.type" headerText="Type"/>
-			<mx:AdvancedDataGridColumn dataField="status" headerText="Status"/>
+			<parts:NestedDataGridColumn nestedName="user.last_name" headerText="Last Name"/>
+			<parts:NestedDataGridColumn  nestedName="user.first_name" headerText="First Name"/>
+			<parts:NestedDataGridColumn  nestedName="task.type" headerText="Type"/>
+			<mx:DataGridColumn dataField="status" headerText="Status"/>
 		</mx:columns>
-	</mx:AdvancedDataGrid>
+	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
@@ -46,4 +47,4 @@
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>
-</code:AssignmentsCode>
+</code:BasePopulatedComponentCode>
