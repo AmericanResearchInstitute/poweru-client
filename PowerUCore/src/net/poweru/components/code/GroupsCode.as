@@ -4,6 +4,7 @@ package net.poweru.components.code
 	
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 
 	public class GroupsCode extends HBox implements IArrayPopulatedComponent
 	{
@@ -13,7 +14,7 @@ package net.poweru.components.code
 		public function GroupsCode()
 		{
 			super();
-			dataProvider = new DataSet();
+			dataProvider = SortedDataSetFactory.singleFieldSort('name');
 		}
 		
 		public function populate(groups:Array):void
