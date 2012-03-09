@@ -3,7 +3,7 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.student.code.*"
 	width="100%"
-	height="100%">
+	height="100%" xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -36,10 +36,10 @@
 		<mx:Panel width="100%" height="100%" title="Assignments">
 			<mx:DataGrid id="assignmentGrid" height="100%" width="100%">
 				<mx:columns>
-					<mx:DataGridColumn dataField="name" headerText="Name" labelFunction="{getLabelFromTask}"/>
+					<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
 					<mx:DataGridColumn dataField="status" headerText="Status"/>
 					<mx:DataGridColumn dataField="prerequisites_met" headerText="Prereqs Met"/>
-					<mx:DataGridColumn dataField="type" headerText="Type" labelFunction="{getLabelFromTask}"/>
+					<parts:NestedDataGridColumn nestedName="task.type" headerText="Type"/>
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:Panel>

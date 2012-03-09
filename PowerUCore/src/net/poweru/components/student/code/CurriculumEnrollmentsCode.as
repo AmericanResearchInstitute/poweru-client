@@ -11,6 +11,7 @@ package net.poweru.components.student.code
 	import net.poweru.components.student.interfaces.ICurriculumEnrollments;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class CurriculumEnrollmentsCode extends HBox implements ICurriculumEnrollments
 	{
@@ -43,16 +44,11 @@ package net.poweru.components.student.code
 			assignmentGrid.dataProvider.refresh();
 		}
 		
-		protected function getLabelFromTask(item:Object, column:DataGridColumn):String
-		{
-			return item['task'][column.dataField] as String;
-		}
-		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
-			assignmentGrid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
+			assignmentGrid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
 		}
 		
 		protected function onSelect(event:Event):void

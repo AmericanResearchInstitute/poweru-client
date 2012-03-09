@@ -4,7 +4,7 @@ package net.poweru.utils
 	
 	public class NestedSortField extends SortField
 	{
-		protected var pureCompareFunction:Function;
+		public var pureCompareFunction:Function;
 		protected var namePieces:Array;
 		
 		public function NestedSortField(name:String=null, caseInsensitive:Boolean=false, descending:Boolean=false, numeric:Object=null)
