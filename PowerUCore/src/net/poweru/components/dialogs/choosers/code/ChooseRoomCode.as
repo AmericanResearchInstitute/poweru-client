@@ -12,6 +12,7 @@ package net.poweru.components.dialogs.choosers.code
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class ChooseRoomCode extends BaseDialog implements IChooseRoom
 	{
@@ -78,8 +79,8 @@ package net.poweru.components.dialogs.choosers.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			
-			grid.dataProvider = new DataSet();
-			roomList.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
+			roomList.dataProvider = SortedDataSetFactory.singleFieldSort('name');
 		}
 		
 		protected function onVenueSelected(event:ListEvent):void

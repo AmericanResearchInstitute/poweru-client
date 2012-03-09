@@ -12,6 +12,7 @@ package net.poweru.components.dialogs.choosers.code
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.CompareLabels;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class ChooseUserCode extends BaseDialog implements IChooser
 	{
@@ -91,7 +92,7 @@ package net.poweru.components.dialogs.choosers.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('last_name');
 			grid.dataProvider.filterFunction = filterBulkUsers;
 			statusFilterCB.dataProvider = new DataSet();
 			orgFilterCB.dataProvider = new DataSet();
