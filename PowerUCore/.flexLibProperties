@@ -483,6 +483,7 @@
     <classEntry path="net.poweru.tests.utils.TestNestedDateUtils"/>
     <classEntry path="net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn"/>
     <classEntry path="net.poweru.tests.components.parts.TestNestedDataGridColumn"/>
+    <classEntry path="net.poweru.proxies.CurriculumEnrollmentUserDetailProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

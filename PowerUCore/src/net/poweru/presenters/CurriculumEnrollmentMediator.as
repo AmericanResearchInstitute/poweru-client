@@ -6,7 +6,7 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICurriculumEnrollments;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.proxies.CurriculumEnrollmentProxy;
+	import net.poweru.proxies.CurriculumEnrollmentUserDetailProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -17,17 +17,12 @@ package net.poweru.presenters
 		
 		public function CurriculumEnrollmentMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, CurriculumEnrollmentProxy);
+			super(NAME, viewComponent, CurriculumEnrollmentUserDetailProxy);
 		}
 		
 		protected function get curriculumEnrollments():ICurriculumEnrollments
 		{
 			return viewComponent as ICurriculumEnrollments;
-		}
-		
-		protected function get curriculumEnrollmentProxy():CurriculumEnrollmentProxy
-		{
-			return primaryProxy as CurriculumEnrollmentProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -47,9 +42,10 @@ package net.poweru.presenters
 		override public function listNotificationInterests():Array
 		{
 			return [
+				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATECURRICULUMENROLLMENTS,
-				NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW,
+				NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL,
 			];
 		}
 		
@@ -63,18 +59,21 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.UPDATECURRICULUMENROLLMENTS:
-					curriculumEnrollmentProxy.curriculumEnrollmentsView();
+					populate();
 					break;
 				
-				case NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW:
-					curriculumEnrollments.populate(notification.getBody() as Array);
+				case NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL:
+					curriculumEnrollments.populate(primaryProxy.dataSet.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
 		override protected function populate():void
 		{	
-			curriculumEnrollmentProxy.curriculumEnrollmentsView();
+			primaryProxy.getAll();
 		}
 	}
 }

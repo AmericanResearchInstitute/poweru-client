@@ -19,32 +19,9 @@ package net.poweru.proxies
 			createArgNamesInOrder = ['curriculum', 'start', 'end'];
 		}
 		
-		public function curriculumEnrollmentsView():void
-		{
-			new CurriculumEnrollmentManagerDelegate(new PowerUResponder(onCurriculumEnrollmentsViewSuccess, onCurriculumEnrollmentsViewError, onFault)).curriculumEnrollmentsView(loginProxy.authToken);
-		}
-		
-		override public function getOne(pk:Number):void
-		{
-			new CurriculumEnrollmentManagerDelegate(new PowerUResponder(onGetOneSuccess, onGetOneError, onFault)).curriculumEnrollmentsView(loginProxy.authToken, [pk]);
-		}
-		
 		public function getStudentCurriculumEnrollments():void
 		{
 			getFiltered({'exact' : {'users__id' : loginProxy.userPK}});
-		}
-		
-		// Result handlers
-		
-		protected function onCurriculumEnrollmentsViewSuccess(event:ResultEvent):void
-		{
-			data = new DataSet(event.result.value);
-			sendNotification(NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW, event.result.value);
-		}
-		
-		protected function onCurriculumEnrollmentsViewError(event:ResultEvent):void
-		{
-			
 		}
 	}
 }

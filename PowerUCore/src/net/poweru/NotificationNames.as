@@ -52,7 +52,7 @@ package net.poweru
 		public static const UPDATECHOICES:String = 'UpdateChoices';
 		public static const UPDATECREDENTIALTYPES:String = 'UpdateCredentialTypes';
 		public static const UPDATECURRICULUMENROLLMENTS:String = 'UpdateCurriculumEnrollments';
-		public static const UPDATECURRICULUMENROLLMENTSVIEW:String = 'UpdateCurriculumEnrollmentsView';
+		public static const UPDATECURRICULUMENROLLMENTSUSERDETAIL:String = 'UpdateCurriculumEnrollmentsUserDetail';
 		public static const UPDATECURRICULUMS:String = 'UpdateCurriculums';
 		public static const UPDATEEVENTS:String = 'UpdateEvents';
 		public static const UPDATEEVENTTEMPLATES:String = 'UpdateEventTemplates';

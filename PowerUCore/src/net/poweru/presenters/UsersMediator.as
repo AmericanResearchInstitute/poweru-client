@@ -17,7 +17,7 @@ package net.poweru.presenters
 	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.AssignmentProxy;
-	import net.poweru.proxies.CurriculumEnrollmentProxy;
+	import net.poweru.proxies.CurriculumEnrollmentUserDetailProxy;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.GroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
@@ -35,7 +35,7 @@ package net.poweru.presenters
 		protected var adminOrganizationViewProxy:AdminOrganizationViewProxy;
 		protected var inputCollector:InputCollector;
 		protected var orgRoleProxy:OrgRoleProxy;
-		protected var curriculumEnrollmentProxy:CurriculumEnrollmentProxy;
+		protected var curriculumEnrollmentUserDetailProxy:CurriculumEnrollmentUserDetailProxy;
 		protected var eventProxy:EventProxy;
 		protected var assignmentProxy:AssignmentProxy;
 		protected var achievementProxy:AchievementProxy;
@@ -46,7 +46,7 @@ package net.poweru.presenters
 			groupProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(GroupProxy) as GroupProxy;
 			adminOrganizationViewProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AdminOrganizationViewProxy) as AdminOrganizationViewProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
-			curriculumEnrollmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentProxy) as CurriculumEnrollmentProxy;
+			curriculumEnrollmentUserDetailProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentUserDetailProxy) as CurriculumEnrollmentUserDetailProxy;
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
 			assignmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentProxy) as AssignmentProxy;
 			achievementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AchievementProxy) as AchievementProxy;
@@ -91,7 +91,7 @@ package net.poweru.presenters
 				NotificationNames.UPDATEADMINUSERSVIEW,
 				NotificationNames.UPDATECHOICES,
 				NotificationNames.UPDATECURRICULUMENROLLMENTS,
-				NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW,
+				NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL,
 				NotificationNames.UPDATEGROUPS,
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
@@ -140,11 +140,11 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.UPDATECURRICULUMENROLLMENTS:
-					curriculumEnrollmentProxy.curriculumEnrollmentsView();
+					curriculumEnrollmentUserDetailProxy.getAll();
 					break;
 				
-				case NotificationNames.UPDATECURRICULUMENROLLMENTSVIEW:
-					inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(notification.getBody()));
+				case NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL:
+					inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(curriculumEnrollmentUserDetailProxy.dataSet.toArray()));
 					break;
 				
 				case NotificationNames.UPDATEEVENTS:
@@ -183,7 +183,7 @@ package net.poweru.presenters
 					break;
 				
 				case Constants.CURRICULUMENROLLMENT:
-					curriculumEnrollmentProxy.save(event.body);
+					curriculumEnrollmentUserDetailProxy.save(event.body);
 					break;
 				
 				case Constants.SENDEMAIL:
@@ -212,7 +212,7 @@ package net.poweru.presenters
 			adminOrganizationViewProxy.adminOrganizationsView();
 			orgRoleProxy.getAll();
 			groupProxy.getAll();
-			curriculumEnrollmentProxy.curriculumEnrollmentsView();
+			curriculumEnrollmentUserDetailProxy.getAll();
 			eventProxy.getAll();
 		}
 		
