@@ -6,7 +6,7 @@ package net.poweru.components.student.code
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
-	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class ExamAssignmentsCode extends HBox implements IArrayPopulatedComponent
 	{
@@ -34,7 +34,7 @@ package net.poweru.components.student.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = new DataSet();
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
 		}
 	}
 }

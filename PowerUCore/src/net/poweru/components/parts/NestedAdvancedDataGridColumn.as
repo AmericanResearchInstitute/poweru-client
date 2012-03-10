@@ -23,8 +23,7 @@ package net.poweru.components.parts
 		
 		override public function itemToLabel(data:Object, withFormatting:Boolean=true):String
 		{
-			var ret:String = getFinalObject(data) as String;
-			return ret;
+			return String(getFinalObject(data));
 		}
 		
 		public function set nestedName(name:String):void

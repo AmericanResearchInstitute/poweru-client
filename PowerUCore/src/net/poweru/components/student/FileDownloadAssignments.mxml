@@ -3,18 +3,18 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.student.code.*"
 	width="100%"
-	height="100%">
+	height="100%" xmlns:parts="net.poweru.components.parts.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="name" labelFunction="{labelFromTask}"/>
-			<mx:AdvancedDataGridColumn dataField="title" labelFunction="{labelFromTask}"/>
+			<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
+			<parts:NestedDataGridColumn nestedName="task.title" headerText="Title"/>
 		</mx:columns>
-	</mx:AdvancedDataGrid>
+	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<!--Sometimes a FileDownload's file isn't in place yet, so it can't be opened.
