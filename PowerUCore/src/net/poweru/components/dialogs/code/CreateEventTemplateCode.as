@@ -13,6 +13,7 @@ package net.poweru.components.dialogs.code
 	{
 		public var titleInput:TitleInput;
 		public var namePrefixInput:NamePrefixInput;
+		[Bindable]
 		public var leadTimeInput:TextInput;
 		public var descriptionInput:TextArea;
 		
@@ -35,10 +36,10 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			validators = [
+			validators = validators.concat(
 				titleInput.validator,
-				namePrefixInput.validator,
-			];
+				namePrefixInput.validator
+			);
 		}
 		
 		public function clear():void

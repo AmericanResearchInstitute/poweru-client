@@ -16,7 +16,7 @@
 		<mx:FormItem label="Name Prefix:">
 			<EventTemplate:NamePrefixInput id="namePrefixInput" />
 		</mx:FormItem>
-		<mx:FormItem label="Reminder Lead Time:">
+		<mx:FormItem label="Reminder Lead Time:" required="true">
 			<mx:TextInput id="leadTimeInput" />
 		</mx:FormItem>
 		<mx:FormItem label="Description:">
@@ -24,7 +24,7 @@
 		</mx:FormItem>
 	</mx:Form>
 	
-	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" allowNegative="false"/>
+	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" allowNegative="false" domain="int"/>
 	
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
