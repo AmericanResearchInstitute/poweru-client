@@ -33,6 +33,8 @@ package net.poweru.utils
 			return ret;
 		}
 		
+		/*	This method inverts the return value of DateUtil.compareDates
+			so it can be used with Flex's sort framework. */
 		public static function compareDatesFixed(a:Object, b:Object):int
 		{
 			return -DateUtil.compareDates(a as Date, b as Date);
