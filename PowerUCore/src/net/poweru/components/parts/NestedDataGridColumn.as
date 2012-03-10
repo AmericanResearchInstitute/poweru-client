@@ -45,7 +45,9 @@ package net.poweru.components.parts
 		
 		override public function itemToLabel(data:Object):String
 		{
-			return String(getFinalObject(data));
+			var finalObject:Object = getFinalObject(data);
+			// so we don't end up with the string 'null'
+			return finalObject ? String(finalObject) : '';
 		}
 	}
 }
