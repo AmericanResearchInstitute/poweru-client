@@ -83,7 +83,6 @@ package net.poweru
 		public static const EDITCATEGORY:String = 'EditCategory';
 		public static const EDITCREDENTIALTYPE:String = 'EditCredentialType';
 		public static const EDITCURRICULUMENROLLMENT:String = 'EditCurriculumEnrollment';
-		public static const EDITCURRICULUMENROLLMENTS:String = 'EditCurriculumEnrollments';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';
 		public static const EDITENROLLMENTS:String = 'EditEnrollments';
 		public static const EDITEVENT:String = 'EditEvent';
