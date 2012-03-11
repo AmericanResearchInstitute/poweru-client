@@ -484,6 +484,9 @@
     <classEntry path="net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn"/>
     <classEntry path="net.poweru.tests.components.parts.TestNestedDataGridColumn"/>
     <classEntry path="net.poweru.proxies.CurriculumEnrollmentUserDetailProxy"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditCurriculumEnrollmentCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditCurriculumEnrollment"/>
+    <classEntry path="net.poweru.presenters.EditCurriculumEnrollmentMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

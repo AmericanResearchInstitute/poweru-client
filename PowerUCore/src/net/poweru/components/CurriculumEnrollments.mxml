@@ -38,8 +38,7 @@
 				</mx:FormItem>
 			</mx:Form>
 			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}"/>
-				<!--<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUMENROLLMENTS, grid.selectedItem.id]))}"/>-->
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
 			</mx:HBox>	
 		</mx:Panel>
 	</mx:VBox>
