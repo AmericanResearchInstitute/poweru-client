@@ -31,7 +31,7 @@ package net.poweru.components.dialogs.code
 			eventTemplate = data;
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			shortNameInput.text = '';
 			fullNameInput.text = '';

@@ -28,7 +28,7 @@ package net.poweru.components.dialogs.code
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			fileLocation.text = '';
 			csvFile = new FileReference();

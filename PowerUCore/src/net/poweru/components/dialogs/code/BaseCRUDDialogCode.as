@@ -67,7 +67,7 @@ package net.poweru.components.dialogs.code
 		protected function updateControlIfUnchanged(control:Object, propertyName:String, newValue:Object):void
 		{
 			if (!control.hasOwnProperty(propertyName))
-				trace('EditSession control does not have property ' + propertyName + '!');
+				trace('Editable control does not have property ' + propertyName + '!');
 				
 			else if (changedControls.indexOf(control) == -1)
 				control[propertyName] = newValue;
@@ -105,6 +105,11 @@ package net.poweru.components.dialogs.code
 		public function getData():Object
 		{
 			return null;
+		}
+		
+		public function clear():void
+		{
+			changedControls = [];
 		}
 	}
 }

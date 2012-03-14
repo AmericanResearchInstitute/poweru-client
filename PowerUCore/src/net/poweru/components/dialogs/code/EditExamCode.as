@@ -3,6 +3,7 @@ package net.poweru.components.dialogs.code
 	import mx.containers.Form;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
+	import mx.events.CollectionEvent;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.Places;
@@ -35,7 +36,7 @@ package net.poweru.components.dialogs.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			nameInput.text = '';
 			titleInput.text = '';
@@ -45,6 +46,8 @@ package net.poweru.components.dialogs.code
 			prerequisiteDataSet.source = [];
 			prerequisiteDataSet.refresh();
 			editTaskFees.clear();
+			
+			super.clear();
 		}
 		
 		override public function getData():Object
@@ -65,9 +68,9 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(nameInput, 'text', data['name']);
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
-			achievementDataSet.source = data['achievements'];
+			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
 			achievementDataSet.refresh();
-			prerequisiteDataSet.source = data['prerequisite_tasks'];
+			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
 			prerequisiteDataSet.refresh();
 			
 			title = 'Edit Exam ' + data['name'];
@@ -97,7 +100,9 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [nameInput.validator, titleInput.validator];
 			achievementDataSet = new DataSet();
+			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteDataSet = new DataSet();
+			prerequisiteDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			addControlChangeListener(form);
 		}
 		

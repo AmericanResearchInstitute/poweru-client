@@ -34,7 +34,7 @@ package net.poweru.components.dialogs.code
 			venue = data;
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			venue = null;
 			descriptionInput.text = '';

@@ -34,7 +34,7 @@ package net.poweru.components.dialogs.code
 			rolesCB.dataProvider.refresh();
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			minInput.text = '';
 			maxInput.text = '';

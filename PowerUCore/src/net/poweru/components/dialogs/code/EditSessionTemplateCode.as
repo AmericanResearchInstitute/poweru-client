@@ -24,7 +24,7 @@ package net.poweru.components.dialogs.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			shortNameInput.text = '';
 			fullNameInput.text = '';

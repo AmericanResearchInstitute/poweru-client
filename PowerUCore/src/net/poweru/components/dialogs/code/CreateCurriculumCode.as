@@ -25,7 +25,7 @@ package net.poweru.components.dialogs.code
 			};
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			nameInput.text = '';
 		}

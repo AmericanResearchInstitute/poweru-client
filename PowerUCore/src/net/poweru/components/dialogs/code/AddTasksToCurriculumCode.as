@@ -34,7 +34,7 @@ package net.poweru.components.dialogs.code
 			choicesGrid.dataProvider.refresh();
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			choicesGrid.dataProvider.source = [];
 			choicesGrid.dataProvider.refresh();

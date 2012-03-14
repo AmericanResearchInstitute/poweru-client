@@ -39,7 +39,7 @@ package net.poweru.components.dialogs.code
 			return file;
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			nameInput.text = '';
 			description.text = '';

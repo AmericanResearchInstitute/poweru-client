@@ -36,7 +36,7 @@ package net.poweru.components.dialogs.code
 			orgEmailDomainDataSet = new DataSet();
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			nameInput.text = '';
 			pk = NaN;

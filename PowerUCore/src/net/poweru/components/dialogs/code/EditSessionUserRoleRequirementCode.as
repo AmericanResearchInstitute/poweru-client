@@ -6,6 +6,7 @@ package net.poweru.components.dialogs.code
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextInput;
+	import mx.events.CollectionEvent;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.Places;
@@ -43,7 +44,7 @@ package net.poweru.components.dialogs.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			pk = Number.NaN;
 			session = Number.NaN;
@@ -65,9 +66,9 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(maxInput, 'text', data['max']);
 			rolesCB.dataProvider.source = args[0];
 			rolesCB.dataProvider.refresh();
-			achievementDataSet.source = data['achievements'];
+			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
 			achievementDataSet.refresh();
-			prerequisiteDataSet.source = data['prerequisite_tasks'];
+			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
 			prerequisiteDataSet.refresh();
 			editTaskFees.taskID = pk;
 			editTaskFees.dataSet = new DataSet(data['task_fees']);
@@ -107,7 +108,9 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			rolesCB.dataProvider = new DataSet();
 			achievementDataSet = new DataSet();
+			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteDataSet = new DataSet();
+			prerequisiteDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			addControlChangeListener(form);
 		}
 		

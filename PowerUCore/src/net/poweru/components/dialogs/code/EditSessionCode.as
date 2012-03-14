@@ -66,7 +66,7 @@ package net.poweru.components.dialogs.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function clear():void
+		override public function clear():void
 		{
 			pk = -1;
 			shortNameInput.text = '';
@@ -81,7 +81,7 @@ package net.poweru.components.dialogs.code
 			
 			chosenRoom = null;
 			chosenVenue = null;
-			changedControls = [];
+			super.clear();
 		}
 		
 		public function populate(data:Object, ...args):void
