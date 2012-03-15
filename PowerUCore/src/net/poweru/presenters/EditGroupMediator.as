@@ -11,7 +11,7 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.CategoryProxy;
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.LegacyGroupProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
 	
@@ -27,7 +27,7 @@ package net.poweru.presenters
 		
 		public function EditGroupMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, GroupProxy, Places.EDITGROUP);
+			super(NAME, viewComponent, LegacyGroupProxy, Places.EDITGROUP);
 			categoryProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CategoryProxy) as CategoryProxy;
 		}
 		

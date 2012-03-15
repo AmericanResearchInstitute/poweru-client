@@ -65,6 +65,7 @@ package net.poweru
 		public static const UPDATEFILEDOWNLOADASSIGNMENTSFORUSER:String = 'UpdateFileDownloadAssignmentsForUser';
 		public static const UPDATEFILEUPLOADS:String = 'UpdateFileUploads';
 		public static const UPDATEGROUPS:String = 'UpdateGroups';
+		public static const UPDATELEGACYGROUPS:String = 'UpdateLegacyGroups';
 		public static const UPDATEMESSAGETEMPLATES:String = 'UpdateMessageTemplates';
 		public static const UPDATEORGANIZATIONS:String = 'UpdateOrganizations';
 		public static const UPDATEORGEMAILDOMAINS:String = 'UpdateOrgEmailDomains';

@@ -1,6 +1,6 @@
 package net.poweru.presenters
 {
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.LegacyGroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 
@@ -10,7 +10,7 @@ package net.poweru.presenters
 		
 		public function CreateGroupMediator(viewComponent:Object=null)
 		{
-			super(NAME, viewComponent, GroupProxy);
+			super(NAME, viewComponent, LegacyGroupProxy);
 		}
 		
 	}

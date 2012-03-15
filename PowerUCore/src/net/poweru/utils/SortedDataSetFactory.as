@@ -19,8 +19,11 @@ package net.poweru.utils
 		public static function singleFieldSort(fieldName:String):DataSet
 		{
 			var ret:DataSet = new DataSet();
-			ret.sort = new Sort();
-			ret.sort.fields = [new NestedSortField(fieldName, true)];
+			if (fieldName.length)
+			{
+				ret.sort = new Sort();
+				ret.sort.fields = [new NestedSortField(fieldName, true)];
+			}
 			return ret;
 		}
 		

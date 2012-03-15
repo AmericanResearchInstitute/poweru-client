@@ -5,13 +5,13 @@
 	creationComplete="onCreationComplete(event)"
 	xmlns="net.poweru.components.dialogs.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:widgets="net.poweru.components.widgets.*"
 	xmlns:User="net.poweru.generated.model.User.*"
 	xmlns:parts="net.poweru.components.parts.*"
-	xmlns:validators="net.poweru.components.validators.*">
+	xmlns:validators="net.poweru.components.validators.*" xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Constants;
+			import net.poweru.Places;
 			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
@@ -36,8 +36,16 @@
 		<mx:FormItem id="statusFI" label="Status">
 			<mx:ComboBox id="statusInput" />
 		</mx:FormItem>
-		<mx:FormItem id="groupsFI" label="Groups" maxHeight="250" verticalScrollPolicy="auto" width="100%">
-			<widgets:MultipleSelect id="groups" labelField="name" width="100%"/>
+		<mx:FormItem label="Groups" width="100%">
+			<mx:DataGrid id="groups" dataProvider="{groupsDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="name"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Add" id="addGroupButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, groupsDataSet.toArray()]))}"/>
+				<mx:Button label="Remove" id="removeGroupButton" enabled="{groups.selectedItem != null}" click="{onRemoveGroup(event)}"/>
+			</mx:HBox>
 		</mx:FormItem>
 		<mx:FormItem label="Organizations:">
 			<mx:DataGrid id="orgs" dataProvider="{orgDataSet}">
@@ -69,7 +77,8 @@
 	<states>
 		<mx:State name="{StateNames.USER}">
 			<mx:RemoveChild target="{statusFI}"/>
-			<mx:RemoveChild target="{groupsFI}"/>
+			<mx:RemoveChild target="{addGroupButton}"/>
+			<mx:RemoveChild target="{removeGroupButton}"/>
 			<mx:RemoveChild target="{addOrganizationFI}"/>
 		</mx:State>
 		<mx:State name="{StateNames.STUDENT}" basedOn="{StateNames.USER}"/>

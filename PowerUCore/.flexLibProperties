@@ -295,7 +295,7 @@
     <classEntry path="net.poweru.proxies.ExamProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadAssignmentsForUserProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadProxy"/>
-    <classEntry path="net.poweru.proxies.GroupProxy"/>
+    <classEntry path="net.poweru.proxies.LegacyGroupProxy"/>
     <classEntry path="net.poweru.proxies.LoginProxy"/>
     <classEntry path="net.poweru.proxies.OrgEmailDomainProxy"/>
     <classEntry path="net.poweru.proxies.OrgRoleProxy"/>
@@ -487,6 +487,9 @@
     <classEntry path="net.poweru.components.dialogs.EditCurriculumEnrollment"/>
     <classEntry path="net.poweru.presenters.EditCurriculumEnrollmentMediator"/>
     <classEntry path="net.poweru.components.dialogs.choosers.code.BaseSimpleChooserDialog"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseGroup"/>
+    <classEntry path="net.poweru.presenters.ChooseGroupMediator"/>
+    <classEntry path="net.poweru.proxies.GroupProxy"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

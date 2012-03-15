@@ -1,12 +1,6 @@
 package net.poweru.components.dialogs.code
 {
-	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.components.dialogs.BaseCRUDDialog;
-	import net.poweru.components.parts.AddOrganization;
-	import net.poweru.components.widgets.TitleComboBox;
-	import net.poweru.components.widgets.code.IMultipleSelect;
-	import net.poweru.model.DataSet;
-	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.binding.utils.BindingUtils;
@@ -18,7 +12,15 @@ package net.poweru.components.dialogs.code
 	import mx.events.FlexEvent;
 	import mx.validators.Validator;
 	
+	import net.poweru.Places;
+	import net.poweru.components.dialogs.BaseCRUDDialog;
+	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.parts.AddOrganization;
+	import net.poweru.components.widgets.TitleComboBox;
+	import net.poweru.components.widgets.code.IMultipleSelect;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.SortedDataSetFactory;
 
 	public class EditUserCode extends BaseCRUDDialog implements IEditDialog
 	{
@@ -37,16 +39,18 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var orgs:DataGrid;
 		[Bindable]
+		public var groups:DataGrid;
+		[Bindable]
 		public var form:Form;
 		
 		protected var pk:Number;
-		[Bindable]
-		public var groups:IMultipleSelect;
 		[Bindable]
 		public var addOrganization:AddOrganization;
 		
 		[Bindable]
 		protected var orgDataSet:DataSet;
+		[Bindable]
+		protected var groupsDataSet:DataSet;
 		
 		public function EditUserCode()
 		{
@@ -54,21 +58,21 @@ package net.poweru.components.dialogs.code
 			orgDataSet = new DataSet();
 		}
 		
-		// args[0] is group choices
-		// args[1] is all organizations
-		// args[2] is all organization roles
+		// args[0] is all organizations
+		// args[1] is all organization roles
 		public function populate(data:Object, ...args):void
 		{
 			orgDataSet.source = data['owned_userorgroles'];
 			orgDataSet.refresh();
 			
-			var groupChoices:Array = args[0];
-			addOrganization.organizationData.source = args[1] as Array;
+			addOrganization.organizationData.source = args[0] as Array;
 			addOrganization.organizationData.refresh();
-			addOrganization.orgRoleData.source = args[2] as Array;
+			addOrganization.orgRoleData.source = args[1] as Array;
 			addOrganization.orgRoleData.refresh();
 			addOrganization.orgDataSet = orgDataSet;
 			addOrganization.currentState = '';
+			groupsDataSet.source = data['groups'];
+			groupsDataSet.refresh();
 			
 			titleInput.text = data['title'];
 			first.text = data['first_name'];
@@ -78,8 +82,6 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 		
 			statusInput.selectedItem = data['status'];
-			
-			groups.populate(groupChoices, data['groups']);
 			
 			this.title = "Edit User " + first.text + " " + last.text;
 			
@@ -97,7 +99,7 @@ package net.poweru.components.dialogs.code
 				'last_name' : last.text,
 				'email' : email.text,
 				'phone' : phone.text,
-				'groups' : groups.selectedItems,
+				'groups' : groupsDataSet.toArray(),
 				'status' : statusInput.selectedItem,
 				'owned_userorgroles' : orgDataSet.toArray()
 			};
@@ -121,7 +123,8 @@ package net.poweru.components.dialogs.code
 			phone.text = '';
 			statusInput.selectedItem = null;
 			
-			groups.populate([], []);
+			groupsDataSet.source = [];
+			groupsDataSet.refresh();
 			
 			password1Input.text = '';
 			password2Input.text = '';
@@ -135,6 +138,7 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			statusInput.dataProvider = new DataSet();
+			groupsDataSet = SortedDataSetFactory.singleFieldSort('name');
 			addOrganization.addEventListener(MouseEvent.CLICK, onOrganizationAdded);
 			addOrganization.remove.addEventListener(FlexEvent.BUTTON_DOWN, onClickRemove);
 			BindingUtils.bindProperty(addOrganization.remove, 'enabled', orgs, 'selectedItem');
@@ -172,6 +176,29 @@ package net.poweru.components.dialogs.code
 			super.setChoices(choices);
 			statusInput.dataProvider.source = choices['status'];
 			statusInput.dataProvider.refresh();
+		}
+		
+		override public function receiveChoice(choice:Object, chooserName:String):void
+		{
+			switch (chooserName)
+			{
+				case Places.CHOOSEGROUP:
+					if (groupsDataSet != null && groupsDataSet.findByPK(choice['id']) == null)
+						groupsDataSet.addItem(choice);
+					break;
+				
+				default:
+					super.receiveChoice(choice, chooserName);
+			}
+		}
+		
+		protected function onRemoveGroup(event:Event):void
+		{
+			if (groups.selectedItem != null)
+			{
+				groupsDataSet.removeByPK(groups.selectedItem['id']);
+				groupsDataSet.refresh();
+			}
 		}
 
 	}

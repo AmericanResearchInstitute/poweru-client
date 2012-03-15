@@ -50,8 +50,6 @@ package net.poweru.components.code
 		[Bindable]
 		public var orgFilterCB:ComboBox;
 		[Bindable]
-		public var groupCB:ComboBox;
-		[Bindable]
 		public var buttonBox:HBox;
 		[Bindable]
 		public var viewingActivityButton:Button;
@@ -61,6 +59,8 @@ package net.poweru.components.code
 		public var eventGrid:DataGrid;
 		[Bindable]
 		public var taskBundleToAssign:Object;
+		[Bindable]
+		protected var chosenGroup:Object;
 		[Bindable]
 		public var examToAssign:Object;
 		[Bindable]
@@ -79,10 +79,10 @@ package net.poweru.components.code
 		
 		public function clear():void
 		{
-			populate([], [], [], [], [], [], []);
+			populate([], [], [], [], [], []);
 		}
 		
-		public function populate(users:Array, organizations:Array, orgRoles:Array, groups:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
+		public function populate(users:Array, organizations:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
 		{
 			gridDataProvider.source = users;
 			gridDataProvider.refresh();
@@ -110,8 +110,6 @@ package net.poweru.components.code
 			statusFilterCB.selectedItem = Constants.ALL;
 			orgFilterCB.selectedItem = orgFilterDataSet.findByKey('name', Constants.ALL);
 			
-			groupCB.dataProvider = groups;
-			
 			bulkDataSet.source = users;
 			bulkDataSet.refresh();
 			
@@ -136,6 +134,10 @@ package net.poweru.components.code
 				
 				case Places.CHOOSEFILEDOWNLOAD:
 					fileDownloadToAssign = choice;
+					break;
+			
+				case Places.CHOOSEGROUP:
+					chosenGroup = choice;
 					break;
 				
 				case Places.CHOOSETASKBUNDLE:
@@ -247,9 +249,9 @@ package net.poweru.components.code
 			for each (var user:Object in bulkGrid.selectedItems)
 			{
 				var currentGroups:DataSet = new DataSet(user['groups'] as Array);
-				if (!currentGroups.findByPK(groupCB.selectedItem['id']))
+				if (!currentGroups.findByPK(chosenGroup['id']))
 				{
-					user['groups'].push(groupCB.selectedItem);
+					user['groups'].push(chosenGroup);
 					dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, user));
 				}
 			}

@@ -8,7 +8,7 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IGroups;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.proxies.GroupProxy;
+	import net.poweru.proxies.LegacyGroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -19,7 +19,7 @@ package net.poweru.presenters
 		
 		public function GroupsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, GroupProxy);
+			super(NAME, viewComponent, LegacyGroupProxy);
 		}
 		
 		protected function get groups():IGroups
@@ -27,9 +27,9 @@ package net.poweru.presenters
 			return viewComponent as IGroups;
 		}
 		
-		protected function get groupProxy():GroupProxy
+		protected function get groupProxy():LegacyGroupProxy
 		{
-			return primaryProxy as GroupProxy;
+			return primaryProxy as LegacyGroupProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -50,7 +50,7 @@ package net.poweru.presenters
 		{
 			return [
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEGROUPS,
+				NotificationNames.UPDATELEGACYGROUPS,
 				NotificationNames.UPDATEVODADMINGROUPSVIEW,
 			];
 		}
@@ -65,7 +65,7 @@ package net.poweru.presenters
 					break;
 					
 				// Happens when we save a group, and indicates that we should just refresh the view
-				case NotificationNames.UPDATEGROUPS:
+				case NotificationNames.UPDATELEGACYGROUPS:
 					populate();
 					break;
 					
