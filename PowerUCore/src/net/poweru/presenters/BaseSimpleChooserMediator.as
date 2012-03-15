@@ -2,6 +2,8 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
+	import mx.collections.ArrayCollection;
+	
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.InputCollector;
 	
@@ -27,7 +29,8 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case updateNotification:
-					inputCollector.addInput('data', (notification.getBody() as DataSet).toArray());
+					var data:Array = applyExcludes(primaryProxy.dataSet.toArray());
+					inputCollector.addInput('data', data);
 					break;
 				
 				default:
@@ -37,11 +40,14 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
+			super.populate();
+			
 			if (inputCollector != null)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 			
 			inputCollector = new InputCollector(['data']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
+			
 			primaryProxy.getAll();
 		}
 		

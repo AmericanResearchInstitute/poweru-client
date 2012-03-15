@@ -2,9 +2,13 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
+	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.DataSet;
+	import net.poweru.placemanager.InitialDataProxy;
+	import net.poweru.utils.PKArrayCollection;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -12,17 +16,25 @@ package net.poweru.presenters
 	/*	Base class for mediators that present an IChooser dialog. These
 		are dialogs that are used to make a choice when a user is filling
 		out a form, especially when the data from which to choose is not
-		easily made available in something simple like a ComboBox. */
+		easily made available in something simple like a ComboBox.
+	
+		Pass an array of PKs to exclude into the InitialDataProxy. For
+		example, you probably don't want to display choices that have already
+		been selected.
+	*/
 	public class BaseChooserMediator extends BaseMediator implements IMediator
 	{
 		protected var placeName:String;
 		protected var updateNotification:String;
+		protected var exclude:Array;
+		protected var initialDataProxy:InitialDataProxy;
 		
 		public function BaseChooserMediator(mediatorName:String, viewComponent:Object, placeName:String, updateNotification:String, primaryProxyClass:Class=null)
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);
 			this.placeName = placeName; 
 			this.updateNotification = updateNotification;
+			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get chooser():IChooser
@@ -53,6 +65,21 @@ package net.poweru.presenters
 				NotificationNames.SHOWDIALOG,
 				updateNotification
 			];
+		}
+		
+		override protected function populate():void
+		{
+			exclude = new PKArrayCollection(initialDataProxy.getInitialData(placeName) as Array).toArray();
+		}
+		
+		protected function applyExcludes(data:Array):Array
+		{
+			var newData:DataSet = new DataSet(primaryProxy.dataSet.toArray());
+			if (exclude == null)
+				exclude = [];
+			for each (var pk:Number in exclude)
+				newData.removeByPK(pk);
+			return newData.toArray();
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

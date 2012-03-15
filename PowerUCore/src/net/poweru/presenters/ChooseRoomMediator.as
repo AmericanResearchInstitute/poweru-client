@@ -20,15 +20,13 @@ package net.poweru.presenters
 	{
 		public static const NAME:String = 'ChooseRoomMediator';
 		
-		protected var roomProxy:RoomProxy;
-		protected var initialDataProxy:InitialDataProxy;
+		protected var roomProxy:RoomProxy
 		protected var inputCollector:InputCollector;
 		
 		public function ChooseRoomMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, Places.CHOOSEROOM, NotificationNames.UPDATEVENUES, VenueProxy);
 			roomProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RoomProxy) as RoomProxy;
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get chooseRoom():IChooseRoom
