@@ -1,6 +1,6 @@
 package net.poweru.components.dialogs.choosers.code
 {
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseDialog;
@@ -10,7 +10,7 @@ package net.poweru.components.dialogs.choosers.code
 	public class ChooseTaskBundleCode extends BaseDialog implements IChooser
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
 		
 		public function ChooseTaskBundleCode()
 		{

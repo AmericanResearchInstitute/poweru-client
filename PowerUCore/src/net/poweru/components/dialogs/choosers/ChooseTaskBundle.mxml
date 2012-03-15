@@ -13,12 +13,12 @@
 		]]>
 	</mx:Script>
 	<mx:HBox width="100%" height="100%">
-		<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+		<mx:DataGrid id="grid" width="65%" height="100%">
 			<mx:columns>
-				<mx:AdvancedDataGridColumn dataField="name" headerText="Name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
-				<mx:AdvancedDataGridColumn dataField="description" headerText="Description" sortCompareFunction="{SortCompareFunctionFactory(['description'])}"/>
+				<mx:DataGridColumn dataField="name" headerText="Name"/>
+				<mx:DataGridColumn dataField="description" headerText="Description"/>
 			</mx:columns>
-		</mx:AdvancedDataGrid>
+		</mx:DataGrid>
 		<mx:VBox width="35%" height="100%">
 			<mx:HBox>
 				<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
