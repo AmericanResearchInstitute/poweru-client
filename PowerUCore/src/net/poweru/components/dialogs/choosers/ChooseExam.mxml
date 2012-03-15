@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:ChooseExamCode
+<code:BaseSimpleChooserDialog
+	sortField="name"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.choosers.code.*">
 	<mx:Script>
@@ -16,4 +17,4 @@
 		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:ChooseExamCode>
+</code:BaseSimpleChooserDialog>

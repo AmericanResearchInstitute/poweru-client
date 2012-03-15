@@ -339,7 +339,6 @@
     <classEntry path="net.poweru.components.dialogs.code.ViewFileDownloadAssignmentsCode"/>
     <classEntry path="net.poweru.components.dialogs.ViewFileDownloadAssignments"/>
     <classEntry path="net.poweru.presenters.ViewFileDownloadAssignmentsMediator"/>
-    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseExamCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseExam"/>
     <classEntry path="net.poweru.presenters.ChooseExamMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.BulkAssignmentResultsCode"/>
@@ -360,7 +359,6 @@
     <classEntry path="net.poweru.components.dialogs.code.EditAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.EditAchievement"/>
     <classEntry path="net.poweru.presenters.EditAchievementMediator"/>
-    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseAchievementCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseAchievement"/>
     <classEntry path="net.poweru.presenters.ChooseAchievementMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.CreateSessionUserRoleRequirementCode"/>
