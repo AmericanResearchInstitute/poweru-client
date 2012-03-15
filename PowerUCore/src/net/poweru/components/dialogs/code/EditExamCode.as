@@ -3,6 +3,7 @@ package net.poweru.components.dialogs.code
 	import mx.containers.Form;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
+	import mx.controls.TextInput;
 	import mx.events.CollectionEvent;
 	import mx.events.FlexEvent;
 	
@@ -18,6 +19,8 @@ package net.poweru.components.dialogs.code
 		public var nameInput:IGeneratedTextInput;
 		public var titleInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
+		[Bindable]
+		public var passingScoreInput:TextInput;
 		protected var pk:Number;
 		[Bindable]
 		public var achievements:DataGrid;
@@ -41,6 +44,7 @@ package net.poweru.components.dialogs.code
 			nameInput.text = '';
 			titleInput.text = '';
 			descriptionInput.text = '';
+			passingScoreInput.text = '';
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
@@ -58,7 +62,8 @@ package net.poweru.components.dialogs.code
 				'title' : titleInput.text,
 				'description' : descriptionInput.text,
 				'achievements' : achievementDataSet.toArray(),
-				'prerequisite_tasks' : prerequisiteDataSet.toArray()
+				'prerequisite_tasks' : prerequisiteDataSet.toArray(),
+				'passing_score' : passingScoreInput.text
 			}
 		}
 		
@@ -68,6 +73,7 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(nameInput, 'text', data['name']);
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
+			updateControlIfUnchanged(passingScoreInput, 'text', data['passing_score']);
 			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
 			achievementDataSet.refresh();
 			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
@@ -98,7 +104,10 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			validators = [nameInput.validator, titleInput.validator];
+			validators.concat(
+				nameInput.validator,
+				titleInput.validator
+			);
 			achievementDataSet = new DataSet();
 			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteDataSet = new DataSet();

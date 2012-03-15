@@ -20,6 +20,9 @@
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="Passing Score">
+			<mx:TextInput restrict="0-9" id="passingScoreInput"/>
+		</mx:FormItem>
 		<mx:FormItem label="Achievements" width="100%">
 			<mx:DataGrid id="achievements" dataProvider="{achievementDataSet}" width="100%">
 				<mx:columns>
@@ -46,6 +49,9 @@
 			<parts:EditTaskFees id="editTaskFees"/>
 		</mx:FormItem>
 	</mx:Form>
+	<code:validators>
+		<mx:NumberValidator source="{passingScoreInput}" property="text" domain="int" allowNegative="false" required="false"/>
+	</code:validators>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
