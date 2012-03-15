@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:ChooseTaskBundleCode
+<code:BaseSimpleChooserDialog
+	sortField="name"
 	minWidth="800"
 	minHeight="500"
 	layout="vertical"
@@ -47,4 +48,4 @@
 		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:ChooseTaskBundleCode>
+</code:BaseSimpleChooserDialog>
