@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:ChooseFileDownloadCode
+<code:BaseSimpleChooserDialog
 	title="Choose File Download Task"
 	minWidth="500"
 	minHeight="400"
@@ -19,4 +19,4 @@
 		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-</code:ChooseFileDownloadCode>
+</code:BaseSimpleChooserDialog>

@@ -346,7 +346,6 @@
     <classEntry path="net.poweru.components.dialogs.BulkAssignmentResults"/>
     <classEntry path="net.poweru.presenters.BulkAssignmentResultsMediator"/>
     <classEntry path="net.poweru.commands.BulkAssignmentSuccessCommand"/>
-    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseFileDownloadCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseFileDownload"/>
     <classEntry path="net.poweru.presenters.ChooseFileDownloadMediator"/>
     <classEntry path="net.poweru.presenters.BaseSimpleChooserMediator"/>
@@ -487,6 +486,7 @@
     <classEntry path="net.poweru.components.dialogs.code.EditCurriculumEnrollmentCode"/>
     <classEntry path="net.poweru.components.dialogs.EditCurriculumEnrollment"/>
     <classEntry path="net.poweru.presenters.EditCurriculumEnrollmentMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.BaseSimpleChooserDialog"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

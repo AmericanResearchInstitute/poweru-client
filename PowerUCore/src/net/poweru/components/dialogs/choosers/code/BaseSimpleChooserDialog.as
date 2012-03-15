@@ -1,19 +1,20 @@
 package net.poweru.components.dialogs.choosers.code
 {
+	import mx.controls.AdvancedDataGrid;
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseDialog;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
-	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class ChooseFileDownloadCode extends BaseDialog implements IChooser
+	public class BaseSimpleChooserDialog extends BaseDialog implements IChooser
 	{
+		public var sortField:String = '';
 		[Bindable]
 		public var grid:DataGrid;
 		
-		public function ChooseFileDownloadCode()
+		public function BaseSimpleChooserDialog()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
@@ -33,7 +34,7 @@ package net.poweru.components.dialogs.choosers.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
+			grid.dataProvider = SortedDataSetFactory.singleFieldSort(sortField);
 		}
 	}
 }
