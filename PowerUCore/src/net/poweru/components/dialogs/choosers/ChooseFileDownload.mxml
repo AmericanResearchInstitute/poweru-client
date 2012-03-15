@@ -3,6 +3,7 @@
 	title="Choose File Download Task"
 	minWidth="500"
 	minHeight="400"
+	sortField="name"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.choosers.code.*">
 	<mx:Script>
