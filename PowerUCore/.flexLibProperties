@@ -16,7 +16,7 @@
     <classEntry path="net.poweru.components.Events"/>
     <classEntry path="net.poweru.components.Exams"/>
     <classEntry path="net.poweru.components.FileDownloads"/>
-    <classEntry path="net.poweru.components.Groups"/>
+    <classEntry path="net.poweru.components.vod.Groups"/>
     <classEntry path="net.poweru.components.Login"/>
     <classEntry path="net.poweru.components.Organizations"/>
     <classEntry path="net.poweru.components.SessionUserRoles"/>
@@ -29,7 +29,6 @@
     <classEntry path="net.poweru.components.code.EventsCode"/>
     <classEntry path="net.poweru.components.code.ExamsCode"/>
     <classEntry path="net.poweru.components.code.FileDownloadsCode"/>
-    <classEntry path="net.poweru.components.code.GroupsCode"/>
     <classEntry path="net.poweru.components.code.LoginCode"/>
     <classEntry path="net.poweru.components.code.MainCode"/>
     <classEntry path="net.poweru.components.code.OrganizationsCode"/>
@@ -64,7 +63,7 @@
     <classEntry path="net.poweru.components.dialogs.EditEventTemplate"/>
     <classEntry path="net.poweru.components.dialogs.EditExam"/>
     <classEntry path="net.poweru.components.dialogs.EditFileDownload"/>
-    <classEntry path="net.poweru.components.dialogs.EditGroup"/>
+    <classEntry path="net.poweru.components.dialogs.vod.EditGroup"/>
     <classEntry path="net.poweru.components.dialogs.EditOrganization"/>
     <classEntry path="net.poweru.components.dialogs.EditRoom"/>
     <classEntry path="net.poweru.components.dialogs.EditSession"/>
@@ -115,7 +114,7 @@
     <classEntry path="net.poweru.components.dialogs.code.EditEventTemplateCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditExamCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditFileDownloadCode"/>
-    <classEntry path="net.poweru.components.dialogs.code.EditGroupCode"/>
+    <classEntry path="net.poweru.components.dialogs.vod.code.EditGroupCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditOrganizationCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditRoomCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditSessionCode"/>
@@ -257,7 +256,7 @@
     <classEntry path="net.poweru.presenters.EditEventTemplateMediator"/>
     <classEntry path="net.poweru.presenters.EditExamMediator"/>
     <classEntry path="net.poweru.presenters.EditFileDownloadMediator"/>
-    <classEntry path="net.poweru.presenters.EditGroupMediator"/>
+    <classEntry path="net.poweru.presenters.vod.EditGroupMediator"/>
     <classEntry path="net.poweru.presenters.EditOrganizationMediator"/>
     <classEntry path="net.poweru.presenters.EditRoomMediator"/>
     <classEntry path="net.poweru.presenters.EditSessionMediator"/>
@@ -487,6 +486,9 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseGroup"/>
     <classEntry path="net.poweru.presenters.ChooseGroupMediator"/>
     <classEntry path="net.poweru.proxies.GroupProxy"/>
+    <classEntry path="net.poweru.presenters.EditGroupMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditGroupCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditGroup"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

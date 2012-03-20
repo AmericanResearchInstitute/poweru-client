@@ -13,6 +13,7 @@ package net.poweru.proxies
 		public function GroupProxy()
 		{
 			super(NAME, GroupManagerDelegate, NotificationNames.UPDATEGROUPS, FIELDS, 'Group');
+			createArgNamesInOrder = ['name'];
 		}
 	}
 }

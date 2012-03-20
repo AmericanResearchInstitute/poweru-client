@@ -35,6 +35,9 @@
 				<mx:FormItem label="Group Name:" fontWeight="bold" backgroundColor="#FFFFFF">
 					<mx:Label text="{groupsList.selectedItem.name}"/>
 				</mx:FormItem>
+				<mx:FormItem label="Categories:">
+					<mx:List id="categoryList" labelField="name" minWidth="220" dataProvider="{groupsList.selectedItem.categories}"/>
+				</mx:FormItem>
 			</mx:Form>
 			<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
 		</mx:TitleWindow>
@@ -44,6 +47,17 @@
 					<mx:Text text="Groups are collections of users. " fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
 				</mx:HBox>
 				<mx:Text text="Every user may be a member of one or more groups. Users may be removed from or added to groups by administrators. Users may belong to an unlimited &#xa;number of groups." width="100%" fontSize="11"/>
+				
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Groups are associated with Video Categories" fontStyle="italic" fontSize="11" fontWeight="bold" width="100%"/>
+				</mx:HBox>
+				<mx:Text text="Using the Edit option under Group Details an administrator may associate one or more video categories with a group." width="100%" fontSize="11"/>
+				
+				<mx:HBox backgroundColor="#E5FFFF" width="100%">
+					<mx:Text text="Groups control access to Video Content" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
+				</mx:HBox>
+				<mx:Text text="Users are able to see videos in all of the categories associated with the groups they are members of." width="100%" fontSize="11"/>
+				
 				<mx:HBox backgroundColor="#E5FFFF" width="100%">
 					<mx:Text text="Default Group" fontStyle="italic" width="100%" fontSize="11" fontWeight="bold"/>
 				</mx:HBox>
