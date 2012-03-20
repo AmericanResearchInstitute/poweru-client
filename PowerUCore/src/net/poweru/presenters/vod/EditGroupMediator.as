@@ -12,7 +12,6 @@ package net.poweru.presenters.vod
 	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.CategoryProxy;
 	import net.poweru.proxies.GroupProxy;
-	import net.poweru.proxies.LegacyGroupProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
 	

@@ -9,7 +9,6 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.AdminUsersViewProxy;
-	import net.poweru.proxies.LegacyGroupProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.OrganizationProxy;
 	import net.poweru.proxies.UserProxy;

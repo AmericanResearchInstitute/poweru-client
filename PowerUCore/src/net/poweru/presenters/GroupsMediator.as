@@ -9,7 +9,6 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.GroupProxy;
-	import net.poweru.proxies.LegacyGroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;

@@ -294,7 +294,6 @@
     <classEntry path="net.poweru.proxies.ExamProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadAssignmentsForUserProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadProxy"/>
-    <classEntry path="net.poweru.proxies.LegacyGroupProxy"/>
     <classEntry path="net.poweru.proxies.LoginProxy"/>
     <classEntry path="net.poweru.proxies.OrgEmailDomainProxy"/>
     <classEntry path="net.poweru.proxies.OrgRoleProxy"/>

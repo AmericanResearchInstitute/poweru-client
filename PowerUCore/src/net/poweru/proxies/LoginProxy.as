@@ -212,11 +212,11 @@ package net.poweru.proxies
 			
 			if (currentUser['status'] == 'pending')
 				newState = StateNames.PENDING_USER;
-			else if (userGroups.findByKey('name', LegacyGroupProxy.SUPERADMINGROUP))
+			else if (userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
 				newState = StateNames.SUPERADMIN;
-			else if (userGroups.findByKey('name', LegacyGroupProxy.CATEGORYMANAGERGROUP))
+			else if (userGroups.findByKey('name', GroupProxy.CATEGORYMANAGERGROUP))
 				newState = StateNames.CATEGORYMANAGER;
-			else if (userGroups.findByKey('name', LegacyGroupProxy.STUDENTGROUP))
+			else if (userGroups.findByKey('name', GroupProxy.STUDENTGROUP))
 				newState = StateNames.STUDENT;
 			else if ((currentUser['organizations'] as Array).length == 0)
 				newState = StateNames.NO_ORG_USER;

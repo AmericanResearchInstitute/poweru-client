@@ -9,12 +9,5 @@ package net.poweru.delegates
 		{
 			super(responder, 'GroupManager');
 		}
-		
-		public function vodAdminGroupsView(authToken:String):void
-		{
-			var token:AsyncToken = remoteObject.getOperation('vod_admin_groups_view').send(authToken);
-			token.addResponder(responder);
-		}
-		
 	}
 }
