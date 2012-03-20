@@ -55,11 +55,10 @@ package net.poweru.model
 				sortedDataSet.refresh();
 				var sortedArray:Array = sortedDataSet.toArray();
 				super.source = sortedArray;
+				processIncomingSource(sortedArray);
 			}
 			else
 				super.source = s;
-			
-			processIncomingSource(sortedArray);
 		}
 		
 		override public function findByKey(key:String, value:Object, source:Array=null):Object

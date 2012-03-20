@@ -104,6 +104,7 @@ package net.poweru.presenters
 				
 				case NotificationNames.SHOWDIALOG:
 					if (notification.getBody()[0] == placeName)
+						chooser.clear();
 						populate();
 					break;
 			}

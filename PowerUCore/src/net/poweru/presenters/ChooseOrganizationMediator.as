@@ -1,6 +1,7 @@
 package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
+	import mx.utils.ObjectUtil;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -26,16 +27,13 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.SHOWDIALOG:
-					if (notification.getBody()[0] == placeName)
-						populate();
-					break;
-				
-				// Happens when we save an org, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEORGANIZATIONS:
 					// constructor of HierarchicalDataSet rearranges the data into tree form
-					chooser.populate(new HierarchicalDataSet((notification.getBody() as DataSet).toArray()).toArray());
+					chooser.populate(ObjectUtil.copy(primaryProxy.dataSet.toArray()) as Array);
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
