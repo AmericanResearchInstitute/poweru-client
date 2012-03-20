@@ -21,7 +21,6 @@
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEXAM, '']))}"/>
 			<mx:Button label="Create From XML" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEXAMFROMXML, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
