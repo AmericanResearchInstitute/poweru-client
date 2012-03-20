@@ -10,6 +10,7 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IUploadFileDownload;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
@@ -28,6 +29,9 @@ package net.poweru.components.dialogs.code
 		public var uploadCancel:Button;
 		public var progressBox:HBox;
 		
+		[Bindable]
+		protected var chosenOrganization:Object;
+		
 		public function UploadFileDownloadCode()
 		{
 			super();
@@ -44,6 +48,7 @@ package net.poweru.components.dialogs.code
 			nameInput.text = '';
 			description.text = '';
 			progressBoxVisibility = false;
+			chosenOrganization = null;
 			
 			resetFileref();
 		}
@@ -80,8 +85,15 @@ package net.poweru.components.dialogs.code
 		{
 			return {
 				'name' : nameInput.text,
-				'description' : description.text
+				'description' : description.text,
+				'organization' : chosenOrganization.id
 			};
+		}
+		
+		override public function receiveChoice(choice:Object, chooserName:String):void
+		{
+			if (chooserName == Places.CHOOSEORGANIZATION)
+				chosenOrganization = choice;
 		}
 		
 		public function set progressBoxVisibility(visible:Boolean):void

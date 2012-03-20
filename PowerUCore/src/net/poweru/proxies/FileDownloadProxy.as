@@ -14,7 +14,7 @@ package net.poweru.proxies
 		public function FileDownloadProxy()
 		{
 			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, []);
-			createArgNamesInOrder = ['name', 'description'];
+			createArgNamesInOrder = ['name', 'description', 'organization'];
 			createOptionalArgNames = ['title'];
 			getFilteredMethodName = 'achievement_detail_view';
 		}

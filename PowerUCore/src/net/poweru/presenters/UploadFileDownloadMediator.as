@@ -41,10 +41,10 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
+			return super.listNotificationInterests().concat([
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED,
-			];
+			]);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -61,6 +61,9 @@ package net.poweru.presenters
 					if (body != null && body == Places.UPLOADFILEDOWNLOAD)
 						uploadDialog.clear();
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

@@ -57,6 +57,7 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = '';
 			startInput.selectedDate = null;
 			endInput.selectedDate = null;
+			chosenOrganization = null;
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

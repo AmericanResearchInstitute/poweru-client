@@ -13,7 +13,7 @@ package net.poweru.proxies
 		public function ExamProxy()
 		{
 			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, [], 'Exam');
-			createArgNamesInOrder = ['name', 'title'];
+			createArgNamesInOrder = ['name', 'title', 'organization'];
 			createOptionalArgNames = ['description'];
 			getFilteredMethodName = 'achievement_detail_view';
 		}

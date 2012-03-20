@@ -6,6 +6,7 @@
 	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -20,6 +21,12 @@
 			<mx:HBox>
 				<mx:TextInput id="fileNameInput" editable="false"/>
 				<mx:Button id="upload" label="Select File" click="selectFile();"/>
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:Label text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))"/>
 			</mx:HBox>
 		</mx:FormItem>
 		<mx:HBox textAlign="left">
