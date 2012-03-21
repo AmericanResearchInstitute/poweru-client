@@ -11,7 +11,7 @@
 		<mx:FormItem label="Name">
 			<TaskFee:NameInput id="nameInput"/>
 		</mx:FormItem>
-		<mx:FormItem label="Fee">
+		<mx:FormItem label="Fee" required="true">
 			<mx:TextInput id="priceInput"/>
 		</mx:FormItem>
 	</mx:Form>
