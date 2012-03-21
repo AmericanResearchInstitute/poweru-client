@@ -4,7 +4,7 @@ package net.poweru.components.interfaces
 	
 	public interface IUsers extends IClearableComponent
 	{
-		function populate(users:Array, organizations:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void;
+		function populate(users:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void;
 		function receiveChoice(choice:Object, type:String):void;
 		function emailSent():void;
 	}

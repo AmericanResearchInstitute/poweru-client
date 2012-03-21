@@ -17,10 +17,6 @@
 			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
-			
-			[Bindable]
-			[Embed('/../assets/org.png')]
-			public var myFolderIcon:Class;
 		]]>
 	</mx:Script>
 	
@@ -103,7 +99,9 @@
 							<mx:ComboBox id="statusFilterCB" change="bulkDataSet.refresh()"/>
 						</mx:FormItem>
 						<mx:FormItem label="Organization:">
-							<mx:ComboBox id="orgFilterCB" labelField="name" change="bulkDataSet.refresh()"/>
+							<mx:Label id="orgFilterLabel" text="{chosenOrganizationForFilter.name}" visible="{chosenOrganizationForFilter != null}" includeInLayout="{chosenOrganizationForFilter != null}"/>
+							<mx:Button visible="{chosenOrganizationForFilter == null}" includeInLayout="{chosenOrganizationForFilter == null}" label="Choose Organization" click="onClickChooseOrgForFilter(event)"/>
+							<mx:Button label="Clear" click="chosenOrganizationForFilter = null; bulkDataSet.refresh()" visible="{chosenOrganizationForFilter != null}" includeInLayout="{chosenOrganizationForFilter != null}"/>
 						</mx:FormItem>
 					</mx:HBox>
 				</mx:TitleWindow>
@@ -121,15 +119,18 @@
 				<mx:VBox width="100%" label="Add to Organization" horizontalAlign="center">
 					<mx:Spacer height="8"/>
 					<mx:VBox width="90%">
-						<mx:Tree id="organizationTree" labelField="name" width="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
 						<mx:Form>
+							<mx:FormItem label="Organization">
+								<mx:Label text="{chosenOrganizationForBulkMembership.name}"/>
+								<mx:Button label="Choose Organization" click="onClickChooseOrgForBulkAction(event)"/>
+							</mx:FormItem>
 							<mx:FormItem label="Role">
 								<mx:ComboBox id="orgRoleCB" labelField="name"/>
 							</mx:FormItem>
 							<mx:FormItem label="Set Active" toolTip="For new users in the system, it is often helpful to put them in an organization and make them active at the same time.  Leaving this unchecked will mean their status is not changed.">
 								<mx:CheckBox id="setActiveCB"/>
 							</mx:FormItem>
-							<mx:Button label="Add to Org" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; organizationTree.selectedItem != null}" click="onAddToOrg(event)"/>
+							<mx:Button label="Add to Org" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; chosenOrganizationForBulkMembership != null}" click="onAddToOrg(event)"/>
 						</mx:Form>
 					</mx:VBox>
 				</mx:VBox>

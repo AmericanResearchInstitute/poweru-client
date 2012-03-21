@@ -14,7 +14,6 @@ package net.poweru.presenters
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AchievementProxy;
-	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.proxies.CurriculumEnrollmentUserDetailProxy;
@@ -30,7 +29,6 @@ package net.poweru.presenters
 		public static var NAME:String = 'UsersMediator';
 		
 		protected var populatedSinceLastClear:Boolean = false;
-		protected var adminOrganizationViewProxy:AdminOrganizationViewProxy;
 		protected var inputCollector:InputCollector;
 		protected var orgRoleProxy:OrgRoleProxy;
 		protected var curriculumEnrollmentUserDetailProxy:CurriculumEnrollmentUserDetailProxy;
@@ -41,7 +39,6 @@ package net.poweru.presenters
 		public function UsersMediator(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent, AdminUsersViewProxy);
-			adminOrganizationViewProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AdminOrganizationViewProxy) as AdminOrganizationViewProxy;
 			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 			curriculumEnrollmentUserDetailProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentUserDetailProxy) as CurriculumEnrollmentUserDetailProxy;
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
@@ -84,7 +81,6 @@ package net.poweru.presenters
 				NotificationNames.EMAILSENT,
 				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEADMINORGANIZATIONSVIEW,
 				NotificationNames.UPDATEADMINUSERSVIEW,
 				NotificationNames.UPDATECHOICES,
 				NotificationNames.UPDATECURRICULUMENROLLMENTS,
@@ -120,10 +116,6 @@ package net.poweru.presenters
 				// Happens when we save a user, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEUSERS:
 					populate();
-					break;
-					
-				case NotificationNames.UPDATEADMINORGANIZATIONSVIEW:
-					inputCollector.addInput('organizations', ObjectUtil.copy(notification.getBody()));
 					break;
 					
 				case NotificationNames.UPDATEADMINUSERSVIEW:
@@ -162,7 +154,7 @@ package net.poweru.presenters
 			populatedSinceLastClear = true;
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
-			users.populate(inputCollector.object['users'], inputCollector.object['organizations'], inputCollector.object['orgRoles'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments'], inputCollector.object['events']);
+			users.populate(inputCollector.object['users'], inputCollector.object['orgRoles'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments'], inputCollector.object['events']);
 		}
 		
 		protected function onSubmit(event:ViewEvent):void
@@ -195,12 +187,11 @@ package net.poweru.presenters
 		{
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
-			inputCollector = new InputCollector(['users', 'organizations', 'orgRoles', 'choices', 'curriculumEnrollments', 'events']);
+			inputCollector = new InputCollector(['users', 'orgRoles', 'choices', 'curriculumEnrollments', 'events']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			primaryProxy.getAll();
 			primaryProxy.getChoices();
-			adminOrganizationViewProxy.adminOrganizationsView();
 			orgRoleProxy.getAll();
 			curriculumEnrollmentUserDetailProxy.getAll();
 			eventProxy.getAll();

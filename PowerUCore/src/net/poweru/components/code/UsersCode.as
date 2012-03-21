@@ -15,7 +15,6 @@ package net.poweru.components.code
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
-	import mx.controls.Tree;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
@@ -26,7 +25,6 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IUsers;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
-	import net.poweru.model.HierarchicalDataSet;
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.CompareLabels;
 	import net.poweru.utils.PKArrayCollection;
@@ -40,15 +38,11 @@ package net.poweru.components.code
 		public var bulkGrid:AdvancedDataGrid;
 		[Bindable]
 		public var curriculumEnrollmentGrid:DataGrid;
-		[Bindable]
-		public var organizationTree:Tree;
 		public var orgRoleCB:ComboBox;
 		public var accordion:Accordion;
 		public var statuses:ComboBox;
 		[Bindable]
 		public var statusFilterCB:ComboBox;
-		[Bindable]
-		public var orgFilterCB:ComboBox;
 		[Bindable]
 		public var buttonBox:HBox;
 		[Bindable]
@@ -71,6 +65,13 @@ package net.poweru.components.code
 		protected var gridDataProvider:DataSet;
 		public var emailSubjectInput:TextInput;
 		public var emailBodyInput:TextArea;
+		[Bindable]
+		protected var chosenOrganizationForBulkMembership:Object;
+		[Bindable]
+		protected var chosenOrganizationForFilter:Object;
+		/*	There are two places where we need to choose an org, and this
+			boolean keeps track of which one made the most recent request. */
+		protected var chooseOrgRequestIsForFilter:Boolean = true;
 		
 		public function UsersCode()
 		{
@@ -79,16 +80,21 @@ package net.poweru.components.code
 		
 		public function clear():void
 		{
-			populate([], [], [], [], [], []);
+			populate([], [], [], [], []);
+			chosenOrganizationForBulkMembership = null;
+			chosenOrganizationForFilter = null;
+			chosenGroup = null;
+			taskBundleToAssign = null;
+			examToAssign = null;
+			emailSubjectInput.text = '';
+			emailBodyInput.text = '';
 		}
 		
-		public function populate(users:Array, organizations:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
+		public function populate(users:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
 		{
 			gridDataProvider.source = users;
 			gridDataProvider.refresh();
-			
-			organizationDataSet.source = organizations;
-			organizationDataSet.refresh();
+
 			orgRoleDataSet.source = orgRoles;
 			orgRoleDataSet.refresh();
 			statusesDataSet.source = choices['status'] as Array;
@@ -98,17 +104,7 @@ package net.poweru.components.code
 			statusFilterDataSet.source.push(Constants.ALL);
 			statusFilterDataSet.refresh();
 			
-			var orgHDS:HierarchicalDataSet = new HierarchicalDataSet();
-			orgHDS.source = ObjectUtil.copy(organizations) as Array;
-			orgHDS.source.push({'name' : Constants.ALL});
-			orgHDS.source.push({'name' : Constants.NONE});
-			orgHDS.refresh();
-			
-			orgFilterDataSet.source = orgHDS.getDescendants();
-			orgFilterDataSet.refresh();
-			
 			statusFilterCB.selectedItem = Constants.ALL;
-			orgFilterCB.selectedItem = orgFilterDataSet.findByKey('name', Constants.ALL);
 			
 			bulkDataSet.source = users;
 			bulkDataSet.refresh();
@@ -143,6 +139,16 @@ package net.poweru.components.code
 				case Places.CHOOSETASKBUNDLE:
 					taskBundleToAssign = choice;
 					break;
+				
+				case Places.CHOOSEORGANIZATION:
+					if (chooseOrgRequestIsForFilter)
+					{
+						chosenOrganizationForFilter = choice;
+						bulkDataSet.refresh();
+					}
+					else
+						chosenOrganizationForBulkMembership = choice;
+					break;
 			}
 		}
 
@@ -152,21 +158,14 @@ package net.poweru.components.code
 			bulkGrid.dataProvider = SortedDataSetFactory.singleFieldSort('last_name');
 			bulkDataSet.filterFunction = filterBulkUsers;
 			eventGrid.dataProvider = new DataSet();
-			organizationTree.dataProvider = new DataSet();
 			orgRoleCB.dataProvider = new DataSet();
 			statuses.dataProvider = new DataSet();
 			statusFilterCB.dataProvider = new DataSet();
-			orgFilterCB.dataProvider = new DataSet();
 			achievementGrid.dataProvider = new DataSet();
 			
 			var statusSort:Sort = new Sort();
 			statusSort.compareFunction = CompareLabels;
 			statusFilterDataSet.sort = statusSort;
-			
-			var orgSort:Sort = new Sort();
-			orgSort.compareFunction = CompareLabels;
-			orgSort.fields = [new SortField('name')];
-			orgFilterDataSet.sort = orgSort;
 			
 			// Show the accordion "collapsed" will all options at the top
 			accordion.selectedIndex = accordion.getChildren().length - 1;
@@ -184,11 +183,6 @@ package net.poweru.components.code
 				BindingUtils.bindProperty(viewingActivityButton, 'enabled', editButton, 'enabled');
 			}
 			
-		}
-		
-		protected function labelUsername(item:Object, column:AdvancedDataGridColumn):String
-		{
-			return item['default_username_and_domain']['username'];
 		}
 		
 		// Filter based on selections in the filter controls
@@ -209,22 +203,11 @@ package net.poweru.components.code
 			
 			if (ret)
 			{
-				var orgAssociations:DataSet = new DataSet(item['owned_userorgroles'] as Array);
-				
-				switch (orgFilterCB.selectedLabel)
+				if (chosenOrganizationForFilter != null)
 				{
-					// Leave it as true
-					case Constants.ALL:
-						break;
-					
-					// true only if there are no org associations
-					case Constants.NONE:
-						ret = Boolean(orgAssociations.length == 0);
-						break;
-					
+					var orgAssociations:DataSet = new DataSet(item['owned_userorgroles'] as Array);
 					// true if selected org is found among user's org associations
-					default:
-						ret = Boolean(orgAssociations.findByKey('organization_name', orgFilterCB.selectedLabel) != null);
+					ret = Boolean(orgAssociations.findByKey('organization', chosenOrganizationForFilter.id) != null);
 				}
 			}
 				
@@ -290,7 +273,7 @@ package net.poweru.components.code
 				var itemsAdded:Boolean = false;
 				var newRelationship:Object = {
 					'role' : orgRoleCB.selectedItem['id'],
-					'organization' : organizationTree.selectedItem['id']
+					'organization' : chosenOrganizationForBulkMembership.id
 				}
 				if (!userAlreadyHasOrgRole(user, newRelationship))
 				{
@@ -344,6 +327,18 @@ package net.poweru.components.code
 				dispatchEvent(new ViewEvent(ViewEvent.FETCH, grid.selectedItem.id));
 		}
 		
+		protected function onClickChooseOrgForBulkAction(event:Event):void
+		{
+			chooseOrgRequestIsForFilter = false;
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))
+		}
+		
+		protected function onClickChooseOrgForFilter(event:Event):void
+		{
+			chooseOrgRequestIsForFilter = true;
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))
+		}
+		
 		// Determine if a user already has the specified userOrgRole
 		protected function userAlreadyHasOrgRole(user:Object, orgRole:Object):Boolean
 		{
@@ -365,11 +360,6 @@ package net.poweru.components.code
 			return bulkGrid.dataProvider as DataSet;
 		}
 		
-		protected function get organizationDataSet():DataSet
-		{
-			return organizationTree.dataProvider as DataSet;
-		}
-		
 		protected function get orgRoleDataSet():DataSet
 		{
 			return orgRoleCB.dataProvider as DataSet;
@@ -383,11 +373,6 @@ package net.poweru.components.code
 		protected function get statusFilterDataSet():DataSet
 		{
 			return statusFilterCB.dataProvider as DataSet;
-		}
-		
-		protected function get orgFilterDataSet():DataSet
-		{
-			return orgFilterCB.dataProvider as DataSet;
 		}
 	}
 }
