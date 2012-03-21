@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:EditExamCode
+	creationPolicy="all"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Exam="net.poweru.generated.model.Exam.*" xmlns:parts="net.poweru.components.parts.*">
@@ -23,7 +24,15 @@
 		<mx:FormItem label="Passing Score">
 			<mx:TextInput restrict="0-9" id="passingScoreInput"/>
 		</mx:FormItem>
-		<mx:FormItem label="Achievements" width="100%">
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))"/>
+			</mx:HBox>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:TabNavigator width="100%" minWidth="350">
+		<mx:VBox label="Achievements" width="100%">
 			<mx:DataGrid id="achievements" dataProvider="{achievementDataSet}" width="100%">
 				<mx:columns>
 					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
@@ -33,8 +42,8 @@
 				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, achievementDataSet.toArray()]))}"/>
 				<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemoveAchievement(event)}"/>
 			</mx:HBox>
-		</mx:FormItem>
-		<mx:FormItem label="Prerequisites" width="100%">
+		</mx:VBox>
+		<mx:VBox label="Prerequisites" width="100%">
 			<mx:DataGrid id="prerequisites" dataProvider="{prerequisiteDataSet}" width="100%">
 				<mx:columns>
 					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
@@ -44,13 +53,14 @@
 				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, prerequisiteDataSet.toArray().concat(pk)]))}"/>
 				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
-		</mx:FormItem>
-		<mx:FormItem label="Fees" width="100%">
+		</mx:VBox>
+		<mx:VBox label="Fees" width="100%">
 			<parts:EditTaskFees id="editTaskFees"/>
-		</mx:FormItem>
-	</mx:Form>
+		</mx:VBox>
+	</mx:TabNavigator>
 	<code:validators>
 		<mx:NumberValidator source="{passingScoreInput}" property="text" domain="int" allowNegative="false" required="false"/>
+		<mx:StringValidator source="{orgLabel}" property="text" required="true"/>
 	</code:validators>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>

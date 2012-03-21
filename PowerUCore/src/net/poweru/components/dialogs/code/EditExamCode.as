@@ -32,6 +32,8 @@ package net.poweru.components.dialogs.code
 		protected var prerequisiteDataSet:DataSet;
 		public var editTaskFees:EditTaskFees;
 		public var form:Form;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		public function EditExamCode()
 		{
@@ -45,6 +47,7 @@ package net.poweru.components.dialogs.code
 			titleInput.text = '';
 			descriptionInput.text = '';
 			passingScoreInput.text = '';
+			chosenOrganization = null;
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
@@ -63,7 +66,8 @@ package net.poweru.components.dialogs.code
 				'description' : descriptionInput.text,
 				'achievements' : achievementDataSet.toArray(),
 				'prerequisite_tasks' : prerequisiteDataSet.toArray(),
-				'passing_score' : passingScoreInput.text
+				'passing_score' : passingScoreInput.text,
+				'organization' : chosenOrganization.id
 			}
 		}
 		
@@ -75,6 +79,7 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
 			updateControlIfUnchanged(passingScoreInput, 'text', data['passing_score']);
 			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
+			chosenOrganization = data['organization'];
 			achievementDataSet.refresh();
 			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
 			prerequisiteDataSet.refresh();
@@ -98,13 +103,17 @@ package net.poweru.components.dialogs.code
 					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
 						prerequisiteDataSet.addItem(choice);
 					break;
+				
+				case Places.CHOOSEORGANIZATION:
+					chosenOrganization = choice;
+					break;
 			}
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			validators.concat(
+			validators = validators.concat(
 				nameInput.validator,
 				titleInput.validator
 			);
