@@ -34,6 +34,9 @@
 				<mx:FormItem label="Description:">
 					<mx:Label text="{grid.selectedItem.description}" />
 				</mx:FormItem>
+				<mx:FormItem label="Organization:">
+					<mx:Label text="{grid.selectedItem.organization.name}" />
+				</mx:FormItem>
 				<mx:FormItem label="Achievements" width="100%">
 					<mx:DataGrid id="achievements" dataProvider="{grid.selectedItem.achievements}" width="100%">
 						<mx:columns>

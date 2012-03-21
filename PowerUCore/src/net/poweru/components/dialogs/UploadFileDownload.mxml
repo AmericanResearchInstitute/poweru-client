@@ -25,7 +25,7 @@
 		</mx:FormItem>
 		<mx:FormItem label="Organization" required="true">
 			<mx:HBox>
-				<mx:Label text="{chosenOrganization.name}"/>
+				<mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
 				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))"/>
 			</mx:HBox>
 		</mx:FormItem>
@@ -38,9 +38,9 @@
 		<mx:ProgressBar width="100%" textAlign="center" labelPlacement="center" id="uploadProgress" label="Upload Progress"/>
 		<mx:Button id="uploadCancel" label="Cancel" click="onUploadCancel(event)"/>
 	</mx:HBox>
-	
-	<mx:Array id="validators">
+	<code:validators>
 		<mx:StringValidator source="{description}" property="text" required="true"/>
 		<mx:StringValidator source="{fileNameInput}" property="text" required="true"/>
-	</mx:Array>
+		<mx:StringValidator source="{orgLabel}" property="text" required="true"/>
+	</code:validators>
 </code:UploadFileDownloadCode>

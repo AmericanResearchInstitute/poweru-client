@@ -32,6 +32,8 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		protected var prerequisiteDataSet:DataSet;
 		protected var pk:Number;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		public function EditFileDownloadCode()
 		{
@@ -45,6 +47,7 @@ package net.poweru.components.dialogs.code
 			nameInput.text = '';
 			titleInput.text = '';
 			descriptionInput.text = '';
+			chosenOrganization = null;
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
 			prerequisiteDataSet.source = [];
@@ -60,7 +63,8 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(nameInput, 'text', data['name']);
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
-			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']); 
+			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
+			chosenOrganization = data['organization'];
 			achievementDataSet.refresh();
 			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
 			prerequisiteDataSet.refresh();
@@ -77,7 +81,8 @@ package net.poweru.components.dialogs.code
 				'title' : titleInput.text,
 				'description' : descriptionInput.text,
 				'achievements' : achievementDataSet.toArray(),
-				'prerequisite_tasks' : prerequisiteDataSet.toArray()
+				'prerequisite_tasks' : prerequisiteDataSet.toArray(),
+				'organization' : chosenOrganization.id
 			}
 		}
 		
@@ -94,6 +99,10 @@ package net.poweru.components.dialogs.code
 					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
 						prerequisiteDataSet.addItem(choice);
 					break;
+				
+				case Places.CHOOSEORGANIZATION:
+					chosenOrganization = choice;
+					break;
 			}
 		}
 		
@@ -104,7 +113,10 @@ package net.poweru.components.dialogs.code
 			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteDataSet = new DataSet();
 			prerequisiteDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
-			validators = [nameInput.validator, titleInput.validator];
+			validators = validators.concat([
+				nameInput.validator,
+				titleInput.validator
+			]);
 			addControlChangeListener(form);
 		}
 		
