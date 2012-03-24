@@ -24,7 +24,6 @@
     <classEntry path="net.poweru.components.Venues"/>
     <classEntry path="net.poweru.components.akamai.ControlBar"/>
     <classEntry path="net.poweru.components.code.CurriculumEnrollmentsCode"/>
-    <classEntry path="net.poweru.components.code.CurriculumsCode"/>
     <classEntry path="net.poweru.components.code.EventTemplatesCode"/>
     <classEntry path="net.poweru.components.code.EventsCode"/>
     <classEntry path="net.poweru.components.code.ExamsCode"/>
@@ -137,7 +136,6 @@
     <classEntry path="net.poweru.components.interfaces.ICreateSessionTemplate"/>
     <classEntry path="net.poweru.components.interfaces.ICreateVenue"/>
     <classEntry path="net.poweru.components.interfaces.ICurriculumEnrollments"/>
-    <classEntry path="net.poweru.components.interfaces.ICurriculums"/>
     <classEntry path="net.poweru.components.interfaces.IEditDialog"/>
     <classEntry path="net.poweru.components.interfaces.IEventTemplates"/>
     <classEntry path="net.poweru.components.interfaces.IEvents"/>

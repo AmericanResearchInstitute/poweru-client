@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.ICurriculums;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.CurriculumProxy;
 	
@@ -20,11 +19,6 @@ package net.poweru.presenters
 		public function CurriculumsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, CurriculumProxy);
-		}
-		
-		protected function get curriculums():ICurriculums
-		{
-			return viewComponent as ICurriculums;
 		}
 		
 		protected function get curriculumProxy():CurriculumProxy
@@ -70,7 +64,7 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.UPDATEADMINCURRICULUMSVIEW:
-					curriculums.populate(notification.getBody() as Array);
+					arrayPopulatedComponent.populate(notification.getBody() as Array);
 					break;
 			}
 		}
