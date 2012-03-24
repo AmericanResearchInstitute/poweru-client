@@ -26,7 +26,6 @@
     <classEntry path="net.poweru.components.code.CurriculumEnrollmentsCode"/>
     <classEntry path="net.poweru.components.code.EventTemplatesCode"/>
     <classEntry path="net.poweru.components.code.EventsCode"/>
-    <classEntry path="net.poweru.components.code.ExamsCode"/>
     <classEntry path="net.poweru.components.code.FileDownloadsCode"/>
     <classEntry path="net.poweru.components.code.LoginCode"/>
     <classEntry path="net.poweru.components.code.MainCode"/>

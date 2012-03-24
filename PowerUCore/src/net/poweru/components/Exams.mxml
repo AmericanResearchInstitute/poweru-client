@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:ExamsCode
+<code:BasePopulatedComponentCode
+	sortedFieldName="name"
 	width="100%"
 	height="100%"
 	label="Exams"
@@ -71,4 +72,4 @@
 			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>
-</code:ExamsCode>
+</code:BasePopulatedComponentCode>
