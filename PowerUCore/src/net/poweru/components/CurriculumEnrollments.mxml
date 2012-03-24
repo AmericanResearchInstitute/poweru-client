@@ -11,13 +11,13 @@
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%" dataProvider="{dataProvider}">
+	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="curriculum_name" headerText="Curriculum Name"/>
-			<mx:AdvancedDataGridColumn dataField="start" headerText="Start"/>
-			<mx:AdvancedDataGridColumn dataField="end" headerText="End"/>
+			<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum Name"/>
+			<mx:DataGridColumn dataField="start" headerText="Start"/>
+			<mx:DataGridColumn dataField="end" headerText="End"/>
 		</mx:columns>
-	</mx:AdvancedDataGrid>
+	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>

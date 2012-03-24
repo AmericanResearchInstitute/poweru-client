@@ -2,6 +2,7 @@ package net.poweru.components.code
 {
 	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
+	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.ICurriculumEnrollments;
@@ -11,19 +12,18 @@ package net.poweru.components.code
 	public class CurriculumEnrollmentsCode extends HBox implements ICurriculumEnrollments
 	{
 		[Bindable]
-		protected var dataProvider:DataSet;
+		public var grid:DataGrid
 		
 		public function CurriculumEnrollmentsCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataProvider = new DataSet();
 		}
 		
 		public function populate(data:Array):void
 		{
-			dataProvider.source = data;
-			dataProvider.refresh();
+			grid.dataProvider.source = data;
+			grid.dataProvider.refresh();
 		}
 		
 		public function clear():void
@@ -34,7 +34,7 @@ package net.poweru.components.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
+			grid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 		}
 		
 		protected function formatName(item:Object):String

@@ -1,7 +1,7 @@
 package net.poweru.components.code
 {
 	import mx.containers.HBox;
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
@@ -11,7 +11,7 @@ package net.poweru.components.code
 	public class CredentialTypesCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
 		
 		public function CredentialTypesCode()
 		{
