@@ -12,13 +12,13 @@
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
-	<mx:AdvancedDataGrid id="grid" width="65%" height="100%">
+	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
-			<mx:AdvancedDataGridColumn dataField="title" headerText="Title"/>
-			<mx:AdvancedDataGridColumn dataField="description" headerText="Description"/>
+			<mx:DataGridColumn dataField="name" headerText="Name"/>
+			<mx:DataGridColumn dataField="title" headerText="Title"/>
+			<mx:DataGridColumn dataField="description" headerText="Description"/>
 		</mx:columns>
-	</mx:AdvancedDataGrid>
+	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Create From XML" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEXAMFROMXML, '']))}"/>
