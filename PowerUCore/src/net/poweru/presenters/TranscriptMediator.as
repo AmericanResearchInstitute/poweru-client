@@ -40,7 +40,11 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			(primaryProxy as AssignmentProxy).transcriptView({}, ['task']);
+			var userID:Number = initialDataProxy.getInitialData(placeName) as Number;
+			if (userID == 0) // happens when null is cast to a Number
+				userID = loginProxy.currentUser.id;
+			var filters:Object = {'exact' : {'user' : userID}};
+			(primaryProxy as AssignmentProxy).transcriptView(filters, ['task']);
 		}
 	}
 }
