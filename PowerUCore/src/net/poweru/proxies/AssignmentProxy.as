@@ -28,9 +28,9 @@ package net.poweru.proxies
 			new AssignmentManagerDelegate(new PowerUResponder(onBulkCreateSuccess, onBulkCreateFailure, onFault)).bulkCreate(loginProxy.authToken, taskID, userIDs);
 		}
 		
-		public function transcriptView(filters:Object, fields:Array, userID:Object=null):void
+		public function transcriptView(filters:Object, fields:Array):void
 		{
-			new AssignmentManagerDelegate(new PowerUResponder(onTranscriptSuccess, onTranscriptFailure, onFault)).transcriptView(loginProxy.authToken, filters, fields, userID);
+			new AssignmentManagerDelegate(new PowerUResponder(onTranscriptSuccess, onTranscriptFailure, onFault)).transcriptView(loginProxy.authToken, filters, fields);
 		}
 		
 		protected function incrementOutstandingRequestCounter():void

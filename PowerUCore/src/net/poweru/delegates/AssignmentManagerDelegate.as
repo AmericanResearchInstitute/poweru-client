@@ -18,9 +18,9 @@ package net.poweru.delegates
 			return token;
 		}
 		
-		public function transcriptView(authToken:String, filters:Object, fields:Array, userID:Object=null):AsyncToken
+		public function transcriptView(authToken:String, filters:Object, fields:Array):AsyncToken
 		{
-			var token:AsyncToken = remoteObject.getOperation('transcript_view').send(authToken, filters, fields, userID);
+			var token:AsyncToken = remoteObject.getOperation('transcript_view').send(authToken, filters, fields);
 			token.addResponder(responder);
 			return token;
 		}
