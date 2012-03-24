@@ -346,7 +346,6 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseFileDownload"/>
     <classEntry path="net.poweru.presenters.ChooseFileDownloadMediator"/>
     <classEntry path="net.poweru.presenters.BaseSimpleChooserMediator"/>
-    <classEntry path="net.poweru.components.code.AchievementsCode"/>
     <classEntry path="net.poweru.components.Achievements"/>
     <classEntry path="net.poweru.delegates.AchievementManagerDelegate"/>
     <classEntry path="net.poweru.proxies.AchievementProxy"/>
@@ -377,7 +376,6 @@
     <classEntry path="net.poweru.presenters.CurriculumManagementMediator"/>
     <classEntry path="net.poweru.components.collections.CredentialManagement"/>
     <classEntry path="net.poweru.presenters.CredentialManagementMediator"/>
-    <classEntry path="net.poweru.components.code.CredentialTypesCode"/>
     <classEntry path="net.poweru.components.interfaces.IArrayPopulatedComponent"/>
     <classEntry path="net.poweru.components.CredentialTypes"/>
     <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
