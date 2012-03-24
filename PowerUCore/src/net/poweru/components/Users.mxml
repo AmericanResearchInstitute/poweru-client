@@ -43,6 +43,7 @@
 					<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPUSER, '']))}"/>
 				</mx:HBox>
 				<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+					<mx:Button label="Transcript" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.TRANSCRIPT, grid.selectedItem.id]))}"/>
 					<mx:Form>
 						<mx:FormItem label="Title:">
 							<mx:Label text="{grid.selectedItem.title}" />
