@@ -22,6 +22,11 @@
 	<mx:VBox width="60%" height="100%">
 		<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Spacer height="4" width="4"/>
+			<mx:HBox id="buttonBox">
+				<mx:Spacer height="4" width="4"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITMESSAGETEMPLATE, grid.selectedItem.id]))}"/>
+			</mx:HBox>
 			<mx:Form width="100%">
 				<mx:FormItem label="Type:">
 					<mx:Label text="{grid.selectedItem.message_type.name}" />
@@ -37,9 +42,6 @@
 				</mx:FormItem>
 				
 			</mx:Form>
-			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITMESSAGETEMPLATE, grid.selectedItem.id]))}"/>
-			</mx:HBox>
 		</mx:Panel>
 	</mx:VBox>
 </code:MessageTemplatesCode>
