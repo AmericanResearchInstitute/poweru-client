@@ -42,8 +42,16 @@
 					<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 					<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPUSER, '']))}"/>
 				</mx:HBox>
-				<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
-					<mx:Button label="Transcript" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.TRANSCRIPT, grid.selectedItem.id]))}"/>
+				<mx:Panel width="100%" height="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+					<mx:Spacer height="4" width="4"/>
+					<mx:HBox id="buttonBox">
+						<mx:Spacer height="4" width="4"/>
+						<mx:Button label="Transcript" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.TRANSCRIPT, grid.selectedItem.id]))}"/>
+						<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSER, grid.selectedItem.id]))}"/>
+						<!--The following button will be orphaned and garbage collected unless someone
+						sets includeInLayout to true before onCreationComplete gets run. -->
+						<mx:Button label="Viewing Activity" id="viewingActivityButton" includeInLayout="false" enabled="false"/>
+					</mx:HBox>
 					<mx:Form>
 						<mx:FormItem label="Title:">
 							<mx:Label text="{grid.selectedItem.title}" />
@@ -63,32 +71,28 @@
 						<mx:FormItem label="Status:">
 							<mx:Label text="{grid.selectedItem.status}" />
 						</mx:FormItem>
-						<mx:FormItem label="Groups:" width="100%">
-							<mx:List dataProvider="{grid.selectedItem.groups}" labelField="name" width="100%"/>
-						</mx:FormItem>
-						<mx:FormItem label="Orgs:">
-							<mx:DataGrid dataProvider="{grid.selectedItem.owned_userorgroles}">
+					</mx:Form>
+					<mx:TabNavigator width="100%" height="100%">
+						<mx:HBox label="Groups" width="100%" height="100%">
+							<mx:List dataProvider="{grid.selectedItem.groups}" labelField="name" width="100%" height="100%"/>
+						</mx:HBox>
+						<mx:HBox label="Orgs" width="100%" height="100%">
+							<mx:DataGrid dataProvider="{grid.selectedItem.owned_userorgroles}" width="100%" height="100%">
 								<mx:columns>
 									<mx:DataGridColumn headerText="Organization" dataField="organization_name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
 									<mx:DataGridColumn headerText="Role" dataField="role_name" sortCompareFunction="{SortCompareFunctionFactory(['role_name'])}"/>
 								</mx:columns>
 							</mx:DataGrid>
-						</mx:FormItem>
-						<mx:FormItem label="Achievements:">
-							<mx:DataGrid id="achievementGrid">
+						</mx:HBox>
+						<mx:HBox label="Achievements" width="100%" height="100%">
+							<mx:DataGrid id="achievementGrid" width="100%" height="100%">
 								<mx:columns>
 									<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
 									<mx:DataGridColumn headerText="Date" dataField="date"/>
 								</mx:columns>
 							</mx:DataGrid>
-						</mx:FormItem>
-					</mx:Form>
-					<mx:HBox id="buttonBox">
-						<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSER, grid.selectedItem.id]))}"/>
-						<!--The following button will be orphaned and garbage collected unless someone
-							sets includeInLayout to true before onCreationComplete gets run. -->
-						<mx:Button label="Viewing Activity" id="viewingActivityButton" includeInLayout="false" enabled="false"/>
-					</mx:HBox>	
+						</mx:HBox>
+					</mx:TabNavigator>
 				</mx:Panel>
 			</mx:VBox>
 		</mx:HBox>
