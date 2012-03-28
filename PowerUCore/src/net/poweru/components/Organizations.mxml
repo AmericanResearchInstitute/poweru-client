@@ -27,6 +27,11 @@
 			<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPORGANIZATION, null]))}"/>
 		</mx:HBox>
 		<mx:TitleWindow title="Details" width="100%">
+			<mx:Spacer width="4" height="4"/>
+			<mx:HBox>
+				<mx:Spacer width="4" height="4"/>
+				<mx:Button label="Edit" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
+			</mx:HBox>
 			<mx:Form>
 				<mx:FormItem label="Name:">
 					<mx:Label id="orgName" text="{organizations.selectedItem.name}"/>
@@ -46,9 +51,14 @@
 					</mx:DataGrid>
 				</mx:FormItem>
 			</mx:Form>
-			<mx:Button label="Edit" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
 		</mx:TitleWindow>
 		<mx:TitleWindow title="Users" width="100%" height="100%">
+			<mx:Spacer width="4" height="4"/>
+			<mx:HBox>
+				<mx:Spacer width="4" height="4"/>
+				<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
+				<mx:Button label="Add Slot" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
+			</mx:HBox>
 			<mx:AdvancedDataGrid id="users" height="100%" width="100%">
 				<mx:dataProvider>
 					<model:DataSet/>
@@ -60,10 +70,6 @@
 					<mx:AdvancedDataGridColumn headerText="Slot" dataField="persistent"/>
 				</mx:columns>
 			</mx:AdvancedDataGrid>
-			<mx:HBox>
-				<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
-				<mx:Button label="Add Slot" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
-			</mx:HBox>
 		</mx:TitleWindow>
 	</mx:VBox>
 	

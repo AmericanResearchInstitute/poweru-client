@@ -31,12 +31,16 @@
 
 		</mx:HBox>
 		<mx:TitleWindow title="Group Details" id="detailsTW">
+			<mx:Spacer width="4" height="4"/>
+			<mx:HBox>
+				<mx:Spacer width="4" height="4"/>
+				<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
+			</mx:HBox>
 			<mx:Form>
 				<mx:FormItem label="Group Name:" fontWeight="bold" backgroundColor="#FFFFFF">
 					<mx:Label text="{groupsList.selectedItem.name}"/>
 				</mx:FormItem>
 			</mx:Form>
-			<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
 		</mx:TitleWindow>
 		<mx:TitleWindow title="Group Help" id="groupHelp" width="{detailsTW.width}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="false">
 			<mx:VBox backgroundColor="#FFFFFF" width="100%">
