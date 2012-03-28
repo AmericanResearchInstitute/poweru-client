@@ -29,7 +29,7 @@ package net.poweru.components.dialogs.code
 			for each (var surr:Object in surrs)
 				sortedAssignments[surr['id']] = [];
 			for each (var assignment:Object in assignments)
-				(sortedAssignments[assignment['task']] as Array).push(assignment);
+				(sortedAssignments[assignment['task']['id']] as Array).push(assignment);
 				
 			for each (var surr2:Object in surrs)
 			{

@@ -43,7 +43,7 @@ package net.poweru.presenters
 					var surrIDs:PKArrayCollection = new PKArrayCollection(inputCollector.object['surrs']);
 					for each (var assignment:Object in assignments)
 					{
-						if (!surrIDs.contains(assignment['task']))
+						if (!surrIDs.contains(assignment['task']['id']))
 						{
 							correctData = false;
 							break;
