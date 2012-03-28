@@ -30,6 +30,11 @@
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Spacer height="4" width="4"/>
+			<mx:HBox id="buttonBox">
+				<mx:Spacer height="4" width="4"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITACHIEVEMENT, grid.selectedItem.id]))}"/>
+			</mx:HBox>	
 			<mx:Form>
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
@@ -38,9 +43,6 @@
 					<mx:Text text="{grid.selectedItem.description}" />
 				</mx:FormItem>
 			</mx:Form>
-			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITACHIEVEMENT, grid.selectedItem.id]))}"/>
-			</mx:HBox>	
 		</mx:Panel>
 	</mx:VBox>
 </code:BasePopulatedComponentCode>

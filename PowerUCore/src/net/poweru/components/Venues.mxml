@@ -33,6 +33,13 @@
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+			<mx:Spacer height="4" width="4"/>
+			<mx:HBox id="buttonBox">
+				<mx:Spacer height="4" width="4"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITVENUE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Add Room" id="addRoomButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEROOM, grid.selectedItem.id]))}"/>
+				<mx:Button label="Add Blackout Period" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEBLACKOUTPERIOD, grid.selectedItem.id]))}"/>
+			</mx:HBox>
 			<mx:Form>
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
@@ -50,25 +57,26 @@
 					<mx:Label text="{grid.selectedItem.contact}" />
 				</mx:FormItem>
 			</mx:Form>
-			<mx:HBox id="buttonBox">
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITVENUE, grid.selectedItem.id]))}"/>
-				<mx:Button label="Add Room" id="addRoomButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEROOM, grid.selectedItem.id]))}"/>
-				<mx:Button label="Add Blackout Period" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEBLACKOUTPERIOD, grid.selectedItem.id]))}"/>
-			</mx:HBox>
 		</mx:Panel>
 		<mx:TabNavigator width="100%" height="100%">
 			<mx:VBox width="100%" height="100%" label="Rooms">
+				<mx:HBox>
+					<mx:Spacer height="4" width="4"/>
+					<mx:Button label="Edit" enabled="{roomList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITROOM, roomList.selectedItem.id]))}"/>
+				</mx:HBox>
 				<mx:List labelField="name" id="roomList" width="100%" height="100%" itemRenderer="net.poweru.components.item_renderers.RoomListRenderer"/>
-				<mx:Button label="Edit" enabled="{roomList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITROOM, roomList.selectedItem.id]))}"/>
 			</mx:VBox>
 			<mx:VBox width="100%" height="100%" label="Blackout Periods">
+				<mx:HBox>
+					<mx:Spacer height="4" width="4"/>
+					<mx:Button label="Edit" enabled="{blackoutGrid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITBLACKOUTPERIOD, blackoutGrid.selectedItem.id]))}"/>
+				</mx:HBox>
 				<mx:DataGrid id="blackoutGrid" width="100%" height="100%">
 					<mx:columns>
 						<mx:DataGridColumn dataField="start" headerText="Start"/>
 						<mx:DataGridColumn dataField="end" headerText="End"/>
 					</mx:columns>
 				</mx:DataGrid>
-				<mx:Button label="Edit" enabled="{blackoutGrid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITBLACKOUTPERIOD, blackoutGrid.selectedItem.id]))}"/>
 			</mx:VBox>
 		</mx:TabNavigator>
 		

@@ -17,12 +17,16 @@
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:TitleWindow title="Session Role Details" minWidth="400">
+			<mx:Spacer height="4" width="4"/>
+			<mx:HBox>
+				<mx:Spacer height="4" width="4"/>
+				<mx:Button label="Edit" enabled="{list.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSIONUSERROLE, list.selectedItem.id]))}"/>
+			</mx:HBox>
 			<mx:Form>
 				<mx:FormItem label="Name:" fontWeight="bold" backgroundColor="#FFFFFF">
 					<mx:Label text="{list.selectedItem.name}"/>
 				</mx:FormItem>
 			</mx:Form>
-			<mx:Button label="Edit" enabled="{list.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSIONUSERROLE, list.selectedItem.id]))}"/>
 		</mx:TitleWindow>
 	</mx:VBox>
 </code:SessionUserRoleCode>
