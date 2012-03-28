@@ -2,7 +2,6 @@ package net.poweru.components.code
 {
 	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
-	import mx.controls.AdvancedDataGrid;
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
@@ -13,7 +12,7 @@ package net.poweru.components.code
 	public class FileDownloadsCode extends HBox implements IArrayPopulatedComponent
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
 		
 		public function FileDownloadsCode()
 		{
