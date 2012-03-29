@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:UserFiltersCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.parts.code.*">
+	<mx:HBox>
+		<mx:Spacer x="6"/>
+		<mx:CheckBox id="filterCheckBox" label="Show Filters"/>
+	</mx:HBox>
+	<mx:VBox width="100%" visible="{filterCheckBox.selected}" includeInLayout="{filterCheckBox.selected}">
+		<mx:HBox width="100%">
+			<mx:Panel title="Available Filters" width="40%">
+				<mx:DataGrid id="availableGrid" dataProvider="{availableDataSet}" width="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Name" dataField="name"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:Button label="Activate" enabled="{availableGrid.selectedItem != null}" click="onClickActivate(event)"/>
+			</mx:Panel>
+			<mx:Panel title="Active Filters" width="60%">
+				<mx:DataGrid id="activeGrid" dataProvider="{activeDataSet}" width="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Name" dataField="name"/>
+						<mx:DataGridColumn headerText="Constraint" dataField="constraint"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:HBox>
+					<mx:Button label="Apply"/>
+					<mx:Button label="Remove" enabled="{activeGrid.selectedItem != null}" click="onClickRemove(event)"/>
+				</mx:HBox>
+			</mx:Panel>
+		</mx:HBox>
+	</mx:VBox>
+</code:UserFiltersCode>

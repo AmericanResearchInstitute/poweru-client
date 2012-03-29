@@ -23,9 +23,7 @@
 	<mx:TabNavigator width="100%" height="100%">
 		<mx:HBox label="Edit" height="100%" width="100%">
 			<mx:VBox height="100%" width="65%">
-				<mx:FormItem label="Search Last Name">
-					<components:AutoComplete dataProvider="{gridDataProvider}" labelField="last_name"/>
-				</mx:FormItem>
+				<parts:UserFilters width="100%"/>
 				<mx:AdvancedDataGrid id="grid" dataProvider="{gridDataProvider}" width="100%" height="100%" change="onUserSelected(event)">
 					<mx:columns>
 						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>

@@ -482,6 +482,10 @@
     <classEntry path="net.poweru.presenters.EditGroupMediator"/>
     <classEntry path="net.poweru.components.dialogs.code.EditGroupCode"/>
     <classEntry path="net.poweru.components.dialogs.EditGroup"/>
+    <classEntry path="net.poweru.components.parts.code.UserFiltersCode"/>
+    <classEntry path="net.poweru.components.parts.UserFilters"/>
+    <classEntry path="net.poweru.model.ChooserRequest"/>
+    <classEntry path="net.poweru.model.ChooserResult"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
