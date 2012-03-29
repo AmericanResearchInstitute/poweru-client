@@ -24,8 +24,10 @@ package net.poweru.components.code
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IUsers;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.UserProxy;
+	import net.poweru.utils.ChooserRequestTracker;
 	import net.poweru.utils.CompareLabels;
 	import net.poweru.utils.PKArrayCollection;
 	import net.poweru.utils.SortedDataSetFactory;
@@ -72,10 +74,12 @@ package net.poweru.components.code
 		/*	There are two places where we need to choose an org, and this
 			boolean keeps track of which one made the most recent request. */
 		protected var chooseOrgRequestIsForFilter:Boolean = true;
+		protected var chooserRequestTracker:ChooserRequestTracker;
 		
 		public function UsersCode()
 		{
 			super();
+			chooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		public function clear():void
@@ -120,35 +124,38 @@ package net.poweru.components.code
 			fileDownloadToAssign = null;
 		}
 		
-		public function receiveChoice(choice:Object, type:String):void
+		public function receiveChoice(choice:ChooserResult, type:String):void
 		{
-			switch (type)
+			if (chooserRequestTracker.doIWantThis(type, choice.requestID))
 			{
-				case Places.CHOOSEEXAM:
-					examToAssign = choice;
-					break;
+				switch (type)
+				{
+					case Places.CHOOSEEXAM:
+						examToAssign = choice.value;
+						break;
+					
+					case Places.CHOOSEFILEDOWNLOAD:
+						fileDownloadToAssign = choice.value;
+						break;
 				
-				case Places.CHOOSEFILEDOWNLOAD:
-					fileDownloadToAssign = choice;
-					break;
-			
-				case Places.CHOOSEGROUP:
-					chosenGroup = choice;
-					break;
-				
-				case Places.CHOOSETASKBUNDLE:
-					taskBundleToAssign = choice;
-					break;
-				
-				case Places.CHOOSEORGANIZATION:
-					if (chooseOrgRequestIsForFilter)
-					{
-						chosenOrganizationForFilter = choice;
-						bulkDataSet.refresh();
-					}
-					else
-						chosenOrganizationForBulkMembership = choice;
-					break;
+					case Places.CHOOSEGROUP:
+						chosenGroup = choice.value;
+						break;
+					
+					case Places.CHOOSETASKBUNDLE:
+						taskBundleToAssign = choice.value;
+						break;
+					
+					case Places.CHOOSEORGANIZATION:
+						if (chooseOrgRequestIsForFilter)
+						{
+							chosenOrganizationForFilter = choice.value;
+							bulkDataSet.refresh();
+						}
+						else
+							chosenOrganizationForBulkMembership = choice.value;
+						break;
+				}
 			}
 		}
 
@@ -330,13 +337,13 @@ package net.poweru.components.code
 		protected function onClickChooseOrgForBulkAction(event:Event):void
 		{
 			chooseOrgRequestIsForFilter = false;
-			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))
 		}
 		
 		protected function onClickChooseOrgForFilter(event:Event):void
 		{
 			chooseOrgRequestIsForFilter = true;
-			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))
 		}
 		
 		// Determine if a user already has the specified userOrgRole

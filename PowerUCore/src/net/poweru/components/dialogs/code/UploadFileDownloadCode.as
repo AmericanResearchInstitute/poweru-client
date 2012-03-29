@@ -14,6 +14,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IUploadFileDownload;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	
 	public class UploadFileDownloadCode extends BaseCRUDDialog implements IUploadFileDownload
 	{
@@ -90,10 +91,10 @@ package net.poweru.components.dialogs.code
 			};
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEORGANIZATION)
-				chosenOrganization = choice;
+			if (chooserName == Places.CHOOSEORGANIZATION && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+				chosenOrganization = choice.value;
 		}
 		
 		public function set progressBoxVisibility(visible:Boolean):void

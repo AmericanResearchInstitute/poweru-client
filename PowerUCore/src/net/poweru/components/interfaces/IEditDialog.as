@@ -1,5 +1,7 @@
 package net.poweru.components.interfaces
 {
+	import net.poweru.model.ChooserResult;
+
 	public interface IEditDialog extends IClearableComponent
 	{
 		// Returns the data that this dialog collects from the user
@@ -10,7 +12,7 @@ package net.poweru.components.interfaces
 		
 		/*  Called when a "Chooser" dialog is used to make a selection,
 		such as when choosing an organization for an event. */
-		function receiveChoice(choice:Object, chooserName:String):void;
+		function receiveChoice(choice:ChooserResult, chooserName:String):void;
 		
 		/*  Called to set the choices that are available, usually for
 		a ComboBox type control. */

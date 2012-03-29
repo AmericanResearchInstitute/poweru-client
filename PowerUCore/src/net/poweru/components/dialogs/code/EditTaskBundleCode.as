@@ -10,6 +10,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.generated.model.TaskBundle.NameInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class EditTaskBundleCode extends BaseCRUDDialog implements IEditDialog
@@ -58,10 +59,10 @@ package net.poweru.components.dialogs.code
 			}
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSETASK && taskDataSet != null && taskDataSet.findByPK(choice['id']) == null)
-				taskDataSet.addItem(choice);
+			if (chooserName == Places.CHOOSETASK && chooserRequestTracker.doIWantThis(chooserName, choice.requestID) && taskDataSet != null && taskDataSet.findByPK(choice.value['id']) == null)
+				taskDataSet.addItem(choice.value);
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

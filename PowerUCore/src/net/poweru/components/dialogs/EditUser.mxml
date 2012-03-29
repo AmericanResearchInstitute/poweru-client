@@ -7,7 +7,8 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:User="net.poweru.generated.model.User.*"
 	xmlns:parts="net.poweru.components.parts.*"
-	xmlns:validators="net.poweru.components.validators.*" xmlns:widgets="net.poweru.components.widgets.*">
+	xmlns:validators="net.poweru.components.validators.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Constants;

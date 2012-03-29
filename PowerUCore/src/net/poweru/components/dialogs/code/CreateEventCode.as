@@ -14,6 +14,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.generated.model.Event.NameInput;
 	import net.poweru.generated.model.Event.TitleInput;
+	import net.poweru.model.ChooserResult;
 	
 	public class CreateEventCode extends BaseCRUDDialog implements ICreateDialog
 	{
@@ -73,10 +74,10 @@ package net.poweru.components.dialogs.code
 				validators.push(validator);
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEORGANIZATION)
-				chosenOrganization = choice;
+			if (chooserName == Places.CHOOSEORGANIZATION && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+				chosenOrganization = choice.value;
 		}
 		
 		protected function onStartDateChosen(event:Event):void

@@ -19,6 +19,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.widgets.TitleComboBox;
 	import net.poweru.components.widgets.code.IMultipleSelect;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 
@@ -178,17 +179,20 @@ package net.poweru.components.dialogs.code
 			statusInput.dataProvider.refresh();
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			switch (chooserName)
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				case Places.CHOOSEGROUP:
-					if (groupsDataSet != null && groupsDataSet.findByPK(choice['id']) == null)
-						groupsDataSet.addItem(choice);
-					break;
-				
-				default:
-					super.receiveChoice(choice, chooserName);
+				switch (chooserName)
+				{
+					case Places.CHOOSEGROUP:
+						if (groupsDataSet != null && groupsDataSet.findByPK(choice.value['id']) == null)
+							groupsDataSet.addItem(choice.value);
+						break;
+					
+					default:
+						super.receiveChoice(choice, chooserName);
+				}
 			}
 		}
 		

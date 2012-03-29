@@ -9,6 +9,8 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseDialog;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
+	import net.poweru.utils.ChooserRequestTracker;
 
 	public class BaseCRUDDialogCode extends BaseDialog
 	{
@@ -17,6 +19,7 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var submit:Button;
 		protected var _validators:Array;
+		protected var chooserRequestTracker:ChooserRequestTracker;
 		
 		/*	We keep track of which controls have been changed by the user. Upon
 		receiving data through the populate() method, those controls which
@@ -26,6 +29,7 @@ package net.poweru.components.dialogs.code
 		public function BaseCRUDDialogCode()
 		{
 			super();
+			chooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		public function get validators():Array
@@ -45,7 +49,7 @@ package net.poweru.components.dialogs.code
 		
 		/*  Called when a "Chooser" dialog is used to make a selection,
 			such as when choosing an organization for an event. */
-		public function receiveChoice(choice:Object, chooserName:String):void
+		public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{}
 		
 		public function setState(state:String):void

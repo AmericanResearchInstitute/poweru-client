@@ -150,7 +150,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Add to Group" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Group" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, null]))"/>
+					<mx:Button label="Choose Group" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, chooserRequestTracker.getChooserRequest(Places.CHOOSEGROUP)]))"/>
 					
 					<mx:Form width="100%">
 						<mx:FormItem label="Name:">
@@ -161,7 +161,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to Task Bundle" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Task Bundle" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, null]))"/>
+					<mx:Button label="Choose Task Bundle" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{taskBundleToAssign.name}"/>
@@ -174,7 +174,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to Exam" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, null]))"/>
+					<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, chooserRequestTracker.getChooserRequest(Places.CHOOSEEXAM)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{examToAssign.name}"/>
@@ -187,7 +187,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to File Download" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, null]))"/>
+					<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, chooserRequestTracker.getChooserRequest(Places.CHOOSEFILEDOWNLOAD)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{fileDownloadToAssign.name}"/>

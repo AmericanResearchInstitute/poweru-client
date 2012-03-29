@@ -39,6 +39,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
+			super.populate();
 			primaryProxy.getAll();
 		}
 		

@@ -6,6 +6,8 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserRequest;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.utils.PKArrayCollection;
@@ -26,7 +28,7 @@ package net.poweru.presenters
 	{
 		protected var placeName:String;
 		protected var updateNotification:String;
-		protected var exclude:Array;
+		protected var request:ChooserRequest;
 		protected var initialDataProxy:InitialDataProxy;
 		
 		public function BaseChooserMediator(mediatorName:String, viewComponent:Object, placeName:String, updateNotification:String, primaryProxyClass:Class=null)
@@ -69,22 +71,22 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			exclude = new PKArrayCollection(initialDataProxy.getInitialData(placeName) as Array).toArray();
+			 request = initialDataProxy.getInitialData(placeName) as ChooserRequest;
 		}
 		
 		protected function applyExcludes(data:Array):Array
 		{
 			var newData:DataSet = new DataSet(primaryProxy.dataSet.toArray());
-			if (exclude == null)
-				exclude = [];
-			for each (var pk:Number in exclude)
+			if (request.exclude == null)
+				request.exclude = [];
+			for each (var pk:Number in new PKArrayCollection(request.exclude))
 				newData.removeByPK(pk);
 			return newData.toArray();
 		}
 		
 		protected function onSubmit(event:ViewEvent):void
 		{
-			sendNotification(NotificationNames.CHOICEMADE, event.body, placeName);
+			sendNotification(NotificationNames.CHOICEMADE, new ChooserResult(request.requestID, event.body), placeName);
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 			chooser.clear();
 		}

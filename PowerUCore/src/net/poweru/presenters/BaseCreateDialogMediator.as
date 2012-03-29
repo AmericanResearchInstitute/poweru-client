@@ -5,6 +5,7 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -80,7 +81,7 @@ package net.poweru.presenters
 			{
 				case NotificationNames.CHOICEMADE:
 					// let the dialog decide if it is interested in this particular choice type
-					createDialog.receiveChoice(notification.getBody(), notification.getType());
+					createDialog.receiveChoice(notification.getBody() as ChooserResult, notification.getType());
 					break;
 				
 				case NotificationNames.UPDATECHOICES:

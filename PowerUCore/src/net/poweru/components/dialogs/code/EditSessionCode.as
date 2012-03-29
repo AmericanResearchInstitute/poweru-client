@@ -23,6 +23,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.parts.AddSessionUserRole;
 	import net.poweru.components.validators.URLValidator;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class EditSessionCode extends BaseCRUDDialog implements IEditDialog
@@ -163,12 +164,12 @@ package net.poweru.components.dialogs.code
 			return event['end'] as Date;
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEROOM)
+			if (chooserName == Places.CHOOSEROOM && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				chosenVenue = choice['venue'];
-				chosenRoom = choice['room'];
+				chosenVenue = choice.value['venue'];
+				chosenRoom = choice.value['room'];
 			}
 		}
 		

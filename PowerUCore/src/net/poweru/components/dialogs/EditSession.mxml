@@ -5,7 +5,8 @@
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Session="net.poweru.generated.model.Session.*"
 	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
-	xmlns:parts="net.poweru.components.parts.*" xmlns:validators="net.poweru.components.validators.*">
+	xmlns:parts="net.poweru.components.parts.*"
+	xmlns:validators="net.poweru.components.validators.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -55,7 +56,7 @@
 		<mx:FormItem label="Venue/Room">
 			<mx:HBox>
 				<mx:Label text="{chosenVenue.name + ' : ' + chosenRoom.name}"/>
-				<mx:Button label="Choose Venue/Room" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEROOM, getData()]))"/>
+				<mx:Button label="Choose Venue/Room" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEROOM, chooserRequestTracker.getChooserRequest(Places.CHOOSEROOM, null, getData())]))"/>
 			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>

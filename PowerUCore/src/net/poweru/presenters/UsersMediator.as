@@ -11,6 +11,7 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IUsers;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AchievementProxy;
@@ -96,7 +97,7 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case NotificationNames.CHOICEMADE:
-					users.receiveChoice(notification.getBody(), notification.getType());
+					users.receiveChoice(notification.getBody() as ChooserResult, notification.getType());
 					break;
 				
 				case NotificationNames.EMAILSENT:

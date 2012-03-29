@@ -5,6 +5,7 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.placemanager.InitialDataProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -71,7 +72,7 @@ package net.poweru.presenters
 			{
 				case NotificationNames.CHOICEMADE:
 					// let the dialog decide if it is interested in this particular choice type
-					editDialog.receiveChoice(notification.getBody(), notification.getType());
+					editDialog.receiveChoice(notification.getBody() as ChooserResult, notification.getType());
 					break;
 				
 				case NotificationNames.LOGOUT:

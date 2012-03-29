@@ -8,6 +8,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class EditUserOrgRoleCode extends BaseCRUDDialog implements IEditDialog
@@ -65,11 +66,11 @@ package net.poweru.components.dialogs.code
 			}
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEUSER)
+			if (chooserName == Places.CHOOSEUSER && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				user = choice;
+				user = choice.value;
 				removedUser = null;
 			}
 		}

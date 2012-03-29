@@ -12,6 +12,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.EditTaskFees;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class EditExamCode extends BaseCRUDDialog implements IEditDialog
@@ -90,23 +91,26 @@ package net.poweru.components.dialogs.code
 			editTaskFees.dataSet = new DataSet(data['task_fees']);
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			switch (chooserName)
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				case Places.CHOOSEACHIEVEMENT:
-					if (achievementDataSet != null && achievementDataSet.findByPK(choice['id']) == null)
-						achievementDataSet.addItem(choice);
-					break;
-				
-				case Places.CHOOSETASK:
-					if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice['id']) == null)
-						prerequisiteDataSet.addItem(choice);
-					break;
-				
-				case Places.CHOOSEORGANIZATION:
-					chosenOrganization = choice;
-					break;
+				switch (chooserName)
+				{
+					case Places.CHOOSEACHIEVEMENT:
+						if (achievementDataSet != null && achievementDataSet.findByPK(choice.value['id']) == null)
+							achievementDataSet.addItem(choice.value);
+						break;
+					
+					case Places.CHOOSETASK:
+						if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice.value['id']) == null)
+							prerequisiteDataSet.addItem(choice.value);
+						break;
+					
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
+				}
 			}
 		}
 		

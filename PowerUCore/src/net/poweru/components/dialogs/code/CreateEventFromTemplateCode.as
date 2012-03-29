@@ -25,6 +25,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.widgets.CreateSessionFromTemplate;
 	import net.poweru.generated.model.Event.NameInput;
 	import net.poweru.generated.model.Event.TitleInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class CreateEventFromTemplateCode extends BaseCRUDDialog implements ICreateEventFromTemplateDialog
@@ -159,10 +160,10 @@ package net.poweru.components.dialogs.code
 			}
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEORGANIZATION)
-				chosenOrganization = choice;
+			if (chooserName == Places.CHOOSEORGANIZATION && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+				chosenOrganization = choice.value;
 		}
 		
 		protected function onCreateSessionWidgetCreationComplete(event:FlexEvent):void

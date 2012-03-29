@@ -27,7 +27,7 @@
 		<mx:FormItem label="Organization" required="true">
 			<mx:HBox>
 				<mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
-				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, null]))"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
 			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>

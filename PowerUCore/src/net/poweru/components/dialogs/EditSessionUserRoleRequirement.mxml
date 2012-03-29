@@ -26,7 +26,7 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>
-				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, achievementDataSet.toArray()]))}"/>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, chooserRequestTracker.getChooserRequest(Places.CHOOSEACHIEVEMENT, achievementDataSet.toArray())]))}"/>
 				<mx:Button label="Remove" enabled="{achievements.selectedItem != null}" click="{onRemoveAchievement(event)}"/>
 			</mx:HBox>
 		</mx:FormItem>
@@ -37,7 +37,7 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>
-				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, prerequisiteDataSet.toArray().concat(pk)]))}"/>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK, prerequisiteDataSet.toArray().concat(pk))]))}"/>
 				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
 		</mx:FormItem>

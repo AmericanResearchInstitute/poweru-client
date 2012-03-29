@@ -10,6 +10,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.generated.model.CredentialType.NameInput;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
 	public class EditCredentialTypeCode extends BaseCRUDDialog implements IEditDialog
@@ -62,11 +63,11 @@ package net.poweru.components.dialogs.code
 			};
 		}
 		
-		override public function receiveChoice(choice:Object, chooserName:String):void
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSEACHIEVEMENT)
+			if (chooserName == Places.CHOOSEACHIEVEMENT && chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				achievementsDataSet.addOrReplace(choice);
+				achievementsDataSet.addOrReplace(choice.value);
 				achievementsDataSet.refresh();
 			}
 		}

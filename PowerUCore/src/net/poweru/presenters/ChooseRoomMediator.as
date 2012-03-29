@@ -78,12 +78,15 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
+			// populates 'request'
+			super.populate();
+			
 			if (inputCollector != null)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 			inputCollector = new InputCollector(['venues', 'session']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
-			inputCollector.addInput('session', initialDataProxy.getInitialData(placeName));
+			inputCollector.addInput('session', request.body);
 			
 			(primaryProxy as VenueProxy).getAvailableVenues(
 				inputCollector.object['session']['start'] as Date,

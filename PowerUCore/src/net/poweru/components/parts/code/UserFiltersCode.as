@@ -42,11 +42,11 @@ package net.poweru.components.parts.code
 			switch (filterName)
 			{
 				case 'Group':
-					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEGROUP, null, true);
+					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEGROUP, null, true));
 					break;
 					
 				case 'Achievement':
-					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEACHIEVEMENT, null, true);
+					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEACHIEVEMENT, null, true));
 					break;
 			}
 		}

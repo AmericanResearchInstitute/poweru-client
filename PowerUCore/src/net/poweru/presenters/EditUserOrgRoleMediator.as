@@ -7,6 +7,7 @@ package net.poweru.presenters
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.UserOrgRoleProxy;
@@ -43,7 +44,7 @@ package net.poweru.presenters
 			{	
 				case NotificationNames.CHOICEMADE:
 					if (notification.getType() == Places.CHOOSEUSER)
-						editDialog.receiveChoice(notification.getBody(), notification.getType());
+						editDialog.receiveChoice(notification.getBody() as ChooserResult, notification.getType());
 					break;
 				
 				case NotificationNames.UPDATEORGROLES:
