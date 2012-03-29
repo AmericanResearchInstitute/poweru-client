@@ -85,9 +85,9 @@
 							</mx:DataGrid>
 						</mx:HBox>
 						<mx:HBox label="Achievements" width="100%" height="100%">
-							<mx:DataGrid id="achievementGrid" width="100%" height="100%">
+							<mx:DataGrid id="achievementGrid" dataProvider="{grid.selectedItem.achievement_awards}" width="100%" height="100%">
 								<mx:columns>
-									<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['organization_name'])}"/>
+									<mx:DataGridColumn headerText="Name" dataField="achievement_name"/>
 									<mx:DataGridColumn headerText="Date" dataField="date"/>
 								</mx:columns>
 							</mx:DataGrid>
