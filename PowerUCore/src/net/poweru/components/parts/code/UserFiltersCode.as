@@ -8,6 +8,7 @@ package net.poweru.components.parts.code
 	
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
+	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
@@ -31,10 +32,51 @@ package net.poweru.components.parts.code
 		[Bindable]
 		protected var activeDataSet:DataSet;
 		
+		protected var chosenGroup:Object;
+		
 		public function UserFiltersCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+		}
+		
+		public function receiveChoice(choice:ChooserResult, type:String):void
+		{
+			switch (type)
+			{
+				case Places.CHOOSEGROUP:
+					chosenGroup = choice.value;
+					var item:Object = availableDataSet.findByKey('name', 'Group');
+					availableDataSet.removeByKey('name', 'Group');
+					item['constraint'] = chosenGroup['name'];
+					activeDataSet.addItem(item);
+					activeDataSet.refresh();
+					break;
+			}
+		}
+		
+		public function filterFunction(item:Object):Boolean
+		{
+			var ret:Boolean = filterByGroup(item);
+			return ret;
+		}
+		
+		protected function filterByGroup(item:Object):Boolean
+		{
+			var ret:Boolean = true;
+			if (chosenGroup != null)
+			{
+				ret = false;
+				for each (var group:Object in item.groups)
+				{
+					if (group.name == chosenGroup.name)
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
+			return ret;
 		}
 		
 		protected function launchChooser(filterName:String):void
@@ -42,11 +84,17 @@ package net.poweru.components.parts.code
 			switch (filterName)
 			{
 				case 'Group':
-					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEGROUP, null, true));
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEGROUP));
 					break;
-					
-				case 'Achievement':
-					dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, Places.CHOOSEACHIEVEMENT, null, true));
+			}
+		}
+		
+		protected function removeChosenItemByName(name:String):void
+		{
+			switch (name)
+			{
+				case 'Group':
+					chosenGroup = null;
 					break;
 			}
 		}
@@ -62,7 +110,7 @@ package net.poweru.components.parts.code
 		
 		protected function onClickActivate(event:MouseEvent):void
 		{
-			
+			launchChooser(availableGrid.selectedItem.name);
 		}
 		
 		protected function onClickRemove(event:MouseEvent):void
@@ -70,8 +118,9 @@ package net.poweru.components.parts.code
 			var item:Object = activeGrid.selectedItem;
 			if (item != null)
 			{
-				activeDataSet.removeItemAt(activeDataSet.getItemIndex(item));
+				activeDataSet.removeByKey('name', item.name);
 				activeDataSet.refresh();
+				removeChosenItemByName(item.name);
 				item.constraint = null;
 				availableDataSet.addItem(item);
 				availableDataSet.refresh();

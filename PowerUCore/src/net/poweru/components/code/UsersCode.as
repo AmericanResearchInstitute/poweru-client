@@ -23,6 +23,7 @@ package net.poweru.components.code
 	import net.poweru.Constants;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IUsers;
+	import net.poweru.components.parts.UserFilters;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
@@ -42,6 +43,7 @@ package net.poweru.components.code
 		public var curriculumEnrollmentGrid:DataGrid;
 		public var orgRoleCB:ComboBox;
 		public var accordion:Accordion;
+		public var userFilters:UserFilters;
 		public var statuses:ComboBox;
 		[Bindable]
 		public var statusFilterCB:ComboBox;
@@ -75,11 +77,13 @@ package net.poweru.components.code
 			boolean keeps track of which one made the most recent request. */
 		protected var chooseOrgRequestIsForFilter:Boolean = true;
 		protected var chooserRequestTracker:ChooserRequestTracker;
+		protected var filterChooserRequestTracker:ChooserRequestTracker;
 		
 		public function UsersCode()
 		{
 			super();
 			chooserRequestTracker = new ChooserRequestTracker();
+			filterChooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		public function clear():void
@@ -157,11 +161,16 @@ package net.poweru.components.code
 						break;
 				}
 			}
+			else if (filterChooserRequestTracker.doIWantThis(type, choice.requestID))
+			{
+				userFilters.receiveChoice(choice, type);
+			}
 		}
 
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			gridDataProvider = SortedDataSetFactory.singleFieldSort('last_name');
+			gridDataProvider.filterFunction = userFilters.filterFunction;
 			bulkGrid.dataProvider = SortedDataSetFactory.singleFieldSort('last_name');
 			bulkDataSet.filterFunction = filterBulkUsers;
 			eventGrid.dataProvider = new DataSet();
@@ -189,6 +198,11 @@ package net.poweru.components.code
 				viewingActivityButton.addEventListener(MouseEvent.CLICK, onShowViewingActivityReport);
 				BindingUtils.bindProperty(viewingActivityButton, 'enabled', editButton, 'enabled');
 			}
+			
+			// call a chooser dialog (please "fetch" a choice)
+			userFilters.addEventListener(ViewEvent.FETCH, onUserFiltersFetch);
+			// refresh the data provider ("submitting" its filters)
+			userFilters.addEventListener(ViewEvent.SUBMIT, onUserFiltersSubmit);
 			
 		}
 		
@@ -231,6 +245,18 @@ package net.poweru.components.code
 		{
 			var userIDs:PKArrayCollection = new PKArrayCollection(bulkGrid.selectedItems);
 			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, {'users': userIDs.toArray(), 'task': taskID}, 'BulkAssign'))
+		}
+		
+		// event.body is the place name of a chooser
+		protected function onUserFiltersFetch(event:ViewEvent):void
+		{
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [event.body as String, filterChooserRequestTracker.getChooserRequest(event.body as String)]));
+		}
+		
+		// when "Apply" button is clicked
+		protected function onUserFiltersSubmit(event:ViewEvent):void
+		{
+			gridDataProvider.refresh();
 		}
 		
 		// Add users in bulk to the selected group.

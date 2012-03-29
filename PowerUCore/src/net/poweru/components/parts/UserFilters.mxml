@@ -2,6 +2,11 @@
 <code:UserFiltersCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.parts.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
 	<mx:HBox>
 		<mx:Spacer x="6"/>
 		<mx:CheckBox id="filterCheckBox" label="Show Filters"/>
@@ -24,7 +29,7 @@
 					</mx:columns>
 				</mx:DataGrid>
 				<mx:HBox>
-					<mx:Button label="Apply"/>
+					<mx:Button label="Apply" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT))"/>
 					<mx:Button label="Remove" enabled="{activeGrid.selectedItem != null}" click="onClickRemove(event)"/>
 				</mx:HBox>
 			</mx:Panel>
