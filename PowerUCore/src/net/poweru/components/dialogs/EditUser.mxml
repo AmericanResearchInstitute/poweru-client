@@ -44,7 +44,7 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>
-				<mx:Button label="Add" id="addGroupButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, groupsDataSet.toArray()]))}"/>
+				<mx:Button label="Add" id="addGroupButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, chooserRequestTracker.getChooserRequest(Places.CHOOSEGROUP, groupsDataSet.toArray())]))}"/>
 				<mx:Button label="Remove" id="removeGroupButton" enabled="{groups.selectedItem != null}" click="{onRemoveGroup(event)}"/>
 			</mx:HBox>
 		</mx:FormItem>
