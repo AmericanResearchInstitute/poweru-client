@@ -16,8 +16,15 @@ package net.poweru.components.dialogs.code
 			addEventListener(CloseEvent.CLOSE, onClose);
 		}
 		
+		protected function limitSize():void
+		{
+			maxHeight = stage.stageHeight - 20;
+		}
+		
 		protected function onResize(event:ResizeEvent):void
 		{
+			limitSize();
+			validateNow();
 			PopUpManager.centerPopUp(this);
 		}
 		

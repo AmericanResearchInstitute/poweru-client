@@ -6,6 +6,7 @@ package net.poweru.components.dialogs.code
 	
 	import mx.containers.VBox;
 	import mx.controls.Alert;
+	import mx.managers.PopUpManager;
 	
 	import net.poweru.Constants;
 	import net.poweru.components.dialogs.BaseDialog;
@@ -94,6 +95,9 @@ package net.poweru.components.dialogs.code
 				var widget:IExamQuestionWidget = getWidget(question);
 				questionBox.addChild(widget as DisplayObject);
 			}
+			limitSize();
+			validateNow();
+			PopUpManager.centerPopUp(this);
 		}
 		
 		protected function removeQuestionWidgets():void
