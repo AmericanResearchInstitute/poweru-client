@@ -14,13 +14,20 @@ package net.poweru.components.parts.code
 	
 	public class UserFiltersCode extends VBox
 	{
+		protected static const GROUP_NAME:String = 'Group';
+		protected static const STATUS_NAME:String = 'Status';
+		protected static const CREDENTIAL_NAME:String = 'Credential';
+		protected static const ACHIEVEMENT_NAME:String = 'Achievement';
+		protected static const ORGANIZATION_NAME:String = 'Organization';
+		protected static const ORG_ROLE_NAME:String = 'Org Role';
+		
 		public static var filterObjects:Array = [
-			{'name': 'Group', 'constraint' : null},
-			{'name': 'Status', 'constraint' : null},
-			{'name': 'Credential', 'constraint' : null},
-			{'name': 'Achievement', 'constraint' : null},
-			{'name': 'Organization', 'constraint' : null},
-			{'name': 'Org Role', 'constraint' : null}
+			{'name': GROUP_NAME, 'constraint' : null},
+			{'name': STATUS_NAME, 'constraint' : null},
+			{'name': CREDENTIAL_NAME, 'constraint' : null},
+			{'name': ACHIEVEMENT_NAME, 'constraint' : null},
+			{'name': ORGANIZATION_NAME, 'constraint' : null},
+			{'name': ORG_ROLE_NAME, 'constraint' : null}
 		];
 		
 		[Bindable]
@@ -34,6 +41,7 @@ package net.poweru.components.parts.code
 		
 		protected var chosenGroup:Object;
 		protected var chosenStatus:String;
+		protected var chosenAchievement:Object;
 		
 		public function UserFiltersCode()
 		{
@@ -54,14 +62,19 @@ package net.poweru.components.parts.code
 		{
 			switch (type)
 			{
+				case Places.CHOOSEACHIEVEMENT:
+					chosenAchievement = choice.value;
+					activateFilter(ACHIEVEMENT_NAME, chosenAchievement['name']);
+					break;
+				
 				case Places.CHOOSEGROUP:
 					chosenGroup = choice.value;
-					activateFilter('Group', chosenGroup['name']);
+					activateFilter(GROUP_NAME, chosenGroup['name']);
 					break;
 				
 				case Places.CHOOSEUSERSTATUS:
 					chosenStatus = choice.value as String;
-					activateFilter('Status', chosenStatus);
+					activateFilter(STATUS_NAME, chosenStatus);
 					break;
 			}
 		}
@@ -73,7 +86,27 @@ package net.poweru.components.parts.code
 				ret = filterByGroup(item);
 			if (chosenStatus != null && ret)
 				ret = filterByStatus(item);
-				
+			if (chosenAchievement != null && ret)
+				ret = filterByAchievement(item);
+			
+			return ret;
+		}
+		
+		protected function filterByAchievement(item:Object):Boolean
+		{
+			var ret:Boolean = true;
+			if (chosenAchievement != null)
+			{
+				ret = false;
+				for each (var achievement:Object in item.achievements)
+				{
+					if (achievement.name == chosenAchievement.name)
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
 			return ret;
 		}
 		
@@ -104,11 +137,15 @@ package net.poweru.components.parts.code
 		{
 			switch (filterName)
 			{
-				case 'Group':
+				case ACHIEVEMENT_NAME:
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEACHIEVEMENT));
+					break;
+				
+				case GROUP_NAME:
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEGROUP));
 					break;
 				
-				case 'Status':
+				case STATUS_NAME:
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEUSERSTATUS));
 					break;
 			}
@@ -118,11 +155,15 @@ package net.poweru.components.parts.code
 		{
 			switch (name)
 			{
-				case 'Group':
+				case ACHIEVEMENT_NAME:
+					chosenAchievement = null;
+					break;
+				
+				case GROUP_NAME:
 					chosenGroup = null;
 					break;
 				
-				case 'Status':
+				case STATUS_NAME:
 					chosenStatus = null;
 					break;
 			}
