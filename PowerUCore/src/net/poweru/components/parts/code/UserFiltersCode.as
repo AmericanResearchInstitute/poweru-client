@@ -33,11 +33,21 @@ package net.poweru.components.parts.code
 		protected var activeDataSet:DataSet;
 		
 		protected var chosenGroup:Object;
+		protected var chosenStatus:String;
 		
 		public function UserFiltersCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+		}
+		
+		protected function activateFilter(name:String, constraintName:String):void
+		{
+			var item:Object = availableDataSet.findByKey('name', name);
+			availableDataSet.removeByKey('name', name);
+			item['constraint'] = constraintName;
+			activeDataSet.addItem(item);
+			activeDataSet.refresh();
 		}
 		
 		public function receiveChoice(choice:ChooserResult, type:String):void
@@ -46,19 +56,30 @@ package net.poweru.components.parts.code
 			{
 				case Places.CHOOSEGROUP:
 					chosenGroup = choice.value;
-					var item:Object = availableDataSet.findByKey('name', 'Group');
-					availableDataSet.removeByKey('name', 'Group');
-					item['constraint'] = chosenGroup['name'];
-					activeDataSet.addItem(item);
-					activeDataSet.refresh();
+					activateFilter('Group', chosenGroup['name']);
+					break;
+				
+				case Places.CHOOSEUSERSTATUS:
+					chosenStatus = choice.value as String;
+					activateFilter('Status', chosenStatus);
 					break;
 			}
 		}
 		
 		public function filterFunction(item:Object):Boolean
 		{
-			var ret:Boolean = filterByGroup(item);
+			var ret:Boolean = true; 
+			if (chosenGroup != null && ret)
+				ret = filterByGroup(item);
+			if (chosenStatus != null && ret)
+				ret = filterByStatus(item);
+				
 			return ret;
+		}
+		
+		protected function filterByStatus(item:Object):Boolean
+		{
+			return (item['status'] == chosenStatus);
 		}
 		
 		protected function filterByGroup(item:Object):Boolean
@@ -86,6 +107,10 @@ package net.poweru.components.parts.code
 				case 'Group':
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEGROUP));
 					break;
+				
+				case 'Status':
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEUSERSTATUS));
+					break;
 			}
 		}
 		
@@ -95,6 +120,10 @@ package net.poweru.components.parts.code
 			{
 				case 'Group':
 					chosenGroup = null;
+					break;
+				
+				case 'Status':
+					chosenStatus = null;
 					break;
 			}
 		}

@@ -38,16 +38,19 @@ package net.poweru.presenters
 			}
 		}
 		
-		override protected function populate():void
+		protected function buildInputCollector():void
 		{
-			super.populate();
-			
 			if (inputCollector != null)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 			
 			inputCollector = new InputCollector(['data']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
-			
+		}
+		
+		override protected function populate():void
+		{
+			super.populate();
+			buildInputCollector();
 			primaryProxy.getAll();
 		}
 		

@@ -52,6 +52,7 @@ package net.poweru
 		public static const CHOOSETASK:String = 'ChooseTask';
 		public static const CHOOSETASKBUNDLE:String = 'ChooseTaskBundle';
 		public static const CHOOSEUSER:String = 'ChooseUser';
+		public static const CHOOSEUSERSTATUS:String = 'ChooseUserStatus';
 		public static const CONFIRMLOGOUT:String = 'ConfirmLogout';
 		public static const CREATEACHIEVEMENT:String = 'CreateAchievement';
 		public static const CREATEBLACKOUTPERIOD:String = 'CreateBlackoutPeriod';

@@ -71,7 +71,12 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			 request = initialDataProxy.getInitialData(placeName) as ChooserRequest;
+			 retrieveRequest();
+		}
+		
+		protected function retrieveRequest():void
+		{
+			request = initialDataProxy.getInitialData(placeName) as ChooserRequest;
 		}
 		
 		protected function applyExcludes(data:Array):Array

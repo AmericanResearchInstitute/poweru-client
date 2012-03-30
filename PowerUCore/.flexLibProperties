@@ -487,6 +487,9 @@
     <classEntry path="net.poweru.model.ChooserRequest"/>
     <classEntry path="net.poweru.model.ChooserResult"/>
     <classEntry path="net.poweru.utils.ChooserRequestTracker"/>
+    <classEntry path="net.poweru.presenters.ChooseUserStatusMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseUserStatusCode"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseUserStatus"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

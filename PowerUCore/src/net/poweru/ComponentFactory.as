@@ -95,6 +95,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseTask;
 	import net.poweru.components.dialogs.choosers.ChooseTaskBundle;
 	import net.poweru.components.dialogs.choosers.ChooseUser;
+	import net.poweru.components.dialogs.choosers.ChooseUserStatus;
 	import net.poweru.components.student.CurriculumEnrollments;
 	import net.poweru.components.student.ExamAssignments;
 	import net.poweru.components.student.FileDownloadAssignments;
@@ -117,6 +118,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseTaskBundleMediator;
 	import net.poweru.presenters.ChooseTaskMediator;
 	import net.poweru.presenters.ChooseUserMediator;
+	import net.poweru.presenters.ChooseUserStatusMediator;
 	import net.poweru.presenters.ConfirmLogoutMediator;
 	import net.poweru.presenters.CreateAchievementMediator;
 	import net.poweru.presenters.CreateBlackoutPeriodMediator;
@@ -277,6 +279,10 @@ package net.poweru
 				
 				case Places.CHOOSEUSER:
 					component = getOrCreate(name, ChooseUser, ChooseUserMediator);
+					break;
+				
+				case Places.CHOOSEUSERSTATUS:
+					component = getOrCreate(name, ChooseUserStatus, ChooseUserStatusMediator);
 					break;
 				
 				case Places.CONFIRMLOGOUT:
