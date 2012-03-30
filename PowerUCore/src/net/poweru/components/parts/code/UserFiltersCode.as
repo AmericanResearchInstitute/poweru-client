@@ -42,6 +42,7 @@ package net.poweru.components.parts.code
 		protected var chosenGroup:Object;
 		protected var chosenStatus:String;
 		protected var chosenAchievement:Object;
+		protected var chosenOrganization:Object;
 		
 		public function UserFiltersCode()
 		{
@@ -72,6 +73,11 @@ package net.poweru.components.parts.code
 					activateFilter(GROUP_NAME, chosenGroup['name']);
 					break;
 				
+				case Places.CHOOSEORGANIZATION:
+					chosenOrganization = choice.value;
+					activateFilter(ORGANIZATION_NAME, chosenOrganization['name']);
+					break;
+				
 				case Places.CHOOSEUSERSTATUS:
 					chosenStatus = choice.value as String;
 					activateFilter(STATUS_NAME, chosenStatus);
@@ -88,7 +94,27 @@ package net.poweru.components.parts.code
 				ret = filterByStatus(item);
 			if (chosenAchievement != null && ret)
 				ret = filterByAchievement(item);
+			if (chosenOrganization != null && ret)
+				ret = filterByOrganization(item);
 			
+			return ret;
+		}
+		
+		protected function filterByOrganization(item:Object):Boolean
+		{
+			var ret:Boolean = true;
+			if (chosenOrganization != null)
+			{
+				ret = false;
+				for each (var userOrgRole:Object in item.owned_userorgroles)
+				{
+					if (userOrgRole.organization == chosenOrganization.id)
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
 			return ret;
 		}
 		
@@ -145,6 +171,10 @@ package net.poweru.components.parts.code
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEGROUP));
 					break;
 				
+				case ORGANIZATION_NAME:
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEORGANIZATION));
+					break;
+				
 				case STATUS_NAME:
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEUSERSTATUS));
 					break;
@@ -161,6 +191,10 @@ package net.poweru.components.parts.code
 				
 				case GROUP_NAME:
 					chosenGroup = null;
+					break;
+				
+				case ORGANIZATION_NAME:
+					chosenOrganization = null;
 					break;
 				
 				case STATUS_NAME:
