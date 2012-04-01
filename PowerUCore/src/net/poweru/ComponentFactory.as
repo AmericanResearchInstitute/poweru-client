@@ -90,6 +90,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseExam;
 	import net.poweru.components.dialogs.choosers.ChooseFileDownload;
 	import net.poweru.components.dialogs.choosers.ChooseGroup;
+	import net.poweru.components.dialogs.choosers.ChooseOrgRole;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
 	import net.poweru.components.dialogs.choosers.ChooseTask;
@@ -113,6 +114,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseExamMediator;
 	import net.poweru.presenters.ChooseFileDownloadMediator;
 	import net.poweru.presenters.ChooseGroupMediator;
+	import net.poweru.presenters.ChooseOrgRoleMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ChooseRoomMediator;
 	import net.poweru.presenters.ChooseTaskBundleMediator;
@@ -263,6 +265,10 @@ package net.poweru
 				
 				case Places.CHOOSEORGANIZATION:
 					component = getOrCreate(name, ChooseOrganization, ChooseOrganizationMediator);
+					break;
+				
+				case Places.CHOOSEORGROLE:
+					component = getOrCreate(name, ChooseOrgRole, ChooseOrgRoleMediator);
 					break;
 				
 				case Places.CHOOSEROOM:

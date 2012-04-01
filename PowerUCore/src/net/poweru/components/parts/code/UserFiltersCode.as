@@ -43,6 +43,7 @@ package net.poweru.components.parts.code
 		protected var chosenStatus:String;
 		protected var chosenAchievement:Object;
 		protected var chosenOrganization:Object;
+		protected var chosenOrgRole:Object;
 		
 		public function UserFiltersCode()
 		{
@@ -78,6 +79,11 @@ package net.poweru.components.parts.code
 					activateFilter(ORGANIZATION_NAME, chosenOrganization['name']);
 					break;
 				
+				case Places.CHOOSEORGROLE:
+					chosenOrgRole = choice.value;
+					activateFilter(ORG_ROLE_NAME, chosenOrgRole['name']);
+					break;
+				
 				case Places.CHOOSEUSERSTATUS:
 					chosenStatus = choice.value as String;
 					activateFilter(STATUS_NAME, chosenStatus);
@@ -96,7 +102,41 @@ package net.poweru.components.parts.code
 				ret = filterByAchievement(item);
 			if (chosenOrganization != null && ret)
 				ret = filterByOrganization(item);
+			if (chosenOrgRole != null && ret)
+				ret = filterByOrgRole(item);
 			
+			return ret;
+		}
+		
+		/*	returns false for any user who does not have the specified org role.
+			if there is a chosen organization, this will also enforce that the
+			user must have the chosen org role in the chosen org. */
+		protected function filterByOrgRole(item:Object):Boolean
+		{
+			var ret:Boolean = true;
+			if (chosenOrgRole != null)
+			{
+				ret = false;
+				for each (var userOrgRole:Object in item.owned_userorgroles)
+				{
+					if (userOrgRole.role_name == chosenOrgRole.name)
+					{
+						if (chosenOrganization != null)
+						{
+							if (userOrgRole.organization == chosenOrganization.id)
+							{
+								ret = true;
+								break;
+							}
+						}
+						else
+						{
+							ret = true;
+							break;
+						}
+					}
+				}
+			}
 			return ret;
 		}
 		
@@ -175,6 +215,10 @@ package net.poweru.components.parts.code
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEORGANIZATION));
 					break;
 				
+				case ORG_ROLE_NAME:
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEORGROLE));
+					break;
+				
 				case STATUS_NAME:
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEUSERSTATUS));
 					break;
@@ -199,6 +243,10 @@ package net.poweru.components.parts.code
 				
 				case STATUS_NAME:
 					chosenStatus = null;
+					break;
+				
+				case ORG_ROLE_NAME:
+					chosenOrgRole = null;
 					break;
 			}
 		}

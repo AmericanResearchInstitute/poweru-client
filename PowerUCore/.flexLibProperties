@@ -490,6 +490,8 @@
     <classEntry path="net.poweru.presenters.ChooseUserStatusMediator"/>
     <classEntry path="net.poweru.components.dialogs.choosers.code.ChooseUserStatusCode"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseUserStatus"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseOrgRole"/>
+    <classEntry path="net.poweru.presenters.ChooseOrgRoleMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
