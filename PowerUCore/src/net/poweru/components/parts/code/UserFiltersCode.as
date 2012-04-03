@@ -16,7 +16,7 @@ package net.poweru.components.parts.code
 	{
 		protected static const GROUP_NAME:String = 'Group';
 		protected static const STATUS_NAME:String = 'Status';
-		protected static const CREDENTIAL_NAME:String = 'Credential';
+		protected static const CREDENTIAL_TYPE_NAME:String = 'Credential';
 		protected static const ACHIEVEMENT_NAME:String = 'Achievement';
 		protected static const ORGANIZATION_NAME:String = 'Organization';
 		protected static const ORG_ROLE_NAME:String = 'Org Role';
@@ -24,7 +24,7 @@ package net.poweru.components.parts.code
 		public static var filterObjects:Array = [
 			{'name': GROUP_NAME, 'constraint' : null},
 			{'name': STATUS_NAME, 'constraint' : null},
-			{'name': CREDENTIAL_NAME, 'constraint' : null},
+			{'name': CREDENTIAL_TYPE_NAME, 'constraint' : null},
 			{'name': ACHIEVEMENT_NAME, 'constraint' : null},
 			{'name': ORGANIZATION_NAME, 'constraint' : null},
 			{'name': ORG_ROLE_NAME, 'constraint' : null}
@@ -44,6 +44,7 @@ package net.poweru.components.parts.code
 		protected var chosenAchievement:Object;
 		protected var chosenOrganization:Object;
 		protected var chosenOrgRole:Object;
+		protected var chosenCredentialType:Object;
 		
 		public function UserFiltersCode()
 		{
@@ -67,6 +68,11 @@ package net.poweru.components.parts.code
 				case Places.CHOOSEACHIEVEMENT:
 					chosenAchievement = choice.value;
 					activateFilter(ACHIEVEMENT_NAME, chosenAchievement['name']);
+					break;
+				
+				case Places.CHOOSECREDENTIALTYPE:
+					chosenCredentialType = choice.value;
+					activateFilter(CREDENTIAL_TYPE_NAME, chosenCredentialType['name']);
 					break;
 				
 				case Places.CHOOSEGROUP:
@@ -104,6 +110,8 @@ package net.poweru.components.parts.code
 				ret = filterByOrganization(item);
 			if (chosenOrgRole != null && ret)
 				ret = filterByOrgRole(item);
+			if (chosenCredentialType != null && ret)
+				ret = filterByCredentialType(item);
 			
 			return ret;
 		}
@@ -149,6 +157,24 @@ package net.poweru.components.parts.code
 				for each (var userOrgRole:Object in item.owned_userorgroles)
 				{
 					if (userOrgRole.organization == chosenOrganization.id)
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
+			return ret;
+		}
+		
+		protected function filterByCredentialType(item:Object):Boolean
+		{
+			var ret:Boolean = true;
+			if (chosenCredentialType != null)
+			{
+				ret = false;
+				for each (var credential:Object in item.credentials)
+				{
+					if (credential.credential_type_name == chosenCredentialType.name)
 					{
 						ret = true;
 						break;
@@ -207,6 +233,10 @@ package net.poweru.components.parts.code
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEACHIEVEMENT));
 					break;
 				
+				case CREDENTIAL_TYPE_NAME:
+					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSECREDENTIALTYPE));
+					break;
+				
 				case GROUP_NAME:
 					dispatchEvent(new ViewEvent(ViewEvent.FETCH, Places.CHOOSEGROUP));
 					break;
@@ -231,6 +261,10 @@ package net.poweru.components.parts.code
 			{
 				case ACHIEVEMENT_NAME:
 					chosenAchievement = null;
+					break;
+				
+				case CREDENTIAL_TYPE_NAME:
+					chosenCredentialType = null;
 					break;
 				
 				case GROUP_NAME:

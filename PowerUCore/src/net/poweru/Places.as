@@ -43,6 +43,7 @@ package net.poweru
 		public static const BULKASSIGNMENTRESULTS:String = 'BulkAssignmentResults';
 		public static const BULKENROLLINEVENT:String = 'BulkEnrollInEvent';
 		public static const CHOOSEACHIEVEMENT:String = 'ChooseAchievement';
+		public static const CHOOSECREDENTIALTYPE:String = 'ChooseCredential';
 		public static const CHOOSEEXAM:String = 'ChooseExam';
 		public static const CHOOSEFILEDOWNLOAD:String = 'ChooseFileDownload';
 		public static const CHOOSEFILEUPLOAD:String = 'ChooseFileUpload';

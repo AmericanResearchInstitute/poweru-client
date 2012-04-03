@@ -87,6 +87,7 @@ package net.poweru
 	import net.poweru.components.dialogs.ViewExamAssignments;
 	import net.poweru.components.dialogs.ViewFileDownloadAssignments;
 	import net.poweru.components.dialogs.choosers.ChooseAchievement;
+	import net.poweru.components.dialogs.choosers.ChooseCredentialType;
 	import net.poweru.components.dialogs.choosers.ChooseExam;
 	import net.poweru.components.dialogs.choosers.ChooseFileDownload;
 	import net.poweru.components.dialogs.choosers.ChooseGroup;
@@ -111,6 +112,7 @@ package net.poweru
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseAchievementMediator;
+	import net.poweru.presenters.ChooseCredentialTypeMediator;
 	import net.poweru.presenters.ChooseExamMediator;
 	import net.poweru.presenters.ChooseFileDownloadMediator;
 	import net.poweru.presenters.ChooseGroupMediator;
@@ -249,6 +251,10 @@ package net.poweru
 				
 				case Places.CHOOSEACHIEVEMENT:
 					component = getOrCreate(name, ChooseAchievement, ChooseAchievementMediator);
+					break;
+				
+				case Places.CHOOSECREDENTIALTYPE:
+					component = getOrCreate(name, ChooseCredentialType, ChooseCredentialTypeMediator);
 					break;
 				
 				case Places.CHOOSEEXAM:
