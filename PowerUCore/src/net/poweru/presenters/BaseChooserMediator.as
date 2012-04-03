@@ -82,10 +82,13 @@ package net.poweru.presenters
 		protected function applyExcludes(data:Array):Array
 		{
 			var newData:DataSet = new DataSet(primaryProxy.dataSet.toArray());
-			if (request.exclude == null)
-				request.exclude = [];
-			for each (var pk:Number in new PKArrayCollection(request.exclude))
+			if (request != null)
+			{
+				if (request.exclude == null)
+					request.exclude = [];
+				for each (var pk:Number in new PKArrayCollection(request.exclude))
 				newData.removeByPK(pk);
+			}
 			return newData.toArray();
 		}
 		
