@@ -44,9 +44,8 @@ package net.poweru.components.code
 		public var orgRoleCB:ComboBox;
 		public var accordion:Accordion;
 		public var userFilters:UserFilters;
+		public var bulkUserFilters:UserFilters;
 		public var statuses:ComboBox;
-		[Bindable]
-		public var statusFilterCB:ComboBox;
 		[Bindable]
 		public var buttonBox:HBox;
 		[Bindable]
@@ -67,30 +66,28 @@ package net.poweru.components.code
 		public var achievementGrid:DataGrid;
 		[Bindable]
 		protected var gridDataProvider:DataSet;
+		[Bindable]
+		protected var bulkGridDataProvider:DataSet;
 		public var emailSubjectInput:TextInput;
 		public var emailBodyInput:TextArea;
 		[Bindable]
 		protected var chosenOrganizationForBulkMembership:Object;
-		[Bindable]
-		protected var chosenOrganizationForFilter:Object;
-		/*	There are two places where we need to choose an org, and this
-			boolean keeps track of which one made the most recent request. */
-		protected var chooseOrgRequestIsForFilter:Boolean = true;
 		protected var chooserRequestTracker:ChooserRequestTracker;
 		protected var filterChooserRequestTracker:ChooserRequestTracker;
+		protected var bulkFilterChooserRequestTracker:ChooserRequestTracker;
 		
 		public function UsersCode()
 		{
 			super();
 			chooserRequestTracker = new ChooserRequestTracker();
 			filterChooserRequestTracker = new ChooserRequestTracker();
+			bulkFilterChooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		public function clear():void
 		{
 			populate([], [], [], [], []);
 			chosenOrganizationForBulkMembership = null;
-			chosenOrganizationForFilter = null;
 			chosenGroup = null;
 			taskBundleToAssign = null;
 			examToAssign = null;
@@ -108,14 +105,8 @@ package net.poweru.components.code
 			statusesDataSet.source = choices['status'] as Array;
 			statusesDataSet.refresh();
 			
-			statusFilterDataSet.source = ObjectUtil.copy(choices['status']) as Array;
-			statusFilterDataSet.source.push(Constants.ALL);
-			statusFilterDataSet.refresh();
-			
-			statusFilterCB.selectedItem = Constants.ALL;
-			
-			bulkDataSet.source = users;
-			bulkDataSet.refresh();
+			bulkGridDataProvider.source = users;
+			bulkGridDataProvider.refresh();
 			
 			curriculumEnrollmentGrid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 			curriculumEnrollmentGrid.dataProvider.source = curriculumEnrollments;
@@ -151,13 +142,7 @@ package net.poweru.components.code
 						break;
 					
 					case Places.CHOOSEORGANIZATION:
-						if (chooseOrgRequestIsForFilter)
-						{
-							chosenOrganizationForFilter = choice.value;
-							bulkDataSet.refresh();
-						}
-						else
-							chosenOrganizationForBulkMembership = choice.value;
+						chosenOrganizationForBulkMembership = choice.value;
 						break;
 				}
 			}
@@ -165,23 +150,20 @@ package net.poweru.components.code
 			{
 				userFilters.receiveChoice(choice, type);
 			}
+			else if (bulkFilterChooserRequestTracker.doIWantThis(type, choice.requestID))
+			{
+				bulkUserFilters.receiveChoice(choice, type);
+			}
 		}
 
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			gridDataProvider = SortedDataSetFactory.singleFieldSort('last_name');
-			gridDataProvider.filterFunction = userFilters.filterFunction;
-			bulkGrid.dataProvider = SortedDataSetFactory.singleFieldSort('last_name');
-			bulkDataSet.filterFunction = filterBulkUsers;
+			bulkGridDataProvider = SortedDataSetFactory.singleFieldSort('last_name');
 			eventGrid.dataProvider = new DataSet();
 			orgRoleCB.dataProvider = new DataSet();
 			statuses.dataProvider = new DataSet();
-			statusFilterCB.dataProvider = new DataSet();
 			achievementGrid.dataProvider = new DataSet();
-			
-			var statusSort:Sort = new Sort();
-			statusSort.compareFunction = CompareLabels;
-			statusFilterDataSet.sort = statusSort;
 			
 			// Show the accordion "collapsed" will all options at the top
 			accordion.selectedIndex = accordion.getChildren().length - 1;
@@ -201,38 +183,10 @@ package net.poweru.components.code
 			
 			// call a chooser dialog (please "fetch" a choice)
 			userFilters.addEventListener(ViewEvent.FETCH, onUserFiltersFetch);
+			bulkUserFilters.addEventListener(ViewEvent.FETCH, onBulkUserFiltersFetch);
 			// refresh the data provider ("submitting" its filters)
 			userFilters.addEventListener(ViewEvent.SUBMIT, onUserFiltersSubmit);
-			
-		}
-		
-		// Filter based on selections in the filter controls
-		protected function filterBulkUsers(item:Object):Boolean
-		{
-			var ret:Boolean = true;
-			
-			switch (statusFilterCB.selectedLabel)
-			{
-				// Leave it as true
-				case Constants.ALL:
-					break;
-				
-				// true if user has selected status
-				default:
-					ret = Boolean(statusFilterCB.selectedLabel == item['status']);
-			}
-			
-			if (ret)
-			{
-				if (chosenOrganizationForFilter != null)
-				{
-					var orgAssociations:DataSet = new DataSet(item['owned_userorgroles'] as Array);
-					// true if selected org is found among user's org associations
-					ret = Boolean(orgAssociations.findByKey('organization', chosenOrganizationForFilter.id) != null);
-				}
-			}
-				
-			return ret;
+			bulkUserFilters.addEventListener(ViewEvent.SUBMIT, onBulkUserFiltersSubmit);
 		}
 		
 		public function emailSent():void
@@ -253,10 +207,22 @@ package net.poweru.components.code
 			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [event.body as String, filterChooserRequestTracker.getChooserRequest(event.body as String)]));
 		}
 		
+		// event.body is the place name of a chooser
+		protected function onBulkUserFiltersFetch(event:ViewEvent):void
+		{
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [event.body as String, bulkFilterChooserRequestTracker.getChooserRequest(event.body as String)]));
+		}
+		
 		// when "Apply" button is clicked
 		protected function onUserFiltersSubmit(event:ViewEvent):void
 		{
 			gridDataProvider.refresh();
+		}
+		
+		// when "Apply" button is clicked
+		protected function onBulkUserFiltersSubmit(event:ViewEvent):void
+		{
+			bulkGridDataProvider.refresh();
 		}
 		
 		// Add users in bulk to the selected group.
@@ -362,13 +328,6 @@ package net.poweru.components.code
 		
 		protected function onClickChooseOrgForBulkAction(event:Event):void
 		{
-			chooseOrgRequestIsForFilter = false;
-			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))
-		}
-		
-		protected function onClickChooseOrgForFilter(event:Event):void
-		{
-			chooseOrgRequestIsForFilter = true;
 			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))
 		}
 		
@@ -387,11 +346,6 @@ package net.poweru.components.code
 			
 			return ret;
 		}
-
-		public function get bulkDataSet():DataSet
-		{
-			return bulkGrid.dataProvider as DataSet;
-		}
 		
 		protected function get orgRoleDataSet():DataSet
 		{
@@ -401,11 +355,6 @@ package net.poweru.components.code
 		protected function get statusesDataSet():DataSet
 		{
 			return statuses.dataProvider as DataSet;
-		}
-		
-		protected function get statusFilterDataSet():DataSet
-		{
-			return statusFilterCB.dataProvider as DataSet;
 		}
 	}
 }

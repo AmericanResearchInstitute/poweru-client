@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:UserFiltersCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.parts.code.*">
+	xmlns:code="net.poweru.components.parts.code.*" xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -10,6 +10,7 @@
 	<mx:HBox>
 		<mx:Spacer x="6"/>
 		<mx:CheckBox id="filterCheckBox" label="Show Filters"/>
+		<widgets:PoliteAutoComplete prompt="Last Name" dataProvider="{_dataProvider}" externalFilterFunction="filterFunction" labelField="last_name" visible="{filterCheckBox.selected}" includeInLayout="{filterCheckBox.selected}"/>
 	</mx:HBox>
 	<mx:VBox width="100%" visible="{filterCheckBox.selected}" includeInLayout="{filterCheckBox.selected}">
 		<mx:HBox width="100%">

@@ -494,6 +494,7 @@
     <classEntry path="net.poweru.presenters.ChooseOrgRoleMediator"/>
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseCredentialType"/>
     <classEntry path="net.poweru.presenters.ChooseCredentialTypeMediator"/>
+    <classEntry path="net.poweru.components.widgets.PoliteAutoComplete"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -8,7 +8,8 @@
 	creationComplete="{onCreationComplete(event)}"
 	cornerRadius="15"
 	xmlns:components="com.hillelcoren.components.*"
-	xmlns:parts="net.poweru.components.parts.*">
+	xmlns:parts="net.poweru.components.parts.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.collections.ListCollectionView;
@@ -23,7 +24,7 @@
 	<mx:TabNavigator width="100%" height="100%">
 		<mx:HBox label="Edit" height="100%" width="100%">
 			<mx:VBox height="100%" width="65%">
-				<parts:UserFilters id="userFilters" width="100%"/>
+				<parts:UserFilters id="userFilters" dataProvider="{gridDataProvider}" width="100%"/>
 				<mx:AdvancedDataGrid id="grid" dataProvider="{gridDataProvider}" width="100%" height="100%" change="onUserSelected(event)">
 					<mx:columns>
 						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
@@ -96,19 +97,8 @@
 		</mx:HBox>
 		<mx:HBox label="Bulk Operations">
 			<mx:VBox width="65%" height="100%">
-				<mx:TitleWindow title="Filters" width="100%" dropShadowEnabled="false">
-					<mx:HBox>
-						<mx:FormItem label="Status:">
-							<mx:ComboBox id="statusFilterCB" change="bulkDataSet.refresh()"/>
-						</mx:FormItem>
-						<mx:FormItem label="Organization:">
-							<mx:Label id="orgFilterLabel" text="{chosenOrganizationForFilter.name}" visible="{chosenOrganizationForFilter != null}" includeInLayout="{chosenOrganizationForFilter != null}"/>
-							<mx:Button visible="{chosenOrganizationForFilter == null}" includeInLayout="{chosenOrganizationForFilter == null}" label="Choose Organization" click="onClickChooseOrgForFilter(event)"/>
-							<mx:Button label="Clear" click="chosenOrganizationForFilter = null; bulkDataSet.refresh()" visible="{chosenOrganizationForFilter != null}" includeInLayout="{chosenOrganizationForFilter != null}"/>
-						</mx:FormItem>
-					</mx:HBox>
-				</mx:TitleWindow>
-				<mx:AdvancedDataGrid id="bulkGrid" width="100%" height="100%" allowMultipleSelection="true">
+				<parts:UserFilters id="bulkUserFilters" dataProvider="{bulkGridDataProvider}" width="100%"/>
+				<mx:AdvancedDataGrid id="bulkGrid" dataProvider="{bulkGridDataProvider}" width="100%" height="100%" allowMultipleSelection="true">
 					<mx:columns>
 						<mx:AdvancedDataGridColumn dataField="last_name" headerText="Last Name" sortCompareFunction="{SortCompareFunctionFactory(['last_name'])}"/>
 						<mx:AdvancedDataGridColumn dataField="first_name" headerText="First Name" sortCompareFunction="{SortCompareFunctionFactory(['first_name'])}"/>

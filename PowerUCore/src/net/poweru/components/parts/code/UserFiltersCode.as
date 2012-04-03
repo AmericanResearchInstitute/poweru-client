@@ -2,6 +2,7 @@ package net.poweru.components.parts.code
 {
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayCollection;
 	import mx.containers.VBox;
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
@@ -30,6 +31,8 @@ package net.poweru.components.parts.code
 			{'name': ORG_ROLE_NAME, 'constraint' : null}
 		];
 		
+		[Bindable]
+		protected var _dataProvider:ArrayCollection;
 		[Bindable]
 		public var availableGrid:DataGrid;
 		[Bindable]
@@ -292,6 +295,15 @@ package net.poweru.components.parts.code
 			availableDataSet.source = filterObjects;
 			availableDataSet.refresh();
 			activeDataSet = SortedDataSetFactory.singleFieldSort('name');
+			
+		}
+		
+		public function set dataProvider(item:ArrayCollection):void
+		{
+			_dataProvider = item;
+			// this will get replaced by the PoliteAutoComplete as soon as
+			// it applies its first filter.
+			_dataProvider.filterFunction = filterFunction;
 		}
 		
 		protected function onClickActivate(event:MouseEvent):void
