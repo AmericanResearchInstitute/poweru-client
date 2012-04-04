@@ -91,6 +91,15 @@
 								</mx:columns>
 							</mx:DataGrid>
 						</mx:HBox>
+						<mx:HBox label="Credentials" width="100%" height="100%">
+							<mx:DataGrid dataProvider="{grid.selectedItem.credentials}">
+								<mx:columns>
+									<mx:DataGridColumn headerText="Name" dataField="credential_type_name"/>
+									<mx:DataGridColumn headerText="Status" dataField="status"/>
+									<mx:DataGridColumn headerText="Granted" dataField="date_granted"/>
+								</mx:columns>
+							</mx:DataGrid>
+						</mx:HBox>
 					</mx:TabNavigator>
 				</mx:Panel>
 			</mx:VBox>
