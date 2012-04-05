@@ -87,7 +87,7 @@ package net.poweru.presenters
 				NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL,
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
-				NotificationNames.UPDATEEVENTS,
+				NotificationNames.UPDATEEVENTS
 			);
 		}
 		
