@@ -20,6 +20,7 @@ package net.poweru.proxies
 		{
 			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS, FIELDS);
 			createArgNamesInOrder = ['name'];
+			createOptionalArgNames = ['parent'];
 		}
 	}
 }

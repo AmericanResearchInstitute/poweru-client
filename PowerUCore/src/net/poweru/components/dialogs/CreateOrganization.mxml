@@ -6,12 +6,19 @@
 	xmlns:Organization="net.poweru.generated.model.Organization.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
 	<mx:Form defaultButton="{submit}">
 		<mx:FormItem label="Name">
 			<Organization:NameInput id="nameInput" />
+		</mx:FormItem>
+		<mx:FormItem label="Parent">
+			<mx:HBox>
+				 <mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
+				 <mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			 </mx:HBox>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
