@@ -8,9 +8,11 @@ package net.poweru.components.dialogs.code
 	import mx.events.FlexEvent;
 	import mx.validators.Validator;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	
 	public class EditEventCode extends BaseCRUDDialog implements IEditDialog
 	{
@@ -23,6 +25,8 @@ package net.poweru.components.dialogs.code
 		public var endInput:DateField;
 		public var descriptionInput:TextArea;
 		public var extraValidators:Array;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		protected var pk:Number;
 		
@@ -40,6 +44,7 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = '';
 			startInput.selectedDate = null;
 			endInput.selectedDate = null;
+			chosenOrganization = null;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -53,6 +58,7 @@ package net.poweru.components.dialogs.code
 			endInput.selectedDate = data['end'];
 			if (startInput.selectedDate != null)
 				restrictEndDate();
+			chosenOrganization = data['organization'];
 		}		
 		
 		override public function getData():Object
@@ -64,7 +70,8 @@ package net.poweru.components.dialogs.code
 				'lead_time' : leadTimeInput.text,
 				'description' : descriptionInput.text,
 				'start' : startInput.selectedDate,
-				'end' : endInput.selectedDate
+				'end' : endInput.selectedDate,
+				'organization' : chosenOrganization.id
 			};
 		}
 		
@@ -76,6 +83,19 @@ package net.poweru.components.dialogs.code
 			// if the newly chosen start date is after the end date, erase the end date so the user must choose a new one
 			if (endInput.selectedDate != null && endInput.selectedDate.getTime() < startInput.selectedDate.getTime())
 				endInput.selectedDate = null;
+		}
+		
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
+		{
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+			{
+				switch (chooserName)
+				{
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
+				}
+			}
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

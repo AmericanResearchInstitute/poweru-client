@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:EditEventCode
+	title="Edit Event"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Event="net.poweru.generated.model.Event.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -26,6 +28,12 @@
 		</mx:FormItem>
 		<mx:FormItem label="Description">
 			<mx:TextArea id="descriptionInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>
 	
