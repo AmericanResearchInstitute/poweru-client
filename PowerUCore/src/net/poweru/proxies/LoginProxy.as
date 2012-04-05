@@ -154,7 +154,7 @@ package net.poweru.proxies
 			authSuccessInThisSession = false;
 			associatedOrgs = [];
 			activeUserOrgRole = null;
-			applicationState = '';
+			applicationState = null;
 			_userPK = -1;
 			_userGroups = new DataSet();
 			_currentUser = null;

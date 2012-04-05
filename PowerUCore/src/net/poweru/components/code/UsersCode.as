@@ -94,6 +94,7 @@ package net.poweru.components.code
 			examToAssign = null;
 			emailSubjectInput.text = '';
 			emailBodyInput.text = '';
+			accordion.selectedIndex = 0;
 		}
 		
 		/*	The accordion gets angry if you try to remove children that are
@@ -101,10 +102,11 @@ package net.poweru.components.code
 		*/
 		override public function setState(state:String):void
 		{
+			accordion.validateNow();
 			accordion.selectedIndex = 0;
 			accordion.validateNow();
 			super.setState(state);
-			accordion.selectedIndex = accordion.numChildren - 1;
+			//accordion.selectedIndex = accordion.numChildren - 1;
 		}
 		
 		public function populate(users:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
@@ -178,7 +180,7 @@ package net.poweru.components.code
 			achievementGrid.dataProvider = new DataSet();
 			
 			// Show the accordion "collapsed" will all options at the top
-			accordion.selectedIndex = accordion.numChildren - 1;
+			//accordion.selectedIndex = accordion.numChildren - 1;
 			
 			/*	If the Viewing Activity button isn't included yet in the layout,
 				make it an orphan so it will be garbage collected. */
