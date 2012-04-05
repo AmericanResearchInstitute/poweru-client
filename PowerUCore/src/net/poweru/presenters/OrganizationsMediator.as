@@ -86,8 +86,10 @@ package net.poweru.presenters
 				
 				case NotificationNames.SETSPACE:
 					if (notification.getBody() == Places.ORGANIZATIONS)
+					{
 						clearableComponent.clear();
 						populate();
+					}
 					break;
 					
 				// Happens when we save an org, and indicates that we should just refresh the view
