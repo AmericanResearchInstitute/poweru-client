@@ -13,7 +13,7 @@ package net.poweru.proxies
 	public class AdminOrganizationViewProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'AdminOrganizationViewProxy';
-		public static const FIELDS:Array = []
+		public static const FIELDS:Array = [];
 		
 		public function AdminOrganizationViewProxy()
 		{
