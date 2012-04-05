@@ -7,7 +7,7 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class MessageTemplatesCode extends HBox implements IArrayPopulatedComponent
+	public class MessageTemplatesCode extends BaseComponent implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var grid:DataGrid;

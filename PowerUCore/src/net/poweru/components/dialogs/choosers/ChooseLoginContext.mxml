@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:BaseSimpleChooserDialog
+	title="Choose Organization and Role"
+	minWidth="400"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:code="net.poweru.components.dialogs.choosers.code.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:Text text="Please choose which role and organization you would like to manage for this session."/>
+	<mx:DataGrid id="grid" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn dataField="organization_name" headerText="Organization"/>
+			<mx:DataGridColumn dataField="role_name" headerText="Role"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
+	</mx:HBox>
+</code:BaseSimpleChooserDialog>

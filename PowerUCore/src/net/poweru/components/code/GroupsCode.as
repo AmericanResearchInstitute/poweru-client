@@ -6,7 +6,7 @@ package net.poweru.components.code
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 
-	public class GroupsCode extends HBox implements IArrayPopulatedComponent
+	public class GroupsCode extends BaseComponent implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		protected var dataProvider:DataSet;

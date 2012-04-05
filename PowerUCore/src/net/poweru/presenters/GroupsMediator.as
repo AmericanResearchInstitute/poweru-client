@@ -38,11 +38,10 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
+			return super.listNotificationInterests().concat(
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATEGROUPS,
-			];
+				NotificationNames.UPDATEGROUPS
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void

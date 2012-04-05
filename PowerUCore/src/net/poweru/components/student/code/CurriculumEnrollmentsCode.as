@@ -8,12 +8,13 @@ package net.poweru.components.student.code
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.components.code.BaseComponent;
 	import net.poweru.components.student.interfaces.ICurriculumEnrollments;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class CurriculumEnrollmentsCode extends HBox implements ICurriculumEnrollments
+	public class CurriculumEnrollmentsCode extends BaseComponent implements ICurriculumEnrollments
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

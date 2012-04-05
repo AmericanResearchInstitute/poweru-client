@@ -16,10 +16,25 @@
 			import mx.core.Container;
 			
 			import net.poweru.Places;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
+	
+	<states>
+		<mx:State name="{StateNames.OWNERMANAGER}">
+			<mx:RemoveChild target="{changeStatus}"/>
+			<mx:RemoveChild target="{addToLearningInitiative}"/>
+			<mx:RemoveChild target="{assignToTaskBundle}"/>
+			<mx:RemoveChild target="{addToGroup}"/>
+			<mx:RemoveChild target="{addToOrg}"/>
+			<mx:RemoveChild target="{sendEmail}"/>
+			<mx:RemoveChild target="{addButton}"/>
+			<mx:RemoveChild target="{importButton}"/>
+			<mx:RemoveChild target="{editButton}"/>
+		</mx:State>
+	</states>
 	
 	<mx:TabNavigator width="100%" height="100%">
 		<mx:HBox label="Edit" height="100%" width="100%">
@@ -36,8 +51,8 @@
 			</mx:VBox>
 			<mx:VBox width="35%" height="100%">
 				<mx:HBox>
-					<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEUSER, '']))}"/>
-					<mx:Button label="Import" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTUSERS, '']))}"/>
+					<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEUSER, '']))}"/>
+					<mx:Button label="Import" id="importButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTUSERS, '']))}"/>
 					<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 					<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPUSER, '']))}"/>
 				</mx:HBox>
@@ -92,7 +107,7 @@
 							</mx:DataGrid>
 						</mx:HBox>
 						<mx:HBox label="Credentials" width="100%" height="100%">
-							<mx:DataGrid dataProvider="{grid.selectedItem.credentials}">
+							<mx:DataGrid dataProvider="{grid.selectedItem.credentials}" width="100%" height="100%">
 								<mx:columns>
 									<mx:DataGridColumn headerText="Name" dataField="credential_type_name"/>
 									<mx:DataGridColumn headerText="Status" dataField="status"/>
@@ -118,7 +133,7 @@
 				</mx:AdvancedDataGrid>
 			</mx:VBox>
 			<mx:Accordion width="35%" height="100%" id="accordion">
-				<mx:VBox width="100%" label="Add to Organization" horizontalAlign="center">
+				<mx:VBox width="100%" id="addToOrg" label="Add to Organization" horizontalAlign="center">
 					<mx:Spacer height="8"/>
 					<mx:VBox width="90%">
 						<mx:Form>
@@ -136,7 +151,7 @@
 						</mx:Form>
 					</mx:VBox>
 				</mx:VBox>
-				<mx:VBox width="100%" height="100%" label="Send Email" horizontalAlign="center">
+				<mx:VBox width="100%" height="100%" id="sendEmail" label="Send Email" horizontalAlign="center">
 					<mx:Form width="100%" height="100%">
 						<mx:FormItem label="Subject:" width="100%">
 							<mx:TextInput id="emailSubjectInput" width="100%"/>
@@ -144,10 +159,10 @@
 						<mx:FormItem label="Body:" width="100%" height="100%">
 							<mx:TextArea id="emailBodyInput" width="100%" height="100%"/>
 						</mx:FormItem>
-						<mx:Button id="sendEmailButton" label="Send" enabled="{bulkGrid.selectedItems.length > 0}" click="onSendEmail(event)"/>
+						<mx:Button label="Send" enabled="{bulkGrid.selectedItems.length > 0}" click="onSendEmail(event)"/>
 					</mx:Form>
 				</mx:VBox>
-				<mx:VBox width="100%" label="Add to Group" horizontalAlign="center">
+				<mx:VBox width="100%" id="addToGroup" label="Add to Group" horizontalAlign="center">
 					<mx:Spacer height="12"/>
 					<mx:Button label="Choose Group" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, chooserRequestTracker.getChooserRequest(Places.CHOOSEGROUP)]))"/>
 					
@@ -158,7 +173,7 @@
 						<mx:Button id="addToGroupButton" label="Add to Group" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; chosenGroup != null}" click="onAddToGroup(event)"/>
 					</mx:Form>
 				</mx:VBox>
-				<mx:VBox width="100%" label="Assign to Task Bundle" horizontalAlign="center">
+				<mx:VBox width="100%" id="assignToTaskBundle" label="Assign to Task Bundle" horizontalAlign="center">
 					<mx:Spacer height="12"/>
 					<mx:Button label="Choose Task Bundle" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE)]))"/>
 					<mx:Form width="100%">
@@ -197,7 +212,7 @@
 						<mx:Button label="Assign" enabled="{bulkGrid.selectedItems.length > 0 &amp;&amp; fileDownloadToAssign != null}" click="onAssignFileDownload(event)"/>
 					</mx:Form>
 				</mx:VBox>
-				<mx:VBox width="100%" label="Add to Learning Initiative" horizontalAlign="center">
+				<mx:VBox width="100%" id="addToLearningInitiative" label="Add to Learning Initiative" horizontalAlign="center">
 					<mx:DataGrid id="curriculumEnrollmentGrid">
 						<mx:columns>
 							<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum"/>

@@ -9,6 +9,8 @@ package net.poweru
 		public static const ALL:String = 'All';
 		public static const NONE:String = 'None';
 		
+		public static const NOT_EDITABLE_FIELD_NAME:String = '__not_editable__';
+		
 		public static const HONORIFICS:Array = [
 			'Dr.',
 			'Mr.',
@@ -26,6 +28,9 @@ package net.poweru
 		public static const CHECKBOXSELECTMULTIPLE:String = 'CheckboxSelectMultiple';
 		
 		public static const TASK_FEE:String = 'TaskFee';
+		
+		// Organization Role Names
+		public static const OWNER_MANAGER:String = 'Owner Manager';
 		
 	}
 }

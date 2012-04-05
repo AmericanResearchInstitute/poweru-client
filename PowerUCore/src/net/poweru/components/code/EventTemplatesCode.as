@@ -13,7 +13,7 @@ package net.poweru.components.code
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class EventTemplatesCode extends HBox implements IEventTemplates
+	public class EventTemplatesCode extends BaseComponent implements IEventTemplates
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

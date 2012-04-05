@@ -7,11 +7,20 @@
 	xmlns:components="com.hillelcoren.components.*">
 	<mx:Script>
 		<![CDATA[
-			import net.poweru.Places;
-			import net.poweru.events.ViewEvent;
 			import mx.effects.Fade;
+			
+			import net.poweru.Places;
+			import net.poweru.StateNames;
+			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
+	
+	<states>
+		<mx:State name="{StateNames.OWNERMANAGER}">
+			<mx:RemoveChild target="{addButton}"/>
+			<mx:RemoveChild target="{editButtonBox}"/>
+		</mx:State>
+	</states>
 	
 	<mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0"/>
 	<mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0"/>
@@ -24,7 +33,7 @@
 	</mx:VBox>
 	<mx:VBox>
 		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEGROUP, null]))}"/>
+			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEGROUP, null]))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 			<mx:Button label="{groupHelp.visible ? 'Close Help' : 'Help'}"
 				click="{groupHelp.visible = !groupHelp.visible}"/>
@@ -32,7 +41,7 @@
 		</mx:HBox>
 		<mx:TitleWindow title="Group Details" id="detailsTW">
 			<mx:Spacer width="4" height="4"/>
-			<mx:HBox>
+			<mx:HBox id="editButtonBox">
 				<mx:Spacer width="4" height="4"/>
 				<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
 			</mx:HBox>

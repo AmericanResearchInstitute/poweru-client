@@ -77,10 +77,9 @@ package net.poweru.presenters
 	
 		override public function listNotificationInterests():Array
 		{
-			return [
+			return super.listNotificationInterests().concat(
 				NotificationNames.CHOICEMADE,
 				NotificationNames.EMAILSENT,
-				NotificationNames.LOGOUT,
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEADMINUSERSVIEW,
 				NotificationNames.UPDATECHOICES,
@@ -88,8 +87,8 @@ package net.poweru.presenters
 				NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL,
 				NotificationNames.UPDATEORGROLES,
 				NotificationNames.UPDATEUSERS,
-				NotificationNames.UPDATEEVENTS
-			];
+				NotificationNames.UPDATEEVENTS,
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -114,13 +113,18 @@ package net.poweru.presenters
 						populate();
 					break;
 				
+				case NotificationNames.STATECHANGE:
+					users.setState(notification.getBody() as String);
+					break;
+				
 				// Happens when we save a user, and indicates that we should just refresh the view
 				case NotificationNames.UPDATEUSERS:
 					populate();
 					break;
 					
 				case NotificationNames.UPDATEADMINUSERSVIEW:
-					inputCollector.addInput('users', ObjectUtil.copy(primaryProxy.dataSet.toArray()));
+					if (inputCollector != null)
+						inputCollector.addInput('users', ObjectUtil.copy(primaryProxy.dataSet.toArray()));
 					break;
 					
 				case NotificationNames.UPDATECHOICES:
@@ -133,16 +137,19 @@ package net.poweru.presenters
 					break;
 				
 				case NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL:
-					inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(curriculumEnrollmentUserDetailProxy.dataSet.toArray()));
+					if (inputCollector != null)
+						inputCollector.addInput('curriculumEnrollments', ObjectUtil.copy(curriculumEnrollmentUserDetailProxy.dataSet.toArray()));
 					break;
 				
 				case NotificationNames.UPDATEEVENTS:
-					inputCollector.addInput('events', ObjectUtil.copy((notification.getBody() as DataSet).toArray()));
+					if (inputCollector != null)
+						inputCollector.addInput('events', ObjectUtil.copy((notification.getBody() as DataSet).toArray()));
 					break;
 					
 				case NotificationNames.UPDATEORGROLES:
 					var ds:DataSet = notification.getBody() as DataSet;
-					inputCollector.addInput('orgRoles', ObjectUtil.copy(ds.toArray()));
+					if (inputCollector != null)
+						inputCollector.addInput('orgRoles', ObjectUtil.copy(ds.toArray()));
 					break;
 				
 				default:
@@ -156,6 +163,7 @@ package net.poweru.presenters
 			
 			var inputCollector:InputCollector = event.target as InputCollector;
 			users.populate(inputCollector.object['users'], inputCollector.object['orgRoles'], inputCollector.object['choices'], inputCollector.object['curriculumEnrollments'], inputCollector.object['events']);
+			users.setState(loginProxy.applicationState);
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

@@ -495,6 +495,10 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseCredentialType"/>
     <classEntry path="net.poweru.presenters.ChooseCredentialTypeMediator"/>
     <classEntry path="net.poweru.components.widgets.PoliteAutoComplete"/>
+    <classEntry path="net.poweru.presenters.ChooseLoginContextMediator"/>
+    <classEntry path="net.poweru.components.dialogs.choosers.ChooseLoginContext"/>
+    <classEntry path="net.poweru.commands.LoginContextChosenCommand"/>
+    <classEntry path="net.poweru.components.code.BaseComponent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -61,14 +61,13 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
+			return super.listNotificationInterests().concat(
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATEORGANIZATIONS,
 				NotificationNames.UPDATEORGEMAILDOMAINS,
 				NotificationNames.UPDATEADMINORGANIZATIONSVIEW,
 				NotificationNames.UPDATEUSERORGROLES
-			];
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void

@@ -8,5 +8,6 @@ package net.poweru
 		public static const USER:String = 'User';
 		public static const PENDING_USER:String = 'PendingUser';
 		public static const NO_ORG_USER:String = 'NoOrgUser';
+		public static const OWNERMANAGER:String = 'OwnerManager';
 	}
 }

@@ -9,6 +9,7 @@ package net.poweru.components.code
 	import mx.collections.SortField;
 	import mx.containers.Accordion;
 	import mx.containers.HBox;
+	import mx.containers.VBox;
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
@@ -33,7 +34,7 @@ package net.poweru.components.code
 	import net.poweru.utils.PKArrayCollection;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class UsersCode extends HBox implements IUsers
+	public class UsersCode extends BaseComponent implements IUsers
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;
@@ -93,6 +94,17 @@ package net.poweru.components.code
 			examToAssign = null;
 			emailSubjectInput.text = '';
 			emailBodyInput.text = '';
+		}
+		
+		/*	The accordion gets angry if you try to remove children that are
+			above the selected index.
+		*/
+		override public function setState(state:String):void
+		{
+			accordion.selectedIndex = 0;
+			accordion.validateNow();
+			super.setState(state);
+			accordion.selectedIndex = accordion.numChildren - 1;
 		}
 		
 		public function populate(users:Array, orgRoles:Array, choices:Object, curriculumEnrollments:Array, events:Array):void
@@ -166,7 +178,7 @@ package net.poweru.components.code
 			achievementGrid.dataProvider = new DataSet();
 			
 			// Show the accordion "collapsed" will all options at the top
-			accordion.selectedIndex = accordion.getChildren().length - 1;
+			accordion.selectedIndex = accordion.numChildren - 1;
 			
 			/*	If the Viewing Activity button isn't included yet in the layout,
 				make it an orphan so it will be garbage collected. */

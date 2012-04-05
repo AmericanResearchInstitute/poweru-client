@@ -48,6 +48,7 @@ package net.poweru
 		public static const CHOOSEFILEDOWNLOAD:String = 'ChooseFileDownload';
 		public static const CHOOSEFILEUPLOAD:String = 'ChooseFileUpload';
 		public static const CHOOSEGROUP:String = 'ChooseGroup';
+		public static const CHOOSELOGINCONTEXT:String = 'ChooseLoginContext';
 		public static const CHOOSEORGANIZATION:String = 'ChooseOrganization';
 		public static const CHOOSEORGROLE:String = 'ChooseOrgRole';
 		public static const CHOOSEROOM:String = 'ChooseRoom';

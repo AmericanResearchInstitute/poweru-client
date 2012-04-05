@@ -14,7 +14,7 @@ package net.poweru.components.code
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class VenuesCode extends HBox implements IVenues
+	public class VenuesCode extends BaseComponent implements IVenues
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;

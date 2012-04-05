@@ -8,22 +8,33 @@ package net.poweru.proxies
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	import mx.utils.UIDUtil;
 	
 	import net.poweru.ApplicationFacade;
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.StateNames;
 	import net.poweru.delegates.UserManagerDelegate;
+	import net.poweru.model.ChooserRequest;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
-	/*	Stores the authToken in a cookie if possible, and if not, stores it locally */
+	/*	This could easily be renamed to "SessionProxy", as it manages the session
+		data including current user info, auth token, application state (which
+		defines what user role is experienced), etc.
+		
+		Stores the authToken in a cookie if possible, and if not, stores it locally.
+	*/
 	public class LoginProxy extends Proxy implements IProxy
 	{
 		public static const NAME:String = 'LoginProxy';
+		public static const ORG_BASED_STATES:Array = [
+			StateNames.OWNERMANAGER
+		];
 		
 		protected var _authToken:String;
 		protected var _userPK:Number;
@@ -35,6 +46,8 @@ package net.poweru.proxies
 		// Has this instance of the app been able to login or relogin since
 		// the last logout?
 		protected var authSuccessInThisSession:Boolean = false;
+		public var associatedOrgs:Array = [];
+		protected var _activeUserOrgRole:Object;
 		
 		public function LoginProxy(data:Object=null)
 		{
@@ -97,6 +110,27 @@ package net.poweru.proxies
 			return _currentUser;
 		}
 		
+		public function get activeUserOrgRole():Object
+		{
+			return _activeUserOrgRole;
+		}
+		
+		public function set activeUserOrgRole(item:Object):void
+		{
+			_activeUserOrgRole = item;
+			if (item == null)
+			{
+				associatedOrgs = [];
+			}
+			else
+			{
+				var activeOrg:Number = activeUserOrgRole.organization;
+				associatedOrgs = [activeOrg];
+				var currentUserOrgsDataSet:DataSet = new DataSet(currentUser.organizations as Array);
+				associatedOrgs = associatedOrgs.concat(currentUserOrgsDataSet.findByPK(activeOrg).descendants as Array);
+			}
+		}
+		
 		protected function timerSetup(milliseconds:Number):void
 		{
 			reloginTimer = new Timer(milliseconds, 1);
@@ -114,6 +148,24 @@ package net.poweru.proxies
 			}
 		}
 		
+		protected function clear():void
+		{
+			authToken = null;
+			authSuccessInThisSession = false;
+			associatedOrgs = [];
+			activeUserOrgRole = null;
+			applicationState = '';
+			_userPK = -1;
+			_userGroups = new DataSet();
+			_currentUser = null;
+		}
+		
+		public function sendLoginSuccess():void
+		{
+			sendNotification(NotificationNames.LOGINSUCCESS, currentUser);
+			authSuccessInThisSession = true;
+		}
+		
 		
 		// Remote Methods
 		
@@ -127,8 +179,7 @@ package net.poweru.proxies
 			new UserManagerDelegate(new Responder(logoutResult, fault)).logout(authToken);
 			timerTearDown();
 			sendNotification(NotificationNames.LOGOUT);
-			authToken = null;
-			authSuccessInThisSession = false;
+			clear();
 		}
 		
 		// Looks for an existing auth token in a cookie, and if found, logs in with that.
@@ -148,6 +199,28 @@ package net.poweru.proxies
 		public function getCaptchaChallenge():void
 		{
 			new UserManagerDelegate(new PowerUResponder(onCaptchaChallengeSuccess, onCaptchaChallengeError, fault)).getCaptchaChallenge();
+		}
+		
+		protected function userIsOwnerManager(user:Object):Boolean
+		{
+			return userHasOrgRole(user, Constants.OWNER_MANAGER);
+		}
+		
+		protected function userHasOrgRole(user:Object, roleName:String):Boolean
+		{
+			var ret:Boolean = false;
+			if (user.hasOwnProperty('owned_userorgroles') && (user.owned_userorgroles as Array) != null)
+			{
+				for each (var userorgrole:Object in (user.owned_userorgroles as Array))
+				{
+					if (userorgrole.role_name == roleName)
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
+			return ret;
 		}
 		
 		
@@ -198,11 +271,23 @@ package net.poweru.proxies
 			
 			determineState();
 			
+			
 			// This handler is also used by the relogin operation
 			if (!authSuccessInThisSession)
 			{
-				sendNotification(NotificationNames.LOGINSUCCESS, currentUser);
-				authSuccessInThisSession = true;
+				if (ORG_BASED_STATES.indexOf(applicationState) != -1)
+				{
+					var currentUserOrgRoles:Array = currentUser.owned_userorgroles as Array;
+					if (currentUserOrgRoles.length == 1)
+					{
+						activeUserOrgRole = currentUserOrgRoles[0];
+						sendLoginSuccess();
+					}
+					else
+						sendNotification(NotificationNames.SHOWDIALOG, [Places.CHOOSELOGINCONTEXT, new ChooserRequest(UIDUtil.createUID())]);
+				}
+				else
+					sendLoginSuccess();
 			}
 		}
 		
@@ -220,6 +305,8 @@ package net.poweru.proxies
 				newState = StateNames.STUDENT;
 			else if ((currentUser['organizations'] as Array).length == 0)
 				newState = StateNames.NO_ORG_USER;
+			else if (userIsOwnerManager(currentUser))
+				newState = StateNames.OWNERMANAGER;
 			else
 				newState = StateNames.USER;
 				

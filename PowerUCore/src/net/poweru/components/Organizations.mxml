@@ -8,8 +8,10 @@
 	<mx:Script>
 		<![CDATA[
 			import com.hillelcoren.components.autoComplete.classes.SelectedItem;
-			import net.poweru.events.ViewEvent;
+			
 			import net.poweru.Places;
+			import net.poweru.StateNames;
+			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
 			
 			[Bindable]
@@ -17,22 +19,33 @@
 			public var myFolderIcon:Class;
 		]]>
 	</mx:Script>
+	
+	<states>
+		<mx:State name="{StateNames.OWNERMANAGER}">
+			<mx:RemoveChild target="{addButton}"/>
+			<mx:RemoveChild target="{importButton}"/>
+			<mx:RemoveChild target="{editButton}"/>
+			<mx:RemoveChild target="{addSlotButton}"/>
+			<mx:RemoveChild target="{editUserButton}"/>
+		</mx:State>
+	</states>
+	
 	<mx:Tree id="organizations" labelField="name" change="onSelectionChange(event)" dragEnabled="true" dropEnabled="true" dragComplete="onDragComplete(event)" dragEnter="onDragBegin(event)" width="40%" height="100%" folderOpenIcon="{myFolderIcon}" folderClosedIcon="{myFolderIcon}"/>
 	
 	<mx:VBox width="60%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATION, null]))}"/>
+			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATION, null]))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
-			<mx:Button label="Import" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTORGANIZATIONS, '']))}"/>
+			<mx:Button label="Import" id="importButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.IMPORTORGANIZATIONS, '']))}"/>
 			<mx:Button label="Help" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.HELPORGANIZATION, null]))}"/>
 		</mx:HBox>
 		<mx:TitleWindow title="Details" width="100%">
 			<mx:Spacer width="4" height="4"/>
 			<mx:HBox>
 				<mx:Spacer width="4" height="4"/>
-				<mx:Button label="Edit" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
 			</mx:HBox>
-			<mx:Form>
+			<mx:Form width="100%">
 				<mx:FormItem label="Name:">
 					<mx:Label id="orgName" text="{organizations.selectedItem.name}"/>
 				</mx:FormItem>
@@ -42,8 +55,8 @@
 				<mx:FormItem label="External ID Auto Enroll:">
 					<mx:Label text="{organizations.selectedItem.use_external_uid}"/>
 				</mx:FormItem>
-				<mx:FormItem label="Email Domains:">
-					<mx:DataGrid id="orgEmailDomains" dataProvider="{organizations.selectedItem.org_email_domains}">
+				<mx:FormItem label="Email Domains:" width="100%">
+					<mx:DataGrid id="orgEmailDomains" dataProvider="{organizations.selectedItem.org_email_domains}" width="100%">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Domain" dataField="email_domain" sortCompareFunction="{SortCompareFunctionFactory(['email_domain'])}"/>
 							<mx:DataGridColumn headerText="Role" dataField="effective_role_name" sortCompareFunction="{SortCompareFunctionFactory(['effective_role_name'])}"/>
@@ -56,8 +69,8 @@
 			<mx:Spacer width="4" height="4"/>
 			<mx:HBox>
 				<mx:Spacer width="4" height="4"/>
-				<mx:Button label="Edit" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
-				<mx:Button label="Add Slot" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
+				<mx:Button label="Edit" id="editUserButton" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
+				<mx:Button label="Add Slot" id="addSlotButton" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
 			</mx:HBox>
 			<mx:AdvancedDataGrid id="users" height="100%" width="100%">
 				<mx:dataProvider>

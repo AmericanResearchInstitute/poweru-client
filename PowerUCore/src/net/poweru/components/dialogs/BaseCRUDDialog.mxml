@@ -12,6 +12,7 @@
 	<states>
 		<mx:State name="{StateNames.USER"/>
 		<mx:State name="{StateNames.SUPERADMIN}"/>
-		<mx:State name="{StateNames.CATEGORYMANAGER}" basedOn="{StateNames.SUPERADMIN}"/>	
+		<mx:State name="{StateNames.CATEGORYMANAGER}" basedOn="{StateNames.SUPERADMIN}"/>
+		<mx:State name="{StateNames.OWNERMANAGER}" basedOn="{StateNames.SUPERADMIN}"/>
 	</states>
 </BaseCRUDDialogCode>

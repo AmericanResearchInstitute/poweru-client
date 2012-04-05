@@ -4,6 +4,7 @@ package net.poweru.proxies
 	import mx.utils.ObjectUtil;
 	
 	import net.poweru.NotificationNames;
+	import net.poweru.StateNames;
 	import net.poweru.delegates.UserManagerDelegate;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PowerUResponder;
@@ -40,6 +41,19 @@ package net.poweru.proxies
 		public function changePassword(userId:Number, password:String, oldPassword:String):void
 		{
 			new UserManagerDelegate(new PowerUResponder(onPasswordChangeSuccess, onPasswordChangeFailure, onFault)).changePassword(loginProxy.authToken, userId, password, oldPassword);
+		}
+		
+		override protected function applyStateFilters(filter:Object):Object
+		{
+			switch (loginProxy.applicationState)
+			{
+				case StateNames.OWNERMANAGER:
+					if (!filter.hasOwnProperty('member'))
+						filter['member'] = {};
+					filter['member']['organizations'] = loginProxy.associatedOrgs;
+			}
+			
+			return filter;
 		}
 		
 		

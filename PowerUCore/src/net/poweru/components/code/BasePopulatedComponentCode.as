@@ -32,6 +32,18 @@ package net.poweru.components.code
 			populate([]);
 		}
 		
+		public function setState(state:String):void
+		{
+			try
+			{
+				currentState = state;
+			}
+			catch (err:ArgumentError)
+			{
+				; // If the state isn't defined, no sweat. Stick with the default.
+			}
+		}
+		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);

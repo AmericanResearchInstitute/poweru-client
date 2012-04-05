@@ -7,7 +7,7 @@ package net.poweru.components.code
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class SessionUserRoleCode extends HBox implements IArrayPopulatedComponent
+	public class SessionUserRoleCode extends BaseComponent implements IArrayPopulatedComponent
 	{
 		[Bindable]
 		public var list:List;

@@ -52,22 +52,6 @@ package net.poweru.components.dialogs.code
 		public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{}
 		
-		public function setState(state:String):void
-		{
-			/* 	Not a big deal for us if the state isn't found. Also, sometimes
-			 	when we call IEditDialog.setState(), the states defined on the
-				subclass are not detected, resulting in this error.  I don't
-				know why. */
-			try
-			{
-				currentState = state;
-			}
-			catch (err:ArgumentError)
-			{
-				trace(err.message);
-			}
-		}
-		
 		protected function updateControlIfUnchanged(control:Object, propertyName:String, newValue:Object):void
 		{
 			if (!control.hasOwnProperty(propertyName))

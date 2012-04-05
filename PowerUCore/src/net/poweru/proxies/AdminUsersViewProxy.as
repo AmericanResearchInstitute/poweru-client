@@ -1,6 +1,7 @@
 package net.poweru.proxies
 {
 	import net.poweru.NotificationNames;
+	import net.poweru.StateNames;
 	import net.poweru.delegates.UserManagerDelegate;
 	import net.poweru.utils.PowerUResponder;
 	
@@ -21,6 +22,19 @@ package net.poweru.proxies
 		public function sendEmail(users:Array, subject:String, body:String):void
 		{
 			new UserManagerDelegate(new PowerUResponder(onSendEmailSuccess, onSendEmailError, onFault)).sendEmail(loginProxy.authToken, users, subject, body);
+		}
+		
+		override protected function applyStateFilters(filter:Object):Object
+		{
+			switch (loginProxy.applicationState)
+			{
+				case StateNames.OWNERMANAGER:
+					if (!filter.hasOwnProperty('member'))
+						filter['member'] = {};
+					filter['member']['organizations'] = loginProxy.associatedOrgs;
+			}
+			
+			return filter;
 		}
 	}
 }

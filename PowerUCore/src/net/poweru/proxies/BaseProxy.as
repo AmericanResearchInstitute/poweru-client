@@ -21,6 +21,7 @@ package net.poweru.proxies
 	import mx.utils.ObjectUtil;
 	
 	import net.poweru.ApplicationFacade;
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.BaseDelegate;
 	import net.poweru.delegates.UserManagerDelegate;
@@ -90,7 +91,7 @@ package net.poweru.proxies
 		public function getAll():void
 		{
 			if (haveData == false)
-				getFiltered({});
+				getFiltered(applyStateFilters({}));
 			else
 				sendNotification(updatedDataNotification, new DataSet(ObjectUtil.copy(dataSet.toArray()) as Array));
 		}
@@ -266,14 +267,34 @@ package net.poweru.proxies
 		
 		protected function convertIncomingData(data:Array):void
 		{
-			// Convert ISO8601 strings to Date objects
 			for each (var item:Object in data)
 			{
+				// Convert ISO8601 strings to Date objects
 				for each (var field:String in dateTimeFields)
 				{
 					applyConversionFunction(item, field, stringToDate);
 				}
+				markIfNotEditable(item);
 			}
+		}
+		
+		protected function markIfNotEditable(item:Object):void
+		{
+			// First see if the user is logged in as an org-dependent role
+			if (LoginProxy.ORG_BASED_STATES.indexOf(loginProxy.applicationState) != -1)
+			{
+				if (item.hasOwnProperty('organization'))
+				{
+					var orgID:Number = item.organization as Number;
+					if (orgID == 0 && item.organization.hasOwnProperty('id'))
+						orgID = item.organization.id as Number;
+					if (loginProxy.associatedOrgs.indexOf(orgID) == -1)
+						item[Constants.NOT_EDITABLE_FIELD_NAME] = true;
+				}
+			}
+			
+			
+				
 		}
 		
 		/*	fieldName can be a multi-tier path delimited by '.'  This method will
@@ -304,6 +325,11 @@ package net.poweru.proxies
 			else
 				ret = DateUtil.parseW3CDTF(value);
 			return ret;
+		}
+		
+		protected function applyStateFilters(filter:Object):Object
+		{
+			return filter;
 		}
 		
 		

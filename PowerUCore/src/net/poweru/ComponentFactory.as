@@ -91,6 +91,7 @@ package net.poweru
 	import net.poweru.components.dialogs.choosers.ChooseExam;
 	import net.poweru.components.dialogs.choosers.ChooseFileDownload;
 	import net.poweru.components.dialogs.choosers.ChooseGroup;
+	import net.poweru.components.dialogs.choosers.ChooseLoginContext;
 	import net.poweru.components.dialogs.choosers.ChooseOrgRole;
 	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.components.dialogs.choosers.ChooseRoom;
@@ -116,6 +117,7 @@ package net.poweru
 	import net.poweru.presenters.ChooseExamMediator;
 	import net.poweru.presenters.ChooseFileDownloadMediator;
 	import net.poweru.presenters.ChooseGroupMediator;
+	import net.poweru.presenters.ChooseLoginContextMediator;
 	import net.poweru.presenters.ChooseOrgRoleMediator;
 	import net.poweru.presenters.ChooseOrganizationMediator;
 	import net.poweru.presenters.ChooseRoomMediator;
@@ -267,6 +269,10 @@ package net.poweru
 				
 				case Places.CHOOSEGROUP:
 					component = getOrCreate(name, ChooseGroup, ChooseGroupMediator);
+					break;
+				
+				case Places.CHOOSELOGINCONTEXT:
+					component = getOrCreate(name, ChooseLoginContext, ChooseLoginContextMediator);
 					break;
 				
 				case Places.CHOOSEORGANIZATION:

@@ -65,6 +65,14 @@ package net.poweru.presenters
 		protected function populate():void
 		{}
 		
+		override public function listNotificationInterests():Array
+		{
+			return super.listNotificationInterests().concat(
+				NotificationNames.LOGOUT,
+				NotificationNames.STATECHANGE
+			);
+		}
+		
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
@@ -72,6 +80,11 @@ package net.poweru.presenters
 				case NotificationNames.LOGOUT:
 					if (clearableComponent != null)
 						clearableComponent.clear();
+					break;
+				
+				case NotificationNames.STATECHANGE:
+					if (viewComponent.hasOwnProperty('setState'))
+						viewComponent.setState(notification.getBody());
 					break;
 				
 				default:
@@ -95,6 +108,8 @@ package net.poweru.presenters
 		{
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			populate();
+			if (viewComponent.hasOwnProperty('setState'))
+				viewComponent.setState(loginProxy.applicationState);
 		}
 		
 		protected function onRefresh(event:ViewEvent):void

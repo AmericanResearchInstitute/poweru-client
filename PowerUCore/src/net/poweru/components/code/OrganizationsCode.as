@@ -15,7 +15,7 @@ package net.poweru.components.code
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.HierarchicalDataSet;
 
-	public class OrganizationsCode extends HBox implements IOrganizations
+	public class OrganizationsCode extends BaseComponent implements IOrganizations
 	{
 		[Bindable]
 		public var organizations:Tree;

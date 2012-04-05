@@ -3,6 +3,7 @@ package net.poweru
 	import mx.core.Container;
 	
 	import net.poweru.commands.ExamSessionFinishedCommand;
+	import net.poweru.commands.LoginContextChosenCommand;
 	import net.poweru.commands.SendEmailErrorCommand;
 	import net.poweru.commands.SendEmailSuccessCommand;
 	
@@ -58,6 +59,7 @@ package net.poweru
 			registerCommand(NotificationNames.EXAMSESSIONFINISHED, ExamSessionFinishedCommand);
 			registerCommand(NotificationNames.EMAILSENT, SendEmailSuccessCommand);
 			registerCommand(NotificationNames.EMAILSENDERROR, SendEmailErrorCommand);
+			registerCommand(NotificationNames.CHOICEMADE, LoginContextChosenCommand);
 		}
 		
 	}

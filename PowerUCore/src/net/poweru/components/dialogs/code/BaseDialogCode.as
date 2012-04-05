@@ -16,6 +16,18 @@ package net.poweru.components.dialogs.code
 			addEventListener(CloseEvent.CLOSE, onClose);
 		}
 		
+		public function setState(state:String):void
+		{
+			try
+			{
+				currentState = state;
+			}
+			catch (err:ArgumentError)
+			{
+				; // If the state isn't defined, no sweat. Stick with the default.
+			}	
+		}
+		
 		protected function limitSize():void
 		{
 			maxHeight = stage.stageHeight - 20;
