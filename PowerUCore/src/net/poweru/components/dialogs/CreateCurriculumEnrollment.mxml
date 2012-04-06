@@ -13,14 +13,18 @@
 			<mx:Label text="{curriculum.name}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Start Date">
-			<mx:DateField id="startDate"/>
+			<mx:DateField id="startDate" change="{onStartDateChosen(event)}"/>
 		</mx:FormItem>
 		<mx:FormItem label="End Date">
-			<mx:DateField id="endDate"/>
+			<mx:DateField id="endDate" enabled="{startDate.selectedDate != null}"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	<code:validators>
+		<mx:DateValidator source="{startDate}" property="selectedDate" required="true"/>
+		<mx:DateValidator source="{endDate}" property="selectedDate" required="true"/>
+	</code:validators>
 </code:CreateCurriculumEnrollmentCode>
