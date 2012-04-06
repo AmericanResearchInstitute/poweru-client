@@ -42,11 +42,11 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
+			return super.listNotificationInterests().concat(
 				NotificationNames.SETSPACE,
 				NotificationNames.UPDATECURRICULUMS,
-				NotificationNames.UPDATEADMINCURRICULUMSVIEW,
-			];
+				NotificationNames.UPDATEADMINCURRICULUMSVIEW
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -66,6 +66,9 @@ package net.poweru.presenters
 				case NotificationNames.UPDATEADMINCURRICULUMSVIEW:
 					arrayPopulatedComponent.populate(notification.getBody() as Array);
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
