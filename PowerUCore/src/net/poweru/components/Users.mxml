@@ -119,7 +119,7 @@
 				</mx:Panel>
 			</mx:VBox>
 		</mx:HBox>
-		<mx:HBox label="Bulk Operations">
+		<mx:HBox label="Operations">
 			<mx:VBox width="65%" height="100%">
 				<parts:UserFilters id="bulkUserFilters" dataProvider="{bulkGridDataProvider}" width="100%"/>
 				<mx:AdvancedDataGrid id="bulkGrid" dataProvider="{bulkGridDataProvider}" width="100%" height="100%" allowMultipleSelection="true">
