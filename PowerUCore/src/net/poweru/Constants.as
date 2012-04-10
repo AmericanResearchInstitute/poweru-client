@@ -9,6 +9,11 @@ package net.poweru
 		public static const ALL:String = 'All';
 		public static const NONE:String = 'None';
 		
+		/*	This field can be added to an object with any value to signify that
+			the object is not editable. This is useful for a proxy to make the
+			decision about what the user has permission to edit, and then the
+			views can use the presense of this attribute name to disable editing.
+		*/
 		public static const NOT_EDITABLE_FIELD_NAME:String = '__not_editable__';
 		
 		public static const HONORIFICS:Array = [
@@ -31,6 +36,6 @@ package net.poweru
 		
 		// Organization Role Names
 		public static const OWNER_MANAGER:String = 'Owner Manager';
-		
+		public static const ORG_ADMIN:String = 'Administrator';
 	}
 }

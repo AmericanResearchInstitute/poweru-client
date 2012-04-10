@@ -3,6 +3,7 @@ package net.poweru.presenters
 	import flash.events.Event;
 	
 	import mx.events.FlexEvent;
+	import mx.utils.ObjectUtil;
 	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
@@ -99,7 +100,7 @@ package net.poweru.presenters
 					break;
 					
 				case NotificationNames.UPDATEADMINORGANIZATIONSVIEW:
-					arrayPopulatedComponent.populate(notification.getBody() as Array);
+					arrayPopulatedComponent.populate(ObjectUtil.copy(primaryProxy.dataSet.toArray()) as Array);
 					break;
 				
 				default:
@@ -109,7 +110,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			adminOrganizationsViewProxy.adminOrganizationsView();
+			adminOrganizationsViewProxy.getAll();
 			mostRecentFilterString = '';
 		}
 		

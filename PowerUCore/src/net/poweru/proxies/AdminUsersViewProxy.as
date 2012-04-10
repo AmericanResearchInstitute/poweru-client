@@ -1,5 +1,7 @@
 package net.poweru.proxies
 {
+	import mx.utils.ObjectUtil;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.StateNames;
 	import net.poweru.delegates.UserManagerDelegate;
@@ -26,15 +28,32 @@ package net.poweru.proxies
 		
 		override protected function applyStateFilters(filter:Object):Object
 		{
+			var ret:Object = {};
+			
 			switch (loginProxy.applicationState)
 			{
 				case StateNames.OWNERMANAGER:
-					if (!filter.hasOwnProperty('member'))
-						filter['member'] = {};
-					filter['member']['organizations'] = loginProxy.associatedOrgs;
+				case StateNames.ORG_ADMIN:
+					var filterA:Object = ObjectUtil.copy(filter);
+					var filterB:Object = ObjectUtil.copy(filter);
+					
+					if (!filterA.hasOwnProperty('member'))
+						filterA['member'] = {};
+					filterA['member'] = {'organizations' : loginProxy.associatedOrgs};
+					
+					if (!filterB.hasOwnProperty('isnull'))
+						filterB['isnull'] = {};
+					filterB['isnull'] = {'organizations' : true};
+					
+					ret['or'] = [filterA, filterB];
+					break;
+				
+				default:
+					ret = filter;
+					break;
 			}
 			
-			return filter;
+			return ret;
 		}
 	}
 }

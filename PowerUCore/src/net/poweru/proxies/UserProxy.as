@@ -48,9 +48,11 @@ package net.poweru.proxies
 			switch (loginProxy.applicationState)
 			{
 				case StateNames.OWNERMANAGER:
+				case StateNames.ORG_ADMIN:
 					if (!filter.hasOwnProperty('member'))
 						filter['member'] = {};
 					filter['member']['organizations'] = loginProxy.associatedOrgs;
+					break;
 			}
 			
 			return filter;

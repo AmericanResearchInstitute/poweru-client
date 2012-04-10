@@ -1,6 +1,9 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
+	import net.poweru.StateNames;
 	import net.poweru.delegates.GroupManagerDelegate;
 	
 	import org.puremvc.as3.interfaces.IProxy;
@@ -18,6 +21,22 @@ package net.poweru.proxies
 		{
 			super(NAME, GroupManagerDelegate, NotificationNames.UPDATEGROUPS, FIELDS, 'Group');
 			createArgNamesInOrder = ['name'];
+		}
+		
+		// Make sure the super user group isn't visible to non-superusers
+		override protected function onGetFilteredSuccess(data:ResultEvent):void
+		{
+			if (loginProxy.applicationState != StateNames.SUPERADMIN)
+			{
+				var value:Array = data.result.value as Array;
+				data.result.value = value.filter(filterSuperUserGroup);
+			}
+			super.onGetFilteredSuccess(data);
+		}
+		
+		protected function filterSuperUserGroup(item:*, index:int, array:Array):Boolean
+		{
+			return !(item.hasOwnProperty('name') && item.name == SUPERADMINGROUP);
 		}
 	}
 }

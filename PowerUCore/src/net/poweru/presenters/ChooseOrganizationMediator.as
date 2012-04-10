@@ -9,6 +9,7 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.model.HierarchicalDataSet;
+	import net.poweru.proxies.LoginProxy;
 	import net.poweru.proxies.OrganizationProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -29,7 +30,15 @@ package net.poweru.presenters
 			{
 				case NotificationNames.UPDATEORGANIZATIONS:
 					// constructor of HierarchicalDataSet rearranges the data into tree form
-					chooser.populate(ObjectUtil.copy(primaryProxy.dataSet.toArray()) as Array);
+					var data:Array = ObjectUtil.copy(primaryProxy.dataSet.toArray()) as Array;
+					if (LoginProxy.ORG_BASED_STATES.indexOf(loginProxy.applicationState) != -1)
+					{
+						data = data.filter(filterForOrgScopedRoles);
+						for each (var item:Object in data)
+							if (item.id == loginProxy.activeUserOrgRole.organization)
+								item.parent = null;
+					}
+					chooser.populate(data);
 					break;
 				
 				default:
@@ -41,6 +50,11 @@ package net.poweru.presenters
 		{
 			super.populate();
 			primaryProxy.getAll();
+		}
+		
+		protected function filterForOrgScopedRoles(item:*, index:int, array:Array):Boolean
+		{
+			return (loginProxy.associatedOrgs.indexOf(item.id) != -1);
 		}
 		
 	}

@@ -33,7 +33,8 @@ package net.poweru.proxies
 	{
 		public static const NAME:String = 'LoginProxy';
 		public static const ORG_BASED_STATES:Array = [
-			StateNames.OWNERMANAGER
+			StateNames.OWNERMANAGER,
+			StateNames.ORG_ADMIN
 		];
 		
 		protected var _authToken:String;
@@ -121,6 +122,7 @@ package net.poweru.proxies
 			if (item == null)
 			{
 				associatedOrgs = [];
+				applicationState = null;
 			}
 			else
 			{
@@ -129,6 +131,7 @@ package net.poweru.proxies
 				var currentUserOrgsDataSet:DataSet = new DataSet(currentUser.organizations as Array);
 				associatedOrgs = associatedOrgs.concat(currentUserOrgsDataSet.findByPK(activeOrg).descendants as Array);
 			}
+			determineState();
 		}
 		
 		protected function timerSetup(milliseconds:Number):void
@@ -203,10 +206,15 @@ package net.poweru.proxies
 		
 		protected function userIsOwnerManager(user:Object):Boolean
 		{
-			return userHasOrgRole(user, Constants.OWNER_MANAGER);
+			return userHasOrgRoleByName(user, Constants.OWNER_MANAGER);
 		}
 		
-		protected function userHasOrgRole(user:Object, roleName:String):Boolean
+		protected function userIsOrgAdmin(user:Object):Boolean
+		{
+			return userHasOrgRoleByName(user, Constants.ORG_ADMIN);
+		}
+		
+		protected function userHasOrgRoleByName(user:Object, roleName:String):Boolean
 		{
 			var ret:Boolean = false;
 			if (user.hasOwnProperty('owned_userorgroles') && (user.owned_userorgroles as Array) != null)
@@ -269,13 +277,10 @@ package net.poweru.proxies
 			var delay:Number = (expiration.getTime() - new Date().getTime()) * .5;
 			timerSetup(delay);
 			
-			determineState();
-			
-			
 			// This handler is also used by the relogin operation
 			if (!authSuccessInThisSession)
 			{
-				if (ORG_BASED_STATES.indexOf(applicationState) != -1)
+				if (userHasAnyOrgScopedRole(currentUser))
 				{
 					var currentUserOrgRoles:Array = currentUser.owned_userorgroles as Array;
 					if (currentUserOrgRoles.length == 1)
@@ -287,29 +292,64 @@ package net.poweru.proxies
 						sendNotification(NotificationNames.SHOWDIALOG, [Places.CHOOSELOGINCONTEXT, new ChooserRequest(UIDUtil.createUID())]);
 				}
 				else
+				{
+					determineState();
 					sendLoginSuccess();
+				}
 			}
+		}
+		
+		protected function userHasAnyOrgScopedRole(user:Object):Boolean
+		{
+			var ret:Boolean = false;
+			if (!userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
+			{
+				for each (var roleName:String in [Constants.ORG_ADMIN, Constants.OWNER_MANAGER])
+				{
+					if (userHasOrgRoleByName(user, roleName))
+					{
+						ret = true;
+						break;
+					}
+				}
+			}
+			return ret;
 		}
 		
 		protected function determineState():void
 		{
 			var newState:String = '';
 			
-			if (currentUser['status'] == 'pending')
-				newState = StateNames.PENDING_USER;
-			else if (userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
-				newState = StateNames.SUPERADMIN;
-			else if (userGroups.findByKey('name', GroupProxy.CATEGORYMANAGERGROUP))
-				newState = StateNames.CATEGORYMANAGER;
-			else if (userGroups.findByKey('name', GroupProxy.STUDENTGROUP))
-				newState = StateNames.STUDENT;
-			else if ((currentUser['organizations'] as Array).length == 0)
-				newState = StateNames.NO_ORG_USER;
-			else if (userIsOwnerManager(currentUser))
-				newState = StateNames.OWNERMANAGER;
+			//	determine org-scoped state based on the chosen login context
+			if (activeUserOrgRole != null)
+			{
+				switch (activeUserOrgRole.role_name)
+				{
+					case Constants.OWNER_MANAGER:
+						newState = StateNames.OWNERMANAGER;
+						break;
+					
+					case Constants.ORG_ADMIN:
+						newState = StateNames.ORG_ADMIN;
+						break;
+				}
+			}
+			//	does not consider org-scoped roles
 			else
-				newState = StateNames.USER;
-				
+			{
+				if (currentUser['status'] == 'pending')
+					newState = StateNames.PENDING_USER;
+				else if (userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
+					newState = StateNames.SUPERADMIN;
+				else if (userGroups.findByKey('name', GroupProxy.CATEGORYMANAGERGROUP))
+					newState = StateNames.CATEGORYMANAGER;
+				else if (userGroups.findByKey('name', GroupProxy.STUDENTGROUP))
+					newState = StateNames.STUDENT;
+				else if ((currentUser['organizations'] as Array).length == 0)
+					newState = StateNames.NO_ORG_USER;
+				else
+					newState = StateNames.USER;
+			}
 			applicationState = newState;
 		}
 		

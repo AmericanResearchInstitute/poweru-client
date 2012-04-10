@@ -4,6 +4,7 @@ package net.poweru.components.code
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Constants;
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
@@ -42,6 +43,13 @@ package net.poweru.components.code
 			{
 				; // If the state isn't defined, no sweat. Stick with the default.
 			}
+		}
+		
+		/*	Returns true if the logged in user has permission to edit the
+			object. Looks for a specific attribute added by the proxy. */
+		protected function isEditable(item:Object):Boolean
+		{
+			return !item.hasOwnProperty(Constants.NOT_EDITABLE_FIELD_NAME);
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

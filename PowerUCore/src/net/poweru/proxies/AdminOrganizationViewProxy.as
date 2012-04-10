@@ -3,6 +3,7 @@ package net.poweru.proxies
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.ObjectUtil;
 	
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.OrganizationManagerDelegate;
 	import net.poweru.model.HierarchicalDataSet;
@@ -17,12 +18,19 @@ package net.poweru.proxies
 		
 		public function AdminOrganizationViewProxy()
 		{
-			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS, FIELDS);
+			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEADMINORGANIZATIONSVIEW, FIELDS);
+			getFilteredMethodName = 'admin_org_view';
 		}
 		
-		public function adminOrganizationsView():void
+		override protected function markIfNotEditable(item:Object):void
 		{
-			new OrganizationManagerDelegate(new PowerUResponder(onAdminOrganizationsViewSuccess, onAdminOrganizationsViewError, onFault)).adminOrganizationsView(loginProxy.authToken);
+			// First see if the user is logged in as an org-dependent role
+			if (LoginProxy.ORG_BASED_STATES.indexOf(loginProxy.applicationState) != -1)
+			{
+				var orgID:Number = item.id as Number;
+				if (loginProxy.associatedOrgs.indexOf(orgID) == -1)
+					item[Constants.NOT_EDITABLE_FIELD_NAME] = true;
+			}
 		}
 		
 		public function adminOrganizationUsersView(org:Number):void
@@ -31,17 +39,6 @@ package net.poweru.proxies
 		}
 		
 		// Result handlers
-		
-		protected function onAdminOrganizationsViewSuccess(event:ResultEvent):void
-		{
-			data = new HierarchicalDataSet(event.result.value);
-			sendNotification(NotificationNames.UPDATEADMINORGANIZATIONSVIEW, ObjectUtil.copy(dataSet.toArray()));
-		}
-		
-		protected function onAdminOrganizationsViewError(event:ResultEvent):void
-		{
-			trace('admin organizations view error');
-		}
 		
 		protected function onAdminOrganizationUsersViewSuccess(event:ResultEvent):void
 		{

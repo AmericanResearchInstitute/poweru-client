@@ -291,10 +291,7 @@ package net.poweru.proxies
 					if (loginProxy.associatedOrgs.indexOf(orgID) == -1)
 						item[Constants.NOT_EDITABLE_FIELD_NAME] = true;
 				}
-			}
-			
-			
-				
+			}		
 		}
 		
 		/*	fieldName can be a multi-tier path delimited by '.'  This method will

@@ -43,7 +43,7 @@
 			<mx:Spacer width="4" height="4"/>
 			<mx:HBox>
 				<mx:Spacer width="4" height="4"/>
-				<mx:Button label="Edit" id="editButton" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{organizations.selectedItem != null &amp;&amp; isEditable(organizations.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITORGANIZATION, organizations.selectedItem.id]))}"/>
 			</mx:HBox>
 			<mx:Form width="100%">
 				<mx:FormItem label="Name:">
@@ -69,8 +69,8 @@
 			<mx:Spacer width="4" height="4"/>
 			<mx:HBox>
 				<mx:Spacer width="4" height="4"/>
-				<mx:Button label="Edit" id="editUserButton" enabled="{users.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
-				<mx:Button label="Add Slot" id="addSlotButton" enabled="{organizations.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
+				<mx:Button label="Edit" id="editUserButton" enabled="{users.selectedItem != null &amp;&amp; isEditable(organizations.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITUSERORGROLE, users.selectedItem.id]))}"/>
+				<mx:Button label="Add Slot" id="addSlotButton" enabled="{organizations.selectedItem != null &amp;&amp; isEditable(organizations.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEORGANIZATIONSLOT, organizations.selectedItem.id]))}"/>	
 			</mx:HBox>
 			<mx:AdvancedDataGrid id="users" height="100%" width="100%">
 				<mx:dataProvider>
