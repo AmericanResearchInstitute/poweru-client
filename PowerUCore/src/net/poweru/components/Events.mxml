@@ -30,8 +30,8 @@
 			<mx:Spacer height="6" width="6"/>
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="6" width="6"/>
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENT, grid.selectedItem.id]))}"/>
-				<mx:Button label="Add Session" id="addSessionButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSION, grid.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENT, grid.selectedItem.id]))}"/>
+				<mx:Button label="Add Session" id="addSessionButton" enabled="{grid.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSION, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 			<mx:Form>
 				<mx:FormItem label="Title:">
@@ -61,9 +61,9 @@
 			<mx:Spacer height="6" width="6"/>
 			<mx:HBox>
 				<mx:Spacer height="6" width="6"/>
-				<mx:Button label="Edit" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
+				<mx:Button label="Edit" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
 				<mx:Button label="Enrollments" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITENROLLMENTS, sessionList.selectedItem]))}"/>
-				<mx:Button label="Email Participants" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EMAILSESSIONPARTICIPANTS, sessionList.selectedItem]))}"/>
+				<mx:Button label="Email Participants" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EMAILSESSIONPARTICIPANTS, sessionList.selectedItem]))}"/>
 			</mx:HBox>
 			<mx:List labelField="name" id="sessionList" width="100%" itemRenderer="net.poweru.components.item_renderers.SessionListRenderer"/>
 		</mx:Panel>

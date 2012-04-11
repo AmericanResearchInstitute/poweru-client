@@ -7,6 +7,7 @@ package net.poweru.components.code
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
 	
+	import net.poweru.Constants;
 	import net.poweru.components.interfaces.IEvents;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
@@ -72,6 +73,13 @@ package net.poweru.components.code
 					sessionList.dataProvider.refresh();
 				}
 			}
+		}
+		
+		/*	Returns true if the logged in user has permission to edit the
+		object. Looks for a specific attribute added by the proxy. */
+		protected function isEditable(item:Object):Boolean
+		{
+			return !item.hasOwnProperty(Constants.NOT_EDITABLE_FIELD_NAME);
 		}
 		
 		protected function onEventSelected(event:ListEvent):void

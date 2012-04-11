@@ -28,7 +28,7 @@
 			<mx:Spacer height="4" width="4"/>
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="4" width="4"/>
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITFILEDOWNLOAD, grid.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITFILEDOWNLOAD, grid.selectedItem.id]))}"/>
 				<mx:Button label="Assignments" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.VIEWFILEDOWNLOADASSIGNMENTS, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 			<mx:Form width="100%">
