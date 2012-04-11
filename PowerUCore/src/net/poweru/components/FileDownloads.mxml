@@ -8,6 +8,7 @@
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
@@ -21,7 +22,7 @@
 	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.UPLOADFILEDOWNLOAD, '']))}"/>
+			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.UPLOADFILEDOWNLOAD, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
@@ -70,4 +71,12 @@
 			</mx:Form>
 		</mx:Panel>
 	</mx:VBox>
+	
+	<code:states>
+		<mx:State name="{StateNames.SERV_DEALER_ADMIN}">
+			<mx:RemoveChild target="{editButton}"/>
+			<mx:RemoveChild target="{addButton}"/>
+		</mx:State>
+	</code:states>
+	
 </code:BasePopulatedComponentCode>

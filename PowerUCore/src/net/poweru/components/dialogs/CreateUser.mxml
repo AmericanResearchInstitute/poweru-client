@@ -11,7 +11,10 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.validators.Validator;
+			
 			import net.poweru.Constants;
+			import net.poweru.Places;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -41,10 +44,17 @@
 		<mx:FormItem label="Status">
 			<mx:ComboBox id="statusInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="Organization" required="{currentState != StateNames.SUPERADMIN}">
+			<mx:HBox>
+				<mx:Label id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	
 	<mx:Array id="validators">
 		<mx:StringValidator source="{password}" property="text" required="true"/>
+		<mx:StringValidator source="{orgLabel}" property="text" required="{currentState != StateNames.SUPERADMIN}"/>
 	</mx:Array>
 	
 	<mx:HBox width="100%" horizontalAlign="center">

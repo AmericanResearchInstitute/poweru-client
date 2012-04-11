@@ -91,6 +91,7 @@
 		</mx:State>
 		<mx:State name="{StateNames.ORG_ADMIN}" basedOn="{StateNames.SUPERADMIN}"/>
 		<mx:State name="{StateNames.CATEGORYMANAGER}" basedOn="{StateNames.USER}"/>
+		<mx:State name="{StateNames.SERV_DEALER_ADMIN}" basedOn="{StateNames.USER}"/>
 	</states>
 	
 	<mx:Array id="validators">

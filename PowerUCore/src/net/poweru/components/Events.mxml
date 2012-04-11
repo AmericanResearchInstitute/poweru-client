@@ -7,6 +7,7 @@
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -23,7 +24,7 @@
 	</mx:AdvancedDataGrid>
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
-			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENT, '']))}"/>
+			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENT, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
@@ -61,11 +62,22 @@
 			<mx:Spacer height="6" width="6"/>
 			<mx:HBox>
 				<mx:Spacer height="6" width="6"/>
-				<mx:Button label="Edit" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editSessionButton" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITSESSION, sessionList.selectedItem.id]))}"/>
 				<mx:Button label="Enrollments" enabled="{sessionList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITENROLLMENTS, sessionList.selectedItem]))}"/>
-				<mx:Button label="Email Participants" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EMAILSESSIONPARTICIPANTS, sessionList.selectedItem]))}"/>
+				<mx:Button label="Email Participants" id="emailButton" enabled="{sessionList.selectedItem != null  &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EMAILSESSIONPARTICIPANTS, sessionList.selectedItem]))}"/>
 			</mx:HBox>
 			<mx:List labelField="name" id="sessionList" width="100%" itemRenderer="net.poweru.components.item_renderers.SessionListRenderer"/>
 		</mx:Panel>
 	</mx:VBox>
+	
+	<code:states>
+		<mx:State name="{StateNames.SERV_DEALER_ADMIN}">
+			<mx:RemoveChild target="{editButton}"/>
+			<mx:RemoveChild target="{addButton}"/>
+			<mx:RemoveChild target="{addSessionButton}"/>
+			<mx:RemoveChild target="{editSessionButton}"/>
+			<mx:RemoveChild target="{emailButton}"/>
+		</mx:State>
+	</code:states>
+	
 </code:EventsCode>

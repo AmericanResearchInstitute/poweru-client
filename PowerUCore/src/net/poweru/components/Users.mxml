@@ -34,6 +34,10 @@
 			<mx:RemoveChild target="{importButton}"/>
 			<mx:RemoveChild target="{editButton}"/>
 		</mx:State>
+		<mx:State name="{StateNames.SERV_DEALER_ADMIN}">
+			<mx:RemoveChild target="{editButton}"/>
+			<mx:RemoveChild target="{sendEmail}"/>
+		</mx:State>
 	</states>
 	
 	<mx:TabNavigator width="100%" height="100%">

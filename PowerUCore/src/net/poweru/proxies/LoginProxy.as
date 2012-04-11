@@ -34,7 +34,8 @@ package net.poweru.proxies
 		public static const NAME:String = 'LoginProxy';
 		public static const ORG_BASED_STATES:Array = [
 			StateNames.OWNERMANAGER,
-			StateNames.ORG_ADMIN
+			StateNames.ORG_ADMIN,
+			StateNames.SERV_DEALER_ADMIN
 		];
 		
 		protected var _authToken:String;
@@ -304,7 +305,7 @@ package net.poweru.proxies
 			var ret:Boolean = false;
 			if (!userGroups.findByKey('name', GroupProxy.SUPERADMINGROUP))
 			{
-				for each (var roleName:String in [Constants.ORG_ADMIN, Constants.OWNER_MANAGER])
+				for each (var roleName:String in [Constants.ORG_ADMIN, Constants.OWNER_MANAGER, Constants.SERV_DEALER_ADMIN])
 				{
 					if (userHasOrgRoleByName(user, roleName))
 					{
@@ -331,6 +332,10 @@ package net.poweru.proxies
 					
 					case Constants.ORG_ADMIN:
 						newState = StateNames.ORG_ADMIN;
+						break;
+					
+					case Constants.SERV_DEALER_ADMIN:
+						newState = StateNames.SERV_DEALER_ADMIN;
 						break;
 				}
 			}

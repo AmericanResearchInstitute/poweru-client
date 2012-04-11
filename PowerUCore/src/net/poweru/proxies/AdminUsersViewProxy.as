@@ -18,7 +18,7 @@ package net.poweru.proxies
 			super(NAME, UserManagerDelegate, NotificationNames.UPDATEADMINUSERSVIEW, [], 'User', ['status']);
 			getFilteredMethodName = 'admin_users_view';
 			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
-			createOptionalArgNames = [];
+			createOptionalArgNames = ['organizations'];
 		}
 		
 		public function sendEmail(users:Array, subject:String, body:String):void

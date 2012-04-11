@@ -10,5 +10,6 @@ package net.poweru
 		public static const NO_ORG_USER:String = 'NoOrgUser';
 		public static const OWNERMANAGER:String = 'OwnerManager';
 		public static const ORG_ADMIN:String = 'OrgAdmin';
+		public static const SERV_DEALER_ADMIN:String = 'ServDealerAdmin';
 	}
 }

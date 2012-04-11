@@ -57,6 +57,7 @@ package net.poweru.presenters
 		
 		override protected function onCreationComplete(event:FlexEvent):void
 		{
+			super.onCreationComplete(event);
 			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			primaryProxy.getChoices();
 		}
@@ -69,10 +70,10 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
+			return super.listNotificationInterests().concat(
 				NotificationNames.UPDATECHOICES,
-				NotificationNames.CHOICEMADE,
-			];
+				NotificationNames.CHOICEMADE
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -88,6 +89,9 @@ package net.poweru.presenters
 					if (notification.getType() == primaryProxyName)
 						createDialog.setChoices(notification.getBody());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 	}
