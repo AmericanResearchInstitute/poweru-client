@@ -21,9 +21,7 @@ package net.poweru.presenters
 	public class EditUserMediator extends BaseEditDialogMediator implements IMediator
 	{
 		public static const NAME:String = 'EditUserMediator';
-		
-		protected var organizationProxy:OrganizationProxy;
-		protected var orgRoleProxy:OrgRoleProxy;
+
 		protected var userProxy:UserProxy;
 		protected var inputCollector:InputCollector;
 		
@@ -31,8 +29,6 @@ package net.poweru.presenters
 		{
 			super(NAME, viewComponent, AdminUsersViewProxy, Places.EDITUSER);
 			userProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(UserProxy) as UserProxy;
-			organizationProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrganizationProxy) as OrganizationProxy;
-			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
 		}
 		
 		override public function listNotificationInterests():Array
@@ -42,9 +38,7 @@ package net.poweru.presenters
 				NotificationNames.LOGOUT,
 				NotificationNames.RECEIVEDONE,
 				NotificationNames.STATECHANGE,
-				NotificationNames.UPDATECHOICES//,
-				//NotificationNames.UPDATEORGANIZATIONS,
-				//NotificationNames.UPDATEORGROLES
+				NotificationNames.UPDATECHOICES
 			);
 		}
 		
@@ -60,16 +54,6 @@ package net.poweru.presenters
 				case NotificationNames.UPDATECHOICES:
 					if (notification.getType() == primaryProxy.getProxyName())
 						inputCollector.addInput('choices', notification.getBody());
-					break;
-					
-				case NotificationNames.UPDATEORGANIZATIONS:
-					var orgs:DataSet = notification.getBody() as DataSet;
-					inputCollector.addInput('organizations', orgs.toArray());
-					break;
-				
-				case NotificationNames.UPDATEORGROLES:
-					var orgRoles:DataSet = notification.getBody() as DataSet;
-					inputCollector.addInput('organization_roles', orgRoles.toArray());
 					break;
 				
 				default:
@@ -110,8 +94,6 @@ package net.poweru.presenters
 			if (pk <= 0)
 				pk = loginProxy.currentUser['id'];
 			primaryProxy.findByPK(pk);
-			organizationProxy.getAll();
-			orgRoleProxy.getAll();
 			primaryProxy.getChoices();
 		}
 		
