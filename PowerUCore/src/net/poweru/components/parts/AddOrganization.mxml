@@ -2,6 +2,12 @@
 <AddOrganizationCode
 	xmlns="net.poweru.components.parts.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
 
 	<mx:Button id="remove" label="Remove"/>
 	<mx:Button id="add" label="Add Organization" click="currentState='adding'"/>
@@ -11,13 +17,30 @@
 			<mx:RemoveChild target="{add}"/>
 			<mx:RemoveChild target="{remove}"/>
 			<mx:AddChild>
-				<mx:ComboBox dataProvider="{organizationData}" labelField="name" id="organizationCB" change="orgRoleCB.dataProvider.refresh()" creationComplete="onCBCreationComplete(event)"/>
-			</mx:AddChild>
-			<mx:AddChild>
-				<mx:ComboBox dataProvider="{orgRoleData}" labelField="name" id="orgRoleCB"/>
-			</mx:AddChild>
-			<mx:AddChild>
-				<mx:Button id="confirm" label="Confirm" click="currentState=''"/>
+				<mx:Grid width="100%">
+					<mx:GridRow>
+						<mx:GridItem>
+							<mx:Label text="{chosenOrganization.name}"/>
+						</mx:GridItem>
+						<mx:GridItem>
+							<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)], null, true))"/>
+						</mx:GridItem>
+					</mx:GridRow>
+					<mx:GridRow>
+						<mx:GridItem>
+							<mx:Label text="{chosenOrgRole.name}"/>
+						</mx:GridItem>
+						<mx:GridItem>
+							<mx:Button label="Choose Role" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGROLE, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGROLE)], null, true))"/>
+						</mx:GridItem>
+					</mx:GridRow>
+					<mx:GridRow>
+						<mx:GridItem/>
+						<mx:GridItem>
+							<mx:Button id="confirm" label="Confirm" click="currentState=null"/>
+						</mx:GridItem>
+					</mx:GridRow>
+				</mx:Grid>
 			</mx:AddChild>
 		</mx:State>
 	</states>

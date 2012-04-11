@@ -65,13 +65,8 @@ package net.poweru.components.dialogs.code
 		{
 			orgDataSet.source = data['owned_userorgroles'];
 			orgDataSet.refresh();
-			
-			addOrganization.organizationData.source = args[0] as Array;
-			addOrganization.organizationData.refresh();
-			addOrganization.orgRoleData.source = args[1] as Array;
-			addOrganization.orgRoleData.refresh();
-			addOrganization.orgDataSet = orgDataSet;
-			addOrganization.currentState = '';
+
+			addOrganization.currentState = null;
 			groupsDataSet.source = data['groups'];
 			groupsDataSet.refresh();
 			
@@ -166,9 +161,23 @@ package net.poweru.components.dialogs.code
 					'role' : addOrganization.selectedOrgRole['id'],
 					'role_name' : addOrganization.selectedOrgRole['name'],
 					'owner' : pk
-				}
+				};
 				
-				orgDataSet.addItem(newOrgRelationship);
+				// Make sure the relationship doesn't already exist
+				var unique:Boolean = true;
+				for each (var item:Object in orgDataSet)
+				{
+					if (
+						item.organization == newOrgRelationship.organization &&
+						item.role == newOrgRelationship.role
+					)
+					{
+						unique = false;
+						break;
+					}
+				}
+				if (unique)
+					orgDataSet.addItem(newOrgRelationship);
 			}
 		}
 		
@@ -194,6 +203,8 @@ package net.poweru.components.dialogs.code
 						super.receiveChoice(choice, chooserName);
 				}
 			}
+			else if ([Places.CHOOSEORGANIZATION, Places.CHOOSEORGROLE].indexOf(chooserName) != -1)
+				addOrganization.receiveChoice(choice, chooserName);
 		}
 		
 		protected function onRemoveGroup(event:Event):void

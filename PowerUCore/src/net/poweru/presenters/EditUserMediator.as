@@ -42,9 +42,9 @@ package net.poweru.presenters
 				NotificationNames.LOGOUT,
 				NotificationNames.RECEIVEDONE,
 				NotificationNames.STATECHANGE,
-				NotificationNames.UPDATECHOICES,
-				NotificationNames.UPDATEORGANIZATIONS,
-				NotificationNames.UPDATEORGROLES
+				NotificationNames.UPDATECHOICES//,
+				//NotificationNames.UPDATEORGANIZATIONS,
+				//NotificationNames.UPDATEORGROLES
 			);
 		}
 		
@@ -103,7 +103,7 @@ package net.poweru.presenters
 			if (inputCollector)
 				inputCollector.removeEventListener(Event.COMPLETE, onInputsCollected);
 				
-			inputCollector = new InputCollector(['userData', 'choices', 'organizations', 'organization_roles']);
+			inputCollector = new InputCollector(['userData', 'choices']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			var pk:Number = initialDataProxy.getInitialData(placeName) as Number;
 			// If no PK was specified, assume we want the current user
@@ -119,7 +119,7 @@ package net.poweru.presenters
 		{
 			var collector:InputCollector = event.target as InputCollector;
 			editDialog.setChoices(collector.object['choices']);
-			editDialog.populate(collector.object['userData'], collector.object['organizations'] as Array, collector.object['organization_roles'] as Array);
+			editDialog.populate(collector.object['userData']);
 		}
 		
 	}

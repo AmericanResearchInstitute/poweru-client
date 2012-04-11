@@ -1,60 +1,68 @@
 package net.poweru.components.parts.code
 {
-	import net.poweru.model.DataSet;
-	
 	import flash.events.Event;
 	
 	import mx.containers.HBox;
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
+	
+	import net.poweru.Places;
+	import net.poweru.components.dialogs.choosers.ChooseOrganization;
+	import net.poweru.model.ChooserResult;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.ChooserRequestTracker;
 
 	public class AddOrganizationCode extends HBox
 	{
-		[Bindable]
-		public var organizationData:DataSet;
-		[Bindable]
-		public var orgRoleData:DataSet;
-		// existing relationships
-		public var orgDataSet:DataSet;
-		public var organizationCB:ComboBox;
-		public var orgRoleCB:ComboBox;
-		
 		public var confirm:Button;
+		protected var chooserRequestTracker:ChooserRequestTracker;
+		[Bindable]
+		protected var chosenOrganization:Object;
+		[Bindable]
+		protected var chosenOrgRole:Object;
 		
 		public function AddOrganizationCode()
 		{
 			super();
-			organizationData = new DataSet();
-			orgRoleData = new DataSet();
-			orgRoleData.filterFunction = filterRoles;
+			chooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		public function get selectedOrganization():Object
 		{
-			return organizationCB.selectedItem;
+			return chosenOrganization;
 		}
 		
 		public function get selectedOrgRole():Object
 		{
-			return orgRoleCB.selectedItem;
+			return chosenOrgRole;
 		}
 		
-		protected function filterRoles(item:Object):Boolean
+		public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (organizationCB == null || orgDataSet == null)
-				return false
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+			{
+				switch (chooserName)
+				{
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
+					
+					case Places.CHOOSEORGROLE:
+						chosenOrgRole = choice.value;
+						break;
+				}
+			}
 				
-			var userOrgRoles:DataSet = orgDataSet.findMembersByKey('role', [item['id']]);
-			for each (var userOrgRole:Object in userOrgRoles)
-				if (userOrgRole['organization'] == organizationCB.selectedItem['id'])
-					return false
-			return true;
 		}
 		
-		protected function onCBCreationComplete(event:Event):void
+		override public function set currentState(value:String):void
 		{
-			orgRoleData.refresh();
+			super.currentState = value;
+			if (value == 'adding')
+			{
+				chosenOrganization = null;
+				chosenOrgRole = null;
+			}
 		}
-		
 	}
 }
