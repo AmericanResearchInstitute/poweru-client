@@ -23,6 +23,11 @@
 	</mx:Script>
 	
 	<states>
+		<mx:State name="{StateNames.ADMIN_ASSISTANT}">
+			<mx:RemoveChild target="{importButton}"/>
+			<mx:RemoveChild target="{sendEmail}"/>
+			<mx:RemoveChild target="{addToGroup}"/>
+		</mx:State>
 		<mx:State name="{StateNames.OWNERMANAGER}">
 			<mx:RemoveChild target="{changeStatus}"/>
 			<mx:RemoveChild target="{addToLearningInitiative}"/>

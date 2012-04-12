@@ -78,6 +78,7 @@
 			<mx:RemoveChild target="{editSessionButton}"/>
 			<mx:RemoveChild target="{emailButton}"/>
 		</mx:State>
+		<mx:State name="{StateNames.ADMIN_ASSISTANT}" basedOn="{StateNames.SERV_DEALER_ADMIN}"/>
 	</code:states>
 	
 </code:EventsCode>

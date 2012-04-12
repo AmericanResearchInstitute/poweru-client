@@ -54,6 +54,10 @@
 			<mx:RemoveChild target="{buttonBox}"/>
 			<mx:RemoveChild target="{addButton}"/>
 		</mx:State>
+		<mx:State name="{StateNames.ADMIN_ASSISTANT}">
+			<mx:RemoveChild target="{buttonBox}"/>
+			<mx:RemoveChild target="{addButton}"/>
+		</mx:State>
 	</code:states>
 	
 </code:BasePopulatedComponentCode>

@@ -38,5 +38,6 @@ package net.poweru
 		public static const OWNER_MANAGER:String = 'Owner Manager';
 		public static const ORG_ADMIN:String = 'Administrator';
 		public static const SERV_DEALER_ADMIN:String = 'Serv Dealer Admin';
+		public static const ADMIN_ASSISTANT:String = 'Admin Assistant';
 	}
 }

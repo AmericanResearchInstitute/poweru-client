@@ -77,6 +77,7 @@
 			<mx:RemoveChild target="{editButton}"/>
 			<mx:RemoveChild target="{addButton}"/>
 		</mx:State>
+		<mx:State name="{StateNames.ADMIN_ASSISTANT}" basedOn="{StateNames.SERV_DEALER_ADMIN}"/>
 	</code:states>
 	
 </code:BasePopulatedComponentCode>
