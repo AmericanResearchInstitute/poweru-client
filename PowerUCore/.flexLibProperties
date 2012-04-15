@@ -499,6 +499,8 @@
     <classEntry path="net.poweru.components.dialogs.choosers.ChooseLoginContext"/>
     <classEntry path="net.poweru.commands.LoginContextChosenCommand"/>
     <classEntry path="net.poweru.components.code.BaseComponent"/>
+    <classEntry path="net.poweru.components.widgets.code.DaysInputCode"/>
+    <classEntry path="net.poweru.components.widgets.DaysInput"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

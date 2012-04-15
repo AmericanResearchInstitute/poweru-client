@@ -11,6 +11,7 @@ package net.poweru.proxies
 		public static const FIELDS:Array = [
 			'name',
 			'description',
+			'duration',
 			'required_achievements'
 		];
 		
