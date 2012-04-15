@@ -5,12 +5,14 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
+	import net.poweru.components.widgets.DaysInput;
 	import net.poweru.generated.model.CredentialType.NameInput;
 	
 	public class CreateCredentialTypeCode extends BaseCRUDDialog implements ICreateDialog
 	{
 		public var nameInput:NameInput;
 		public var descriptionInput:TextArea;
+		public var daysInput:DaysInput;
 		
 		public function CreateCredentialTypeCode()
 		{
@@ -22,12 +24,14 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			descriptionInput.text = '';
+			daysInput.clear();
 		}
 		
 		override public function getData():Object
 		{
 			return {
 				'name' : nameInput.text,
+				'duration' : daysInput.days,
 				'description' : descriptionInput.text
 			};
 		}
@@ -36,7 +40,10 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			focusManager.setFocus(nameInput);
-			validators = [nameInput.validator];
+			validators = [
+				daysInput.validator,
+				nameInput.validator
+			];
 		}
 	}
 }
