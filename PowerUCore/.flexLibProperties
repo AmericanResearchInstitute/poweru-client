@@ -501,6 +501,14 @@
     <classEntry path="net.poweru.components.code.BaseComponent"/>
     <classEntry path="net.poweru.components.widgets.code.DaysInputCode"/>
     <classEntry path="net.poweru.components.widgets.DaysInput"/>
+    <classEntry path="net.poweru.delegates.CredentialManagerDelegate"/>
+    <classEntry path="net.poweru.proxies.CredentialProxy"/>
+    <classEntry path="net.poweru.utils.BatchRequestTracker"/>
+    <classEntry path="net.poweru.commands.BatchCreateCompleteCommand"/>
+    <classEntry path="net.poweru.components.dialogs.code.BatchCreateCredentialResultsCode"/>
+    <classEntry path="net.poweru.components.dialogs.BatchCreateCredentialResults"/>
+    <classEntry path="net.poweru.presenters.BaseBatchCreateResultsDialogMediator"/>
+    <classEntry path="net.poweru.presenters.BatchCreateCredentialResultsDialogMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -2,6 +2,7 @@ package net.poweru
 {
 	import mx.core.Container;
 	
+	import net.poweru.commands.BatchCreateCompleteCommand;
 	import net.poweru.commands.ExamSessionFinishedCommand;
 	import net.poweru.commands.LoginContextChosenCommand;
 	import net.poweru.commands.SendEmailErrorCommand;
@@ -60,6 +61,7 @@ package net.poweru
 			registerCommand(NotificationNames.EMAILSENT, SendEmailSuccessCommand);
 			registerCommand(NotificationNames.EMAILSENDERROR, SendEmailErrorCommand);
 			registerCommand(NotificationNames.CHOICEMADE, LoginContextChosenCommand);
+			registerCommand(NotificationNames.BATCHCREATECOMPLETE, BatchCreateCompleteCommand);
 		}
 		
 	}

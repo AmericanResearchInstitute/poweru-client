@@ -6,6 +6,7 @@ package net.poweru
 	{
 		public static const ADMINORGANIZATIONUSERSVIEW:String = 'AdminOrganizationUsersView';
 		public static const BACKENDREADY:String = 'BackendReady';
+		public static const BATCHCREATECOMPLETE:String = 'BatchCreateComplete';
 		public static const BULKASSIGNSUCCESS:String = 'BulkAssignSuccess';
 		public static const CAPTCHACHALLENGE:String = 'CaptchaChallenge';
 		public static const CHOICEMADE:String = 'ChoiceMade';
@@ -50,6 +51,7 @@ package net.poweru
 		public static const UPDATEBLACKOUTPERIODS:String = 'UpdateBlackoutPeriods';
 		public static const UPDATECATEGORIES:String = 'UpdateCategories';
 		public static const UPDATECHOICES:String = 'UpdateChoices';
+		public static const UPDATECREDENTIALS:String = 'UpdateCredentials';
 		public static const UPDATECREDENTIALTYPES:String = 'UpdateCredentialTypes';
 		public static const UPDATECURRICULUMENROLLMENTS:String = 'UpdateCurriculumEnrollments';
 		public static const UPDATECURRICULUMENROLLMENTSUSERDETAIL:String = 'UpdateCurriculumEnrollmentsUserDetail';

@@ -185,12 +185,13 @@ package net.poweru.delegates
 			}
 		}
 		
-		public function create(...args):void
+		public function create(...args):AsyncToken
 		{
 			convertDatesToISO8601(args);
 			
 			var token:AsyncToken = remoteObject.getOperation('create').send.apply(this, args);
 			token.addResponder(responder);
+			return token;
 		}
 		
 		/*	convert Date instances to ISO8601 Strings, recursively descending into

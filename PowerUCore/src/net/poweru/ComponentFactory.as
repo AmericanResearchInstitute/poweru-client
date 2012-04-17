@@ -28,6 +28,7 @@ package net.poweru
 	import net.poweru.components.collections.UserManagement;
 	import net.poweru.components.dialogs.AddTasksToCurriculum;
 	import net.poweru.components.dialogs.AdministerExamSession;
+	import net.poweru.components.dialogs.BatchCreateCredentialResults;
 	import net.poweru.components.dialogs.BulkAssignmentResults;
 	import net.poweru.components.dialogs.BulkEnrollInEvent;
 	import net.poweru.components.dialogs.ConfirmLogout;
@@ -110,6 +111,7 @@ package net.poweru
 	import net.poweru.presenters.AdminMediator;
 	import net.poweru.presenters.AdministerExamSessionMediator;
 	import net.poweru.presenters.AssignmentsMediator;
+	import net.poweru.presenters.BatchCreateCredentialResultsDialogMediator;
 	import net.poweru.presenters.BulkAssignmentResultsMediator;
 	import net.poweru.presenters.BulkEnrollInEventMediator;
 	import net.poweru.presenters.ChooseAchievementMediator;
@@ -241,6 +243,10 @@ package net.poweru
 				
 				case Places.ASSIGNMENTS:
 					component = getOrCreate(name, Assignments, net.poweru.presenters.AssignmentsMediator);
+					break;
+				
+				case Places.BATCHCREATECREDENTIALSRESULTS:
+					component = getOrCreate(name, BatchCreateCredentialResults, BatchCreateCredentialResultsDialogMediator);
 					break;
 				
 				case Places.BULKASSIGNMENTRESULTS:

@@ -17,6 +17,7 @@ package net.poweru.presenters
 	import net.poweru.proxies.AchievementProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.AssignmentProxy;
+	import net.poweru.proxies.CredentialProxy;
 	import net.poweru.proxies.CurriculumEnrollmentUserDetailProxy;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.OrgRoleProxy;
@@ -36,6 +37,7 @@ package net.poweru.presenters
 		protected var eventProxy:EventProxy;
 		protected var assignmentProxy:AssignmentProxy;
 		protected var achievementProxy:AchievementProxy;
+		protected var credentialProxy:CredentialProxy;
 		
 		public function UsersMediator(viewComponent:Object=null)
 		{
@@ -45,6 +47,7 @@ package net.poweru.presenters
 			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
 			assignmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentProxy) as AssignmentProxy;
 			achievementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AchievementProxy) as AchievementProxy;
+			credentialProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CredentialProxy) as CredentialProxy;
 		}
 		
 		protected function get adminUsersViewProxy():AdminUsersViewProxy
@@ -180,6 +183,10 @@ package net.poweru.presenters
 				
 				case Constants.SENDEMAIL:
 					adminUsersViewProxy.sendEmail(event.body.users, event.body.subject, event.body.body);
+					break;
+				
+				case Constants.CREDENTIAL:
+					credentialProxy.createAsBatch(event.body as Array);
 					break;
 				
 				default:

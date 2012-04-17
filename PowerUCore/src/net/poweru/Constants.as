@@ -25,6 +25,7 @@ package net.poweru
 		];
 		
 		public static const BULKASSIGN:String = 'BulkAssign';
+		public static const CREDENTIAL:String = 'Credential';
 		public static const CURRICULUMENROLLMENT:String = 'CurriculumEnrollment';
 		public static const SENDEMAIL:String = 'SendEmail';
 		

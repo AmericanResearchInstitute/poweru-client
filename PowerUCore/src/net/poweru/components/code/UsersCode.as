@@ -14,6 +14,7 @@ package net.poweru.components.code
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
+	import mx.controls.DateField;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
@@ -65,6 +66,7 @@ package net.poweru.components.code
 		public var fileDownloadToAssign:Object;
 		[Bindable]
 		public var achievementGrid:DataGrid;
+		public var credentialExpirationInput:DateField;
 		[Bindable]
 		protected var gridDataProvider:DataSet;
 		[Bindable]
@@ -76,6 +78,8 @@ package net.poweru.components.code
 		protected var chooserRequestTracker:ChooserRequestTracker;
 		protected var filterChooserRequestTracker:ChooserRequestTracker;
 		protected var bulkFilterChooserRequestTracker:ChooserRequestTracker;
+		[Bindable]
+		protected var credentialTypeToGrant:Object;
 		
 		public function UsersCode()
 		{
@@ -95,6 +99,8 @@ package net.poweru.components.code
 			emailSubjectInput.text = '';
 			emailBodyInput.text = '';
 			accordion.selectedIndex = 0;
+			credentialTypeToGrant = null;
+			credentialExpirationInput.selectedDate = null;
 		}
 		
 		/*	The accordion gets angry if you try to remove children that are
@@ -139,6 +145,10 @@ package net.poweru.components.code
 			{
 				switch (type)
 				{
+					case Places.CHOOSECREDENTIALTYPE:
+						credentialTypeToGrant = choice.value;
+						break;
+					
 					case Places.CHOOSEEXAM:
 						examToAssign = choice.value;
 						break;
@@ -260,7 +270,7 @@ package net.poweru.components.code
 			{
 				if ((curriculum.users as Array).indexOf(user['id']) == -1)
 					(curriculum.users as Array).push(user['id']);
-				dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, curriculum, 'CurriculumEnrollment'));
+				dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, curriculum, Constants.CURRICULUMENROLLMENT));
 			}
 		}
 		
@@ -317,6 +327,24 @@ package net.poweru.components.code
 		protected function onAssignFileDownload(event:Event):void
 		{
 			assignTask(fileDownloadToAssign.id);
+		}
+		
+		protected function onGrantCredentialType(event:Event):void
+		{
+			var newCredentials:ArrayCollection = new ArrayCollection();
+			for each (var user:Object in bulkGrid.selectedItems)
+			{
+				var credential:Object = {
+					'user' : user.id,
+					'credential_type' : credentialTypeToGrant.id,
+					'status' : 'granted'
+				};
+				if (credentialExpirationInput.selectedDate != null)
+					credential['date_expires'] = credentialExpirationInput.selectedDate;
+				
+				newCredentials.addItem(credential);
+			}
+			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, newCredentials.toArray(), Constants.CREDENTIAL));
 		}
 		
 		protected function onSendEmail(event:Event):void

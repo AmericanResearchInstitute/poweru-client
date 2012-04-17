@@ -13,6 +13,7 @@ package net.poweru.proxies
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 	
+	import mx.collections.ArrayCollection;
 	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
@@ -28,8 +29,10 @@ package net.poweru.proxies
 	import net.poweru.delegates.UtilsManagerDelegate;
 	import net.poweru.events.DelegateEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.BatchRequestTracker;
 	import net.poweru.utils.ExpectedResultCounter;
 	import net.poweru.utils.InputCollector;
+	import net.poweru.utils.PKArrayCollection;
 	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
@@ -52,6 +55,7 @@ package net.poweru.proxies
 		protected var fields:Array;
 		protected var createArgNamesInOrder:Array = [];
 		protected var createOptionalArgNames:Array = [];
+		protected var batchTracker:BatchRequestTracker;
 		
 		/*	updatedDataNotification is the notification which should be sent
 			when new data has entered the proxy.
@@ -78,6 +82,7 @@ package net.poweru.proxies
 				token.fieldName = fieldName;
 			}
 			saveCounter = new ExpectedResultCounter(onSaveResultsReceived);
+			createBatchTracker();
 		}
 		
 		public function get dataSet():DataSet
@@ -106,10 +111,12 @@ package net.poweru.proxies
 		/*	get many from the backend based on filters.
 			sends the updatedDataNotification with a DataSet containing the
 			results sent back for this request only. */
-		public function getFiltered(filters:Object):void
+		public function getFiltered(filters:Object, uid:String=null):void
 		{
 			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
 			token['filters'] = filters;
+			if (uid != null)
+				token['uid'] = uid;
 		}
 		
 		/*	find records by IDs from local cache if possible, else from backend */
@@ -130,7 +137,7 @@ package net.poweru.proxies
 		
 			createOptionalArgNames: an Array of optional arguments to the create command
 		*/
-		public function create(argDict:Object):void
+		public function create(argDict:Object, batchID:String=null):void
 		{
 			var args:Array = [loginProxy.authToken];
 			for each (var argName:String in createArgNamesInOrder)
@@ -149,7 +156,17 @@ package net.poweru.proxies
 				args.push(optional_args);
 			}
 			
-			new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onCreateSuccess, onCreateError, onFault)).create.apply(this, args);
+			if (batchID != null)
+				token.batchID = batchID;
+		}
+		
+		public function createAsBatch(items:Array):void
+		{
+			createBatchTracker();
+			batchTracker.totalRequests = items.length;
+			for each (var item:Object in items)
+			create(item, batchTracker.batchID);
 		}
 		
 		public function deleteObject(pk:Number):void
@@ -265,6 +282,14 @@ package net.poweru.proxies
 			uploadFile(file, {'model' : modelName}, browserServicesProxy.csvUploadURL, modelName);
 		}
 		
+		protected function createBatchTracker():void
+		{
+			if (batchTracker != null)
+				batchTracker.removeEventListener(Event.COMPLETE, onBatchComplete);
+			batchTracker = new BatchRequestTracker();
+			batchTracker.addEventListener(Event.COMPLETE, onBatchComplete);
+		}
+		
 		protected function convertIncomingData(data:Array):void
 		{
 			for each (var item:Object in data)
@@ -311,22 +336,39 @@ package net.poweru.proxies
 		
 		protected function stringToDate(value:String):Date
 		{
-			var ret:Date;
+			var ret:Date = null;
 			
 			// DateUtil doesn't recognize valid ISO8601 strings that have only a date, so we have to handle those on our own.
 			var re:RegExp = /(\d{4})-(\d{1,2})-(\d{1,2})$/;
 			var result:Object = re.exec(value);
-			if (result != null && result['length'] == 4)
-				// month is 0-based. day of month is 1-based.
-				ret = new Date(result[1], result[2] - 1, result[3]);
-			else
-				ret = DateUtil.parseW3CDTF(value);
+			if (value != null)
+			{
+				if (result != null && result['length'] == 4)
+					// month is 0-based. day of month is 1-based.
+					ret = new Date(result[1], result[2] - 1, result[3]);
+				else
+					ret = DateUtil.parseW3CDTF(value);
+			}
+			
 			return ret;
 		}
 		
 		protected function applyStateFilters(filter:Object):Object
 		{
 			return filter;
+		}
+		
+		protected function notifyBatchCreateComplete(items:DataSet):void
+		{
+			var successItems:ArrayCollection = new ArrayCollection();
+			var errorItems:ArrayCollection = new ArrayCollection();
+			
+			for each (var successPK:Number in batchTracker.successPKs)
+			successItems.addItem(items.findByPK(successPK));
+			for each (var errorPK:Number in batchTracker.errorPKs)
+			errorItems.addItem(items.findByPK(errorPK));
+			
+			sendNotification(NotificationNames.BATCHCREATECOMPLETE, {'success':successItems.toArray(), 'error':errorItems.toArray()}, proxyName);
 		}
 		
 		
@@ -340,7 +382,11 @@ package net.poweru.proxies
 			dataSet.mergeData(value);
 			haveData = true;
 			var filters:Object = data.token['filters'];
-			sendNotification(updatedDataNotification, new DataSet(value), filters.toString());
+			var newDataSet:DataSet = new DataSet(value);
+			sendNotification(updatedDataNotification, newDataSet, filters.toString());
+			
+			if (data.token.hasOwnProperty('uid') && data.token.uid == batchTracker.batchID)
+				notifyBatchCreateComplete(newDataSet);
 		}
 		
 		protected function onGetFilteredError(data:ResultEvent):void
@@ -377,8 +423,15 @@ package net.poweru.proxies
 			fields we want right here. */
 		protected function onCreateSuccess(data:ResultEvent):void
 		{
-			var newPK:Number = data.result.value.id;
-			getFiltered({'exact' : {'id' : newPK}});
+			if (data.token.hasOwnProperty('batchID') && data.token.batchID == batchTracker.batchID)
+			{
+				batchTracker.processSuccess(data.result.value, data.token.batchID);
+			}
+			else
+			{
+				var newPK:Number = data.result.value.id;
+				getFiltered({'exact' : {'id' : newPK}});
+			}
 		}
 		
 		protected function onCreateError(data:ResultEvent):void
@@ -526,6 +579,13 @@ package net.poweru.proxies
 		{
 			trace('error sending email');
 			sendNotification(NotificationNames.EMAILSENDERROR);
+		}
+		
+		protected function onBatchComplete(event:Event):void
+		{
+			var pks:Array = batchTracker.successPKs.toArray().concat(batchTracker.errorPKs.toArray());
+			// update local cache
+			getFiltered({'member' : {'id' : pks}}, batchTracker.batchID);
 		}
 	}
 }

@@ -40,7 +40,7 @@ package net.poweru.proxies
 			adminCategoriesView();
 		}
 		
-		override public function create(argDict:Object):void
+		override public function create(argDict:Object, batchID:String=null):void
 		{
 			var argNamesInOrder:Array = ['name'];
 			var args:Array = [loginProxy.authToken];

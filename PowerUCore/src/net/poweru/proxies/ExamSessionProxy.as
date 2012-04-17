@@ -24,10 +24,10 @@ package net.poweru.proxies
 			createArgNamesInOrder = ['assignment', 'fetch_all', 'resume'];
 		}
 		
-		override public function create(argDict:Object):void
+		override public function create(argDict:Object, batchID:String=null):void
 		{
 			currentAssignment = argDict['assignment'];
-			super.create(argDict);
+			super.create(argDict, batchID);
 		}
 		
 		public function addResponse(examSessionID:Number, questionID:Number, optionalParameters:Object):void

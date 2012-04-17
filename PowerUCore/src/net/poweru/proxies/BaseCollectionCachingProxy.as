@@ -27,7 +27,7 @@ package net.poweru.proxies
 		}
 		
 		// looks for the collection in our cache before making a remote call
-		override public function getFiltered(filters:Object):void
+		override public function getFiltered(filters:Object, uid:String=null):void
 		{
 			if (filters.hasOwnProperty('exact') && filters['exact'].hasOwnProperty(cacheKeyName))
 			{
