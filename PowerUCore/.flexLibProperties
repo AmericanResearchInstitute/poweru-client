@@ -509,6 +509,9 @@
     <classEntry path="net.poweru.components.dialogs.BatchCreateCredentialResults"/>
     <classEntry path="net.poweru.presenters.BaseBatchCreateResultsDialogMediator"/>
     <classEntry path="net.poweru.presenters.BatchCreateCredentialResultsDialogMediator"/>
+    <classEntry path="net.poweru.components.dialogs.code.EditCredentialCode"/>
+    <classEntry path="net.poweru.components.dialogs.EditCredential"/>
+    <classEntry path="net.poweru.presenters.EditCredentialMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

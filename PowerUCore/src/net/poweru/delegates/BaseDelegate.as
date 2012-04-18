@@ -93,7 +93,7 @@ package net.poweru.delegates
 				suitable for the backend */
 			for (var attribute:String in oldItem)
 			{
-				if (updateFieldsToIgnore.indexOf(attribute) == -1 && newItem.hasOwnProperty(attribute) && newItem[attribute] != oldItem[attribute])
+				if (updateFieldsToIgnore.indexOf(attribute) == -1 && newItem.hasOwnProperty(attribute) && (itemsAreEqual(newItem[attribute], oldItem[attribute]) == false))
 				{
 					if (newItem[attribute] is Array)
 					{
@@ -166,6 +166,7 @@ package net.poweru.delegates
 			
 			// gives us an opportunity to do any data mangling that might be necessary.
 			updateDict = mangleDict(updateDict, oldItem, newItem);
+			convertDatesToISO8601(updateDict);
 			
 			// make sure we actually have some items to update before making a remote call
 			var updateItemCount:int = 0;
@@ -259,5 +260,22 @@ package net.poweru.delegates
 			return ret;
 		}
 
+		
+		/*	Return true iff the two items are equal. This supports other types
+		(currently only Date) that do not compare properly with the ==
+		operator. */
+		protected function itemsAreEqual(item1:Object, item2:Object):Boolean
+		{
+			var ret:Boolean = false;
+			if (item1 is Date && item2 is Date)
+			{
+				ret = ((item1 as Date).getTime() == (item2 as Date).getTime());
+			}
+			else
+			{
+				ret = (item1 == item2);
+			}
+			return ret;
+		}
 	}
 }

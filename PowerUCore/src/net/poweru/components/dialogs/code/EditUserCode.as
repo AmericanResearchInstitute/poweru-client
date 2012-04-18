@@ -52,6 +52,8 @@ package net.poweru.components.dialogs.code
 		protected var orgDataSet:DataSet;
 		[Bindable]
 		protected var groupsDataSet:DataSet;
+		[Bindable]
+		protected var credentialsDataSet:DataSet;
 		
 		public function EditUserCode()
 		{
@@ -69,6 +71,9 @@ package net.poweru.components.dialogs.code
 			addOrganization.currentState = null;
 			groupsDataSet.source = data['groups'];
 			groupsDataSet.refresh();
+			
+			credentialsDataSet.source = data['credentials'];
+			credentialsDataSet.refresh();
 			
 			titleInput.text = data['title'];
 			first.text = data['first_name'];
@@ -122,6 +127,9 @@ package net.poweru.components.dialogs.code
 			groupsDataSet.source = [];
 			groupsDataSet.refresh();
 			
+			credentialsDataSet.source = [];
+			credentialsDataSet.refresh();
+			
 			password1Input.text = '';
 			password2Input.text = '';
 			oldPasswordInput.text = '';
@@ -135,6 +143,7 @@ package net.poweru.components.dialogs.code
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			statusInput.dataProvider = new DataSet();
 			groupsDataSet = SortedDataSetFactory.singleFieldSort('name');
+			credentialsDataSet = SortedDataSetFactory.singleFieldSort('credential_type_name');
 			addOrganization.addEventListener(MouseEvent.CLICK, onOrganizationAdded);
 			addOrganization.remove.addEventListener(FlexEvent.BUTTON_DOWN, onClickRemove);
 			BindingUtils.bindProperty(addOrganization.remove, 'enabled', orgs, 'selectedItem');

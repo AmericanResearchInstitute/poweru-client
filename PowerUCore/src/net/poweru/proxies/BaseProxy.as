@@ -371,6 +371,11 @@ package net.poweru.proxies
 			sendNotification(NotificationNames.BATCHCREATECOMPLETE, {'success':successItems.toArray(), 'error':errorItems.toArray()}, proxyName);
 		}
 		
+		protected function getProxy(type:Class):BaseProxy
+		{
+			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as BaseProxy;
+		}
+		
 		
 		// result handlers
 		

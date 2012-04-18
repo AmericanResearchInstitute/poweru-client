@@ -87,6 +87,7 @@ package net.poweru
 		public static const EDITASSIGNMENT:String = 'EditAssignment';
 		public static const EDITBLACKOUTPERIOD:String = 'EditBlackoutPeriod';
 		public static const EDITCATEGORY:String = 'EditCategory';
+		public static const EDITCREDENTIAL:String = 'EditCredential';
 		public static const EDITCREDENTIALTYPE:String = 'EditCredentialType';
 		public static const EDITCURRICULUMENROLLMENT:String = 'EditCurriculumEnrollment';
 		public static const EDITCURRICULUM:String = 'EditCurriculum';

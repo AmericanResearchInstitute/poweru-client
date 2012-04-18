@@ -71,6 +71,27 @@
 				<parts:AddOrganization id="addOrganization" minHeight="86"/>
 			</mx:HBox>
 		</mx:VBox>
+		<mx:VBox width="100%" height="100%" label="Credentials">
+			<mx:DataGrid id="credentials" dataProvider="{credentialsDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="credential_type_name"/>
+					<mx:DataGridColumn headerText="Status" dataField="status"/>
+					<mx:DataGridColumn headerText="Expires">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:HBox>
+									<mx:DateFormatter id="formatDate" formatString="MM/DD/YYYY"/>
+									<mx:Label text="{formatDate.format(data.date_expires)}"/>
+								</mx:HBox>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Edit" id="revokeCredentialButton" enabled="{credentials.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCREDENTIAL, credentials.selectedItem.id]))"/>
+			</mx:HBox>
+		</mx:VBox>
 	</mx:TabNavigator>
 	
 	<mx:HBox width="100%" horizontalAlign="center">
