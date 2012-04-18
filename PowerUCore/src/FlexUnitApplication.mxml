@@ -9,12 +9,14 @@
 			import net.poweru.tests.components.parts.TestNestedDataGridColumn;
 			import net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn;
 			import net.poweru.tests.utils.TestNestedDateUtils;
+			import net.poweru.tests.utils.TestItemsAreEqual;
 			import net.poweru.tests.utils.TestSortedDataSetFactory;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				testsToRun.push(net.poweru.tests.utils.TestSortedDataSetFactory);
+				testsToRun.push(net.poweru.tests.utils.TestItemsAreEqual);
 				testsToRun.push(net.poweru.tests.utils.TestNestedDateUtils);
 				testsToRun.push(net.poweru.tests.components.parts.TestNestedAdvancedDataGridColumn);
 				testsToRun.push(net.poweru.tests.components.parts.TestNestedDataGridColumn);

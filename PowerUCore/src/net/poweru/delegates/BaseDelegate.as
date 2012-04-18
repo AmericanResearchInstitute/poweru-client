@@ -10,6 +10,7 @@ package net.poweru.delegates
 	
 	import net.poweru.events.DelegateEvent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.ItemsAreEqual;
 	import net.poweru.utils.PKArrayCollection;
 	import net.poweru.utils.RemoteObjectFactory;
 	
@@ -93,7 +94,7 @@ package net.poweru.delegates
 				suitable for the backend */
 			for (var attribute:String in oldItem)
 			{
-				if (updateFieldsToIgnore.indexOf(attribute) == -1 && newItem.hasOwnProperty(attribute) && (itemsAreEqual(newItem[attribute], oldItem[attribute]) == false))
+				if (updateFieldsToIgnore.indexOf(attribute) == -1 && newItem.hasOwnProperty(attribute) && (ItemsAreEqual(newItem[attribute], oldItem[attribute]) == false))
 				{
 					if (newItem[attribute] is Array)
 					{
@@ -257,24 +258,6 @@ package net.poweru.delegates
 			var ret:String = null;
 			if (value != null)
 				ret = DateUtil.toW3CDTF(value);
-			return ret;
-		}
-
-		
-		/*	Return true iff the two items are equal. This supports other types
-		(currently only Date) that do not compare properly with the ==
-		operator. */
-		protected function itemsAreEqual(item1:Object, item2:Object):Boolean
-		{
-			var ret:Boolean = false;
-			if (item1 is Date && item2 is Date)
-			{
-				ret = ((item1 as Date).getTime() == (item2 as Date).getTime());
-			}
-			else
-			{
-				ret = (item1 == item2);
-			}
 			return ret;
 		}
 	}
