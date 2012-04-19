@@ -30,7 +30,7 @@
 			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>
-	<mx:TabNavigator width="100%" minWidth="350">
+	<mx:TabNavigator width="100%" minWidth="350" minHeight="300">
 		<mx:VBox width="100%" label="Achievements">
 			<mx:DataGrid id="achievements" dataProvider="{achievementDataSet}" width="100%">
 				<mx:columns>
@@ -43,15 +43,30 @@
 			</mx:HBox>
 		</mx:VBox>
 		<mx:VBox width="100%" label="Prerequisites">
-			<mx:DataGrid id="prerequisites" dataProvider="{prerequisiteDataSet}" width="100%">
-				<mx:columns>
-					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
-				</mx:columns>
-			</mx:DataGrid>
-			<mx:HBox>
-				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK, prerequisiteDataSet.toArray().concat(pk))]))}"/>
-				<mx:Button label="Remove" enabled="{prerequisites.selectedItem != null}" click="{onRemoveTask(event)}"/>
-			</mx:HBox>
+			<mx:TabNavigator width="100%" height="100%">
+				<mx:VBox label="Tasks" width="100%" height="100%">
+					<mx:DataGrid id="prerequisiteTasks" dataProvider="{prerequisiteTaskDataSet}" width="100%">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name"/>
+						</mx:columns>
+					</mx:DataGrid>
+					<mx:HBox>
+						<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, prerequisiteChooserRequestTracker.getChooserRequest(Places.CHOOSETASK, prerequisiteTaskDataSet.toArray().concat(pk))]))}"/>
+						<mx:Button label="Remove" enabled="{prerequisiteTasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
+					</mx:HBox>
+				</mx:VBox>
+				<mx:VBox label="Achievements" width="100%" height="100%">
+					<mx:DataGrid id="prerequisiteAchievements" dataProvider="{prerequisiteAchievementDataSet}" width="100%">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name"/>
+						</mx:columns>
+					</mx:DataGrid>
+					<mx:HBox>
+						<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, prerequisiteChooserRequestTracker.getChooserRequest(Places.CHOOSEACHIEVEMENT, prerequisiteTaskDataSet.toArray().concat(pk))]))}"/>
+						<mx:Button label="Remove" enabled="{prerequisiteTasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:TabNavigator>
 		</mx:VBox>
 		<mx:VBox width="100%" label="Fees">
 			<parts:EditTaskFees id="editTaskFees"/>

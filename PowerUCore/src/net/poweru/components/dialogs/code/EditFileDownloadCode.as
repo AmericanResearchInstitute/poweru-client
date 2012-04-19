@@ -15,6 +15,8 @@ package net.poweru.components.dialogs.code
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.ChooserRequestTracker;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class EditFileDownloadCode extends BaseCRUDDialog implements IEditDialog
 	{
@@ -24,22 +26,35 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var achievements:DataGrid;
 		[Bindable]
-		public var prerequisites:DataGrid;
+		public var prerequisiteTasks:DataGrid;
+		[Bindable]
+		public var prerequisiteAchievements:DataGrid;
 		public var editTaskFees:EditTaskFees;
 		public var form:Form;
 		
 		[Bindable]
 		protected var achievementDataSet:DataSet;
 		[Bindable]
-		protected var prerequisiteDataSet:DataSet;
+		protected var prerequisiteTaskDataSet:DataSet;
+		[Bindable]
+		protected var prerequisiteAchievementDataSet:DataSet;
 		protected var pk:Number;
 		[Bindable]
 		protected var chosenOrganization:Object;
+		protected var prerequisiteChooserRequestTracker:ChooserRequestTracker;
 		
 		public function EditFileDownloadCode()
 		{
 			super();
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			prerequisiteChooserRequestTracker = new ChooserRequestTracker();
+			
+			achievementDataSet = SortedDataSetFactory.singleFieldSort('name');
+			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
+			prerequisiteTaskDataSet = SortedDataSetFactory.singleFieldSort('name');
+			prerequisiteTaskDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
+			prerequisiteAchievementDataSet = SortedDataSetFactory.singleFieldSort('name');
+			prerequisiteAchievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 		}
 		
 		override public function clear():void
@@ -51,8 +66,8 @@ package net.poweru.components.dialogs.code
 			chosenOrganization = null;
 			achievementDataSet.source = [];
 			achievementDataSet.refresh();
-			prerequisiteDataSet.source = [];
-			prerequisiteDataSet.refresh();
+			prerequisiteTaskDataSet.source = [];
+			prerequisiteTaskDataSet.refresh();
 			editTaskFees.clear();
 			
 			super.clear();
@@ -67,8 +82,10 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
 			chosenOrganization = data['organization'];
 			achievementDataSet.refresh();
-			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
-			prerequisiteDataSet.refresh();
+			updateControlIfUnchanged(prerequisiteTaskDataSet, 'source', data['prerequisite_tasks']);
+			prerequisiteTaskDataSet.refresh();
+			updateControlIfUnchanged(prerequisiteAchievementDataSet, 'source', data['prerequisite_achievements']);
+			prerequisiteAchievementDataSet.refresh();
 			
 			editTaskFees.taskID = pk;
 			editTaskFees.dataSet = new DataSet(data['task_fees']);
@@ -82,7 +99,8 @@ package net.poweru.components.dialogs.code
 				'title' : titleInput.text,
 				'description' : descriptionInput.text,
 				'achievements' : achievementDataSet.toArray(),
-				'prerequisite_tasks' : prerequisiteDataSet.toArray(),
+				'prerequisite_tasks' : prerequisiteTaskDataSet.toArray(),
+				'prerequisite_achievements' : prerequisiteAchievementDataSet.toArray(),
 				'organization' : chosenOrganization.id
 			}
 		}
@@ -98,13 +116,23 @@ package net.poweru.components.dialogs.code
 							achievementDataSet.addItem(choice.value);
 						break;
 					
-					case Places.CHOOSETASK:
-						if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice.value['id']) == null)
-							prerequisiteDataSet.addItem(choice.value);
-						break;
-					
 					case Places.CHOOSEORGANIZATION:
 						chosenOrganization = choice.value;
+						break;
+				}
+			}
+			else if (prerequisiteChooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+			{
+				switch (chooserName)
+				{
+					case Places.CHOOSETASK:
+						if (prerequisiteTaskDataSet != null && prerequisiteTaskDataSet.findByPK(choice.value['id']) == null)
+							prerequisiteTaskDataSet.addItem(choice.value);
+						break;
+					
+					case Places.CHOOSEACHIEVEMENT:
+						if (prerequisiteAchievementDataSet != null && prerequisiteAchievementDataSet.findByPK(choice.value['id']) == null)
+							prerequisiteAchievementDataSet.addItem(choice.value);
 						break;
 				}
 			}
@@ -113,10 +141,6 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			achievementDataSet = new DataSet();
-			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
-			prerequisiteDataSet = new DataSet();
-			prerequisiteDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			validators = validators.concat([
 				nameInput.validator,
 				titleInput.validator
@@ -135,10 +159,10 @@ package net.poweru.components.dialogs.code
 		
 		protected function onRemoveTask(event:Event):void
 		{
-			if (prerequisites.selectedItem != null)
+			if (prerequisiteTasks.selectedItem != null)
 			{
-				prerequisiteDataSet.removeByPK(prerequisites.selectedItem['id']);
-				prerequisiteDataSet.refresh();
+				prerequisiteTaskDataSet.removeByPK(prerequisiteTasks.selectedItem['id']);
+				prerequisiteTaskDataSet.refresh();
 			}
 		}
 	}
