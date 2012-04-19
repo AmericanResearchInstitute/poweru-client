@@ -99,6 +99,11 @@ package net.poweru.presenters
 			addEventListeners();
 		}
 		
+		protected function getProxy(type:Class):BaseProxy
+		{
+			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as BaseProxy;
+		}
+		
 		protected function onShowDialog(event:ViewEvent):void
 		{
 			sendNotification(NotificationNames.SHOWDIALOG, event.body);

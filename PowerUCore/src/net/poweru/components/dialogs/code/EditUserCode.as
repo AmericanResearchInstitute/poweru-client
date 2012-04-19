@@ -9,15 +9,20 @@ package net.poweru.components.dialogs.code
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextInput;
+	import mx.core.IFlexDisplayObject;
 	import mx.events.FlexEvent;
+	import mx.managers.PopUpManager;
 	import mx.validators.Validator;
 	
+	import net.poweru.Constants;
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
+	import net.poweru.components.dialogs.ConfirmDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.AddOrganization;
 	import net.poweru.components.widgets.TitleComboBox;
 	import net.poweru.components.widgets.code.IMultipleSelect;
+	import net.poweru.events.ViewEvent;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
@@ -41,6 +46,8 @@ package net.poweru.components.dialogs.code
 		public var orgs:DataGrid;
 		[Bindable]
 		public var groups:DataGrid;
+		[Bindable]
+		public var credentials:DataGrid;
 		[Bindable]
 		public var form:Form;
 		
@@ -223,6 +230,38 @@ package net.poweru.components.dialogs.code
 				groupsDataSet.removeByPK(groups.selectedItem['id']);
 				groupsDataSet.refresh();
 			}
+		}
+		
+		protected function onClickRevokeCredential(event:MouseEvent):void
+		{
+			var dialog:ConfirmDialog = new ConfirmDialog();
+			dialog.addEventListener(ViewEvent.CONFIRM, onConfirmRevokeCredential);
+			dialog.addEventListener(ViewEvent.CANCEL, onCancelRevokeCredential);
+			dialog.message = 'Are you sure you want to revoke the selected credential?';
+			PopUpManager.addPopUp(dialog, this, true);
+			PopUpManager.centerPopUp(dialog);
+		}
+		
+		protected function onConfirmRevokeCredential(event:ViewEvent):void
+		{
+			var dialog:ConfirmDialog = event.target as ConfirmDialog;
+			dialog.removeEventListener(ViewEvent.CONFIRM, onConfirmRevokeCredential);
+			dialog.removeEventListener(ViewEvent.CANCEL, onCancelRevokeCredential);
+			PopUpManager.removePopUp(dialog);
+			
+			var credential:Object = credentials.selectedItem;
+			/*	After the save, the CredentialProxy needs the user PK so it can
+				ask the UserProxy to refresh that user. */
+			credential['user'] = {'id' : pk};
+			dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, credential, Constants.CREDENTIAL));
+		}
+		
+		protected function onCancelRevokeCredential(event:ViewEvent):void
+		{
+			var dialog:ConfirmDialog = event.target as ConfirmDialog;
+			dialog.removeEventListener(ViewEvent.CONFIRM, onConfirmRevokeCredential);
+			dialog.removeEventListener(ViewEvent.CANCEL, onCancelRevokeCredential);
+			PopUpManager.removePopUp(dialog);
 		}
 
 	}

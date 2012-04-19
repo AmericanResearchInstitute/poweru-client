@@ -3,12 +3,14 @@ package net.poweru.presenters
 	import flash.events.Event;
 	
 	import net.poweru.ApplicationFacade;
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.AdminUsersViewProxy;
+	import net.poweru.proxies.CredentialProxy;
 	import net.poweru.proxies.OrgRoleProxy;
 	import net.poweru.proxies.OrganizationProxy;
 	import net.poweru.proxies.UserProxy;
@@ -23,12 +25,14 @@ package net.poweru.presenters
 		public static const NAME:String = 'EditUserMediator';
 
 		protected var userProxy:UserProxy;
+		protected var credentialProxy:CredentialProxy;
 		protected var inputCollector:InputCollector;
 		
 		public function EditUserMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, AdminUsersViewProxy, Places.EDITUSER);
-			userProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(UserProxy) as UserProxy;
+			userProxy = getProxy(UserProxy) as UserProxy;
+			credentialProxy = getProxy(CredentialProxy) as CredentialProxy;
 		}
 		
 		override public function listNotificationInterests():Array
@@ -68,16 +72,36 @@ package net.poweru.presenters
 		
 		override protected function onSubmit(event:ViewEvent):void
 		{
-			var newObject:Object = event.body;
-			newObject['groups'] = new PKArrayCollection(newObject['groups']).toArray();
-			if (newObject.hasOwnProperty('password'))
+			if (event.subType == Constants.CREDENTIAL)
 			{
-				userProxy.changePassword(newObject['id'], newObject['password'], newObject['oldPassword']);
-				delete newObject['password'];
-				delete newObject['oldPassword'];
+				credentialProxy.save(
+					{
+						'id' : event.body.id,
+						'status' : 'revoked',
+						'date_expires' : new Date()
+					},
+					event.body
+					/*{
+						'id' : event.body.id,
+						'status' : event.body.status,
+						'date_expires' : event.body.date_expires
+					}*/
+				);
 			}
-			primaryProxy.save(newObject);
-			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			else
+			{
+				var newObject:Object = event.body;
+				newObject['groups'] = new PKArrayCollection(newObject['groups']).toArray();
+				if (newObject.hasOwnProperty('password'))
+				{
+					userProxy.changePassword(newObject['id'], newObject['password'], newObject['oldPassword']);
+					delete newObject['password'];
+					delete newObject['oldPassword'];
+				}
+				primaryProxy.save(newObject);
+				sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			}
+			
 		}
 		
 		override protected function populate():void

@@ -89,7 +89,8 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>
-				<mx:Button label="Edit" id="revokeCredentialButton" enabled="{credentials.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCREDENTIAL, credentials.selectedItem.id]))"/>
+				<mx:Button label="Edit" id="editCredentialButton" enabled="{credentials.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCREDENTIAL, credentials.selectedItem.id]))"/>
+				<mx:Button label="Revoke" id="revokeCredentialButton" enabled="{credentials.selectedItem != null &amp;&amp; credentials.selectedItem.status != 'revoked'}" click="{onClickRevokeCredential(event)}"/>
 			</mx:HBox>
 		</mx:VBox>
 	</mx:TabNavigator>
@@ -105,6 +106,8 @@
 			<mx:RemoveChild target="{addGroupButton}"/>
 			<mx:RemoveChild target="{removeGroupButton}"/>
 			<mx:RemoveChild target="{addOrganizationFI}"/>
+			<mx:RemoveChild target="{editCredentialButton}"/>
+			<mx:RemoveChild target="{revokeCredentialButton}"/>
 		</mx:State>
 		<mx:State name="{StateNames.STUDENT}" basedOn="{StateNames.USER}"/>
 		<mx:State name="{StateNames.OWNERMANAGER}" basedOn="{StateNames.USER}"/>
