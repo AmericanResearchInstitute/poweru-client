@@ -15,8 +15,26 @@
 	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum Name"/>
-			<mx:DataGridColumn dataField="start" headerText="Start"/>
-			<mx:DataGridColumn dataField="end" headerText="End"/>
+			<mx:DataGridColumn headerText="Start">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:HBox>
+							<mx:DateFormatter id="formatDate" formatString="MM/DD/YYYY"/>
+							<mx:Label text="{formatDate.format(data.start)}"/>
+						</mx:HBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn headerText="End">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:HBox>
+							<mx:DateFormatter id="formatDate" formatString="MM/DD/YYYY"/>
+							<mx:Label text="{formatDate.format(data.end)}"/>
+						</mx:HBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
