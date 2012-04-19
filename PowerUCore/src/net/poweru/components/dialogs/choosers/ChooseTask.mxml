@@ -18,6 +18,7 @@
 	</mx:DataGrid>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, grid.selectedItem))"/>
+		<mx:Button label="Refresh" click="dispatchEvent(new ViewEvent(ViewEvent.REFRESH))"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
 </code:ChooseTaskCode>
