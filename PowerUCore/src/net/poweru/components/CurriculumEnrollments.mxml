@@ -52,10 +52,10 @@
 					<mx:Label text="{grid.selectedItem.curriculum_name}" />
 				</mx:FormItem>
 				<mx:FormItem label="Start:">
-					<mx:Label text="{grid.selectedItem.start}" />
+					<mx:Label text="{dateFormatter.format(grid.selectedItem.start)}" />
 				</mx:FormItem>
 				<mx:FormItem label="End:">
-					<mx:Label text="{grid.selectedItem.end}" />
+					<mx:Label text="{dateFormatter.format(grid.selectedItem.end)}" />
 				</mx:FormItem>
 				<mx:FormItem label="Students:">
 					<mx:List dataProvider="{grid.selectedItem.users}" labelFunction="{formatName}"/>
