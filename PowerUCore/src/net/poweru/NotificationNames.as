@@ -10,6 +10,7 @@ package net.poweru
 		public static const BULKASSIGNSUCCESS:String = 'BulkAssignSuccess';
 		public static const CAPTCHACHALLENGE:String = 'CaptchaChallenge';
 		public static const CHOICEMADE:String = 'ChoiceMade';
+		public static const CREATESUCCESS:String = 'CreateSuccess';
 		public static const CREATEUSERSUCCESS:String = 'CreateUserSuccess';
 		public static const CREATEUSERPERMISSIONDENIED:String = 'CreateUserPermissionDenied';
 		

@@ -47,7 +47,7 @@ package net.poweru.proxies
 		protected var fieldChoices:Object = null;
 		protected var modelName:String;
 		protected var inputCollector:InputCollector;
-		protected var haveData:Boolean = false;
+		protected var _haveData:Boolean = false;
 		protected var saveCounter:ExpectedResultCounter;
 		protected var browserServicesProxy:BrowserServicesProxy;
 		// names of fields which arrive as an ISO 8601 string. They will be automatically converted by the onGetFilteredSuccess method.
@@ -88,6 +88,11 @@ package net.poweru.proxies
 		public function get dataSet():DataSet
 		{
 			return data as DataSet;
+		}
+		
+		public function get haveData():Boolean
+		{
+			return _haveData;
 		}
 		
 		/*	If we have the results from a prior getAll call that included
@@ -195,7 +200,7 @@ package net.poweru.proxies
 		public function clear():void
 		{
 			data = new DataSet();
-			haveData = false;
+			_haveData = false;
 		}
 		
 		/*	get one record by ID, from local cache or from backend */
@@ -385,7 +390,7 @@ package net.poweru.proxies
 			convertIncomingData(value);
 			
 			dataSet.mergeData(value);
-			haveData = true;
+			_haveData = true;
 			var filters:Object = data.token['filters'];
 			var newDataSet:DataSet = new DataSet(value);
 			sendNotification(updatedDataNotification, newDataSet, filters.toString());
@@ -428,15 +433,16 @@ package net.poweru.proxies
 			fields we want right here. */
 		protected function onCreateSuccess(data:ResultEvent):void
 		{
+			var newPK:Number = data.result.value.id;
 			if (data.token.hasOwnProperty('batchID') && data.token.batchID == batchTracker.batchID)
 			{
 				batchTracker.processSuccess(data.result.value, data.token.batchID);
 			}
 			else
 			{
-				var newPK:Number = data.result.value.id;
 				getFiltered({'exact' : {'id' : newPK}});
 			}
+			sendNotification(NotificationNames.CREATESUCCESS, newPK, proxyName);
 		}
 		
 		protected function onCreateError(data:ResultEvent):void

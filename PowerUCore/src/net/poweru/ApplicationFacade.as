@@ -4,6 +4,7 @@ package net.poweru
 	
 	import net.poweru.commands.BatchCreateCompleteCommand;
 	import net.poweru.commands.ExamSessionFinishedCommand;
+	import net.poweru.commands.FetchNewTaskCommand;
 	import net.poweru.commands.LoginContextChosenCommand;
 	import net.poweru.commands.SendEmailErrorCommand;
 	import net.poweru.commands.SendEmailSuccessCommand;
@@ -62,6 +63,7 @@ package net.poweru
 			registerCommand(NotificationNames.EMAILSENDERROR, SendEmailErrorCommand);
 			registerCommand(NotificationNames.CHOICEMADE, LoginContextChosenCommand);
 			registerCommand(NotificationNames.BATCHCREATECOMPLETE, BatchCreateCompleteCommand);
+			registerCommand(NotificationNames.CREATESUCCESS, FetchNewTaskCommand);
 		}
 		
 	}

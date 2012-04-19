@@ -13,6 +13,7 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.BrowserServicesProxy;
 	import net.poweru.proxies.FileDownloadProxy;
+	import net.poweru.proxies.TaskProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -22,11 +23,13 @@ package net.poweru.presenters
 		public static const NAME:String = 'UploadFileDownloadMediator';
 		
 		protected var browserServicesProxy:BrowserServicesProxy;
+		protected var taskProxy:TaskProxy;
 		
 		public function UploadFileDownloadMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadProxy);
-			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
+			browserServicesProxy = getProxy(BrowserServicesProxy) as BrowserServicesProxy;
+			taskProxy = getProxy(TaskProxy) as TaskProxy;
 		}
 		
 		public function get fileDownloadProxy():FileDownloadProxy
@@ -93,6 +96,8 @@ package net.poweru.presenters
 					// receives an HTTP status code of 200 from the server receiving the transmission."
 					sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 					Alert.show("Upload complete!");
+					// This will force the proxy to refresh upon its next request for data.
+					taskProxy.clear();
 					break;
 				
 				case IOErrorEvent.IO_ERROR:

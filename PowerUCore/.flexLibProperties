@@ -513,6 +513,7 @@
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
+    <classEntry path="net.poweru.commands.FetchNewTaskCommand"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
