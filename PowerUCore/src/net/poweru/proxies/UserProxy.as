@@ -1,7 +1,6 @@
 package net.poweru.proxies
 {
 	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.StateNames;

@@ -2,9 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import mx.collections.ArrayCollection;
-	
-	import net.poweru.model.DataSet;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;

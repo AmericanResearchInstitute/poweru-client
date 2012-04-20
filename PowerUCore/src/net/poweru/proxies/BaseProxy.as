@@ -14,7 +14,6 @@ package net.poweru.proxies
 	import flash.utils.ByteArray;
 	
 	import mx.collections.ArrayCollection;
-	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -32,7 +31,6 @@ package net.poweru.proxies
 	import net.poweru.utils.BatchRequestTracker;
 	import net.poweru.utils.ExpectedResultCounter;
 	import net.poweru.utils.InputCollector;
-	import net.poweru.utils.PKArrayCollection;
 	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;

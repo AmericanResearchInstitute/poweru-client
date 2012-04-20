@@ -1,6 +1,5 @@
 package net.poweru.proxies
 {
-	import mx.rpc.AsyncToken;
 	import mx.rpc.events.ResultEvent;
 	
 	import net.poweru.model.DataSet;

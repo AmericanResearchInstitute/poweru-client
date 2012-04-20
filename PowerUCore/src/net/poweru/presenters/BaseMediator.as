@@ -1,7 +1,6 @@
 package net.poweru.presenters
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
 	
 	import mx.events.FlexEvent;
 	

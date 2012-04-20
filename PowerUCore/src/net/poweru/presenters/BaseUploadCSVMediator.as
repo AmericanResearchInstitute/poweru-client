@@ -1,11 +1,9 @@
 package net.poweru.presenters
 {
-	import flash.events.DataEvent;
 	import flash.events.Event;
 	import flash.net.FileReference;
 	
 	import mx.controls.Alert;
-	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
