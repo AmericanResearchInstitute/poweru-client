@@ -12,7 +12,9 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.EditTaskFees;
+	import net.poweru.events.ViewEvent;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserRequest;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.ChooserRequestTracker;
@@ -148,7 +150,7 @@ package net.poweru.components.dialogs.code
 			addControlChangeListener(form);
 		}
 		
-		protected function onRemoveAchievement(event:Event):void
+		protected function onRemoveGrantedAchievement(event:Event):void
 		{
 			if (achievements.selectedItem != null)
 			{
@@ -164,6 +166,35 @@ package net.poweru.components.dialogs.code
 				prerequisiteTaskDataSet.removeByPK(prerequisiteTasks.selectedItem['id']);
 				prerequisiteTaskDataSet.refresh();
 			}
+		}
+		
+		protected function onRemovePrerequisiteAchievement(event:Event):void
+		{
+			if (prerequisiteAchievements.selectedItem != null)
+			{
+				prerequisiteAchievementDataSet.removeByPK(prerequisiteAchievements.selectedItem['id']);
+				prerequisiteAchievementDataSet.refresh();
+			}
+		}
+		
+		protected function onAddPrerequisiteAchievement(event:Event):void
+		{
+			var request:ChooserRequest = prerequisiteChooserRequestTracker.getChooserRequest(
+				Places.CHOOSEACHIEVEMENT,
+				achievementDataSet.toArray()
+			); 
+			
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, request]));
+		}
+		
+		protected function onAddGrantedAchievement(event:Event):void
+		{
+			var request:ChooserRequest = chooserRequestTracker.getChooserRequest(
+				Places.CHOOSEACHIEVEMENT,
+				prerequisiteAchievementDataSet.toArray()
+			); 
+			
+			dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEACHIEVEMENT, request]));
 		}
 	}
 }
