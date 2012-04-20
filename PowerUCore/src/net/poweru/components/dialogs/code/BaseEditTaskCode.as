@@ -41,14 +41,19 @@ package net.poweru.components.dialogs.code
 		public function BaseEditTaskCode()
 		{
 			super();
-			prerequisiteChooserRequestTracker = new ChooserRequestTracker();
-			
+			init();
+		}
+		
+		protected function init():void
+		{
 			achievementDataSet = SortedDataSetFactory.singleFieldSort('name');
 			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteTaskDataSet = SortedDataSetFactory.singleFieldSort('name');
 			prerequisiteTaskDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			prerequisiteAchievementDataSet = SortedDataSetFactory.singleFieldSort('name');
 			prerequisiteAchievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
+			
+			prerequisiteChooserRequestTracker = new ChooserRequestTracker();
 		}
 		
 		override public function clear():void

@@ -67,20 +67,28 @@ package net.poweru.proxies
 		{
 			this.primaryDelegateClass = primaryDelegateClass;
 			super(proxyName, new DataSet());
-			loginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
+			
 			this.updatedDataNotification = updatedDataNotification;
 			this.modelName = modelName;
 			this.fields = fields;
+			
+			init(choiceFields);
+		}
+		
+		protected function init(choiceFields:Array = null):void
+		{
+			loginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			browserServicesProxy = getProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			inputCollector = new InputCollector(choiceFields);
 			inputCollector.addEventListener(Event.COMPLETE, onInputCollected);
+			saveCounter = new ExpectedResultCounter(onSaveResultsReceived);
+			createBatchTracker();
+			
 			for each (var fieldName:String in choiceFields)
 			{
 				var token:AsyncToken = new UtilsManagerDelegate(new PowerUResponder(onGetChoicesSuccess, onGetChoicesError, onFault)).getChoices(modelName, fieldName);
 				token.fieldName = fieldName;
 			}
-			saveCounter = new ExpectedResultCounter(onSaveResultsReceived);
-			createBatchTracker();
 		}
 		
 		public function get dataSet():DataSet

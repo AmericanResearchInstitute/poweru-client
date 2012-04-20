@@ -22,7 +22,7 @@ package net.poweru.components.parts.code
 		protected static const ORGANIZATION_NAME:String = 'Organization';
 		protected static const ORG_ROLE_NAME:String = 'Org Role';
 		
-		public static var filterObjects:Array = [
+		public static const filterObjects:Array = [
 			{'name': GROUP_NAME, 'constraint' : null},
 			{'name': STATUS_NAME, 'constraint' : null},
 			{'name': CREDENTIAL_TYPE_NAME, 'constraint' : null},

@@ -6,7 +6,6 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ISelfRegister;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.presenters.BaseCreateDialogMediator;
 	import net.poweru.proxies.UserProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -70,8 +69,6 @@ package net.poweru.presenters
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			var user:Object;
-
 			switch (notification.getName())
 			{
 				case NotificationNames.CAPTCHACHALLENGE:

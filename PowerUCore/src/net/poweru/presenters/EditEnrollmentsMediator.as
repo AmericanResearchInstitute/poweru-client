@@ -60,7 +60,7 @@ package net.poweru.presenters
 		
 		override protected function onSubmit(event:ViewEvent):void
 		{
-			var newObject:Object = event.body;
+			//var newObject:Object = event.body;
 			//primaryProxy.save(newObject);
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 		}

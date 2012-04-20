@@ -3,7 +3,7 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.widgets.code.*">
 	<mx:TextInput id="numInput" restrict="0-9" maxWidth="60"/>
-	<mx:ComboBox id="unitsInput" labelField="name" dataProvider="{units}"/>
+	<mx:ComboBox id="unitsInput" labelField="name" dataProvider="{UNITS}"/>
 	<mx:Button label="Clear" click="numInput.text = ''"/>
 	<code:validator>
 		<mx:NumberValidator source="{numInput}" property="text" required="{required}" allowNegative="false" domain="int"/>

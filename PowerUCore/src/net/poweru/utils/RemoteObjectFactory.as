@@ -15,6 +15,11 @@ package net.poweru.utils
 		
 		public function RemoteObjectFactory()
 		{
+			init();
+		}
+		
+		protected function init():void
+		{
 			channelSet = new ChannelSet();
 			var browserServicesProxy:BrowserServicesProxy = ApplicationFacade.getInstance().retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			

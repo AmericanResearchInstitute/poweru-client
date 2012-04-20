@@ -13,7 +13,6 @@ package net.poweru.presenters
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
-	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.AchievementProxy;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.AssignmentProxy;
@@ -28,7 +27,7 @@ package net.poweru.presenters
 
 	public class UsersMediator extends BaseMediator implements IMediator
 	{
-		public static var NAME:String = 'UsersMediator';
+		public static const NAME:String = 'UsersMediator';
 		
 		protected var populatedSinceLastClear:Boolean = false;
 		protected var inputCollector:InputCollector;

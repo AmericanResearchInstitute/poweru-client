@@ -25,12 +25,14 @@ package net.poweru.presenters
 		public function BaseMediator(mediatorName:String, viewComponent:Object, primaryProxyClass:Class=null)
 		{
 			super(mediatorName, viewComponent);
-			
+			init(primaryProxyClass);
+		}
+		
+		protected function init(primaryProxyClass:Class=null):void
+		{
+			loginProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(LoginProxy) as LoginProxy;
 			if (primaryProxyClass)
 				primaryProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(primaryProxyClass) as BaseProxy;
-				
-			loginProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(LoginProxy) as LoginProxy;
-			
 			if (viewComponent)
 				addEventListeners();
 		}

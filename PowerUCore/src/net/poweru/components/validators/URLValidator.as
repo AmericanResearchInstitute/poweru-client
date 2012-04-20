@@ -20,7 +20,7 @@ package net.poweru.components.validators
 			return results;
 		}
 		
-		protected static function isUrl(s:String):Boolean {
+		protected function isUrl(s:String):Boolean {
 			var regexp:RegExp = /https?:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
 			return regexp.test(s);
 		}

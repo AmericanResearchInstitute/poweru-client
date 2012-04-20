@@ -7,7 +7,6 @@ package net.poweru.presenters
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
-	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.AdminOrganizationViewProxy;
 	import net.poweru.proxies.OrgEmailDomainProxy;
 	import net.poweru.proxies.OrgRoleProxy;

@@ -2,17 +2,12 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
-	import net.poweru.presenters.BaseEditDialogMediator;
 	import net.poweru.proxies.AdminUsersViewProxy;
 	import net.poweru.proxies.CredentialProxy;
-	import net.poweru.proxies.OrgRoleProxy;
-	import net.poweru.proxies.OrganizationProxy;
 	import net.poweru.proxies.UserProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;

@@ -4,7 +4,7 @@ package net.poweru.delegates
 	
 	public class CurriculumTaskAssociationManagerDelegate extends BaseDelegate
 	{
-		public function CurriculumTaskAssociationManagerDelegate(responder:IResponder):void
+		public function CurriculumTaskAssociationManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'CurriculumTaskAssociationManager');
 		}

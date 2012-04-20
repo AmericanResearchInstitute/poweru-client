@@ -8,7 +8,7 @@ package net.poweru.proxies
 	
 	public class ExamProxy extends BaseProxy implements IProxy
 	{
-		public static var NAME:String = 'ExamProxy';
+		public static const NAME:String = 'ExamProxy';
 		
 		public function ExamProxy()
 		{

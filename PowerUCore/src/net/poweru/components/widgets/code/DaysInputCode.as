@@ -7,7 +7,7 @@ package net.poweru.components.widgets.code
 	
 	public class DaysInputCode extends HBox
 	{
-		protected static const units:Array = [
+		protected static const UNITS:Array = [
 			{'name' : 'days', 'multiplier' : 1},
 			{'name' : 'weeks', 'multiplier' : 7},
 			{'name' : 'years', 'multiplier' : 365}

@@ -26,6 +26,11 @@ package net.poweru.proxies
 		public function BrowserServicesProxy()
 		{
 			super(NAME, null);
+			init();	
+		}
+		
+		protected function init():void
+		{
 			browserManager = BrowserManager.getInstance();
 			browserManager.init('', '');
 			

@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;

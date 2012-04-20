@@ -47,8 +47,6 @@ package net.poweru.components.dialogs.code
 		
 		public function populate(data:Object, ...args):void
 		{
-			var categoryChoices:Array = args[0];
-			
 			pk = data['id'];
 			nameInput.text = data['name'];
 			phoneInput.text = data['phone'];

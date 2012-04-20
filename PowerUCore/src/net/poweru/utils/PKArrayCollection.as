@@ -11,10 +11,15 @@ package net.poweru.utils
 			and isolated primary keys in the same source Array. */
 		public function PKArrayCollection(source:Array, key:String=null)
 		{
+			super(createNewSource(source, key));
+		}
+		
+		protected function createNewSource(source:Array, key:String=null):Array
+		{
 			var newSource:Array = [];
 			if (key == null)
 				key = 'id';
-				
+			
 			for each (var item:Object in source)
 			{
 				if (item.hasOwnProperty(key))
@@ -22,8 +27,7 @@ package net.poweru.utils
 				else
 					newSource.push(item);
 			}
-			
-			super(newSource);
+			return newSource;
 		}
 		
 	}

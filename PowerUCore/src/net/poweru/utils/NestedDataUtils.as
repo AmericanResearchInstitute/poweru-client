@@ -20,7 +20,7 @@ package net.poweru.utils
 			return _getFinalObject(x, ObjectUtil.copy(namePieces) as Array);
 		}
 		
-		protected static function _getFinalObject(x:Object, namePieces:Array):Object
+		private static function _getFinalObject(x:Object, namePieces:Array):Object
 		{
 			var ret:Object = x;
 			if (x != null && namePieces.length > 0)
