@@ -514,6 +514,7 @@
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
     <classEntry path="net.poweru.commands.FetchNewTaskCommand"/>
+    <classEntry path="net.poweru.components.dialogs.code.BaseEditTaskCode"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
