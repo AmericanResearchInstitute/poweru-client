@@ -1,22 +1,14 @@
 package net.poweru.components.dialogs.code
 {
-	import flash.events.Event;
-	
 	import mx.containers.Form;
 	import mx.controls.ComboBox;
-	import mx.controls.DataGrid;
 	import mx.controls.TextInput;
-	import mx.events.CollectionEvent;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.Places;
-	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.components.parts.EditTaskFees;
-	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	
-	public class EditSessionUserRoleRequirementCode extends BaseCRUDDialog implements IEditDialog
+	public class EditSessionUserRoleRequirementCode extends BaseEditTaskCode implements IEditDialog
 	{
 		[Bindable]
 		public var rolesCB:ComboBox;
@@ -24,19 +16,9 @@ package net.poweru.components.dialogs.code
 		public var minInput:TextInput;
 		[Bindable]
 		public var maxInput:TextInput;
-		[Bindable]
-		public var achievements:DataGrid;
-		[Bindable]
-		public var prerequisites:DataGrid;
-		public var editTaskFees:EditTaskFees;
 		public var form:Form;
-		
-		[Bindable]
-		protected var achievementDataSet:DataSet;
-		[Bindable]
-		protected var prerequisiteDataSet:DataSet;
+
 		protected var session:Number;
-		protected var pk:Number;
 		
 		
 		public function EditSessionUserRoleRequirementCode()
@@ -47,32 +29,23 @@ package net.poweru.components.dialogs.code
 		
 		override public function clear():void
 		{
-			pk = Number.NaN;
+			super.clear();
+			
 			session = Number.NaN;
 			rolesCB.selectedIndex = -1;
 			minInput.text = '';
 			maxInput.text = '';
-			achievementDataSet.source = [];
-			achievementDataSet.refresh();
-			prerequisiteDataSet.source = [];
-			prerequisiteDataSet.refresh();
-			editTaskFees.clear();
 		}
 		
-		public function populate(data:Object, ...args):void
+		override public function populate(data:Object, ...args):void
 		{
-			pk = data['id'];
+			super.populate.apply(this, [data].concat(args));
+			
 			session = data['session'];
 			updateControlIfUnchanged(minInput, 'text', data['min']);
 			updateControlIfUnchanged(maxInput, 'text', data['max']);
 			rolesCB.dataProvider.source = args[0];
 			rolesCB.dataProvider.refresh();
-			updateControlIfUnchanged(achievementDataSet, 'source', data['achievements']);
-			achievementDataSet.refresh();
-			updateControlIfUnchanged(prerequisiteDataSet, 'source', data['prerequisite_tasks']);
-			prerequisiteDataSet.refresh();
-			editTaskFees.taskID = pk;
-			editTaskFees.dataSet = new DataSet(data['task_fees']);
 		}
 		
 		override public function getData():Object
@@ -84,56 +57,16 @@ package net.poweru.components.dialogs.code
 				'min' : minInput.text,
 				'max' : maxInput.text,
 				'achievements' : achievementDataSet.toArray(),
-				'prerequisite_tasks' : prerequisiteDataSet.toArray()
+				'prerequisite_achievements' : prerequisiteAchievementDataSet.toArray(),
+				'prerequisite_tasks' : prerequisiteTaskDataSet.toArray()
 			};
-		}
-		
-		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
-		{
-			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
-			{
-				switch (chooserName)
-				{
-					case Places.CHOOSEACHIEVEMENT:
-						if (achievementDataSet != null && achievementDataSet.findByPK(choice.value['id']) == null)
-							achievementDataSet.addItem(choice.value);
-						break;
-					
-					case Places.CHOOSETASK:
-						if (prerequisiteDataSet != null && prerequisiteDataSet.findByPK(choice.value['id']) == null)
-							prerequisiteDataSet.addItem(choice.value);
-						break;
-				}
-			}
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			rolesCB.dataProvider = new DataSet();
-			achievementDataSet = new DataSet();
-			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
-			prerequisiteDataSet = new DataSet();
-			prerequisiteDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);
 			addControlChangeListener(form);
-		}
-		
-		protected function onRemoveAchievement(event:Event):void
-		{
-			if (achievements.selectedItem != null)
-			{
-				achievementDataSet.removeByPK(achievements.selectedItem['id']);
-				achievementDataSet.refresh();
-			}
-		}
-		
-		protected function onRemoveTask(event:Event):void
-		{
-			if (prerequisites.selectedItem != null)
-			{
-				prerequisiteDataSet.removeByPK(prerequisites.selectedItem['id']);
-				prerequisiteDataSet.refresh();
-			}
 		}
 	}
 }
