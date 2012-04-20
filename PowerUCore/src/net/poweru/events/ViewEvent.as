@@ -31,5 +31,10 @@ package net.poweru.events
 			this.body = body;
 			this.subType = subType;
 		}
+		
+		override public function clone():Event
+		{
+			return new ViewEvent(type, body, subType, bubbles);
+		}
 	}
 }

@@ -40,7 +40,6 @@ package net.poweru.tests.validators
 		];
 		
 		protected var validator:URLValidator;
-		private var foo:Parameterized;
 		
 		public function TestURLValidator()
 		{

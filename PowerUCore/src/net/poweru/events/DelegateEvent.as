@@ -11,5 +11,10 @@ package net.poweru.events
 			super(type, false, false);
 		}
 		
+		override public function clone():Event
+		{
+			return new DelegateEvent(type);
+		}
+		
 	}
 }
