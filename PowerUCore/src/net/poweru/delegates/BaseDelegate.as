@@ -63,6 +63,11 @@ package net.poweru.delegates
 		
 		public function BaseDelegate(responder:IResponder, managerName:String, updateFieldsToIgnore:Array=null, specialUpdateHandlingInfo:Object=null)
 		{
+			init(responder, managerName, updateFieldsToIgnore, specialUpdateHandlingInfo);
+		}
+		
+		protected function init(responder:IResponder, managerName:String, updateFieldsToIgnore:Array=null, specialUpdateHandlingInfo:Object=null):void
+		{
 			this.responder = responder;
 			this.updateFieldsToIgnore = updateFieldsToIgnore ? updateFieldsToIgnore : [];
 			this.updateFieldsToIgnore.push('mx_internal_uid');
