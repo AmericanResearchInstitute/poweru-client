@@ -43,6 +43,9 @@
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
 				</mx:FormItem>
+				<mx:FormItem label="Description:">
+					<mx:Text text="{grid.selectedItem.description}" />
+				</mx:FormItem>
 				<mx:FormItem label="Tasks:">
 					<mx:List id="taskList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.curriculum_task_associations}"/>
 				</mx:FormItem>

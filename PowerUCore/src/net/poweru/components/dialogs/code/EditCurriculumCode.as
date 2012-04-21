@@ -1,5 +1,6 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
@@ -9,6 +10,7 @@ package net.poweru.components.dialogs.code
 	public class EditCurriculumCode extends BaseCRUDDialog implements IEditDialog
 	{
 		public var nameInput:IGeneratedTextInput;
+		public var descriptionInput:TextArea;
 		protected var pk:Number;
 		
 		public function EditCurriculumCode()
@@ -20,12 +22,14 @@ package net.poweru.components.dialogs.code
 		override public function clear():void
 		{
 			nameInput.text = '';
+			descriptionInput.text = '';
 		}
 		
 		override public function getData():Object
 		{
 			return {
 				'id' : pk,
+				'description' : descriptionInput.text,
 				'name' : nameInput.text
 			};
 		}
@@ -34,6 +38,7 @@ package net.poweru.components.dialogs.code
 		{
 			pk = data['id'];
 			nameInput.text = data['name'];
+			descriptionInput.text = data['description'];
 			
 			title = 'Edit Curriculum ' + data['name'];
 		}

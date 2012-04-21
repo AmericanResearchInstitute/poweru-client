@@ -14,7 +14,7 @@
 	</mx:Script>
 	<mx:DataGrid id="grid" width="65%" height="100%">
 		<mx:columns>
-			<mx:DataGridColumn dataField="curriculum_name" headerText="Curriculum Name"/>
+			<mx:DataGridColumn dataField="name" headerText="Name"/>
 			<mx:DataGridColumn headerText="Start">
 				<mx:itemRenderer>
 					<mx:Component>
@@ -48,14 +48,17 @@
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 			<mx:Form>
-				<mx:FormItem label="Curriculum:">
-					<mx:Label text="{grid.selectedItem.curriculum_name}" />
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.name}" />
 				</mx:FormItem>
 				<mx:FormItem label="Start:">
 					<mx:Label text="{dateFormatter.format(grid.selectedItem.start)}" />
 				</mx:FormItem>
 				<mx:FormItem label="End:">
 					<mx:Label text="{dateFormatter.format(grid.selectedItem.end)}" />
+				</mx:FormItem>
+				<mx:FormItem label="Description:">
+					<mx:Text text="{grid.selectedItem.description}" />
 				</mx:FormItem>
 				<mx:FormItem label="Students:">
 					<mx:List dataProvider="{grid.selectedItem.users}" labelFunction="{formatName}"/>

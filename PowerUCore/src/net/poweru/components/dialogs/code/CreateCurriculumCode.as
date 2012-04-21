@@ -1,15 +1,17 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
-	import net.poweru.generated.model.Curriculum.NameInput;
+	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class CreateCurriculumCode extends BaseCRUDDialog implements ICreateDialog
 	{
 		[Bindable]
-		public var nameInput:NameInput;
+		public var nameInput:IGeneratedTextInput;
+		public var descriptionInput:TextArea;
 		
 		public function CreateCurriculumCode()
 		{
@@ -21,6 +23,7 @@ package net.poweru.components.dialogs.code
 		{
 			return {
 				'name' : nameInput.text,
+				'description' : descriptionInput.text,
 				'organization' : null
 			};
 		}
@@ -28,6 +31,7 @@ package net.poweru.components.dialogs.code
 		override public function clear():void
 		{
 			nameInput.text = '';
+			descriptionInput.text = '';
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

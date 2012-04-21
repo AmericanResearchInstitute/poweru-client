@@ -2,15 +2,19 @@
 <code:CreateCurriculumEnrollmentCode
 	title="Create Learning Initiative"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*">
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:Curriculum="net.poweru.generated.model.Curriculum.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
 	<mx:Form defaultButton="{submit}">
-		<mx:FormItem label="Curriculum Name:">
-			<mx:Label text="{curriculum.name}"/>
+		<mx:FormItem label="Name">
+			<Curriculum:NameInput id="nameInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description:">
+			<mx:TextArea id="descriptionInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Start Date">
 			<mx:DateField id="startDate" change="{onStartDateChosen(event)}"/>

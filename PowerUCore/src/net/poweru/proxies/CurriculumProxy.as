@@ -13,12 +13,13 @@ package net.poweru.proxies
 	public class CurriculumProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'CurriculumProxy';
-		public static const FIELDS:Array = ['name'];
+		public static const FIELDS:Array = ['name', 'description'];
 
 		public function CurriculumProxy()
 		{
 			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, FIELDS);
-			createArgNamesInOrder = ['name', 'organization'];
+			createArgNamesInOrder = ['name'];
+			createOptionalArgNames = ['description', 'organization'];
 		}
 		
 		public function adminCurriculumsView():void

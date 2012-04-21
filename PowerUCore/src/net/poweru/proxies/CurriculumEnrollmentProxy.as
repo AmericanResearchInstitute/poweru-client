@@ -10,13 +10,14 @@ package net.poweru.proxies
 	public class CurriculumEnrollmentProxy extends BaseProxy
 	{
 		public static const NAME:String = 'CurriculumEnrollmentProxy';
-		public static const FIELDS:Array = ['curriculum_name', 'start', 'end'];
+		public static const FIELDS:Array = ['description', 'name', 'start', 'end'];
 		
 		public function CurriculumEnrollmentProxy()
 		{
 			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTS, FIELDS);
 			dateTimeFields = ['start', 'end'];
 			createArgNamesInOrder = ['curriculum', 'start', 'end'];
+			createOptionalArgNames = ['description', 'name', 'users'];
 		}
 		
 		public function getStudentCurriculumEnrollments():void
