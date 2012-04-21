@@ -23,12 +23,5 @@ package net.poweru.delegates
 		{
 			super(responder, 'CurriculumManager', null, SPECIALUPDATEHANDLINGINFO);
 		}
-		
-		public function adminCurriculumsView(authToken:String):void
-		{
-			var token:AsyncToken = remoteObject.getOperation('admin_curriculums_view').send(authToken);
-			token.addResponder(responder);
-		}
-		
 	}
 }
