@@ -4,7 +4,9 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
 	xmlns:Session="net.poweru.generated.model.Session.*"
-	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml" xmlns:validators="net.poweru.components.validators.*">
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
+	xmlns:validators="net.poweru.components.validators.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -35,7 +37,7 @@
 			<Session:UrlInput id="urlInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description">
-			<mx:TextArea id="descriptionInput" />
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" />
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center" id="buttonBox">

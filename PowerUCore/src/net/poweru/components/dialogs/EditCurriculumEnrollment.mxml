@@ -2,7 +2,8 @@
 <code:EditCurriculumEnrollmentCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:Curriculum="net.poweru.generated.model.Curriculum.*">
+	xmlns:Curriculum="net.poweru.generated.model.Curriculum.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -13,7 +14,7 @@
 			<Curriculum:NameInput id="nameInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description:">
-			<mx:TextArea id="descriptionInput"/>
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Start" required="true">
 			<mx:DateField id="startInput" change="{onStartDateChosen(event)}"/>

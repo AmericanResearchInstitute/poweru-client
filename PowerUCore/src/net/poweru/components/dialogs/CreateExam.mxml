@@ -3,7 +3,8 @@
 	title="Create Exam"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:Exam="net.poweru.generated.model.Exam.*">
+	xmlns:Exam="net.poweru.generated.model.Exam.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -17,7 +18,7 @@
 			<Exam:TitleInput id="titleInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description">
-			<mx:TextArea id="descriptionInput"/>
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Organization">
 			<mx:Label text="This needs to be implemented!"/>

@@ -3,7 +3,8 @@
 	title="Create Event Template"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:EventTemplate="net.poweru.generated.model.EventTemplate.*">
+	xmlns:EventTemplate="net.poweru.generated.model.EventTemplate.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -20,7 +21,7 @@
 			<mx:TextInput id="leadTimeInput" />
 		</mx:FormItem>
 		<mx:FormItem label="Description:">
-			<mx:TextArea id="descriptionInput" />
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" />
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

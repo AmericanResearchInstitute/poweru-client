@@ -3,7 +3,8 @@
 	title="Edit Message Template"
 	minWidth="600"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*">
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -17,10 +18,10 @@
 			<mx:Label text="{template.message_format.slug}" />
 		</mx:FormItem>
 		<mx:FormItem label="Subject:" width="100%">
-			<mx:TextArea id="subjectInput" maxChars="255" minHeight="140" width="100%"/>
+			<widgets:ResizingTextArea minWidth="300" id="subjectInput" maxChars="255" width="100%"/>
 		</mx:FormItem>
 		<mx:FormItem label="Body:" width="100%">
-			<mx:TextArea id="bodyInput" minHeight="350" width="100%"/>
+			<widgets:ResizingTextArea minWidth="300" id="bodyInput" width="100%"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

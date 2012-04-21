@@ -175,7 +175,7 @@
 							<mx:TextInput id="emailSubjectInput" width="100%"/>
 						</mx:FormItem>
 						<mx:FormItem label="Body:" width="100%" height="100%">
-							<mx:TextArea id="emailBodyInput" width="100%" height="100%"/>
+							<widgets:ResizingTextArea minWidth="300" id="emailBodyInput" width="100%" height="100%"/>
 						</mx:FormItem>
 						<mx:Button label="Send" enabled="{bulkGrid.selectedItems.length > 0}" click="onSendEmail(event)"/>
 					</mx:Form>

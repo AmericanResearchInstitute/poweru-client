@@ -2,7 +2,8 @@
 <code:CreateBlackoutPeriodCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml">
+	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -21,7 +22,7 @@
 			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description" width="100%">
-			<mx:TextArea id="descriptionInput" height="100%" width="100%"/>
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" height="100%" width="100%"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

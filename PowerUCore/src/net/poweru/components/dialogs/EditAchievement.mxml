@@ -2,7 +2,8 @@
 <code:EditAchievementCode
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:Achievement="net.poweru.generated.model.Achievement.*">
+	xmlns:Achievement="net.poweru.generated.model.Achievement.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -13,7 +14,7 @@
 			<Achievement:NameInput id="nameInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description">
-			<mx:TextArea id="descriptionInput"/>
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

@@ -2,7 +2,8 @@
 <code:CreateExamFromXMLCode
 	title="Create Exam From XML"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*">
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.events.ViewEvent;
@@ -10,7 +11,7 @@
 	</mx:Script>
 	<mx:Form width="100%" defaultButton="{submit}">
 		<mx:FormItem label="XML" required="true">
-			<mx:TextArea id="xmlInput" minWidth="600" minHeight="400"/>
+			<widgets:ResizingTextArea id="xmlInput" minWidth="600" minHeight="400"/>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

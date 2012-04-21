@@ -2,13 +2,14 @@
 <code:EmailSessionParticipantsCode
 	title="Email Session Participants"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*">
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.managers.PopUpManager;
 		]]>
 	</mx:Script>
-	<mx:TextArea id="messageInput" minHeight="400" minWidth="600"/>
+	<widgets:ResizingTextArea id="messageInput" minHeight="400" minWidth="600"/>
 	
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onSubmit(event)"/>

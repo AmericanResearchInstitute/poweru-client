@@ -3,7 +3,8 @@
 	title="Create a File Download Task"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.dialogs.code.*"
-	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*">
+	xmlns:FileDownload="net.poweru.generated.model.FileDownload.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -15,7 +16,7 @@
 			<FileDownload:NameInput id="nameInput" width="100%"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description" required="true" width="100%">
-			<mx:TextArea id="description" width="100%"/>
+			<widgets:ResizingTextArea minWidth="300" id="description" width="100%"/>
 		</mx:FormItem>
 		<mx:FormItem label="File" required="true" textAlign="left" >
 			<mx:HBox>

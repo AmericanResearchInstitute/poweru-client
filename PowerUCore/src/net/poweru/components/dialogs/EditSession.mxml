@@ -6,7 +6,8 @@
 	xmlns:Session="net.poweru.generated.model.Session.*"
 	xmlns:yahoo="http://www.yahoo.com/astra/2006/mxml"
 	xmlns:parts="net.poweru.components.parts.*"
-	xmlns:validators="net.poweru.components.validators.*">
+	xmlns:validators="net.poweru.components.validators.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -38,7 +39,7 @@
 			<Session:UrlInput id="urlInput"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description">
-			<mx:TextArea id="descriptionInput" />
+			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" />
 		</mx:FormItem>
 		<mx:FormItem label="Roles">
 			<mx:DataGrid id="roles">

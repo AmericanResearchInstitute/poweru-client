@@ -3,10 +3,11 @@
 	width="100%"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.widgets.code.*"
-	xmlns:Address="net.poweru.generated.model.Address.*">
+	xmlns:Address="net.poweru.generated.model.Address.*"
+	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:HBox width="100%">
 		<mx:Label text="Street:"/>
-		<mx:TextArea id="labelInput" width="100%" maxChars="255"/>
+		<widgets:ResizingTextArea minWidth="300" id="labelInput" width="100%" maxChars="255"/>
 	</mx:HBox>
 	<mx:HBox width="100%">
 		<mx:Label text="City:"/>
