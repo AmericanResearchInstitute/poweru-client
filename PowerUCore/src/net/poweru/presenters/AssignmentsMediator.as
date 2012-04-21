@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.utils.InputCollector;

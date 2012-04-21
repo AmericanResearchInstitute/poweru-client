@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateEventFromTemplateDialog;
@@ -31,10 +30,14 @@ package net.poweru.presenters
 		public function CreateEventFromTemplateMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventProxy);
-			
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			eventTemplateProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventTemplateProxy) as EventTemplateProxy;
-			sessionTemplateProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionTemplateProxy) as SessionTemplateProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			eventTemplateProxy = getProxy(EventTemplateProxy) as EventTemplateProxy;
+			sessionTemplateProxy = getProxy(SessionTemplateProxy) as SessionTemplateProxy;
 		}
 		
 		protected function get createEventFromTemplateDialog():ICreateEventFromTemplateDialog

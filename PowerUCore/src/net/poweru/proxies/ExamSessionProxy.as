@@ -21,6 +21,11 @@ package net.poweru.proxies
 		public function ExamSessionProxy()
 		{
 			super(NAME, ExamSessionManagerDelegate, NotificationNames.UPDATEEXAMSESSIONS, FIELDS, 'ExamSession', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['assignment', 'fetch_all', 'resume'];
 		}
 		

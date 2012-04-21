@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IEvents;
@@ -26,8 +25,13 @@ package net.poweru.presenters
 		public function EventsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventProxy);
-			sessionProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionProxy) as SessionProxy;
-			sessionUserRoleRequirementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionUserRoleRequirementProxy) as SessionUserRoleRequirementProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			sessionProxy = getProxy(SessionProxy) as SessionProxy;
+			sessionUserRoleRequirementProxy = getProxy(SessionUserRoleRequirementProxy) as SessionUserRoleRequirementProxy;
 		}
 		
 		protected function get events():IEvents

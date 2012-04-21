@@ -7,7 +7,6 @@ package net.poweru.proxies
 	
 	import mx.rpc.events.ResultEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.VideoManagerDelegate;
 	import net.poweru.model.DataSet;
@@ -25,7 +24,12 @@ package net.poweru.proxies
 		public function VideoProxy()
 		{
 			super(NAME, VideoManagerDelegate, NotificationNames.UPDATEVIDEOS, FIELDS);
-			videoCateogoryProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(VideoCategoryProxy) as VideoCategoryProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			videoCateogoryProxy = getProxy(VideoCategoryProxy) as VideoCategoryProxy;
 		}
 		
 		public function adminVideosView():void

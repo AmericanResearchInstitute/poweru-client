@@ -1,14 +1,8 @@
 package net.poweru.proxies
 {
-	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
-	
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.OrganizationManagerDelegate;
-	import net.poweru.model.DataSet;
-	import net.poweru.model.HierarchicalDataSet;
-	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 
@@ -20,6 +14,11 @@ package net.poweru.proxies
 		public function OrganizationProxy()
 		{
 			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEORGANIZATIONS, FIELDS);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name'];
 			createOptionalArgNames = ['parent'];
 		}

@@ -8,6 +8,11 @@ package net.poweru.delegates
 		public function SessionUserRoleRequirementManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'SessionUserRoleRequirementManager');
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'surr_view';
 			mangleMap = {
 				'session' : mangleForeignKey,

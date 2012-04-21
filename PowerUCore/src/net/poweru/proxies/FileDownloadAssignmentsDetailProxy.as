@@ -12,6 +12,11 @@ package net.poweru.proxies
 		public function FileDownloadAssignmentsDetailProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADASSIGNMENTSDETAIL, [], 'Assignment', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'detailed_file_download_view';
 		}
 	}

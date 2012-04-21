@@ -1,7 +1,5 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;

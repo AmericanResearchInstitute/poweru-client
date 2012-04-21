@@ -9,10 +9,8 @@ package net.poweru.components.dialogs.code
 	import mx.controls.ComboBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextInput;
-	import mx.core.IFlexDisplayObject;
 	import mx.events.FlexEvent;
 	import mx.managers.PopUpManager;
-	import mx.validators.Validator;
 	
 	import net.poweru.Constants;
 	import net.poweru.Places;
@@ -21,7 +19,6 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.parts.AddOrganization;
 	import net.poweru.components.widgets.TitleComboBox;
-	import net.poweru.components.widgets.code.IMultipleSelect;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;
@@ -65,7 +62,6 @@ package net.poweru.components.dialogs.code
 		public function EditUserCode()
 		{
 			super();
-			orgDataSet = new DataSet();
 		}
 		
 		// args[0] is all organizations
@@ -148,6 +144,7 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			orgDataSet = new DataSet();
 			statusInput.dataProvider = new DataSet();
 			groupsDataSet = SortedDataSetFactory.singleFieldSort('name');
 			credentialsDataSet = SortedDataSetFactory.singleFieldSort('credential_type_name');

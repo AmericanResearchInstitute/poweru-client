@@ -18,6 +18,11 @@ package net.poweru.proxies
 		public function CurriculumProxy()
 		{
 			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, FIELDS);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name'];
 			createOptionalArgNames = ['description', 'organization'];
 		}

@@ -2,9 +2,7 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.events.ViewEvent;
 	import net.poweru.proxies.RoomProxy;
 	import net.poweru.utils.InputCollector;
 	

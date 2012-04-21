@@ -1,12 +1,10 @@
 package net.poweru.proxies
 {
 	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
 	
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.OrganizationManagerDelegate;
-	import net.poweru.model.HierarchicalDataSet;
 	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
@@ -19,6 +17,11 @@ package net.poweru.proxies
 		public function AdminOrganizationViewProxy()
 		{
 			super(NAME, OrganizationManagerDelegate, NotificationNames.UPDATEADMINORGANIZATIONSVIEW, FIELDS);
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'admin_org_view';
 		}
 		

@@ -4,7 +4,6 @@ package net.poweru.presenters
 	
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.placemanager.InitialDataProxy;
@@ -22,7 +21,12 @@ package net.poweru.presenters
 		public function BaseReportDialogMediator(mediatorName:String, viewComponent:Object, primaryProxyClass:Class=null, placeName:String=null)
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init(placeName);
+		}
+		
+		private function init(placeName:String):void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 			
 			/*	Must wait for data and creation to be complete before passing
 				data into the dialog */

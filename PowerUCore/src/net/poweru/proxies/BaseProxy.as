@@ -65,18 +65,17 @@ package net.poweru.proxies
 		*/
 		public function BaseProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, fields:Array, modelName:String = null, choiceFields:Array = null)
 		{
-			this.primaryDelegateClass = primaryDelegateClass;
 			super(proxyName, new DataSet());
-			
+			init(proxyName, primaryDelegateClass, updatedDataNotification, fields, modelName, choiceFields);
+		}
+		
+		private function init(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, fields:Array, modelName:String = null, choiceFields:Array = null):void
+		{
+			this.primaryDelegateClass = primaryDelegateClass;
 			this.updatedDataNotification = updatedDataNotification;
 			this.modelName = modelName;
 			this.fields = fields;
-			
-			init(choiceFields);
-		}
-		
-		protected function init(choiceFields:Array = null):void
-		{
+
 			loginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			browserServicesProxy = getProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			inputCollector = new InputCollector(choiceFields);
@@ -382,9 +381,9 @@ package net.poweru.proxies
 			sendNotification(NotificationNames.BATCHCREATECOMPLETE, {'success':successItems.toArray(), 'error':errorItems.toArray()}, proxyName);
 		}
 		
-		protected function getProxy(type:Class):BaseProxy
+		protected function getProxy(type:Class):IProxy
 		{
-			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as BaseProxy;
+			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as IProxy;
 		}
 		
 		

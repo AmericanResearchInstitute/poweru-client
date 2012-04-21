@@ -1,11 +1,8 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	import mx.utils.ObjectUtil;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IOrganizations;
@@ -29,7 +26,12 @@ package net.poweru.presenters
 		public function OrganizationsMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, AdminOrganizationViewProxy);
-			userOrgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(UserOrgRoleProxy) as UserOrgRoleProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			userOrgRoleProxy = getProxy(UserOrgRoleProxy) as UserOrgRoleProxy;
 		}
 		
 		protected function get organizations():IOrganizations

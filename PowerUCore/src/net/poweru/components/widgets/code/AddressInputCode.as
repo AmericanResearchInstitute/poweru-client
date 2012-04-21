@@ -2,7 +2,6 @@ package net.poweru.components.widgets.code
 {
 	import mx.containers.VBox;
 	import mx.controls.TextArea;
-	import mx.core.mx_internal;
 	import mx.events.FlexEvent;
 	import mx.validators.StringValidator;
 	

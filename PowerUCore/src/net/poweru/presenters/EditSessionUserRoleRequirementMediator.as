@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -26,8 +25,13 @@ package net.poweru.presenters
 		public function EditSessionUserRoleRequirementMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionUserRoleRequirementProxy, Places.EDITSESSIONUSERROLEREQUIREMENT);
-			sessionUserRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionUserRoleProxy) as SessionUserRoleProxy;
-			taskFeeProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(TaskFeeProxy) as TaskFeeProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			sessionUserRoleProxy = getProxy(SessionUserRoleProxy) as SessionUserRoleProxy;
+			taskFeeProxy = getProxy(TaskFeeProxy) as TaskFeeProxy;
 		}
 		
 		override public function listNotificationInterests():Array

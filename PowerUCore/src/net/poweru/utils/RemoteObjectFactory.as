@@ -1,12 +1,12 @@
 package net.poweru.utils
 {
-	import net.poweru.ApplicationFacade;
-	import net.poweru.proxies.BrowserServicesProxy;
-	
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.AMFChannel;
 	import mx.messaging.channels.SecureAMFChannel;
 	import mx.rpc.remoting.RemoteObject;
+	
+	import net.poweru.ApplicationFacade;
+	import net.poweru.proxies.BrowserServicesProxy;
 	
 	public class RemoteObjectFactory
 	{
@@ -18,7 +18,7 @@ package net.poweru.utils
 			init();
 		}
 		
-		protected function init():void
+		private function init():void
 		{
 			channelSet = new ChannelSet();
 			var browserServicesProxy:BrowserServicesProxy = ApplicationFacade.getInstance().retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;

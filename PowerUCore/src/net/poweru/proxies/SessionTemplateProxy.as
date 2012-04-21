@@ -2,7 +2,6 @@ package net.poweru.proxies
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.SessionTemplateManagerDelegate;
-	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -14,6 +13,11 @@ package net.poweru.proxies
 		public function SessionTemplateProxy()
 		{
 			super(NAME, SessionTemplateManagerDelegate, NotificationNames.UPDATESESSIONTEMPLATES, FIELDS, 'SessionTemplate');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['shortname', 'fullname', 'version', 'description', 'price', 'lead_time', 'active', 'modality'];
 			createOptionalArgNames = ['event_template', 'sequence'];
 		}

@@ -13,6 +13,11 @@ package net.poweru.proxies
 		public function SessionUserRoleProxy()
 		{
 			super(NAME, SessionUserRoleManagerDelegate, NotificationNames.UPDATESESSIONUSERROLES, FIELDS, 'SessionUserRole');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name'];
 		}
 	}

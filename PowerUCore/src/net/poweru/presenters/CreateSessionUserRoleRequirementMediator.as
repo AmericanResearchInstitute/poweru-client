@@ -2,12 +2,10 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateSessionUserRoleRequirementDialog;
 	import net.poweru.placemanager.InitialDataProxy;
-	import net.poweru.placemanager.PlaceNotFound;
 	import net.poweru.proxies.SessionUserRoleProxy;
 	import net.poweru.proxies.SessionUserRoleRequirementProxy;
 	import net.poweru.utils.InputCollector;
@@ -26,9 +24,13 @@ package net.poweru.presenters
 		public function CreateSessionUserRoleRequirementMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionUserRoleRequirementProxy);
-			
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			sessionUserRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionUserRoleProxy) as SessionUserRoleProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			sessionUserRoleProxy = getProxy(SessionUserRoleProxy) as SessionUserRoleProxy;
 		}
 		
 		override public function listNotificationInterests():Array

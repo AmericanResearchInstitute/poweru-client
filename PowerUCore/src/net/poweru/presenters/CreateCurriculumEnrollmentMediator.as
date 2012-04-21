@@ -1,12 +1,8 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateCurriculumEnrollment;
-	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.proxies.CurriculumEnrollmentProxy;
@@ -24,8 +20,13 @@ package net.poweru.presenters
 		public function CreateCurriculumEnrollmentMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, CurriculumEnrollmentProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			curriculumProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumProxy) as CurriculumProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			curriculumProxy = getProxy(CurriculumProxy) as CurriculumProxy;
 		}
 		
 		override public function listNotificationInterests():Array

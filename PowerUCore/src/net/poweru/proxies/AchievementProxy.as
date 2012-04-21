@@ -13,6 +13,11 @@ package net.poweru.proxies
 		public function AchievementProxy()
 		{
 			super(NAME, AchievementManagerDelegate, NotificationNames.UPDATEACHIEVEMENTS, FIELDS, 'Achievement', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name', 'description', 'component_achievements'];
 		}
 	}

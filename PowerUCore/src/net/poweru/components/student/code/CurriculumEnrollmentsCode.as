@@ -2,16 +2,13 @@ package net.poweru.components.student.code
 {
 	import flash.events.Event;
 	
-	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.DataGrid;
-	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.code.BaseComponent;
 	import net.poweru.components.student.interfaces.ICurriculumEnrollments;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class CurriculumEnrollmentsCode extends BaseComponent implements ICurriculumEnrollments

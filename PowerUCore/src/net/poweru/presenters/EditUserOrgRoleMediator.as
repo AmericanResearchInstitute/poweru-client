@@ -2,9 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import mx.collections.ArrayCollection;
-	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.ChooserResult;
@@ -26,7 +23,12 @@ package net.poweru.presenters
 		public function EditUserOrgRoleMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, UserOrgRoleProxy, Places.EDITUSERORGROLE);
-			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			orgRoleProxy = getProxy(OrgRoleProxy) as OrgRoleProxy;
 		}
 		
 		override public function listNotificationInterests():Array

@@ -1,13 +1,13 @@
 package net.poweru.components.widgets.code
 {
-	import net.poweru.model.DataSet;
-	
 	import flash.events.Event;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.DataGrid;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.validators.NumberValidator;
+	
+	import net.poweru.model.DataSet;
 
 	public class MultipleSelectDataGridCode extends DataGrid implements IMultipleSelect
 	{
@@ -22,6 +22,11 @@ package net.poweru.components.widgets.code
 		public function MultipleSelectDataGridCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			dataProvider = new DataSet();
 			_selectedStuff = new DataSet();
 		}

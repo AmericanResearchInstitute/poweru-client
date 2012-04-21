@@ -18,6 +18,11 @@ package net.poweru.components.parts
 		public function PlaceContainer()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			percentHeight = 100;
 			percentWidth = 100;

@@ -10,6 +10,11 @@ package net.poweru.utils
 		public function NestedSortField(name:String=null, caseInsensitive:Boolean=false, descending:Boolean=false, numeric:Object=null)
 		{
 			super(name, caseInsensitive, descending, numeric);
+			init(name, caseInsensitive, descending, numeric);
+		}
+		
+		private function init(name:String=null, caseInsensitive:Boolean=false, descending:Boolean=false, numeric:Object=null):void
+		{
 			namePieces = name.split('.');
 			pureCompareFunction = new SortField(null, caseInsensitive, descending, numeric).compareFunction;
 			compareFunction = nestedCompareFunction;

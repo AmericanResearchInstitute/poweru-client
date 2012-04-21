@@ -2,13 +2,11 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooseRoom;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
-	import net.poweru.placemanager.InitialDataProxy;
 	import net.poweru.proxies.RoomProxy;
 	import net.poweru.proxies.VenueProxy;
 	import net.poweru.utils.InputCollector;
@@ -26,7 +24,12 @@ package net.poweru.presenters
 		public function ChooseRoomMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, Places.CHOOSEROOM, NotificationNames.UPDATEVENUES, VenueProxy);
-			roomProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RoomProxy) as RoomProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			roomProxy = getProxy(RoomProxy) as RoomProxy;
 		}
 		
 		protected function get chooseRoom():IChooseRoom

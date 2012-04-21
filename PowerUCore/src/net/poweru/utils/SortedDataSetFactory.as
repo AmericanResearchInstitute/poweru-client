@@ -2,7 +2,6 @@ package net.poweru.utils
 {
 	import com.adobe.utils.DateUtil;
 	
-	import mx.collections.ArrayCollection;
 	import mx.collections.Sort;
 	
 	import net.poweru.model.DataSet;

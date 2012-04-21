@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IEventTemplates;
@@ -23,7 +22,12 @@ package net.poweru.presenters
 		public function EventTemplatesMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, EventTemplateProxy);
-			sessionTemplateProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionTemplateProxy) as SessionTemplateProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			sessionTemplateProxy = getProxy(SessionTemplateProxy) as SessionTemplateProxy;
 		}
 		
 		protected function get eventTemplates():IEventTemplates

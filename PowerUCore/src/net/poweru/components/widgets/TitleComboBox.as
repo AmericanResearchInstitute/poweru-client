@@ -1,10 +1,10 @@
 package net.poweru.components.widgets
 {
-	import net.poweru.Constants;
-	
 	import mx.collections.ArrayCollection;
 	import mx.controls.ComboBox;
 	import mx.utils.ObjectUtil;
+	
+	import net.poweru.Constants;
 
 	public class TitleComboBox extends ComboBox
 	{
@@ -13,6 +13,11 @@ package net.poweru.components.widgets
 		public function TitleComboBox()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			dataProvider = new ArrayCollection(ObjectUtil.copy(Constants.HONORIFICS) as Array);
 			(dataProvider as ArrayCollection).addItemAt(NONE, 0);
 			editable = true;

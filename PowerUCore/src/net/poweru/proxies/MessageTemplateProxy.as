@@ -12,6 +12,11 @@ package net.poweru.proxies
 		public function MessageTemplateProxy()
 		{
 			super(NAME, MessageTemplateManagerDelegate, NotificationNames.UPDATEMESSAGETEMPLATES, [], 'MessageTemplate', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'detail_view';
 		}
 	}

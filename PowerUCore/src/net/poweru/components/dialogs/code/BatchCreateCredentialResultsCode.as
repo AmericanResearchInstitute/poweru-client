@@ -1,7 +1,5 @@
 package net.poweru.components.dialogs.code
 {
-	import mx.collections.ArrayCollection;
-	
 	import net.poweru.components.dialogs.BaseDialog;
 	import net.poweru.components.interfaces.IObjectPopulatedComponent;
 	import net.poweru.model.DataSet;
@@ -18,6 +16,11 @@ package net.poweru.components.dialogs.code
 		public function BatchCreateCredentialResultsCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			successResults = SortedDataSetFactory.singleFieldSort('user.last_name');
 			errorResults = SortedDataSetFactory.singleFieldSort('user.last_name');
 		}

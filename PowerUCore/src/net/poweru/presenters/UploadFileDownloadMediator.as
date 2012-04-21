@@ -6,7 +6,6 @@ package net.poweru.presenters
 	
 	import mx.controls.Alert;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IUploadFileDownload;
@@ -28,6 +27,11 @@ package net.poweru.presenters
 		public function UploadFileDownloadMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadProxy);
+			init();
+		}
+		
+		private function init():void
+		{
 			browserServicesProxy = getProxy(BrowserServicesProxy) as BrowserServicesProxy;
 			taskProxy = getProxy(TaskProxy) as TaskProxy;
 		}

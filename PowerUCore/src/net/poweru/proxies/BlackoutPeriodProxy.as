@@ -1,7 +1,5 @@
 package net.poweru.proxies
 {
-	import mx.rpc.events.ResultEvent;
-	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.BlackoutPeriodManagerDelegate;
 	
@@ -15,6 +13,11 @@ package net.poweru.proxies
 		public function BlackoutPeriodProxy()
 		{
 			super(NAME, BlackoutPeriodManagerDelegate, NotificationNames.UPDATEBLACKOUTPERIODS, FIELDS, 'venue', 'BlackoutPeriod');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['venue', 'start', 'end', 'description'];
 			dateTimeFields = ['start', 'end'];
 		}

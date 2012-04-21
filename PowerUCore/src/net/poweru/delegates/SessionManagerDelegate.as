@@ -15,6 +15,11 @@ package net.poweru.delegates
 		public function SessionManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'SessionManager', [], SPECIALUPDATEHANDLINGINFO);
+			init();
+		}
+		
+		private function init():void
+		{
 			mangleMap = {
 				'start' : mangleDate,
 				'end' : mangleDate

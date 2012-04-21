@@ -1,7 +1,6 @@
 package net.poweru.components.parts.code
 {
 	import mx.containers.HBox;
-	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;

@@ -19,20 +19,17 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			
 			var taskPK:Number = initialDataProxy.getInitialData(Places.VIEWFILEDOWNLOADASSIGNMENTS) as Number;
 			primaryProxy.getFiltered({'exact' : {'task' : taskPK}});
 		}
 		
 		override public function listNotificationInterests():Array
 		{
-			var ret:Array = super.listNotificationInterests();
-			ret.push(
+			return super.listNotificationInterests().concat(
 				NotificationNames.UPDATEFILEDOWNLOADASSIGNMENTSDETAIL,
 				NotificationNames.LOGOUT,
 				NotificationNames.DIALOGPRESENTED
 			);
-			return ret;
 		}
 		
 		override public function handleNotification(notification:INotification):void

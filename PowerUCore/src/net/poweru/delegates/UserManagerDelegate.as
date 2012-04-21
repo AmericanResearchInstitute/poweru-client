@@ -23,6 +23,11 @@ package net.poweru.delegates
 		public function UserManagerDelegate(responder:IResponder)
 		{
 			super(responder, 'UserManager', ['default_username_and_domain'], SPECIALUPDATEHANDLINGINFO);
+			init();
+		}
+		
+		private function init():void
+		{
 			mangleMap = {'organizations' : mangleOrganizations};
 		}
 		

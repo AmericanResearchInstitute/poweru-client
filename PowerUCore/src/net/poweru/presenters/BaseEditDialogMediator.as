@@ -20,8 +20,12 @@ package net.poweru.presenters
 		public function BaseEditDialogMediator(mediatorName:String, viewComponent:Object, primaryProxyClass:Class, placeName:String)
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);
-			initialDataProxy = facade.retrieveProxy(InitialDataProxy.NAME) as InitialDataProxy;
-			
+			init(placeName);
+		}
+		
+		private function init(placeName:String):void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 			this.placeName = placeName;
 		}
 		

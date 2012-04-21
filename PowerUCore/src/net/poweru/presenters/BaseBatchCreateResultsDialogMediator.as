@@ -4,7 +4,6 @@ package net.poweru.presenters
 	
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.placemanager.InitialDataProxy;
@@ -25,7 +24,12 @@ package net.poweru.presenters
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);
 			this.placeName = placeName;
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 			inputCollector = new InputCollector(['creationComplete', 'data']);
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 		}

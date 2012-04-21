@@ -55,6 +55,11 @@ package net.poweru.proxies
 		public function LoginProxy(data:Object=null)
 		{
 			super(NAME, data);
+			init();
+		}
+		
+		private function init():void
+		{
 			_userGroups = new DataSet();
 			browserServicesProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BrowserServicesProxy) as BrowserServicesProxy;
 		}

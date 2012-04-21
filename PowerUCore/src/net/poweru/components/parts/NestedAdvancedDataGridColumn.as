@@ -15,6 +15,10 @@ package net.poweru.components.parts
 		public function NestedAdvancedDataGridColumn(columnName:String=null)
 		{
 			super(columnName);
+			init();
+		}
+		private function init():void
+		{
 			sortCompareFunction = nestedSortFunction;
 			// We can't grab the internal one from this class, because my other
 			// meddling has already confused it.

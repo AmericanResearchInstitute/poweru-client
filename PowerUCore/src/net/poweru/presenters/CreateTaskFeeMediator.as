@@ -1,6 +1,5 @@
 package net.poweru.presenters
 {
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateTaskFee;
@@ -18,7 +17,12 @@ package net.poweru.presenters
 		public function CreateTaskFeeMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, TaskFeeProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		override public function listNotificationInterests():Array

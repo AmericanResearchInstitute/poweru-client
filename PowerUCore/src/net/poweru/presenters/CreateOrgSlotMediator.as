@@ -29,9 +29,14 @@ package net.poweru.presenters
 		public function CreateOrgSlotMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, UserOrgRoleProxy);
-			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
-			organizationProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrganizationProxy) as OrganizationProxy;
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			orgRoleProxy = getProxy(OrgRoleProxy) as OrgRoleProxy;
+			organizationProxy = getProxy(OrganizationProxy) as OrganizationProxy;
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get createOrgSlot():ICreateOrgSlot

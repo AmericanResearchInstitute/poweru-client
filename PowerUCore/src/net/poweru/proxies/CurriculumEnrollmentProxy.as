@@ -15,6 +15,11 @@ package net.poweru.proxies
 		public function CurriculumEnrollmentProxy()
 		{
 			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTS, FIELDS);
+			init();
+		}
+		
+		private function init():void
+		{
 			dateTimeFields = ['start', 'end'];
 			createArgNamesInOrder = ['curriculum', 'start', 'end'];
 			createOptionalArgNames = ['description', 'name', 'users'];

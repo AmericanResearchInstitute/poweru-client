@@ -8,6 +8,11 @@ package net.poweru.components.validators
 		public function RoomCapacityValidator()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			allowNegative = false;
 			minValue = 1;
 			required = true;

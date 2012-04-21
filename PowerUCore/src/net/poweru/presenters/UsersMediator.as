@@ -5,7 +5,6 @@ package net.poweru.presenters
 	import mx.events.FlexEvent;
 	import mx.utils.ObjectUtil;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -41,12 +40,17 @@ package net.poweru.presenters
 		public function UsersMediator(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent, AdminUsersViewProxy);
-			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
-			curriculumEnrollmentUserDetailProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CurriculumEnrollmentUserDetailProxy) as CurriculumEnrollmentUserDetailProxy;
-			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
-			assignmentProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentProxy) as AssignmentProxy;
-			achievementProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AchievementProxy) as AchievementProxy;
-			credentialProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(CredentialProxy) as CredentialProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			orgRoleProxy = getProxy(OrgRoleProxy) as OrgRoleProxy;
+			curriculumEnrollmentUserDetailProxy = getProxy(CurriculumEnrollmentUserDetailProxy) as CurriculumEnrollmentUserDetailProxy;
+			eventProxy = getProxy(EventProxy) as EventProxy;
+			assignmentProxy = getProxy(AssignmentProxy) as AssignmentProxy;
+			achievementProxy = getProxy(AchievementProxy) as AchievementProxy;
+			credentialProxy = getProxy(CredentialProxy) as CredentialProxy;
 		}
 		
 		protected function get adminUsersViewProxy():AdminUsersViewProxy

@@ -12,6 +12,11 @@ package net.poweru.proxies
 		public function ExamAssignmentsForUserProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEEXAMASSIGNMENTSFORUSER, [], 'Exam');
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'exam_view';
 		}
 	}

@@ -1,10 +1,10 @@
 package net.poweru.proxies
 {
+	import mx.rpc.events.ResultEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.OrgEmailDomainManagerDelegate;
 	import net.poweru.utils.PowerUResponder;
-
-	import mx.rpc.events.ResultEvent;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 
@@ -15,6 +15,11 @@ package net.poweru.proxies
 		public function OrgEmailDomainProxy()
 		{
 			super(NAME, OrgEmailDomainManagerDelegate, NotificationNames.UPDATEORGEMAILDOMAINS, []);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['email_domain', 'organization', 'role'];
 		}
 

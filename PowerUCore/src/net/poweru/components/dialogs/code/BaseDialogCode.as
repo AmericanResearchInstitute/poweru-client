@@ -12,6 +12,11 @@ package net.poweru.components.dialogs.code
 		public function BaseDialogCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			addEventListener(ResizeEvent.RESIZE, onResize);
 			addEventListener(CloseEvent.CLOSE, onClose);
 		}

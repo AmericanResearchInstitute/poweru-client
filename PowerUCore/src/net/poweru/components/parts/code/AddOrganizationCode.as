@@ -1,15 +1,10 @@
 package net.poweru.components.parts.code
 {
-	import flash.events.Event;
-	
 	import mx.containers.HBox;
 	import mx.controls.Button;
-	import mx.controls.ComboBox;
 	
 	import net.poweru.Places;
-	import net.poweru.components.dialogs.choosers.ChooseOrganization;
 	import net.poweru.model.ChooserResult;
-	import net.poweru.model.DataSet;
 	import net.poweru.utils.ChooserRequestTracker;
 
 	public class AddOrganizationCode extends HBox

@@ -1,6 +1,5 @@
 package net.poweru.presenters
 {
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateBlackoutPeriod;
@@ -21,8 +20,13 @@ package net.poweru.presenters
 		public function CreateBlackoutPeriodMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, BlackoutPeriodProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			venueProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(VenueProxy) as VenueProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			venueProxy = getProxy(VenueProxy) as VenueProxy;
 		}
 		
 		override public function listNotificationInterests():Array

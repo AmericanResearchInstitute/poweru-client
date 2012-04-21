@@ -1,9 +1,7 @@
 package net.poweru.presenters
 {
 	import mx.controls.Alert;
-	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateVenue;
@@ -23,7 +21,12 @@ package net.poweru.presenters
 		public function CreateVenueMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, VenueProxy);
-			regionProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RegionProxy) as RegionProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			regionProxy = getProxy(RegionProxy) as RegionProxy;
 		}
 		
 		protected function get createVenue():ICreateVenue

@@ -21,6 +21,11 @@ package net.poweru.proxies
 		public function BaseCollectionCachingProxy(proxyName:String, primaryDelegateClass:Class, updatedDataNotification:String, fields:Array, cacheKeyName:String, modelName:String=null, choiceFields:Array=null)
 		{
 			super(proxyName, primaryDelegateClass, updatedDataNotification, fields, modelName, choiceFields);
+			init(cacheKeyName);
+		}
+		
+		private function init(cacheKeyName:String):void
+		{
 			this.cacheKeyName = cacheKeyName;
 			resultCache = {};
 		}

@@ -16,6 +16,11 @@ package net.poweru.proxies
 		public function AdminUsersViewProxy()
 		{
 			super(NAME, UserManagerDelegate, NotificationNames.UPDATEADMINUSERSVIEW, [], 'User', ['status']);
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'admin_users_view';
 			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
 			createOptionalArgNames = ['organizations'];

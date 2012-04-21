@@ -1,7 +1,6 @@
 package net.poweru.proxies
 {
 	import mx.rpc.events.ResultEvent;
-	import mx.utils.UIDUtil;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.CredentialManagerDelegate;
@@ -18,6 +17,11 @@ package net.poweru.proxies
 		public function CredentialProxy()
 		{
 			super(NAME, CredentialManagerDelegate, NotificationNames.UPDATECREDENTIALS, FIELDS, 'Credential');
+			init();
+		}
+		
+		private function init():void
+		{
 			userProxy = getProxy(AdminUsersViewProxy) as AdminUsersViewProxy;
 			createArgNamesInOrder = ['user', 'credential_type'];
 			createOptionalArgNames = ['date_expires', 'status'];

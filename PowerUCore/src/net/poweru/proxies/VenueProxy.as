@@ -16,6 +16,11 @@ package net.poweru.proxies
 		public function VenueProxy()
 		{
 			super(NAME, VenueManagerDelegate, NotificationNames.UPDATEVENUES, FIELDS, 'Venue');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name', 'phone', 'region'];
 			createOptionalArgNames = ['address', 'contact', 'hours_of_operation'];
 		}

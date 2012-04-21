@@ -26,6 +26,11 @@ package net.poweru.presenters
 		public function EditUserMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, AdminUsersViewProxy, Places.EDITUSER);
+			init();
+		}
+		
+		private function init():void
+		{
 			userProxy = getProxy(UserProxy) as UserProxy;
 			credentialProxy = getProxy(CredentialProxy) as CredentialProxy;
 		}

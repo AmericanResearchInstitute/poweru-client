@@ -18,6 +18,11 @@ package net.poweru.proxies
 		public function CredentialTypeProxy()
 		{
 			super(NAME, CredentialTypeManagerDelegate, NotificationNames.UPDATECREDENTIALTYPES, FIELDS, 'CredentialType', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name', 'description'];
 			createOptionalArgNames = ['duration'];
 			getFilteredMethodName = 'achievement_detail_view';

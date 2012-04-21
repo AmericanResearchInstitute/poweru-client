@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
@@ -26,8 +25,13 @@ package net.poweru.presenters
 		public function EditOrganizationMediator(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent, AdminOrganizationViewProxy, Places.EDITORGANIZATION);
-			orgEmailDomainProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgEmailDomainProxy) as OrgEmailDomainProxy;
-			orgRoleProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrgRoleProxy) as OrgRoleProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			orgEmailDomainProxy = getProxy(OrgEmailDomainProxy) as OrgEmailDomainProxy;
+			orgRoleProxy = getProxy(OrgRoleProxy) as OrgRoleProxy;
 			inputCollector = new InputCollector([]);
 		}
 		

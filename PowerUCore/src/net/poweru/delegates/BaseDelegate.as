@@ -66,7 +66,7 @@ package net.poweru.delegates
 			init(responder, managerName, updateFieldsToIgnore, specialUpdateHandlingInfo);
 		}
 		
-		protected function init(responder:IResponder, managerName:String, updateFieldsToIgnore:Array=null, specialUpdateHandlingInfo:Object=null):void
+		private function init(responder:IResponder, managerName:String, updateFieldsToIgnore:Array=null, specialUpdateHandlingInfo:Object=null):void
 		{
 			this.responder = responder;
 			this.updateFieldsToIgnore = updateFieldsToIgnore ? updateFieldsToIgnore : [];

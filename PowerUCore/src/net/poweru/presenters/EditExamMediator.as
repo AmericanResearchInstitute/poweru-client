@@ -1,8 +1,5 @@
 package net.poweru.presenters
 {
-	import mx.core.mx_internal;
-	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -22,7 +19,12 @@ package net.poweru.presenters
 		public function EditExamMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, ExamProxy, Places.EDITEXAM);
-			taskFeeProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(TaskFeeProxy) as TaskFeeProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			taskFeeProxy = getProxy(TaskFeeProxy) as TaskFeeProxy;
 		}
 		
 		override public function listNotificationInterests():Array

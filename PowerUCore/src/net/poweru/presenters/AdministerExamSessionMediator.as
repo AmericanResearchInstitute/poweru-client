@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
@@ -21,7 +20,12 @@ package net.poweru.presenters
 		public function AdministerExamSessionMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, ExamSessionProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get examSessionProxy():ExamSessionProxy

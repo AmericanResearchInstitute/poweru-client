@@ -1,6 +1,5 @@
 package net.poweru.presenters
 {
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.ICreateSessionTemplate;
@@ -21,8 +20,13 @@ package net.poweru.presenters
 		public function CreateSessionTemplateMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionTemplateProxy);
-			eventTemplateProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventTemplateProxy) as EventTemplateProxy;
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			eventTemplateProxy = getProxy(EventTemplateProxy) as EventTemplateProxy;
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get createSTDialog():ICreateSessionTemplate

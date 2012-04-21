@@ -7,6 +7,11 @@ package net.poweru.model
 		
 		public function ChooserResult(requestID:String, value:Object)
 		{
+			init(requestID, value);
+		}
+		
+		private function init(requestID:String, value:Object):void
+		{
 			this.value = value;
 			this.requestID = requestID;
 		}

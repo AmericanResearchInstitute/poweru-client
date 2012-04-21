@@ -7,7 +7,6 @@ package net.poweru.presenters.student
 	import net.poweru.events.ViewEvent;
 	import net.poweru.presenters.BaseMediator;
 	import net.poweru.proxies.FileDownloadAssignmentsForUserProxy;
-	import net.poweru.proxies.FileDownloadProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;

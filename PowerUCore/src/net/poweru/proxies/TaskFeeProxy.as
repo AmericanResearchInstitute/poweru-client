@@ -15,6 +15,11 @@ package net.poweru.proxies
 		public function TaskFeeProxy()
 		{
 			super(NAME, TaskFeeManagerDelegate, updatedDataNotification, FIELDS, 'TaskFee');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['sku', 'name', 'description', 'price', 'task'];
 		}
 		

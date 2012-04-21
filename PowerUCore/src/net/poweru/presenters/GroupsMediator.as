@@ -1,13 +1,10 @@
 package net.poweru.presenters
 {
-	import flash.events.Event;
-	
 	import mx.events.FlexEvent;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
 	import net.poweru.proxies.GroupProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;

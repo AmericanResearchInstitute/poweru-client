@@ -1,7 +1,6 @@
 package net.poweru.components.dialogs.code
 {
 	import com.yahoo.astra.mx.controls.TimeInput;
-	import com.yahoo.astra.mx.core.yahoo_mx_internal;
 	
 	import flash.events.Event;
 	

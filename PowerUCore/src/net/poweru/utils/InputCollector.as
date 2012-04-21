@@ -18,6 +18,11 @@ package net.poweru.utils
 		public function InputCollector(requirements:Array)
 		{
 			super();
+			init(requirements);
+		}
+		
+		private function init(requirements:Array):void
+		{
 			_object = {};
 			this.requirements = requirements;
 		}

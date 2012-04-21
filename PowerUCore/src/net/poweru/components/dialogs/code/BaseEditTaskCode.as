@@ -44,7 +44,7 @@ package net.poweru.components.dialogs.code
 			init();
 		}
 		
-		protected function init():void
+		private function init():void
 		{
 			achievementDataSet = SortedDataSetFactory.singleFieldSort('name');
 			achievementDataSet.addEventListener(CollectionEvent.COLLECTION_CHANGE, onControlChanged);

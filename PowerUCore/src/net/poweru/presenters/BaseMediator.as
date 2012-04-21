@@ -15,6 +15,7 @@ package net.poweru.presenters
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	public class BaseMediator extends Mediator implements IMediator
@@ -28,7 +29,7 @@ package net.poweru.presenters
 			init(primaryProxyClass);
 		}
 		
-		protected function init(primaryProxyClass:Class=null):void
+		private function init(primaryProxyClass:Class=null):void
 		{
 			loginProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(LoginProxy) as LoginProxy;
 			if (primaryProxyClass)
@@ -100,9 +101,9 @@ package net.poweru.presenters
 			addEventListeners();
 		}
 		
-		protected function getProxy(type:Class):BaseProxy
+		protected function getProxy(type:Class):IProxy
 		{
-			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as BaseProxy;
+			return (facade as ApplicationFacade).retrieveOrRegisterProxy(type) as IProxy;
 		}
 		
 		protected function onShowDialog(event:ViewEvent):void

@@ -21,8 +21,13 @@ package net.poweru.presenters
 		public function CreateSessionMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			eventProxy = getProxy(EventProxy) as EventProxy;
 		}
 		
 		override public function listNotificationInterests():Array

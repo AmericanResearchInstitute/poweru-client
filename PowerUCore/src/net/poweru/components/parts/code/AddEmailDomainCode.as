@@ -1,14 +1,12 @@
 package net.poweru.components.parts.code
 {
-	import net.poweru.model.DataSet;
-
-	import mx.binding.utils.BindingUtils;
-	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.TextInput;
 	import mx.events.StateChangeEvent;
+	
+	import net.poweru.model.DataSet;
 
 	public class AddEmailDomainCode extends HBox
 	{
@@ -24,6 +22,11 @@ package net.poweru.components.parts.code
 		public function AddEmailDomainCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			orgRoleData = new DataSet();
 			orgRoleData.filterFunction = filterRoles;
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onCurrentStateChange);

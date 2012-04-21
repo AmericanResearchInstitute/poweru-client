@@ -3,24 +3,19 @@ package net.poweru.components.dialogs.code
 	import com.yahoo.astra.mx.controls.TimeInput;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import mx.containers.Form;
-	import mx.containers.FormItem;
 	import mx.controls.DataGrid;
 	import mx.controls.DateField;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
-	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
-	import mx.managers.IFocusManagerComponent;
 	import mx.validators.DateValidator;
 	import mx.validators.NumberValidator;
 	
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
-	import net.poweru.components.parts.AddSessionUserRole;
 	import net.poweru.components.validators.URLValidator;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;

@@ -2,7 +2,6 @@ package net.poweru.presenters.student
 {
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.student.interfaces.ICurriculumEnrollments;
@@ -24,7 +23,12 @@ package net.poweru.presenters.student
 		public function CurriculumEnrollmentMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, CurriculumEnrollmentProxy);
-			assignmentsForUserProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(AssignmentsForUserProxy) as AssignmentsForUserProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			assignmentsForUserProxy = getProxy(AssignmentsForUserProxy) as AssignmentsForUserProxy;
 		}
 		
 		protected function get curriculumEnrollments():ICurriculumEnrollments

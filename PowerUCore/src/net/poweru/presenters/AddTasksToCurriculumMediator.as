@@ -23,7 +23,12 @@ package net.poweru.presenters
 		public function AddTasksToCurriculumMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, CurriculumProxy, Places.ADDTASKSTOCURRICULUM);
-			taskProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(TaskProxy) as TaskProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			taskProxy = getProxy(TaskProxy) as TaskProxy;
 		}
 		
 		protected function get curriculumProxy():CurriculumProxy

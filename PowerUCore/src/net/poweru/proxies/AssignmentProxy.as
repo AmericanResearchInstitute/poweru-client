@@ -19,6 +19,11 @@ package net.poweru.proxies
 		public function AssignmentProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATEASSIGNMENTS, FIELDS, 'Assignment', ['status']);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['task', 'user'];
 		}
 		

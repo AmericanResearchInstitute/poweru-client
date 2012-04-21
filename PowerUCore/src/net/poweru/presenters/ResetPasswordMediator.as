@@ -3,7 +3,6 @@ package net.poweru.presenters
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IResetPassword;
@@ -22,7 +21,12 @@ package net.poweru.presenters
 		public function ResetPasswordMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, null);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get resetPassword():IResetPassword

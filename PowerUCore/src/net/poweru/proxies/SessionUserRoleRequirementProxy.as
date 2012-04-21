@@ -12,6 +12,11 @@ package net.poweru.proxies
 		public function SessionUserRoleRequirementProxy()
 		{
 			super(NAME, SessionUserRoleRequirementManagerDelegate, NotificationNames.UPDATESESSIONUSERROLEREQUIREMENTS, [], 'SessionUserRoleRequirement');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['session', 'session_user_role', 'min', 'max'];
 		}
 	}

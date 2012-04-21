@@ -3,9 +3,6 @@ package net.poweru.presenters
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
-	import mx.events.FlexEvent;
-	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IBulkEnrollInEvent;
@@ -30,8 +27,13 @@ package net.poweru.presenters
 		public function BulkEnrollInEventMediator(viewComponent:DisplayObject)
 		{
 			super(NAME, viewComponent, AssignmentProxy);
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
-			sessionProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(SessionProxy) as SessionProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
+			sessionProxy = getProxy(SessionProxy) as SessionProxy;
 		}
 		
 		override protected function addEventListeners():void

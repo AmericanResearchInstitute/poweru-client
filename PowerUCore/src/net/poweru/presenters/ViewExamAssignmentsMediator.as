@@ -3,7 +3,6 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
-	import net.poweru.placemanager.PlaceNotFound;
 	import net.poweru.proxies.ExamAssignmentsDetailProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -20,7 +19,6 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{
-			
 			var examPK:Number = initialDataProxy.getInitialData(Places.VIEWEXAMASSIGNMENTS) as Number;
 			primaryProxy.getFiltered({'exact' : {'task' : examPK}});
 		}

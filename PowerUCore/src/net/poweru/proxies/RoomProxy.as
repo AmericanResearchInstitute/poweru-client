@@ -16,6 +16,11 @@ package net.poweru.proxies
 		public function RoomProxy()
 		{
 			super(NAME, RoomManagerDelegate, NotificationNames.UPDATEROOMS, FIELDS, 'venue', 'Room');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name', 'venue', 'capacity'];
 		}
 		

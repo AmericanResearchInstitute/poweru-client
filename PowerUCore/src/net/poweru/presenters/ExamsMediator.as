@@ -7,7 +7,6 @@ package net.poweru.presenters
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
 	import net.poweru.proxies.ExamProxy;
 	import net.poweru.utils.InputCollector;
 	

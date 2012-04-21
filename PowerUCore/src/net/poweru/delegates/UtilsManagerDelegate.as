@@ -1,10 +1,10 @@
 package net.poweru.delegates
 {
-	import net.poweru.utils.RemoteObjectFactory;
-	
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.remoting.RemoteObject;
+	
+	import net.poweru.utils.RemoteObjectFactory;
 	
 	public class UtilsManagerDelegate
 	{
@@ -12,6 +12,11 @@ package net.poweru.delegates
 		protected var remoteObject:RemoteObject;
 		
 		public function UtilsManagerDelegate(responder:IResponder)
+		{
+			init(responder);
+		}
+		
+		private function init(responder:IResponder):void
 		{
 			this.responder = responder;
 			remoteObject = RemoteObjectFactory.getInstance().getRemoteObject('UtilsManager');

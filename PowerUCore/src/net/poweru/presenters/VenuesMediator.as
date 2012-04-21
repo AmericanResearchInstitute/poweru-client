@@ -1,11 +1,8 @@
 package net.poweru.presenters
 {
-	import com.gskinner.motion.plugins.CurrentFramePlugin;
-	
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.components.interfaces.IVenues;
@@ -28,8 +25,13 @@ package net.poweru.presenters
 		public function VenuesMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, VenueProxy);
-			roomProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(RoomProxy) as RoomProxy;
-			blackoutPeriodProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(BlackoutPeriodProxy) as BlackoutPeriodProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			roomProxy = getProxy(RoomProxy) as RoomProxy;
+			blackoutPeriodProxy = getProxy(BlackoutPeriodProxy) as BlackoutPeriodProxy;
 		}
 		
 		protected function get venues():IVenues

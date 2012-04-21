@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -10,7 +9,6 @@ package net.poweru.presenters
 	import net.poweru.proxies.FileDownloadProxy;
 	import net.poweru.proxies.TaskFeeProxy;
 	import net.poweru.utils.InputCollector;
-	import net.poweru.utils.PKArrayCollection;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -25,7 +23,12 @@ package net.poweru.presenters
 		public function EditFileDownloadMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, FileDownloadProxy, Places.EDITFILEDOWNLOAD);
-			taskFeeProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(TaskFeeProxy) as TaskFeeProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			taskFeeProxy = getProxy(TaskFeeProxy) as TaskFeeProxy;
 		}
 		
 		override public function listNotificationInterests():Array

@@ -84,6 +84,11 @@ package net.poweru.components.code
 		public function UsersCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			chooserRequestTracker = new ChooserRequestTracker();
 			filterChooserRequestTracker = new ChooserRequestTracker();
 			bulkFilterChooserRequestTracker = new ChooserRequestTracker();

@@ -29,7 +29,7 @@ package net.poweru.proxies
 			init();	
 		}
 		
-		protected function init():void
+		private function init():void
 		{
 			browserManager = BrowserManager.getInstance();
 			browserManager.init('', '');

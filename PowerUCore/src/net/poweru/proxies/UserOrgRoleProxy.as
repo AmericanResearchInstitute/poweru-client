@@ -11,6 +11,11 @@ package net.poweru.proxies
 		public function UserOrgRoleProxy()
 		{
 			super(NAME, UserOrgRoleManagerDelegate, NotificationNames.UPDATEUSERORGROLES, FIELDS);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['organization', 'role'];
 			createOptionalArgNames = ['owner', 'title', 'persistent'];
 		}

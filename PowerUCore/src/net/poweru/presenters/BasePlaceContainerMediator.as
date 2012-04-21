@@ -23,6 +23,11 @@ package net.poweru.presenters
 		public function BasePlaceContainerMediator(mediatorName:String=null, viewComponent:Object=null)
 		{
 			super(mediatorName, viewComponent);
+			init();
+		}
+		
+		private function init():void
+		{
 			loginProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(LoginProxy) as LoginProxy;
 			displayObject.addEventListener(ViewEvent.SETOTHERSPACE, onSetOtherSpace);
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);

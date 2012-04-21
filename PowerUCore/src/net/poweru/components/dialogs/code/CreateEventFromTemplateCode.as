@@ -1,9 +1,6 @@
 package net.poweru.components.dialogs.code
 {
-	import com.hillelcoren.components.autoComplete.classes.IconButton;
-	
 	import flash.events.Event;
-	import flash.events.IEventDispatcher;
 	
 	import mx.collections.Sort;
 	import mx.collections.SortField;
@@ -14,13 +11,10 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextInput;
 	import mx.core.IContainer;
 	import mx.events.FlexEvent;
-	import mx.events.IndexChangedEvent;
 	import mx.validators.Validator;
 	
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
-	import net.poweru.components.dialogs.CreateSession;
-	import net.poweru.components.interfaces.ICreateDialog;
 	import net.poweru.components.interfaces.ICreateEventFromTemplateDialog;
 	import net.poweru.components.widgets.CreateSessionFromTemplate;
 	import net.poweru.generated.model.Event.NameInput;
@@ -53,6 +47,11 @@ package net.poweru.components.dialogs.code
 		public function CreateEventFromTemplateCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			
 			sortedSessionTemplates = new DataSet();

@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import mx.events.FlexEvent;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
 	import net.poweru.events.ViewEvent;
@@ -34,9 +33,14 @@ package net.poweru.presenters
 		public function BaseChooserMediator(mediatorName:String, viewComponent:Object, placeName:String, updateNotification:String, primaryProxyClass:Class=null)
 		{
 			super(mediatorName, viewComponent, primaryProxyClass);
+			init(placeName, updateNotification);
+		}
+		
+		private function init(placeName:String, updateNotification:String):void
+		{
 			this.placeName = placeName; 
 			this.updateNotification = updateNotification;
-			initialDataProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(InitialDataProxy) as InitialDataProxy;
+			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 		}
 		
 		protected function get chooser():IChooser

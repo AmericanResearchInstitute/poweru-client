@@ -6,7 +6,6 @@ package net.poweru.presenters.student
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
 	import net.poweru.presenters.BaseMediator;
-	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.SessionAssignmentsForUserProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;

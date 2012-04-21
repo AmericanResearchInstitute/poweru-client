@@ -2,7 +2,6 @@ package net.poweru.proxies
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.EventTemplateManagerDelegate;
-	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -14,6 +13,11 @@ package net.poweru.proxies
 		public function EventTemplateProxy()
 		{
 			super(NAME, EventTemplateManagerDelegate, NotificationNames.UPDATEEVENTTEMPLATES, FIELDS, 'EventTemplate');
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name_prefix', 'title', 'description'];
 			createOptionalArgNames = ['lead_time'];
 		}

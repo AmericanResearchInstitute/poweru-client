@@ -12,6 +12,11 @@ package net.poweru.proxies
 		public function TaskBundleProxy()
 		{
 			super(NAME, TaskBundleManagerDelegate, NotificationNames.UPDATETASKBUNDLESS, [], 'TaskBundle', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['name', 'description'];
 			getFilteredMethodName = 'task_detail_view';
 		}

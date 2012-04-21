@@ -2,13 +2,11 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
 	import net.poweru.proxies.EventProxy;
 	import net.poweru.proxies.SessionProxy;
-	import net.poweru.proxies.SessionUserRoleProxy;
 	import net.poweru.utils.InputCollector;
 	import net.poweru.utils.PKArrayCollection;
 	
@@ -25,7 +23,12 @@ package net.poweru.presenters
 		public function EditSessionMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, SessionProxy, Places.EDITSESSION);
-			eventProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(EventProxy) as EventProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			eventProxy = getProxy(EventProxy) as EventProxy;
 		}
 		
 		override public function listNotificationInterests():Array

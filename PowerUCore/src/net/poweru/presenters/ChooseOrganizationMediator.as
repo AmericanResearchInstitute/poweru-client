@@ -1,14 +1,9 @@
 package net.poweru.presenters
 {
-	import mx.events.FlexEvent;
 	import mx.utils.ObjectUtil;
 	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.components.dialogs.choosers.interfaces.IChooser;
-	import net.poweru.events.ViewEvent;
-	import net.poweru.model.DataSet;
-	import net.poweru.model.HierarchicalDataSet;
 	import net.poweru.proxies.LoginProxy;
 	import net.poweru.proxies.OrganizationProxy;
 	

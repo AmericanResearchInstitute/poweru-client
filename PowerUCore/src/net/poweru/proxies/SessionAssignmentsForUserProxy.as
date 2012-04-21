@@ -2,7 +2,6 @@ package net.poweru.proxies
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.AssignmentManagerDelegate;
-	import net.poweru.delegates.SessionUserRoleRequirementManagerDelegate;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -13,6 +12,11 @@ package net.poweru.proxies
 		public function SessionAssignmentsForUserProxy()
 		{
 			super(NAME, AssignmentManagerDelegate, NotificationNames.UPDATESESSIONASSIGNMENTSFORUSER, [], 'Assignment', []);
+			init();
+		}
+		
+		private function init():void
+		{
 			getFilteredMethodName = 'session_view';
 			dateTimeFields = ['task.session.start', 'task.session.end'];
 		}

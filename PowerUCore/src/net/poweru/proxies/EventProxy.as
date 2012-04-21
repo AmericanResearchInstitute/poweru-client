@@ -1,10 +1,7 @@
 package net.poweru.proxies
 {
-	import mx.automation.events.EventDetails;
-	
 	import net.poweru.NotificationNames;
 	import net.poweru.delegates.EventManagerDelegate;
-	import net.poweru.utils.PowerUResponder;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -15,6 +12,11 @@ package net.poweru.proxies
 		public function EventProxy()
 		{
 			super(NAME, EventManagerDelegate, NotificationNames.UPDATEEVENTS, []);
+			init();
+		}
+		
+		private function init():void
+		{
 			dateTimeFields = [
 				'start',
 				'end'

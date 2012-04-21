@@ -1,13 +1,13 @@
 package net.poweru.components.widgets.code
 {
-	import net.poweru.model.DataSet;
-	
 	import flash.events.Event;
 	
 	import mx.containers.VBox;
 	import mx.controls.CheckBox;
 	import mx.utils.ObjectUtil;
 	import mx.validators.NumberValidator;
+	
+	import net.poweru.model.DataSet;
 
 	public class MultipleSelectCode extends VBox implements IMultipleSelect
 	{
@@ -23,6 +23,11 @@ package net.poweru.components.widgets.code
 		public function MultipleSelectCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			choicesDataSet = new DataSet();
 			selectedItemsDataSet = new DataSet();
 		}

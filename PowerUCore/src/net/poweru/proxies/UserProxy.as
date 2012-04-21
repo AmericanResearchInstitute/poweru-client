@@ -18,6 +18,11 @@ package net.poweru.proxies
 		public function UserProxy()
 		{
 			super(NAME, UserManagerDelegate, NotificationNames.UPDATEUSERS, FIELDS, 'User', ['status']);
+			init();
+		}
+		
+		private function init():void
+		{
 			createArgNamesInOrder = ['username', 'password', 'title', 'first_name', 'last_name', 'phone', 'email', 'status'];
 			createOptionalArgNames = ['alleged_organization', 'recaptcha_challenge', 'recaptcha_response', 'external_uid'];
 		}

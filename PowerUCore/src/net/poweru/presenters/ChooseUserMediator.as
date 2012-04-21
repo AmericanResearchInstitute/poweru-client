@@ -2,7 +2,6 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
-	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
@@ -23,7 +22,12 @@ package net.poweru.presenters
 		public function ChooseUserMediator(viewComponent:Object)
 		{
 			super(NAME, viewComponent, Places.CHOOSEUSER, NotificationNames.UPDATEUSERS, UserProxy);
-			organizationProxy = (facade as ApplicationFacade).retrieveOrRegisterProxy(OrganizationProxy) as OrganizationProxy;
+			init();
+		}
+		
+		private function init():void
+		{
+			organizationProxy = getProxy(OrganizationProxy) as OrganizationProxy;
 		}
 		
 		override protected function populate():void
