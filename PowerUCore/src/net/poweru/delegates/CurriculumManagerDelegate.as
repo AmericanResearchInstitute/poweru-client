@@ -15,7 +15,7 @@ package net.poweru.delegates
 				'foreign_attribute_name' : 'task',
 				// Considering the attributes of each relationship's object,
 				// include this list of attributes in the update request
-				'attributes_to_include' : []
+				'attributes_to_include' : ['task_bundle']
 			}
 		};
 		

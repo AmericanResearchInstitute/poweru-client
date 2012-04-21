@@ -61,13 +61,38 @@ package net.poweru.components.dialogs.code
 		
 		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
 		{
-			if (chooserName == Places.CHOOSETASK && chooserRequestTracker.doIWantThis(chooserName, choice.requestID) && curriculumTaskAssociationDataSet != null && curriculumTaskAssociationDataSet.findByPK(choice.value['id']) == null)
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
 			{
-				var task:Object = choice.value;
-				curriculumTaskAssociationDataSet.addItem({
-					'task' : task.id,
-					'task_name' : task.name
-				});
+				switch (chooserName)
+				{
+					case Places.CHOOSETASK:
+						if (curriculumTaskAssociationDataSet != null)
+						{
+							var task1:Object = choice.value;
+							curriculumTaskAssociationDataSet.addItem({
+								'task' : task1.id,
+								'task_name' : task1.name
+							});
+						}
+						break;
+					
+					case Places.CHOOSETASKBUNDLE:
+						if (curriculumTaskAssociationDataSet != null)
+						{
+							for each (var task2:Object in (choice.value.tasks as Array))
+							{
+								if (curriculumTaskAssociationDataSet.findByKey('task', task2.id) == null)
+								{
+									curriculumTaskAssociationDataSet.addItem({
+										'task' : task2.id,
+										'task_name' : task2.name,
+										'task_bundle' : choice.value.id
+									});
+								}
+							}
+						}
+						break;
+				}
 			}
 		}
 

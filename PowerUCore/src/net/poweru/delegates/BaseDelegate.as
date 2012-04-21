@@ -125,7 +125,8 @@ package net.poweru.delegates
 									var addDict:Object = {'id' : subItem[specialUpdateHandlingInfo[attribute]['foreign_attribute_name']]}
 									for each (var metaAttributeName:String in specialUpdateHandlingInfo[attribute]['attributes_to_include'])
 									{
-										addDict[metaAttributeName] = subItem[metaAttributeName];
+										if (subItem.hasOwnProperty(metaAttributeName))
+											addDict[metaAttributeName] = subItem[metaAttributeName];
 									}
 									add.push(addDict);
 								}
