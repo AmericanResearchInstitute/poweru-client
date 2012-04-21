@@ -13,11 +13,10 @@ package net.poweru.proxies
 	public class CurriculumProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'CurriculumProxy';
-		public static const FIELDS:Array = ['name', 'description'];
 
 		public function CurriculumProxy()
 		{
-			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, FIELDS);
+			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, []);
 			init();
 		}
 		
@@ -25,22 +24,7 @@ package net.poweru.proxies
 		{
 			createArgNamesInOrder = ['name'];
 			createOptionalArgNames = ['description', 'organization'];
-		}
-		
-		public function adminCurriculumsView():void
-		{
-			new CurriculumManagerDelegate(new PowerUResponder(onAdminCurriculumsViewSuccess, onAdminCurriculumsViewError, onFault)).adminCurriculumsView(loginProxy.authToken);
-		}
-		
-		protected function onAdminCurriculumsViewSuccess(event:ResultEvent):void
-		{
-			data = new DataSet(event.result.value);
-			sendNotification(NotificationNames.UPDATEADMINCURRICULUMSVIEW, ObjectUtil.copy(event.result.value));
-		}
-		
-		protected function onAdminCurriculumsViewError(event:ResultEvent):void
-		{
-			
+			getFilteredMethodName = 'admin_curriculums_view';
 		}
 	}
 }

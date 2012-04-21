@@ -19,11 +19,6 @@ package net.poweru.presenters
 			super(NAME, viewComponent, CurriculumProxy);
 		}
 		
-		protected function get curriculumProxy():CurriculumProxy
-		{
-			return primaryProxy as CurriculumProxy;
-		}
-		
 		override protected function addEventListeners():void
 		{
 			displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
@@ -42,8 +37,7 @@ package net.poweru.presenters
 		{
 			return super.listNotificationInterests().concat(
 				NotificationNames.SETSPACE,
-				NotificationNames.UPDATECURRICULUMS,
-				NotificationNames.UPDATEADMINCURRICULUMSVIEW
+				NotificationNames.UPDATECURRICULUMS
 			);
 		}
 		
@@ -58,11 +52,7 @@ package net.poweru.presenters
 					
 				// Happens when we save a curriculum, and indicates that we should just refresh the view
 				case NotificationNames.UPDATECURRICULUMS:
-					populate();
-					break;
-				
-				case NotificationNames.UPDATEADMINCURRICULUMSVIEW:
-					arrayPopulatedComponent.populate(notification.getBody() as Array);
+					arrayPopulatedComponent.populate(primaryProxy.dataSet.toArray());
 					break;
 				
 				default:
@@ -72,7 +62,7 @@ package net.poweru.presenters
 		
 		override protected function populate():void
 		{	
-			curriculumProxy.adminCurriculumsView();
+			primaryProxy.getAll();
 		}
 		
 	}

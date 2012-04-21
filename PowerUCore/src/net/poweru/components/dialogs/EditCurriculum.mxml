@@ -6,6 +6,7 @@
 	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -15,6 +16,17 @@
 		</mx:FormItem>
 		<mx:FormItem label="Description:">
 			<widgets:ResizingTextArea minWidth="300" id="descriptionInput"/>
+		</mx:FormItem>
+		<mx:FormItem label="Tasks" width="100%">
+			<mx:DataGrid id="tasks" dataProvider="{curriculumTaskAssociationDataSet}" width="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Name" dataField="task_name"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK, chosenTasks)]))}"/>
+				<mx:Button label="Remove" enabled="{tasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
+			</mx:HBox>
 		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">

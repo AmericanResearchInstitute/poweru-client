@@ -42,7 +42,6 @@ package net.poweru
 		public static const TASKFEECREATED:String = 'TaskFeeCreated';
 		public static const TASKFEEDELETED:String = 'TaskFeeDeleted';
 		public static const UPDATEADMINCATEGORIESVIEW:String = 'UpdateAdminCategoriesView';
-		public static const UPDATEADMINCURRICULUMSVIEW:String = 'UpdateAdminCurriculumsView';
 		public static const UPDATEADMINUSERSVIEW:String = 'UpdateAdminUsersView';
 		public static const UPDATEADMINVIDEOSVIEW:String = 'UpdateAdminVideosView';
 		public static const UPDATEADMINORGANIZATIONSVIEW:String = 'UpdateAdminOrganizationsView';

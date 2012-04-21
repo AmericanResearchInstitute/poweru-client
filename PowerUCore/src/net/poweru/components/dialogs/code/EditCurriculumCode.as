@@ -1,16 +1,27 @@
 package net.poweru.components.dialogs.code
 {
+	import flash.events.Event;
+	
+	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
+	import net.poweru.model.DataSet;
+	import net.poweru.utils.PKArrayCollection;
 	
 	public class EditCurriculumCode extends BaseCRUDDialog implements IEditDialog
 	{
 		public var nameInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
+		[Bindable]
+		public var tasks:DataGrid;
+		[Bindable]
+		protected var curriculumTaskAssociationDataSet:DataSet;
 		protected var pk:Number;
 		
 		public function EditCurriculumCode()
@@ -23,6 +34,8 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			descriptionInput.text = '';
+			curriculumTaskAssociationDataSet.source = [];
+			curriculumTaskAssociationDataSet.refresh();
 		}
 		
 		override public function getData():Object
@@ -30,6 +43,7 @@ package net.poweru.components.dialogs.code
 			return {
 				'id' : pk,
 				'description' : descriptionInput.text,
+				'curriculum_task_associations' : curriculumTaskAssociationDataSet.toArray(),
 				'name' : nameInput.text
 			};
 		}
@@ -39,14 +53,43 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 			nameInput.text = data['name'];
 			descriptionInput.text = data['description'];
+			curriculumTaskAssociationDataSet.source = data['curriculum_task_associations'];
+			curriculumTaskAssociationDataSet.refresh();
 			
 			title = 'Edit Curriculum ' + data['name'];
+		}
+		
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
+		{
+			if (chooserName == Places.CHOOSETASK && chooserRequestTracker.doIWantThis(chooserName, choice.requestID) && curriculumTaskAssociationDataSet != null && curriculumTaskAssociationDataSet.findByPK(choice.value['id']) == null)
+			{
+				var task:Object = choice.value;
+				curriculumTaskAssociationDataSet.addItem({
+					'task' : task.id,
+					'task_name' : task.name
+				});
+			}
+		}
+
+		protected function get chosenTasks():Array
+		{
+			return new PKArrayCollection(curriculumTaskAssociationDataSet.toArray(), 'task').toArray();
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			curriculumTaskAssociationDataSet = new DataSet();
 			validators = [nameInput.validator];
+		}
+		
+		protected function onRemoveTask(event:Event):void
+		{
+			if (tasks.selectedItem != null)
+			{
+				curriculumTaskAssociationDataSet.removeItemAt(curriculumTaskAssociationDataSet.getItemIndex(tasks.selectedItem));
+				curriculumTaskAssociationDataSet.refresh();
+			}
 		}
 	}
 }

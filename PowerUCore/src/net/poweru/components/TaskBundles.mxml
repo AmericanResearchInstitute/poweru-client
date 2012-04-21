@@ -37,15 +37,15 @@
 				<mx:FormItem label="Description:">
 					<mx:Label text="{grid.selectedItem.description}" />
 				</mx:FormItem>
-				<mx:FormItem label="Tasks" width="100%">
+			</mx:Form>
+				<mx:Panel label="Tasks" width="100%">
 					<mx:DataGrid dataProvider="{grid.selectedItem.tasks}" width="100%">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
 							<mx:DataGridColumn headerText="Type" dataField="type" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
 						</mx:columns>
 					</mx:DataGrid>
-				</mx:FormItem>
-			</mx:Form>
+				</mx:Panel>
 		</mx:Panel>
 	</mx:VBox>
 	

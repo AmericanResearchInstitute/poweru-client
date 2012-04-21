@@ -26,7 +26,7 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>
-				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK)]))}"/>
+				<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK, taskDataSet.toArray())]))}"/>
 				<mx:Button label="Remove" enabled="{tasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
 		</mx:FormItem>
