@@ -8,6 +8,7 @@
 		<![CDATA[
 			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.LabelFunctions;
 		]]>
 	</mx:Script>
 	<mx:Form defaultButton="{submit}">
@@ -21,6 +22,7 @@
 			<mx:DataGrid id="tasks" dataProvider="{curriculumTaskAssociationDataSet}" width="100%">
 				<mx:columns>
 					<mx:DataGridColumn headerText="Name" dataField="task_name"/>
+					<mx:DataGridColumn headerText="Type" dataField="task_type" labelFunction="{LabelFunctions.taskType}"/>
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>

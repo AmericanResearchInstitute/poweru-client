@@ -9,6 +9,7 @@
 		<![CDATA[
 			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.LabelFunctions;
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
@@ -22,7 +23,8 @@
 		<mx:FormItem label="Tasks" width="100%">
 			<mx:DataGrid id="tasks" dataProvider="{taskDataSet}" width="100%">
 				<mx:columns>
-					<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+					<mx:DataGridColumn headerText="Name" dataField="name"/>
+					<mx:DataGridColumn headerText="Type" dataField="type" labelFunction="{LabelFunctions.taskType}"/>
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:HBox>

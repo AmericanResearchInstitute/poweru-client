@@ -10,6 +10,7 @@
 			import net.poweru.Places;
 			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.LabelFunctions;
 			import net.poweru.utils.SortCompareFunctionFactory;
 		]]>
 	</mx:Script>
@@ -41,8 +42,8 @@
 				<mx:Panel label="Tasks" width="100%">
 					<mx:DataGrid dataProvider="{grid.selectedItem.tasks}" width="100%">
 						<mx:columns>
-							<mx:DataGridColumn headerText="Name" dataField="name" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
-							<mx:DataGridColumn headerText="Type" dataField="type" sortCompareFunction="{SortCompareFunctionFactory(['name'])}"/>
+							<mx:DataGridColumn headerText="Name" dataField="name"/>
+							<mx:DataGridColumn headerText="Type" dataField="type" labelFunction="{LabelFunctions.taskType}"/>
 						</mx:columns>
 					</mx:DataGrid>
 				</mx:Panel>

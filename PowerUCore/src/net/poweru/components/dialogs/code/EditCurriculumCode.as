@@ -71,6 +71,7 @@ package net.poweru.components.dialogs.code
 							var task1:Object = choice.value;
 							curriculumTaskAssociationDataSet.addItem({
 								'task' : task1.id,
+								'task_type' : task1.type,
 								'task_name' : task1.name
 							});
 						}
@@ -86,6 +87,7 @@ package net.poweru.components.dialogs.code
 									curriculumTaskAssociationDataSet.addItem({
 										'task' : task2.id,
 										'task_name' : task2.name,
+										'task_type' : task2.type,
 										'task_bundle' : choice.value.id
 									});
 								}

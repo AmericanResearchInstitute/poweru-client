@@ -13,9 +13,10 @@
 			import net.poweru.Places;
 			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.LabelFunctions;
 		]]>
 	</mx:Script>
-	<mx:VBox height="100%">
+	<mx:VBox height="100%" width="35%">
 		<mx:FormItem label="Search">
 			<components:AutoComplete dataProvider="{grid.dataProvider as ArrayCollection}" labelField="name"/>
 		</mx:FormItem>
@@ -25,12 +26,12 @@
 			</mx:columns>
 		</mx:DataGrid>
 	</mx:VBox>
-	<mx:VBox width="35%" height="100%">
+	<mx:VBox width="65%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUM, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 		</mx:HBox>
-		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
+		<mx:Panel width="100%" title="Details">
 			<mx:Spacer height="4" width="4"/>
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="4" width="4"/>
@@ -38,15 +39,20 @@
 				<mx:Button label="Create Learning Initiative" id="createCurriculumEnrollmentButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
 				<mx:Spacer height="4" width="4"/>
 			</mx:HBox>
-			<mx:Form>
+			<mx:Form width="100%">
 				<mx:FormItem label="Name:">
 					<mx:Label text="{grid.selectedItem.name}" />
 				</mx:FormItem>
 				<mx:FormItem label="Description:">
 					<mx:Text text="{grid.selectedItem.description}" />
 				</mx:FormItem>
-				<mx:FormItem label="Tasks:">
-					<mx:List id="taskList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.curriculum_task_associations}"/>
+				<mx:FormItem label="Tasks:" width="100%">
+					<mx:DataGrid id="taskGrid" width="100%" height="100%" dataProvider="{grid.selectedItem.curriculum_task_associations}">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="task_name"/>
+							<mx:DataGridColumn headerText="Type" dataField="task_type" labelFunction="{LabelFunctions.taskType}"/>
+						</mx:columns>
+					</mx:DataGrid>
 				</mx:FormItem>
 			</mx:Form>
 		</mx:Panel>
