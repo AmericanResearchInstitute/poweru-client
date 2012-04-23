@@ -4,15 +4,19 @@ package net.poweru.components.dialogs.code
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseDialog;
-	import net.poweru.components.interfaces.IArrayPopulatedComponent;
+	import net.poweru.components.interfaces.ITranscript;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.LabelFunctions;
 	import net.poweru.utils.SortedDataSetFactory;
 	
-	public class TranscriptCode extends BaseDialog implements IArrayPopulatedComponent
+	public class TranscriptCode extends BaseDialog implements ITranscript
 	{
 		[Bindable]
-		protected var dataSet:DataSet;
+		protected var assignmentDataSet:DataSet;
+		[Bindable]
+		protected var achievementAwardsDataSet:DataSet;
+		[Bindable]
+		protected var credentialsDataSet:DataSet;
 		
 		public function TranscriptCode()
 		{
@@ -20,15 +24,19 @@ package net.poweru.components.dialogs.code
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
 		
-		public function populate(data:Array):void
+		public function populate(assignments:Array, achievementAwards:Array, credentials:Array):void
 		{
-			dataSet.source = data;
-			dataSet.refresh();
+			assignmentDataSet.source = assignments;
+			assignmentDataSet.refresh();
+			achievementAwardsDataSet.source = achievementAwards;
+			achievementAwardsDataSet.refresh();
+			credentialsDataSet.source = credentials;
+			credentialsDataSet.refresh();
 		}
 		
 		public function clear():void
 		{
-			populate([]);
+			populate([], [], []);
 		}
 		
 		protected function getLabelFromTask(item:Object, column:DataGridColumn):String
@@ -39,7 +47,9 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataSet = SortedDataSetFactory.singleFieldDateSort('date_completed');
+			achievementAwardsDataSet = SortedDataSetFactory.singleFieldSort('achievement_name');
+			assignmentDataSet = SortedDataSetFactory.singleFieldDateSort('date_completed');
+			credentialsDataSet = SortedDataSetFactory.singleFieldSort('credential_type.name');
 		}
 	}
 }

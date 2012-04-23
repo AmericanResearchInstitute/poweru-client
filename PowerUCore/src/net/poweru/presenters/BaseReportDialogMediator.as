@@ -30,10 +30,15 @@ package net.poweru.presenters
 			
 			/*	Must wait for data and creation to be complete before passing
 				data into the dialog */
-			inputCollector = new InputCollector(['creationComplete', 'data']);
+			inputCollector = buildInputCollector();
 			inputCollector.addEventListener(Event.COMPLETE, onInputsCollected);
 			
 			this.placeName = placeName;
+		}
+		
+		protected function buildInputCollector():InputCollector
+		{
+			return new InputCollector(['creationComplete', 'data']);
 		}
 		
 		override protected function addEventListeners():void

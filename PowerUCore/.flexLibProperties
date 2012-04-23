@@ -517,6 +517,9 @@
     <classEntry path="net.poweru.components.dialogs.code.BaseEditTaskCode"/>
     <classEntry path="net.poweru.components.widgets.ResizingTextArea"/>
     <classEntry path="net.poweru.utils.LabelFunctions"/>
+    <classEntry path="net.poweru.components.interfaces.ITranscript"/>
+    <classEntry path="net.poweru.proxies.AchievementAwardProxy"/>
+    <classEntry path="net.poweru.delegates.AchievementAwardManagerDelegate"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:TranscriptCode
 	title="Transcript"
+	creationPolicy="all"
 	minWidth="800"
 	minHeight="600"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:code="net.poweru.components.dialogs.code.*" xmlns:parts="net.poweru.components.parts.*">
-	<mx:DataGrid id="grid" height="100%" width="100%" dataProvider="{dataSet}">
-		<mx:columns>
-			<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
-			<mx:DataGridColumn dataField="type" headerText="Type" labelFunction="{getLabelFromTask}"/>
-			<mx:DataGridColumn dataField="date_started" headerText="Started"/>
-			<mx:DataGridColumn dataField="date_completed" headerText="Completed"/>
-			<mx:DataGridColumn dataField="status" headerText="Status"/>
-		</mx:columns>
-	</mx:DataGrid>
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:parts="net.poweru.components.parts.*">
+	<mx:TabNavigator height="100%" width="100%">
+		<mx:VBox label="Assignments" height="100%" width="100%">
+			<mx:DataGrid height="100%" width="100%" dataProvider="{assignmentDataSet}">
+				<mx:columns>
+					<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
+					<mx:DataGridColumn dataField="type" headerText="Type" labelFunction="{getLabelFromTask}"/>
+					<mx:DataGridColumn dataField="date_started" headerText="Started"/>
+					<mx:DataGridColumn dataField="date_completed" headerText="Completed"/>
+					<mx:DataGridColumn dataField="status" headerText="Status"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+		<mx:VBox label="Achievements" height="100%" width="100%">
+			<mx:DataGrid height="100%" width="100%" dataProvider="{achievementAwardsDataSet}">
+				<mx:columns>
+					<mx:DataGridColumn dataField="achievement_name" headerText="Name"/>
+					<mx:DataGridColumn dataField="date" headerText="Date"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+		<mx:VBox label="Credentials" height="100%" width="100%">
+			<mx:DataGrid height="100%" width="100%" dataProvider="{credentialsDataSet}">
+				<mx:columns>
+					<parts:NestedDataGridColumn nestedName="credential_type.name" headerText="Name"/>
+					<mx:DataGridColumn dataField="date_granted" headerText="Granted"/>
+					<mx:DataGridColumn dataField="date_expires" headerText="Expires"/>
+					<mx:DataGridColumn dataField="status" headerText="Status"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+	</mx:TabNavigator>
 </code:TranscriptCode>

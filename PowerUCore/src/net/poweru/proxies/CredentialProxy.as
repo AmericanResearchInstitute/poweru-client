@@ -10,7 +10,7 @@ package net.poweru.proxies
 	public class CredentialProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'CredentialProxy';
-		public static const FIELDS:Array = ['user', 'credential_type', 'date_expires', 'status'];
+		public static const FIELDS:Array = ['user', 'credential_type', 'date_expires', 'date_granted', 'status'];
 		
 		protected var userProxy:AdminUsersViewProxy;
 		
@@ -25,7 +25,7 @@ package net.poweru.proxies
 			userProxy = getProxy(AdminUsersViewProxy) as AdminUsersViewProxy;
 			createArgNamesInOrder = ['user', 'credential_type'];
 			createOptionalArgNames = ['date_expires', 'status'];
-			dateTimeFields = ['date_expires'];
+			dateTimeFields = ['date_expires', 'date_granted'];
 			getFilteredMethodName = 'detail_view';
 		}
 		
