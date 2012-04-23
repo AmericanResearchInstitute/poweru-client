@@ -40,5 +40,15 @@ package net.poweru
 		public static const ORG_ADMIN:String = 'Administrator';
 		public static const SERV_DEALER_ADMIN:String = 'Serv Dealer Admin';
 		public static const ADMIN_ASSISTANT:String = 'Admin Assistant';
+		
+		/*	Statuses of assignments that mean it's incomplete but still
+			eligible to be completed. */
+		public static const ASSIGNMENT_INCOMPLETE_STATUSES:Array = [
+			'assigned',
+			'late',
+			'pending',
+			'unpaid',
+			'wait-listed'
+		];
 	}
 }

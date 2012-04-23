@@ -2,6 +2,7 @@ package net.poweru.presenters.student
 {
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.events.ViewEvent;
@@ -13,7 +14,7 @@ package net.poweru.presenters.student
 	
 	public class FileDownloadAssignmentsMediator extends BaseMediator implements IMediator
 	{
-		public static const NAME:String = 'FielDownloadAssignmentsMediator';
+		public static const NAME:String = 'FileDownloadAssignmentsMediator';
 		
 		public function FileDownloadAssignmentsMediator(viewComponent:Object)
 		{
@@ -70,7 +71,7 @@ package net.poweru.presenters.student
 		
 		override protected function populate():void
 		{
-			primaryProxy.getAll();
+			primaryProxy.getFiltered({'member': {'status' : Constants.ASSIGNMENT_INCOMPLETE_STATUSES}});
 		}
 		
 		protected function onSubmit(event:ViewEvent):void

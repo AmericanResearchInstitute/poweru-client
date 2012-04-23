@@ -25,6 +25,7 @@ package net.poweru.proxies
 		private function init():void
 		{
 			createArgNamesInOrder = ['task', 'user'];
+			dateTimeFields = ['date_started', 'date_completed'];
 		}
 		
 		public function bulkCreate(taskID:Number, userIDs:Array):void
@@ -67,6 +68,8 @@ package net.poweru.proxies
 		
 		protected function onTranscriptSuccess(event:ResultEvent):void
 		{
+			var data:Array = event.result.value as Array;
+			convertIncomingData(data);
 			sendNotification(NotificationNames.UPDATETRANSCRIPT, event.result.value);
 		}
 		

@@ -36,6 +36,9 @@
 				<mx:FormItem label="End:">
 					<mx:Label text="{(grid.selectedItem.task.session.end as Date).toDateString()}"/>
 				</mx:FormItem>
+				<mx:FormItem label="Status:">
+					<mx:Label text="{grid.selectedItem.status}"/>
+				</mx:FormItem>
 			</mx:Form>
 		</mx:Panel>
 	</mx:VBox>

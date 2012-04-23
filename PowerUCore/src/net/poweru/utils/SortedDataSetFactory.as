@@ -39,7 +39,12 @@ package net.poweru.utils
 			so it can be used with Flex's sort framework. */
 		public static function compareDatesFixed(a:Object, b:Object):int
 		{
-			return -DateUtil.compareDates(a as Date, b as Date);
+			if (a == null)
+				return -1;
+			else if (b == null)
+				return 1;
+			else
+				return -DateUtil.compareDates(a as Date, b as Date);
 		}
 	}
 }

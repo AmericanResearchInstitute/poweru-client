@@ -6,6 +6,8 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseDialog;
 	import net.poweru.components.interfaces.IArrayPopulatedComponent;
 	import net.poweru.model.DataSet;
+	import net.poweru.utils.LabelFunctions;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class TranscriptCode extends BaseDialog implements IArrayPopulatedComponent
 	{
@@ -31,13 +33,13 @@ package net.poweru.components.dialogs.code
 		
 		protected function getLabelFromTask(item:Object, column:DataGridColumn):String
 		{
-			return item['task'][column.dataField] as String;
+			return LabelFunctions.taskType(item['task'], column);
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			dataSet = new DataSet();
+			dataSet = SortedDataSetFactory.singleFieldDateSort('date_completed');
 		}
 	}
 }
