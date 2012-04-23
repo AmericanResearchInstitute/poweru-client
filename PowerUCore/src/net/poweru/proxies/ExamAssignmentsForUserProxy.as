@@ -18,6 +18,7 @@ package net.poweru.proxies
 		private function init():void
 		{
 			getFilteredMethodName = 'exam_view';
+			dateTimeFields = ['due_date'];
 		}
 	}
 }

@@ -23,6 +23,7 @@ package net.poweru.proxies
 		private function init():void
 		{
 			getFilteredMethodName = 'file_download_view';
+			dateTimeFields = ['due_date'];
 		}
 		
 		public function getDownloadURLForAssignment(assignmentID:Number):void

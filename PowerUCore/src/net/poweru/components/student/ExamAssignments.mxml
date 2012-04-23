@@ -14,6 +14,7 @@
 		<mx:columns>
 			<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
 			<parts:NestedDataGridColumn nestedName="task.title" headerText="Title"/>
+			<mx:DataGridColumn dataField="due_date" headerText="Due Date"/>
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:VBox width="35%" height="100%">
@@ -31,6 +32,9 @@
 				</mx:FormItem>
 				<mx:FormItem label="Status:">
 					<mx:Label text="{grid.selectedItem.status}"/>
+				</mx:FormItem>
+				<mx:FormItem label="Due Date:">
+					<mx:Label text="{grid.selectedItem.due_date}" />
 				</mx:FormItem>
 				<mx:FormItem label="Attempts:">
 					<mx:List id="attemptList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.attempts}"/>
