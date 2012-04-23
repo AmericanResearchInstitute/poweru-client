@@ -11,6 +11,7 @@
     <classEntry path="net.poweru.commands.BatchCreateCompleteCommand"/>
     <classEntry path="net.poweru.commands.BulkAssignmentSuccessCommand"/>
     <classEntry path="net.poweru.commands.ExamSessionFinishedCommand"/>
+    <classEntry path="net.poweru.commands.FetchNewTaskCommand"/>
     <classEntry path="net.poweru.commands.LoginContextChosenCommand"/>
     <classEntry path="net.poweru.commands.LogoutCommand"/>
     <classEntry path="net.poweru.commands.OpenFileDownloadURLCommand"/>
@@ -26,6 +27,7 @@
     <classEntry path="net.poweru.components.Events"/>
     <classEntry path="net.poweru.components.Exams"/>
     <classEntry path="net.poweru.components.FileDownloads"/>
+    <classEntry path="net.poweru.components.Groups"/>
     <classEntry path="net.poweru.components.Login"/>
     <classEntry path="net.poweru.components.MessageTemplates"/>
     <classEntry path="net.poweru.components.NoOrgUser"/>
@@ -41,6 +43,7 @@
     <classEntry path="net.poweru.components.code.CurriculumEnrollmentsCode"/>
     <classEntry path="net.poweru.components.code.EventTemplatesCode"/>
     <classEntry path="net.poweru.components.code.EventsCode"/>
+    <classEntry path="net.poweru.components.code.GroupsCode"/>
     <classEntry path="net.poweru.components.code.LoginCode"/>
     <classEntry path="net.poweru.components.code.MainCode"/>
     <classEntry path="net.poweru.components.code.MessageTemplatesCode"/>
@@ -113,6 +116,7 @@
     <classEntry path="net.poweru.components.dialogs.HelpUser"/>
     <classEntry path="net.poweru.components.dialogs.ResetPassword"/>
     <classEntry path="net.poweru.components.dialogs.SelfRegister"/>
+    <classEntry path="net.poweru.components.dialogs.StudentCalendar"/>
     <classEntry path="net.poweru.components.dialogs.Transcript"/>
     <classEntry path="net.poweru.components.dialogs.UploadCSV"/>
     <classEntry path="net.poweru.components.dialogs.UploadFileDownload"/>
@@ -143,7 +147,9 @@
     <classEntry path="net.poweru.components.dialogs.code.AddTasksToCurriculumCode"/>
     <classEntry path="net.poweru.components.dialogs.code.AdministerExamSessionCode"/>
     <classEntry path="net.poweru.components.dialogs.code.BaseCRUDDialogCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.BaseCalendarDialogCode"/>
     <classEntry path="net.poweru.components.dialogs.code.BaseDialogCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.BaseEditTaskCode"/>
     <classEntry path="net.poweru.components.dialogs.code.BatchCreateCredentialResultsCode"/>
     <classEntry path="net.poweru.components.dialogs.code.BulkAssignmentResultsCode"/>
     <classEntry path="net.poweru.components.dialogs.code.BulkEnrollInEventCode"/>
@@ -195,8 +201,10 @@
     <classEntry path="net.poweru.components.dialogs.code.EditUserOrgRoleCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditVenueCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EmailSessionParticipantsCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.EventCalendar"/>
     <classEntry path="net.poweru.components.dialogs.code.ResetPasswordCode"/>
     <classEntry path="net.poweru.components.dialogs.code.SelfRegisterCode"/>
+    <classEntry path="net.poweru.components.dialogs.code.StudentCalendarCode"/>
     <classEntry path="net.poweru.components.dialogs.code.TranscriptCode"/>
     <classEntry path="net.poweru.components.dialogs.code.UploadCSVCode"/>
     <classEntry path="net.poweru.components.dialogs.code.UploadFileDownloadCode"/>
@@ -206,6 +214,7 @@
     <classEntry path="net.poweru.components.dialogs.vod.code.EditGroupCode"/>
     <classEntry path="net.poweru.components.interfaces.IArrayPopulatedComponent"/>
     <classEntry path="net.poweru.components.interfaces.IBulkEnrollInEvent"/>
+    <classEntry path="net.poweru.components.interfaces.ICalendarDialog"/>
     <classEntry path="net.poweru.components.interfaces.IClearableComponent"/>
     <classEntry path="net.poweru.components.interfaces.ICreateBlackoutPeriod"/>
     <classEntry path="net.poweru.components.interfaces.ICreateCurriculumEnrollment"/>
@@ -229,6 +238,7 @@
     <classEntry path="net.poweru.components.interfaces.IOrganizations"/>
     <classEntry path="net.poweru.components.interfaces.IResetPassword"/>
     <classEntry path="net.poweru.components.interfaces.ISelfRegister"/>
+    <classEntry path="net.poweru.components.interfaces.ITranscript"/>
     <classEntry path="net.poweru.components.interfaces.IUploadCSV"/>
     <classEntry path="net.poweru.components.interfaces.IUploadFileDownload"/>
     <classEntry path="net.poweru.components.interfaces.IUsers"/>
@@ -267,6 +277,7 @@
     <classEntry path="net.poweru.components.student.code.CurriculumEnrollmentsCode"/>
     <classEntry path="net.poweru.components.student.code.ExamAssignmentsCode"/>
     <classEntry path="net.poweru.components.student.code.FileDownloadAssignmentsCode"/>
+    <classEntry path="net.poweru.components.student.code.SessionAssignmentsCode"/>
     <classEntry path="net.poweru.components.student.interfaces.IAssignments"/>
     <classEntry path="net.poweru.components.student.interfaces.ICurriculumEnrollments"/>
     <classEntry path="net.poweru.components.validators.RoomCapacityValidator"/>
@@ -281,6 +292,7 @@
     <classEntry path="net.poweru.components.widgets.MultipleSelectDataGrid"/>
     <classEntry path="net.poweru.components.widgets.PoliteAutoComplete"/>
     <classEntry path="net.poweru.components.widgets.ReCaptcha"/>
+    <classEntry path="net.poweru.components.widgets.ResizingTextArea"/>
     <classEntry path="net.poweru.components.widgets.TitleComboBox"/>
     <classEntry path="net.poweru.components.widgets.VideoPlayer"/>
     <classEntry path="net.poweru.components.widgets.code.AddressInputCode"/>
@@ -298,6 +310,7 @@
     <classEntry path="net.poweru.components.widgets.exam.code.CheckboxSelectMultipleCode"/>
     <classEntry path="net.poweru.components.widgets.exam.code.IExamQuestionWidget"/>
     <classEntry path="net.poweru.components.widgets.exam.code.RadioSelectCode"/>
+    <classEntry path="net.poweru.delegates.AchievementAwardManagerDelegate"/>
     <classEntry path="net.poweru.delegates.AchievementManagerDelegate"/>
     <classEntry path="net.poweru.delegates.AssignmentManagerDelegate"/>
     <classEntry path="net.poweru.delegates.BaseDelegate"/>
@@ -306,6 +319,7 @@
     <classEntry path="net.poweru.delegates.CredentialManagerDelegate"/>
     <classEntry path="net.poweru.delegates.CredentialTypeManagerDelegate"/>
     <classEntry path="net.poweru.delegates.CurriculumEnrollmentManagerDelegate"/>
+    <classEntry path="net.poweru.delegates.CurriculumManagerDelegate"/>
     <classEntry path="net.poweru.delegates.CurriculumTaskAssociationManagerDelegate"/>
     <classEntry path="net.poweru.delegates.EventManagerDelegate"/>
     <classEntry path="net.poweru.delegates.EventTemplateManagerDelegate"/>
@@ -346,6 +360,7 @@
     <classEntry path="net.poweru.presenters.AdministerExamSessionMediator"/>
     <classEntry path="net.poweru.presenters.AssignmentsMediator"/>
     <classEntry path="net.poweru.presenters.BaseBatchCreateResultsDialogMediator"/>
+    <classEntry path="net.poweru.presenters.BaseCalendarDialogMediator"/>
     <classEntry path="net.poweru.presenters.BaseChooserMediator"/>
     <classEntry path="net.poweru.presenters.BaseCreateDialogMediator"/>
     <classEntry path="net.poweru.presenters.BaseEditDialogMediator"/>
@@ -397,6 +412,7 @@
     <classEntry path="net.poweru.presenters.CredentialTypesMediator"/>
     <classEntry path="net.poweru.presenters.CurriculumEnrollmentMediator"/>
     <classEntry path="net.poweru.presenters.CurriculumManagementMediator"/>
+    <classEntry path="net.poweru.presenters.CurriculumsMediator"/>
     <classEntry path="net.poweru.presenters.EditAchievementMediator"/>
     <classEntry path="net.poweru.presenters.EditAssignmentMediator"/>
     <classEntry path="net.poweru.presenters.EditBlackoutPeriodMediator"/>
@@ -434,6 +450,7 @@
     <classEntry path="net.poweru.presenters.ResetPasswordMediator"/>
     <classEntry path="net.poweru.presenters.SelfRegisterMediator"/>
     <classEntry path="net.poweru.presenters.SessionUserRolesMediator"/>
+    <classEntry path="net.poweru.presenters.StudentCalendarMediator"/>
     <classEntry path="net.poweru.presenters.TaskBundlesMediator"/>
     <classEntry path="net.poweru.presenters.TranscriptMediator"/>
     <classEntry path="net.poweru.presenters.UploadFileDownloadMediator"/>
@@ -449,6 +466,7 @@
     <classEntry path="net.poweru.presenters.student.FileDownloadAssignmentsMediator"/>
     <classEntry path="net.poweru.presenters.student.SessionAssignmentMediator"/>
     <classEntry path="net.poweru.presenters.vod.EditGroupMediator"/>
+    <classEntry path="net.poweru.proxies.AchievementAwardProxy"/>
     <classEntry path="net.poweru.proxies.AchievementProxy"/>
     <classEntry path="net.poweru.proxies.AdminOrganizationViewProxy"/>
     <classEntry path="net.poweru.proxies.AdminUsersViewProxy"/>
@@ -463,6 +481,7 @@
     <classEntry path="net.poweru.proxies.CredentialTypeProxy"/>
     <classEntry path="net.poweru.proxies.CurriculumEnrollmentProxy"/>
     <classEntry path="net.poweru.proxies.CurriculumEnrollmentUserDetailProxy"/>
+    <classEntry path="net.poweru.proxies.CurriculumProxy"/>
     <classEntry path="net.poweru.proxies.EventProxy"/>
     <classEntry path="net.poweru.proxies.EventTemplateProxy"/>
     <classEntry path="net.poweru.proxies.ExamAssignmentsDetailProxy"/>
@@ -472,6 +491,7 @@
     <classEntry path="net.poweru.proxies.FileDownloadAssignmentsDetailProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadAssignmentsForUserProxy"/>
     <classEntry path="net.poweru.proxies.FileDownloadProxy"/>
+    <classEntry path="net.poweru.proxies.FlexCalendarLicenseProxy"/>
     <classEntry path="net.poweru.proxies.GroupProxy"/>
     <classEntry path="net.poweru.proxies.LoginProxy"/>
     <classEntry path="net.poweru.proxies.MessageTemplateProxy"/>
@@ -505,6 +525,8 @@
     <classEntry path="net.poweru.utils.CompareLabels"/>
     <classEntry path="net.poweru.utils.ExpectedResultCounter"/>
     <classEntry path="net.poweru.utils.InputCollector"/>
+    <classEntry path="net.poweru.utils.ItemsAreEqual"/>
+    <classEntry path="net.poweru.utils.LabelFunctions"/>
     <classEntry path="net.poweru.utils.NestedDataUtils"/>
     <classEntry path="net.poweru.utils.NestedSortField"/>
     <classEntry path="net.poweru.utils.PKArrayCollection"/>
@@ -513,13 +535,6 @@
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
-    <classEntry path="net.poweru.commands.FetchNewTaskCommand"/>
-    <classEntry path="net.poweru.components.dialogs.code.BaseEditTaskCode"/>
-    <classEntry path="net.poweru.components.widgets.ResizingTextArea"/>
-    <classEntry path="net.poweru.utils.LabelFunctions"/>
-    <classEntry path="net.poweru.components.interfaces.ITranscript"/>
-    <classEntry path="net.poweru.proxies.AchievementAwardProxy"/>
-    <classEntry path="net.poweru.delegates.AchievementAwardManagerDelegate"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

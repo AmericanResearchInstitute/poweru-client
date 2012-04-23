@@ -83,6 +83,7 @@ package net.poweru
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
 	import net.poweru.components.dialogs.SelfRegister;
+	import net.poweru.components.dialogs.StudentCalendar;
 	import net.poweru.components.dialogs.Transcript;
 	import net.poweru.components.dialogs.UploadCSV;
 	import net.poweru.components.dialogs.UploadFileDownload;
@@ -192,6 +193,7 @@ package net.poweru
 	import net.poweru.presenters.ResetPasswordMediator;
 	import net.poweru.presenters.SelfRegisterMediator;
 	import net.poweru.presenters.SessionUserRolesMediator;
+	import net.poweru.presenters.StudentCalendarMediator;
 	import net.poweru.presenters.TaskBundlesMediator;
 	import net.poweru.presenters.TranscriptMediator;
 	import net.poweru.presenters.UploadFileDownloadMediator;
@@ -605,6 +607,10 @@ package net.poweru
 				
 				case Places.STUDENTASSIGNMENTS:
 					component = getOrCreate(name, AssignmentsTab, net.poweru.presenters.student.AssignmentsMediator);
+					break;
+				
+				case Places.STUDENTCALENDAR:
+					component = getOrCreate(name, StudentCalendar, StudentCalendarMediator);
 					break;
 				
 				case Places.STUDENTCURRICULUMENROLLMENTS:
