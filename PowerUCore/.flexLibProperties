@@ -201,7 +201,7 @@
     <classEntry path="net.poweru.components.dialogs.code.EditUserOrgRoleCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EditVenueCode"/>
     <classEntry path="net.poweru.components.dialogs.code.EmailSessionParticipantsCode"/>
-    <classEntry path="net.poweru.components.dialogs.code.EventCalendar"/>
+    <classEntry path="net.poweru.components.dialogs.code.EventCalendarCode"/>
     <classEntry path="net.poweru.components.dialogs.code.ResetPasswordCode"/>
     <classEntry path="net.poweru.components.dialogs.code.SelfRegisterCode"/>
     <classEntry path="net.poweru.components.dialogs.code.StudentCalendarCode"/>
@@ -535,6 +535,8 @@
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
+    <classEntry path="net.poweru.components.dialogs.EventCalendar"/>
+    <classEntry path="net.poweru.presenters.EventCalendarMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

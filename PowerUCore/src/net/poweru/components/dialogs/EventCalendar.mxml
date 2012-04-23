@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:EventCalendarCode
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*"
+	xmlns:ns="http://flex-calendar.com/ns">
+	<mx:Script>
+		<![CDATA[
+			import com.flexcalendar.components.calendar.utils.CalendarMode;
+		]]>
+	</mx:Script>
+	<ns:FlexCalendar id="calendar" visible="false" width="100%" height="100%" dataProvider="{dp}" calendarMode="{CalendarMode.READ_ONLY_MODE}"/>
+</code:EventCalendarCode>

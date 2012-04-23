@@ -79,6 +79,7 @@ package net.poweru
 	import net.poweru.components.dialogs.EditUserOrgRole;
 	import net.poweru.components.dialogs.EditVenue;
 	import net.poweru.components.dialogs.EmailSessionParticipants;
+	import net.poweru.components.dialogs.EventCalendar;
 	import net.poweru.components.dialogs.HelpOrganization;
 	import net.poweru.components.dialogs.HelpUser;
 	import net.poweru.components.dialogs.ResetPassword;
@@ -181,6 +182,7 @@ package net.poweru
 	import net.poweru.presenters.EditUserMediator;
 	import net.poweru.presenters.EditUserOrgRoleMediator;
 	import net.poweru.presenters.EditVenueMediator;
+	import net.poweru.presenters.EventCalendarMediator;
 	import net.poweru.presenters.EventTemplatesMediator;
 	import net.poweru.presenters.EventsMediator;
 	import net.poweru.presenters.ExamsMediator;
@@ -527,6 +529,10 @@ package net.poweru
 				
 				case Places.EVENTASSIGNMENTS:
 					component = getOrCreate(name, SessionAssignments, SessionAssignmentMediator);
+					break;
+				
+				case Places.EVENTCALENDAR:
+					component = getOrCreate(name, EventCalendar, EventCalendarMediator);
 					break;
 				
 				case Places.EVENTS:

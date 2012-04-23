@@ -26,6 +26,7 @@
 		<mx:HBox>
 			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENT, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:Button label="Calendar" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EVENTCALENDAR, '']))}"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
 			<mx:Spacer height="6" width="6"/>

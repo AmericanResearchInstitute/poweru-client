@@ -11,6 +11,7 @@ package net.poweru
 		public static const CURRICULUMENROLLMENTS:String = 'CurriculumEnrollments';
 		public static const CURRICULUMMANAGEMENT:String = 'CurriculumManagement';
 		public static const CURRICULUMS:String = 'Curriculums';
+		public static const EVENTCALENDAR:String = 'EventCalendar';
 		public static const EVENTS:String = 'Events';
 		public static const EVENTASSIGNMENTS:String = 'EventAssignments';
 		public static const EVENTTEMPLATES:String = 'EventTemplates';
