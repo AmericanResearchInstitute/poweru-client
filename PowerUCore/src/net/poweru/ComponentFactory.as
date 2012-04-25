@@ -190,6 +190,7 @@ package net.poweru
 	import net.poweru.presenters.GroupsMediator;
 	import net.poweru.presenters.LoginMediator;
 	import net.poweru.presenters.MessageTemplatesMediator;
+	import net.poweru.presenters.OrgEnrolledSessionsMediator;
 	import net.poweru.presenters.OrgUploadCSVMediator;
 	import net.poweru.presenters.OrganizationsMediator;
 	import net.poweru.presenters.ResetPasswordMediator;
@@ -593,6 +594,10 @@ package net.poweru
 					
 				case Places.ORGANIZATIONS:
 					component = getOrCreate(name, Organizations, OrganizationsMediator);
+					break;
+				
+				case Places.ORGENROLLEDSESSIONS:
+					component = getOrCreate(name, EventCalendar, OrgEnrolledSessionsMediator);
 					break;
 				
 				case Places.PENDING_USER:

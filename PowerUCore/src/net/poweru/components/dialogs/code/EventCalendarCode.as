@@ -28,6 +28,7 @@ package net.poweru.components.dialogs.code
 				itemSet.addItem(calItem);
 			}
 			dp.addItemSet(itemSet);
+			calendar.refresh();
 		}
 	}
 }

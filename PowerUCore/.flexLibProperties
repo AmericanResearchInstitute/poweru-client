@@ -537,6 +537,8 @@
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
     <classEntry path="net.poweru.components.dialogs.EventCalendar"/>
     <classEntry path="net.poweru.presenters.EventCalendarMediator"/>
+    <classEntry path="net.poweru.proxies.OrgEnrolledSessionProxy"/>
+    <classEntry path="net.poweru.presenters.OrgEnrolledSessionsMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

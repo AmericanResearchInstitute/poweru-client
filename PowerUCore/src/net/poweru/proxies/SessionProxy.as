@@ -22,6 +22,7 @@ package net.poweru.proxies
 			createArgNamesInOrder = ['start', 'end', 'status', 'confirmed', 'default_price', 'event', 'shortname', 'fullname'];
 			createOptionalArgNames = ['title', 'url', 'description', 'lead_time'];
 			dateTimeFields = ['start', 'end'];
+			getFilteredMethodName = 'detailed_surr_view';
 		}
 		
 		/*	clear item from cache and re-fetch so we get the correct

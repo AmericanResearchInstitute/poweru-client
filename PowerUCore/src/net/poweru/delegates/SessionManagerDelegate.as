@@ -24,7 +24,6 @@ package net.poweru.delegates
 				'start' : mangleDate,
 				'end' : mangleDate
 			};
-			getFilteredMethodName = 'detailed_surr_view';
 		}
 	}
 }

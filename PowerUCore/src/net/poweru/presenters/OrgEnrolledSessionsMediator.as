@@ -2,30 +2,30 @@ package net.poweru.presenters
 {
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
-	import net.poweru.proxies.SessionProxy;
+	import net.poweru.proxies.OrgEnrolledSessionProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class EventCalendarMediator extends BaseCalendarDialogMediator implements IMediator
+	public class OrgEnrolledSessionsMediator extends BaseCalendarDialogMediator implements IMediator
 	{
-		public static const NAME:String = 'EventCalendarMediator';
+		public static const NAME:String = 'OrgEnrolledSessionsMediator';
 		
-		public function EventCalendarMediator(viewComponent:Object)
+		public function OrgEnrolledSessionsMediator(viewComponent:Object)
 		{
-			super(NAME, viewComponent, SessionProxy);
+			super(NAME, viewComponent, OrgEnrolledSessionProxy);
 			init();
 		}
 		
 		private function init():void
 		{
-			placeName = Places.EVENTCALENDAR;
+			placeName = Places.ORGENROLLEDSESSIONS;
 		}
 		
 		override public function listNotificationInterests():Array
 		{
 			return super.listNotificationInterests().concat(
-				NotificationNames.UPDATESESSIONS
+				NotificationNames.UPDATEORGENROLLEDSESSIONS
 			);
 		}
 		
@@ -33,7 +33,8 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.UPDATESESSIONS:
+				case NotificationNames.UPDATEORGENROLLEDSESSIONS:
+					calendarDialog.clear();
 					calendarDialog.populate(primaryProxy.dataSet.toArray());
 					break;
 				

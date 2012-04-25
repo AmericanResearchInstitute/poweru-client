@@ -8,7 +8,7 @@ package net.poweru.proxies
 	public class AssignmentsForUserProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'AssignmentsForUser';
-		public static const FIELDS:Array = ['user', 'status', 'task', 'prerequisites_met']
+		public static const FIELDS:Array = ['user', 'status', 'task', 'prerequisites_met'];
 		
 		public function AssignmentsForUserProxy()
 		{

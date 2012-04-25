@@ -117,6 +117,7 @@ package net.poweru
 		public static const HELPUSER:String = 'HelpUser';
 		public static const IMPORTORGANIZATIONS:String = 'ImportOrganizations';
 		public static const IMPORTUSERS:String = 'ImportUsers';
+		public static const ORGENROLLEDSESSIONS:String = 'OrgEnrolledSessions';
 		public static const RESETPASSWORD:String = 'ResetPassword';
 		public static const SELFREGISTER:String = 'SelfRegister';
 		public static const STUDENTCALENDAR:String = 'StudentCalendar';
