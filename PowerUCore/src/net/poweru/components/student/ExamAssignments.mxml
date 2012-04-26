@@ -10,14 +10,14 @@
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
-	<mx:DataGrid id="grid" width="65%" height="100%">
+	<mx:DataGrid id="grid" width="60%" height="100%" click="onExamSelected(event)">
 		<mx:columns>
 			<parts:NestedDataGridColumn nestedName="task.name" headerText="Name"/>
 			<parts:NestedDataGridColumn nestedName="task.title" headerText="Title"/>
 			<mx:DataGridColumn dataField="due_date" headerText="Due Date"/>
 		</mx:columns>
 	</mx:DataGrid>
-	<mx:VBox width="35%" height="100%">
+	<mx:VBox width="40%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Open" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.status != 'completed'}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.ADMINISTEREXAMSESSION, grid.selectedItem.id]))"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
@@ -36,10 +36,27 @@
 				<mx:FormItem label="Due Date:">
 					<mx:Label text="{grid.selectedItem.due_date}" />
 				</mx:FormItem>
-				<mx:FormItem label="Attempts:">
-					<mx:List id="attemptList" labelField="task_name" minWidth="220" dataProvider="{grid.selectedItem.attempts}"/>
-				</mx:FormItem>
 			</mx:Form>
+			<mx:Panel title="Attempts" width="100%">
+				<mx:DataGrid minWidth="220" dataProvider="{examSessions}" width="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Passing Score" dataField="passing_score"/>
+						<mx:DataGridColumn headerText="Your Score" dataField="score"/>
+						<mx:DataGridColumn headerText="Date" minWidth="160">
+							<mx:itemRenderer>
+								<mx:Component>
+									<mx:HBox>
+										<mx:Spacer width="4"/>
+										<mx:DateFormatter id="formatDate" formatString="MM/DD/YYYY L:N A"/>
+										<mx:Label text="{formatDate.format(data.date_completed)}"/>
+									</mx:HBox>
+								</mx:Component>
+							</mx:itemRenderer>
+						</mx:DataGridColumn>
+					</mx:columns>
+				</mx:DataGrid>
+			</mx:Panel>
+			
 		</mx:Panel>
 	</mx:VBox>
 </code:ExamAssignmentsCode>

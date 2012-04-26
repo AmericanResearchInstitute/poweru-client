@@ -539,6 +539,8 @@
     <classEntry path="net.poweru.presenters.EventCalendarMediator"/>
     <classEntry path="net.poweru.proxies.OrgEnrolledSessionProxy"/>
     <classEntry path="net.poweru.presenters.OrgEnrolledSessionsMediator"/>
+    <classEntry path="net.poweru.proxies.ExamSessionsForExamProxy"/>
+    <classEntry path="net.poweru.components.student.interfaces.IExamAssignments"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
