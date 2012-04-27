@@ -16,7 +16,7 @@ package net.poweru.proxies
 
 		public function CurriculumProxy()
 		{
-			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, []);
+			super(NAME, CurriculumManagerDelegate, NotificationNames.UPDATECURRICULUMS, ['active']);
 			init();
 		}
 		

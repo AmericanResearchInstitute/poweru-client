@@ -62,12 +62,11 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			var ret:Array = super.listNotificationInterests();
-			ret.push(NotificationNames.CHOICEMADE);
-			ret.push(NotificationNames.DIALOGPRESENTED);
-			ret.push(NotificationNames.LOGOUT);
-			ret.push(NotificationNames.RECEIVEDONE);
-			return ret;
+			return super.listNotificationInterests().concat(
+				NotificationNames.CHOICEMADE,
+				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -79,15 +78,13 @@ package net.poweru.presenters
 					editDialog.receiveChoice(notification.getBody() as ChooserResult, notification.getType());
 					break;
 				
-				case NotificationNames.LOGOUT:
-					if (editDialog)
-						editDialog.clear();
-					break;
-				
 				case NotificationNames.DIALOGPRESENTED:
 					var body:String = notification.getBody() as String;
 					if (body != null && body == placeName)
+					{
+						editDialog.setState(loginProxy.applicationState);
 						populate();
+					}
 					break;
 				
 				case NotificationNames.RECEIVEDONE:
@@ -95,6 +92,9 @@ package net.poweru.presenters
 					if (type == primaryProxy.getProxyName())
 						onReceivedOne(notification);
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

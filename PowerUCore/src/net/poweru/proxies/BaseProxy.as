@@ -23,6 +23,7 @@ package net.poweru.proxies
 	import net.poweru.ApplicationFacade;
 	import net.poweru.Constants;
 	import net.poweru.NotificationNames;
+	import net.poweru.StateNames;
 	import net.poweru.delegates.BaseDelegate;
 	import net.poweru.delegates.UserManagerDelegate;
 	import net.poweru.delegates.UtilsManagerDelegate;
@@ -123,6 +124,15 @@ package net.poweru.proxies
 			results sent back for this request only. */
 		public function getFiltered(filters:Object, uid:String=null):void
 		{
+			/* 	If this model has an 'active' field the current user is not a
+				super admin, filter out all items that where active == False. */
+			if (fields.indexOf('active') != -1 && loginProxy.applicationState != StateNames.SUPERADMIN)
+			{
+				if (!filters.hasOwnProperty('exact'))
+					filters['exact'] = {};
+				filters['exact']['active'] = true;
+			}
+			
 			var token:AsyncToken = new primaryDelegateClass(new PowerUResponder(onGetFilteredSuccess, onGetFilteredError, onFault)).getFiltered(loginProxy.authToken, filters, fields, getFilteredMethodName);
 			token['filters'] = filters;
 			if (uid != null)
@@ -318,7 +328,7 @@ package net.poweru.proxies
 			// First see if the user is logged in as an org-dependent role
 			if (LoginProxy.ORG_BASED_STATES.indexOf(loginProxy.applicationState) != -1)
 			{
-				if (item.hasOwnProperty('organization'))
+				if (item.hasOwnProperty('organization') && item.organization != null)
 				{
 					var orgID:Number = item.organization as Number;
 					if (orgID == 0 && item.organization.hasOwnProperty('id'))

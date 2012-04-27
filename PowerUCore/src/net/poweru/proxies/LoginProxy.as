@@ -189,6 +189,7 @@ package net.poweru.proxies
 			new UserManagerDelegate(new Responder(logoutResult, fault)).logout(authToken);
 			timerTearDown();
 			sendNotification(NotificationNames.LOGOUT);
+			applicationState = null;
 			clear();
 		}
 		

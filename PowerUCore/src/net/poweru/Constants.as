@@ -50,5 +50,7 @@ package net.poweru
 			'unpaid',
 			'wait-listed'
 		];
+		
+		public static const ACTIVE_CHECKBOX_TOOLTIP:String = 'If unchecked, this entry will no longer be available to users and will only appear in historical contexts, such as on a transcript.'
 	}
 }

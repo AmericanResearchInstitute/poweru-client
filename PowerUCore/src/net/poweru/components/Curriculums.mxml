@@ -36,7 +36,7 @@
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="4" width="4"/>
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUM, grid.selectedItem.id]))}"/>
-				<mx:Button label="Create Learning Initiative" id="createCurriculumEnrollmentButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
+				<mx:Button label="Create Learning Initiative" id="createCurriculumEnrollmentButton" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.active != false}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATECURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
 				<mx:Spacer height="4" width="4"/>
 			</mx:HBox>
 			<mx:Form width="100%">

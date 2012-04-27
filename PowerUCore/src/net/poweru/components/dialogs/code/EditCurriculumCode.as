@@ -2,6 +2,7 @@ package net.poweru.components.dialogs.code
 {
 	import flash.events.Event;
 	
+	import mx.controls.CheckBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
@@ -19,10 +20,13 @@ package net.poweru.components.dialogs.code
 		public var nameInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
 		[Bindable]
+		public var activeInput:CheckBox;
+		[Bindable]
 		public var tasks:DataGrid;
 		[Bindable]
 		protected var curriculumTaskAssociationDataSet:DataSet;
 		protected var pk:Number;
+		protected var activeInputWasPopulated:Boolean;
 		
 		public function EditCurriculumCode()
 		{
@@ -34,18 +38,24 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			descriptionInput.text = '';
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 			curriculumTaskAssociationDataSet.source = [];
 			curriculumTaskAssociationDataSet.refresh();
+			super.clear();
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'description' : descriptionInput.text,
 				'curriculum_task_associations' : curriculumTaskAssociationDataSet.toArray(),
 				'name' : nameInput.text
 			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -57,6 +67,12 @@ package net.poweru.components.dialogs.code
 			curriculumTaskAssociationDataSet.refresh();
 			
 			title = 'Edit Curriculum ' + data['name'];
+			
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
