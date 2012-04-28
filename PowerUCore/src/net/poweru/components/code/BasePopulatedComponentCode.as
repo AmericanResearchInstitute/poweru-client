@@ -24,8 +24,11 @@ package net.poweru.components.code
 		
 		public function populate(data:Array):void
 		{
-			grid.dataProvider.source = data;
-			grid.dataProvider.refresh();
+			if (grid != null && grid.dataProvider != null)
+			{
+				grid.dataProvider.source = data;
+				grid.dataProvider.refresh();
+			}
 		}
 		
 		public function clear():void

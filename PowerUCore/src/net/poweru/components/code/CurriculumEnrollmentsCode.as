@@ -1,8 +1,10 @@
 package net.poweru.components.code
 {
+	import mx.events.ListEvent;
 	import mx.formatters.DateFormatter;
 	
 	import net.poweru.components.interfaces.ICurriculumEnrollments;
+	import net.poweru.events.ViewEvent;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.SortedDataSetFactory;
 	
@@ -11,11 +13,35 @@ package net.poweru.components.code
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		[Bindable]
+		protected var tasks:DataSet;
+		
 		public function CurriculumEnrollmentsCode()
 		{
 			super();
+			init();
+		}
+		
+		private function init():void
+		{
 			dateFormatter = new DateFormatter();
 			dateFormatter.formatString = "MM/DD/YYYY";
+			tasks = SortedDataSetFactory.singleFieldSort('name');
+		}
+		
+		public function setTasks(data:Array):void
+		{
+			if (tasks != null)
+			{
+				tasks.source = data;
+				tasks.refresh();
+			}
+		}
+		
+		override public function clear():void
+		{
+			super.clear();
+			setTasks([]);
 		}
 		
 		override protected function getNewDataSet():DataSet
@@ -23,13 +49,10 @@ package net.poweru.components.code
 			return SortedDataSetFactory.singleFieldDateSort('start');
 		}
 		
-		protected function formatName(item:Object):String
+		protected function onChange(event:ListEvent):void
 		{
-			var ret:String = '';
-			ret += item.last_name;
-			ret += ', ';
-			ret += item.first_name;
-			return ret;
+			if (grid.selectedItem != null)
+				dispatchEvent(new ViewEvent(ViewEvent.FETCH, grid.selectedItem.curriculum));
 		}
 	}
 }

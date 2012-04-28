@@ -84,6 +84,7 @@ package net.poweru
 		public static const CREATETASKFEE:String = 'CreateTaskFee';
 		public static const CREATEUSER:String = 'CreateUser';
 		public static const CREATEVENUE:String = 'CreateVenue';
+		public static const CURRICULUMENROLLMENTUSERS:String = 'CurriculumEnrollmentUsers';
 		public static const EDITACHIEVEMENT:String = 'EditAchievement';
 		public static const EDITASSIGNMENT:String = 'EditAssignment';
 		public static const EDITBLACKOUTPERIOD:String = 'EditBlackoutPeriod';

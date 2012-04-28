@@ -54,6 +54,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateTaskFee;
 	import net.poweru.components.dialogs.CreateUser;
 	import net.poweru.components.dialogs.CreateVenue;
+	import net.poweru.components.dialogs.CurriculumEnrollmentUsers;
 	import net.poweru.components.dialogs.EditAchievement;
 	import net.poweru.components.dialogs.EditAssignment;
 	import net.poweru.components.dialogs.EditBlackoutPeriod;
@@ -156,6 +157,7 @@ package net.poweru
 	import net.poweru.presenters.CredentialManagementMediator;
 	import net.poweru.presenters.CredentialTypesMediator;
 	import net.poweru.presenters.CurriculumEnrollmentMediator;
+	import net.poweru.presenters.CurriculumEnrollmentUsersMediator;
 	import net.poweru.presenters.CurriculumManagementMediator;
 	import net.poweru.presenters.CurriculumsMediator;
 	import net.poweru.presenters.EditAchievementMediator;
@@ -418,6 +420,10 @@ package net.poweru
 				
 				case Places.CURRICULUMENROLLMENTS:
 					component = getOrCreate(name, net.poweru.components.CurriculumEnrollments, net.poweru.presenters.CurriculumEnrollmentMediator);
+					break;
+				
+				case Places.CURRICULUMENROLLMENTUSERS:
+					component = getOrCreate(name, CurriculumEnrollmentUsers, CurriculumEnrollmentUsersMediator);
 					break;
 				
 				case Places.CURRICULUMMANAGEMENT:

@@ -11,7 +11,7 @@ package net.poweru.proxies
 		
 		public function CurriculumEnrollmentUserDetailProxy()
 		{
-			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL, [], 'CurriculumEnrollment');
+			super(NAME, CurriculumEnrollmentManagerDelegate, NotificationNames.UPDATECURRICULUMENROLLMENTSUSERDETAIL, ['curriculum'], 'CurriculumEnrollment');
 			init();
 		}
 		
