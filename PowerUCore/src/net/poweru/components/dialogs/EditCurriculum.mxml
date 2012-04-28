@@ -23,6 +23,12 @@
 		<mx:FormItem id="activeFormItem" label="Active:">
 			<mx:CheckBox id="activeInput" toolTip="{Constants.ACTIVE_CHECKBOX_TOOLTIP}"/>
 		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:TextInput editable="false" id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			</mx:HBox>
+		</mx:FormItem>
 		<mx:FormItem label="Tasks" width="100%">
 			<mx:DataGrid id="tasks" dataProvider="{curriculumTaskAssociationDataSet}" width="100%">
 				<mx:columns>
@@ -41,6 +47,10 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	
+	<code:validators>
+		<mx:StringValidator source="{orgLabel}" property="text" required="true"/>
+	</code:validators>
 	
 	<code:states>
 		<mx:State name="{StateNames.ORG_ADMIN}">

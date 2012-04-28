@@ -14,6 +14,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
 	import net.poweru.utils.PKArrayCollection;
+	import net.poweru.utils.SortedDataSetFactory;
 	
 	public class EditCurriculumCode extends BaseCRUDDialog implements IEditDialog
 	{
@@ -27,6 +28,8 @@ package net.poweru.components.dialogs.code
 		protected var curriculumTaskAssociationDataSet:DataSet;
 		protected var pk:Number;
 		protected var activeInputWasPopulated:Boolean;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		public function EditCurriculumCode()
 		{
@@ -42,6 +45,7 @@ package net.poweru.components.dialogs.code
 			activeInputWasPopulated = false;
 			curriculumTaskAssociationDataSet.source = [];
 			curriculumTaskAssociationDataSet.refresh();
+			chosenOrganization = null;
 			super.clear();
 		}
 		
@@ -51,7 +55,8 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'description' : descriptionInput.text,
 				'curriculum_task_associations' : curriculumTaskAssociationDataSet.toArray(),
-				'name' : nameInput.text
+				'name' : nameInput.text,
+				'organization' : chosenOrganization.id
 			};
 			if (activeInputWasPopulated)
 				ret['active'] = activeInput.selected;
@@ -65,6 +70,7 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = data['description'];
 			curriculumTaskAssociationDataSet.source = data['curriculum_task_associations'];
 			curriculumTaskAssociationDataSet.refresh();
+			chosenOrganization = data['organization'];
 			
 			title = 'Edit Curriculum ' + data['name'];
 			
@@ -110,6 +116,10 @@ package net.poweru.components.dialogs.code
 							}
 						}
 						break;
+					
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
 				}
 			}
 		}
@@ -122,8 +132,8 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			curriculumTaskAssociationDataSet = new DataSet();
-			validators = [nameInput.validator];
+			curriculumTaskAssociationDataSet = SortedDataSetFactory.singleFieldSort('name');
+			validators = validators.concat(nameInput.validator);
 		}
 		
 		protected function onRemoveTask(event:Event):void

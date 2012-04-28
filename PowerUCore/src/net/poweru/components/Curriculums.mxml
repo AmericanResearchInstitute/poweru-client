@@ -46,6 +46,9 @@
 				<mx:FormItem label="Description:">
 					<mx:Text text="{grid.selectedItem.description}" />
 				</mx:FormItem>
+				<mx:FormItem label="Organization:">
+					<mx:Label text="{grid.selectedItem.organization.name}" />
+				</mx:FormItem>
 				<mx:FormItem label="Tasks:" width="100%">
 					<mx:DataGrid id="taskGrid" width="100%" height="100%" dataProvider="{grid.selectedItem.curriculum_task_associations}">
 						<mx:columns>

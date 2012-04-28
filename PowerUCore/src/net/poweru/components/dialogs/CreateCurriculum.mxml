@@ -8,6 +8,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -18,9 +19,19 @@
 		<mx:FormItem label="Description:">
 			<widgets:ResizingTextArea minWidth="300" id="descriptionInput"/>
 		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:TextInput editable="false" id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	
+	<code:validators>
+		<mx:StringValidator source="{orgLabel}" property="text" required="true"/>
+	</code:validators>
 </code:CreateCurriculumCode>
