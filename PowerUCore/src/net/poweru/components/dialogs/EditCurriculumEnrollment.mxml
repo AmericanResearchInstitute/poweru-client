@@ -6,6 +6,8 @@
 	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Places;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -22,6 +24,12 @@
 		<mx:FormItem label="End" required="true">
 			<mx:DateField id="endInput" enabled="{startInput.selectedDate != null}"/>
 		</mx:FormItem>
+		<mx:FormItem label="Organization" required="true">
+			<mx:HBox>
+				<mx:TextInput editable="false" id="orgLabel" text="{chosenOrganization.name}"/>
+				<mx:Button id="orgButton" label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+			</mx:HBox>
+		</mx:FormItem>
 	</mx:Form>
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
@@ -31,4 +39,10 @@
 		<mx:DateValidator source="{startInput}" property="selectedDate" required="true"/>
 		<mx:DateValidator source="{endInput}" property="selectedDate" required="true"/>
 	</code:validators>
+	
+	<code:states>
+		<mx:State name="{StateNames.ORG_ADMIN}">
+			<mx:RemoveChild target="{orgButton}"/>
+		</mx:State>
+	</code:states>
 </code:EditCurriculumEnrollmentCode>

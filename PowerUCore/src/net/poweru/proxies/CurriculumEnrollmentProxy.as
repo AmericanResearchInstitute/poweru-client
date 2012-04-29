@@ -21,7 +21,7 @@ package net.poweru.proxies
 		private function init():void
 		{
 			dateTimeFields = ['start', 'end'];
-			createArgNamesInOrder = ['curriculum', 'start', 'end'];
+			createArgNamesInOrder = ['curriculum', 'start', 'end', 'organization'];
 			createOptionalArgNames = ['description', 'name', 'users'];
 		}
 		

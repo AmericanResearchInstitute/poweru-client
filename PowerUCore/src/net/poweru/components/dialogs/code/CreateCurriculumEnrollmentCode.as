@@ -6,9 +6,11 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateCurriculumEnrollment;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	
 	public class CreateCurriculumEnrollmentCode extends BaseCRUDDialog implements ICreateCurriculumEnrollment
 	{
@@ -21,6 +23,8 @@ package net.poweru.components.dialogs.code
 		public var startDate:DateField;
 		[Bindable]
 		public var endDate:DateField;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		public function CreateCurriculumEnrollmentCode()
 		{
@@ -33,6 +37,7 @@ package net.poweru.components.dialogs.code
 			nameInput.text = '';
 			descriptionInput.text = '';
 			curriculum = {};
+			chosenOrganization = null;
 			startDate.selectedDate = null;
 			endDate.selectedDate = null;
 		}
@@ -51,8 +56,25 @@ package net.poweru.components.dialogs.code
 				'name' : nameInput.text,
 				'description' : descriptionInput.text,
 				'curriculum' : curriculum.id,
+				'organization' : chosenOrganization.id,
 				'start' : startDate.selectedDate,
 				'end' : endDate.selectedDate
+			}
+		}
+		
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
+		{
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+			{
+				switch (chooserName)
+				{
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
+					
+					default:
+						super.receiveChoice(choice, chooserName);
+				}
 			}
 		}
 		

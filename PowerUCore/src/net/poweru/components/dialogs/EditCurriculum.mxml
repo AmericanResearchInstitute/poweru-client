@@ -26,7 +26,7 @@
 		<mx:FormItem label="Organization" required="true">
 			<mx:HBox>
 				<mx:TextInput editable="false" id="orgLabel" text="{chosenOrganization.name}"/>
-				<mx:Button label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
+				<mx:Button id="orgButton" label="Choose Organization" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEORGANIZATION, chooserRequestTracker.getChooserRequest(Places.CHOOSEORGANIZATION)]))"/>
 			</mx:HBox>
 		</mx:FormItem>
 		<mx:FormItem label="Tasks" width="100%">
@@ -55,6 +55,7 @@
 	<code:states>
 		<mx:State name="{StateNames.ORG_ADMIN}">
 			<mx:RemoveChild target="{activeFormItem}"/>
+			<mx:RemoveChild target="{orgButton}"/>
 		</mx:State>
 	</code:states>
 </code:EditCurriculumCode>

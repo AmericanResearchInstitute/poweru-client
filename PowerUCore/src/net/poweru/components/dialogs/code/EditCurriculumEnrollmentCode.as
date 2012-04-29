@@ -7,9 +7,11 @@ package net.poweru.components.dialogs.code
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
+	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
+	import net.poweru.model.ChooserResult;
 	
 	public class EditCurriculumEnrollmentCode extends BaseCRUDDialog implements IEditDialog
 	{
@@ -19,6 +21,8 @@ package net.poweru.components.dialogs.code
 		public var startInput:DateField;
 		[Bindable]
 		public var endInput:DateField;
+		[Bindable]
+		protected var chosenOrganization:Object;
 		
 		protected var pk:Number;
 		
@@ -33,6 +37,7 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 			nameInput.text = data['name'];
 			descriptionInput.text = data['description'];
+			chosenOrganization = data['organization'];
 			startInput.selectedDate = data['start'];
 			endInput.selectedDate = data['end'];
 			if (startInput.selectedDate != null)
@@ -45,6 +50,7 @@ package net.poweru.components.dialogs.code
 			endInput.selectedDate = null;
 			descriptionInput.text = '';
 			nameInput.text = '';
+			chosenOrganization = null;
 		}
 		
 		override public function getData():Object
@@ -53,9 +59,26 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'description' : descriptionInput.text,
 				'name' : nameInput.text,
+				'organization' : chosenOrganization.id,
 				'start' : startInput.selectedDate,
 				'end' : endInput.selectedDate
 			};
+		}
+		
+		override public function receiveChoice(choice:ChooserResult, chooserName:String):void
+		{
+			if (chooserRequestTracker.doIWantThis(chooserName, choice.requestID))
+			{
+				switch (chooserName)
+				{
+					case Places.CHOOSEORGANIZATION:
+						chosenOrganization = choice.value;
+						break;
+					
+					default:
+						super.receiveChoice(choice, chooserName);
+				}
+			}
 		}
 		
 		protected function restrictEndDate():void

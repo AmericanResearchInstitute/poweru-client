@@ -31,22 +31,16 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
+			return super.listNotificationInterests().concat(
 				NotificationNames.DIALOGPRESENTED,
-				NotificationNames.RECEIVEDONE,
-			];
+				NotificationNames.RECEIVEDONE
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (createDialog)
-						createDialog.clear();
-					break;
-				
 				case NotificationNames.DIALOGPRESENTED:
 					var body:String = notification.getBody() as String;
 					if (body != null && body == Places.CREATECURRICULUMENROLLMENT)
@@ -57,6 +51,9 @@ package net.poweru.presenters
 					if (notification.getType() == curriculumProxy.getProxyName())
 						createCurriculumEnrollmentDialog.populate(notification.getBody());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		

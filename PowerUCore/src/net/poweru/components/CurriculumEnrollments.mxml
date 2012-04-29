@@ -46,7 +46,7 @@
 			<mx:Spacer height="4" width="4"/>
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="4" width="4"/>
-				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
+				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null &amp;&amp; isEditable(grid.selectedItem)}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITCURRICULUMENROLLMENT, grid.selectedItem.id]))}"/>
 				<mx:Button label="Enrollments" enabled="{grid.selectedItem != null}" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CURRICULUMENROLLMENTUSERS, grid.selectedItem.users]))"/>
 			</mx:HBox>
 			<mx:Form>
@@ -61,6 +61,9 @@
 				</mx:FormItem>
 				<mx:FormItem label="Description:">
 					<mx:Text text="{grid.selectedItem.description}" />
+				</mx:FormItem>
+				<mx:FormItem label="Organization:">
+					<mx:Label text="{grid.selectedItem.organization.name}" />
 				</mx:FormItem>
 			</mx:Form>
 			<mx:Panel title="Tasks" width="100%">
