@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code:SURRAssignmentsCode
+	width="100%"
+	height="100%"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.parts.code.*"
-	width="100%"
-	height="100%">
-	<mx:DataGrid id="enrollmentGrid" dataProvider="{assignments}">
+	xmlns:parts="net.poweru.components.parts.*">
+	<mx:Script>
+		<![CDATA[
+			import net.poweru.Constants;
+			import net.poweru.events.ViewEvent;
+		]]>
+	</mx:Script>
+	<mx:HBox>
+		<mx:Button label="Update Status" enabled="{enrollmentGrid.selectedItems.length > 0 &amp;&amp; statusComboBox.selectedItem != null}"
+				   click="{dispatchEvent(new ViewEvent(ViewEvent.SUBMIT, enrollmentGrid.selectedItems, statusComboBox.selectedLabel, true))}"/>
+		<mx:ComboBox id="statusComboBox" dataProvider="{Constants.ASSIGNMENT_STATUSES}"/>
+	</mx:HBox>
+	<mx:DataGrid id="enrollmentGrid" dataProvider="{assignments}" allowMultipleSelection="true">
 		<mx:columns>
-			<mx:DataGridColumn headerText="Last Name" dataField="last_name" labelFunction="{userLabel}"/>
-			<mx:DataGridColumn headerText="First Name" dataField="first_name" labelFunction="{userLabel}"/>
+			<parts:NestedDataGridColumn headerText="Last Name" nestedName="user.last_name"/>
+			<parts:NestedDataGridColumn headerText="First Name" nestedName="user.first_name"/>
 			<mx:DataGridColumn headerText="Status" dataField="status"/>
 		</mx:columns>
 	</mx:DataGrid>

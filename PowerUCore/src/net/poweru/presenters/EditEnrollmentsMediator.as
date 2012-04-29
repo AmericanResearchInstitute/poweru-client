@@ -26,11 +26,9 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
-				NotificationNames.DIALOGPRESENTED,
+			return super.listNotificationInterests().concat(
 				NotificationNames.UPDATEASSIGNMENTS
-			];
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -60,9 +58,13 @@ package net.poweru.presenters
 		
 		override protected function onSubmit(event:ViewEvent):void
 		{
-			//var newObject:Object = event.body;
-			//primaryProxy.save(newObject);
-			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
+			var assignments:Array = event.body as Array;
+			var status:String = event.subType;
+			for each (var assignment:Object in assignments)
+			{
+				assignment.status = status;
+				primaryProxy.save(assignment);
+			}
 		}
 		
 		override protected function populate():void

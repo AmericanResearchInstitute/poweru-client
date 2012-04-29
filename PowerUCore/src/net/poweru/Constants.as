@@ -41,6 +41,17 @@ package net.poweru
 		public static const SERV_DEALER_ADMIN:String = 'Serv Dealer Admin';
 		public static const ADMIN_ASSISTANT:String = 'Admin Assistant';
 		
+		public static const ASSIGNMENT_STATUSES:Array = [
+			'assigned',
+			'canceled',
+			'completed',
+			'late',
+			'no-show',
+			'pending',
+			'unpaid',
+			'wait-listed'
+		];
+		
 		/*	Statuses of assignments that mean it's incomplete but still
 			eligible to be completed. */
 		public static const ASSIGNMENT_INCOMPLETE_STATUSES:Array = [

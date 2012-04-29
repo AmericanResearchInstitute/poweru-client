@@ -1,6 +1,7 @@
 package net.poweru.components.dialogs.code
 {
 	import mx.containers.Accordion;
+	import mx.utils.ObjectUtil;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
@@ -29,12 +30,11 @@ package net.poweru.components.dialogs.code
 			for each (var surr:Object in surrs)
 				sortedAssignments[surr['id']] = [];
 			for each (var assignment:Object in assignments)
-				(sortedAssignments[assignment['task']['id']] as Array).push(assignment);
+				(sortedAssignments[assignment['task']['id']] as Array).push(ObjectUtil.copy(assignment));
 				
 			for each (var surr2:Object in surrs)
 			{
 				var surrAssignments:SURRAssignments = new SURRAssignments();
-				surrAssignments.surr = surr2;
 				surrAssignments.assignments.source = sortedAssignments[surr2['id']];
 				surrAssignments.assignments.refresh();
 				surrAssignments.label = surr2['role_name'] + ' (' + surrAssignments.assignments.length.toString() + ')';
