@@ -21,11 +21,9 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			var ret:Array = super.listNotificationInterests();
-			ret = ret.concat([
+			return super.listNotificationInterests().concat(
 				NotificationNames.RECEIVEDONE
-			]);
-			return ret;
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void

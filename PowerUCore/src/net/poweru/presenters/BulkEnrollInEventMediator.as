@@ -12,6 +12,7 @@ package net.poweru.presenters
 	import net.poweru.proxies.AssignmentProxy;
 	import net.poweru.proxies.SessionProxy;
 	import net.poweru.utils.InputCollector;
+	import net.poweru.utils.PKArrayCollection;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -34,6 +35,11 @@ package net.poweru.presenters
 		{
 			initialDataProxy = getProxy(InitialDataProxy) as InitialDataProxy;
 			sessionProxy = getProxy(SessionProxy) as SessionProxy;
+		}
+		
+		protected function get assignmentProxy():AssignmentProxy
+		{
+			return primaryProxy as AssignmentProxy;
 		}
 		
 		override protected function addEventListeners():void
@@ -61,22 +67,16 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
+			return super.listNotificationInterests().concat(
 				NotificationNames.DIALOGPRESENTED,
 				NotificationNames.UPDATESESSIONS
-			];
+			);
 		}
 		
 		override public function handleNotification(notification:INotification):void
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					if (dialog)
-						dialog.clear();
-					break;
-				
 				case NotificationNames.DIALOGPRESENTED:
 					var body:String = notification.getBody() as String;
 					if (body != null && body == Places.BULKENROLLINEVENT)
@@ -97,17 +97,17 @@ package net.poweru.presenters
 					if (correctEvent)
 						inputCollector.addInput('sessions', sessions.toArray());
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 		
 		protected function onSubmit(event:ViewEvent):void
 		{
-			var users:Array = event.body['users'] as Array;
+			var users:PKArrayCollection = new PKArrayCollection(event.body['users'] as Array);
 			var surr:Number = event.body['session_user_role_requirement'];
-			for each (var user:Object in users)
-			{
-				primaryProxy.create({'task' : surr, 'user' : user['id']});
-			}
+			assignmentProxy.bulkCreate(surr, users.toArray());
 			sendNotification(NotificationNames.REMOVEDIALOG, displayObject);
 			dialog.clear();
 		}
