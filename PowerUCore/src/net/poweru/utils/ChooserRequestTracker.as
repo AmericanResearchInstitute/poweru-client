@@ -18,9 +18,9 @@ package net.poweru.utils
 		}
 		
 		// Convenience method for generating a ChooserRequest object
-		public function getChooserRequest(type:String, exclude:Array = null, body:Object = null):ChooserRequest
+		public function getChooserRequest(type:String, exclude:Array = null, body:Object = null, showInactive:Boolean = true):ChooserRequest
 		{
-			return new ChooserRequest(getID(type), exclude, body);
+			return new ChooserRequest(getID(type), exclude, body, showInactive);
 		}
 		
 		// type should usually be the place name of a chooser

@@ -219,7 +219,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to File Download" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, chooserRequestTracker.getChooserRequest(Places.CHOOSEFILEDOWNLOAD)]))"/>
+					<mx:Button label="Choose File Download" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEFILEDOWNLOAD, chooserRequestTracker.getChooserRequest(Places.CHOOSEFILEDOWNLOAD, null, null, false)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{fileDownloadToAssign.name}"/>

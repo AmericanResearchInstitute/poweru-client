@@ -66,11 +66,10 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			return [
-				NotificationNames.LOGOUT,
+			return super.listNotificationInterests().concat(
 				NotificationNames.SHOWDIALOG,
 				updateNotification
-			];
+			);
 		}
 		
 		override protected function populate():void
@@ -112,10 +111,6 @@ package net.poweru.presenters
 		{
 			switch (notification.getName())
 			{
-				case NotificationNames.LOGOUT:
-					chooser.clear();
-					break;
-				
 				case NotificationNames.SHOWDIALOG:
 					if (notification.getBody()[0] == placeName)
 					{
@@ -123,6 +118,9 @@ package net.poweru.presenters
 						populate();
 					}
 					break;
+				
+				default:
+					super.handleNotification(notification);
 			}
 		}
 	}

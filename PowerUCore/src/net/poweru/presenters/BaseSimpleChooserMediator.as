@@ -2,6 +2,7 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
+	import net.poweru.model.DataSet;
 	import net.poweru.utils.InputCollector;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -26,8 +27,14 @@ package net.poweru.presenters
 			switch (notification.getName())
 			{
 				case updateNotification:
-					var data:Array = applyExcludes(primaryProxy.dataSet.toArray());
-					inputCollector.addInput('data', data);
+					var data:DataSet = new DataSet(applyExcludes(primaryProxy.dataSet.toArray()));
+					if (request.showInactive == false)
+					{
+						data.filterFunction = filterInactive;
+						data.refresh();
+					}
+					
+					inputCollector.addInput('data', data.toArray());
 					break;
 				
 				default:
@@ -49,6 +56,11 @@ package net.poweru.presenters
 			super.populate();
 			buildInputCollector();
 			primaryProxy.getAll();
+		}
+		
+		protected function filterInactive(item:Object):Boolean
+		{
+			return !(item.hasOwnProperty('active') && item.active == false);
 		}
 		
 		protected function onInputsCollected(event:Event):void

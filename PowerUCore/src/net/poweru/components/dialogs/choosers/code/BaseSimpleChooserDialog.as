@@ -1,6 +1,5 @@
 package net.poweru.components.dialogs.choosers.code
 {
-	import mx.controls.AdvancedDataGrid;
 	import mx.controls.DataGrid;
 	import mx.events.FlexEvent;
 	
