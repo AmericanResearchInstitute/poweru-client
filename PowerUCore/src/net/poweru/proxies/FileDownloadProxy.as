@@ -13,7 +13,7 @@ package net.poweru.proxies
 		
 		public function FileDownloadProxy()
 		{
-			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, []);
+			super(NAME, FileDownloadManagerDelegate, NotificationNames.UPDATEFILEDOWNLOADS, ['active']);
 			init();
 		}
 		

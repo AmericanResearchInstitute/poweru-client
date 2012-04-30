@@ -1,6 +1,7 @@
 package net.poweru.components.dialogs.code
 {
 	import mx.containers.Form;
+	import mx.controls.CheckBox;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
 	
@@ -12,8 +13,11 @@ package net.poweru.components.dialogs.code
 		public var nameInput:IGeneratedTextInput;
 		public var titleInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
-		
 		public var form:Form;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		public function EditFileDownloadCode()
 		{
@@ -28,6 +32,8 @@ package net.poweru.components.dialogs.code
 			nameInput.text = '';
 			titleInput.text = '';
 			descriptionInput.text = '';
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 		}
 		
 		override public function populate(data:Object, ...args):void
@@ -37,11 +43,16 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(nameInput, 'text', data['name']);
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'name' : nameInput.text,
 				'title' : titleInput.text,
@@ -50,7 +61,10 @@ package net.poweru.components.dialogs.code
 				'prerequisite_tasks' : prerequisiteTaskDataSet.toArray(),
 				'prerequisite_achievements' : prerequisiteAchievementDataSet.toArray(),
 				'organization' : chosenOrganization.id
-			}
+			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
