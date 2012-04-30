@@ -545,6 +545,7 @@
     <classEntry path="net.poweru.components.dialogs.code.CurriculumEnrollmentUsersCode"/>
     <classEntry path="net.poweru.components.dialogs.CurriculumEnrollmentUsers"/>
     <classEntry path="net.poweru.proxies.TasksForCurriculumProxy"/>
+    <classEntry path="net.poweru.components.code.BaseActivePopulatedComponentCode"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
