@@ -11,7 +11,7 @@ package net.poweru.proxies
 		
 		public function TaskBundleProxy()
 		{
-			super(NAME, TaskBundleManagerDelegate, NotificationNames.UPDATETASKBUNDLESS, [], 'TaskBundle', []);
+			super(NAME, TaskBundleManagerDelegate, NotificationNames.UPDATETASKBUNDLESS, ['active'], 'TaskBundle', []);
 			init();
 		}
 		

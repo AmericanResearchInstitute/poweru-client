@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<code:BasePopulatedComponentCode
+<code:BaseActivePopulatedComponentCode
 	sortedFieldName="name"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.code.*"
@@ -24,6 +24,7 @@
 		<mx:HBox>
 			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATETASKBUNDLE, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:CheckBox id="showInactiveInput" label="Show Inactive" change="grid.dataProvider.refresh()"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
 			<mx:Spacer height="4" width="4"/>
@@ -54,11 +55,9 @@
 		<mx:State name="{StateNames.SERV_DEALER_ADMIN}">
 			<mx:RemoveChild target="{buttonBox}"/>
 			<mx:RemoveChild target="{addButton}"/>
+			<mx:RemoveChild target="{showInactiveInput}"/>
 		</mx:State>
-		<mx:State name="{StateNames.ADMIN_ASSISTANT}">
-			<mx:RemoveChild target="{buttonBox}"/>
-			<mx:RemoveChild target="{addButton}"/>
-		</mx:State>
+		<mx:State name="{StateNames.ADMIN_ASSISTANT}" basedOn="{StateNames.SERV_DEALER_ADMIN}"/>
 	</code:states>
 	
-</code:BasePopulatedComponentCode>
+</code:BaseActivePopulatedComponentCode>

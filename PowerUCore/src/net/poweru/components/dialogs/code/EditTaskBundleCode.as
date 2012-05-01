@@ -2,6 +2,7 @@ package net.poweru.components.dialogs.code
 {
 	import flash.events.Event;
 	
+	import mx.controls.CheckBox;
 	import mx.controls.DataGrid;
 	import mx.controls.TextArea;
 	import mx.events.FlexEvent;
@@ -19,6 +20,10 @@ package net.poweru.components.dialogs.code
 		public var descriptionInput:TextArea;
 		[Bindable]
 		public var tasks:DataGrid;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		protected var pk:Number;
 		[Bindable]
@@ -38,6 +43,8 @@ package net.poweru.components.dialogs.code
 			
 			taskDataSet.source = [];
 			taskDataSet.refresh();
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -47,16 +54,24 @@ package net.poweru.components.dialogs.code
 			descriptionInput.text = data['description'];
 			taskDataSet.source = data['tasks'];
 			taskDataSet.refresh();
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'name' : nameInput.text,
 				'description' : descriptionInput.text,
 				'tasks' : taskDataSet.toArray()
-			}
+			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		override public function receiveChoice(choice:ChooserResult, chooserName:String):void

@@ -38,7 +38,7 @@
 			</mx:DataGrid>
 			<mx:HBox>
 				<mx:Button label="Add Task" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASK, chooserRequestTracker.getChooserRequest(Places.CHOOSETASK, chosenTasks)]))}"/>
-				<mx:Button label="Add Task Bundle" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE)]))}"/>
+				<mx:Button label="Add Task Bundle" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE, null, null, false)]))}"/>
 				<mx:Button label="Remove" enabled="{tasks.selectedItem != null}" click="{onRemoveTask(event)}"/>
 			</mx:HBox>
 		</mx:FormItem>

@@ -193,7 +193,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" id="assignToTaskBundle" label="Assign to Task Bundle" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Task Bundle" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE)]))"/>
+					<mx:Button label="Choose Task Bundle" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSETASKBUNDLE, chooserRequestTracker.getChooserRequest(Places.CHOOSETASKBUNDLE, null, null, false)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{taskBundleToAssign.name}"/>
