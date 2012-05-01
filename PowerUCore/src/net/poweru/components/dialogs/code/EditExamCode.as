@@ -1,6 +1,7 @@
 package net.poweru.components.dialogs.code
 {
 	import mx.containers.Form;
+	import mx.controls.CheckBox;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
@@ -16,6 +17,10 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		public var passingScoreInput:TextInput;
 		public var form:Form;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		public function EditExamCode()
 		{
@@ -29,13 +34,15 @@ package net.poweru.components.dialogs.code
 			titleInput.text = '';
 			descriptionInput.text = '';
 			passingScoreInput.text = '';
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 			
 			super.clear();
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object =  {
 				'id' : pk,
 				'name' : nameInput.text,
 				'title' : titleInput.text,
@@ -45,7 +52,10 @@ package net.poweru.components.dialogs.code
 				'prerequisite_achievements' : prerequisiteAchievementDataSet.toArray(),
 				'passing_score' : passingScoreInput.text,
 				'organization' : chosenOrganization.id
-			}
+			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		override public function populate(data:Object, ...args):void
@@ -56,6 +66,11 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
 			updateControlIfUnchanged(passingScoreInput, 'text', data['passing_score']);
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 			
 			title = 'Edit Exam ' + data['name'];
 		}

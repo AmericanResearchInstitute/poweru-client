@@ -12,7 +12,7 @@ package net.poweru.proxies
 		
 		public function ExamProxy()
 		{
-			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, [], 'Exam');
+			super(NAME, ExamManagerDelegate, NotificationNames.UPDATEEXAMS, ['active'], 'Exam');
 			init();
 		}
 		

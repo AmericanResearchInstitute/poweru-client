@@ -206,7 +206,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" label="Assign to Exam" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, chooserRequestTracker.getChooserRequest(Places.CHOOSEEXAM)]))"/>
+					<mx:Button label="Choose Exam" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEEXAM, chooserRequestTracker.getChooserRequest(Places.CHOOSEEXAM, null, null, false)]))"/>
 					<mx:Form width="100%">
 						<mx:FormItem label="Name">
 							<mx:Label text="{examToAssign.name}"/>
