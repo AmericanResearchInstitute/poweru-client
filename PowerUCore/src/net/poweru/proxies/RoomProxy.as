@@ -11,7 +11,7 @@ package net.poweru.proxies
 	public class RoomProxy extends BaseCollectionCachingProxy implements IProxy
 	{
 		public static const NAME:String = 'RoomProxy';
-		public static const FIELDS:Array = ['name', 'capacity', 'venue'];
+		public static const FIELDS:Array = ['active', 'name', 'capacity', 'venue'];
 		
 		public function RoomProxy()
 		{

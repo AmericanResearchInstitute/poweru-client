@@ -1,9 +1,6 @@
 package net.poweru.components.code
 {
-	import flash.events.Event;
-	
-	import mx.containers.HBox;
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.CheckBox;
 	import mx.controls.DataGrid;
 	import mx.controls.List;
 	import mx.events.FlexEvent;
@@ -17,13 +14,16 @@ package net.poweru.components.code
 	public class VenuesCode extends BaseComponent implements IVenues
 	{
 		[Bindable]
-		public var grid:AdvancedDataGrid;
+		public var grid:DataGrid;
 		[Bindable]
 		public var roomList:List;
 		[Bindable]
 		public var blackoutGrid:DataGrid;
 		[Bindable]
+		public var showInactiveInput:CheckBox;
+		[Bindable]
 		protected var addressString:String;
+		
 		
 		public function VenuesCode()
 		{
@@ -82,13 +82,21 @@ package net.poweru.components.code
 			}
 		}
 		
+		protected function filterInactive(item:Object):Boolean
+		{
+			if (showInactiveInput != null && showInactiveInput.selected == true)
+				return true;
+			else
+				return !(item.hasOwnProperty('active') && item.active == false);
+		}
+		
 		protected function onVenueSelected(event:ListEvent):void
 		{
 			roomList.dataProvider.source = [];
 			roomList.dataProvider.refresh();
 			blackoutGrid.dataProvider.source = [];
 			blackoutGrid.dataProvider.refresh();
-			dispatchEvent(new ViewEvent(ViewEvent.FETCH, (event.target as AdvancedDataGrid).selectedItem['id']));
+			dispatchEvent(new ViewEvent(ViewEvent.FETCH, (event.target as DataGrid).selectedItem['id']));
 			
 			var address:Object = grid.selectedItem.address;
 			addressString = address.label + '\n' + address.locality + ', ' + address.region + ' ' + address.postal_code + ' ' + address.country;
@@ -98,8 +106,10 @@ package net.poweru.components.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name');
-			roomList.dataProvider = new DataSet();
-			blackoutGrid.dataProvider = new DataSet();
+			grid.dataProvider.filterFunction = filterInactive;
+			roomList.dataProvider = SortedDataSetFactory.singleFieldSort('name');
+			roomList.dataProvider.filterFunction = filterInactive;
+			blackoutGrid.dataProvider = SortedDataSetFactory.singleFieldDateSort('start');
 		}
 	}
 }

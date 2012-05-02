@@ -1,5 +1,6 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.controls.CheckBox;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	
@@ -12,6 +13,10 @@ package net.poweru.components.dialogs.code
 	{
 		public var nameInput:IGeneratedTextInput;
 		public var capacityInput:TextInput;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		protected var pk:Number;
 		
@@ -25,6 +30,8 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			capacityInput.text = '';
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -32,15 +39,23 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 			nameInput.text = data['name'];
 			capacityInput.text = data['capacity'];
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'name' : nameInput.text,
 				'capacity' : capacityInput.text
 			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

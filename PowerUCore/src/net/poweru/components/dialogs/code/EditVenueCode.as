@@ -1,5 +1,6 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.controls.CheckBox;
 	import mx.events.FlexEvent;
 	import mx.validators.Validator;
 	
@@ -15,6 +16,10 @@ package net.poweru.components.dialogs.code
 		public var contactInput:IGeneratedTextInput;
 		public var hoursInput:IGeneratedTextInput;
 		public var addressInput:AddressInput;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		protected var pk:Number;
 		
@@ -31,18 +36,23 @@ package net.poweru.components.dialogs.code
 			contactInput.text = '';
 			hoursInput.text = '';
 			addressInput.clear();
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'name' : nameInput.text,
 				'phone' : phoneInput.text,
 				'contact' : contactInput.text,
 				'hours_of_operation' : hoursInput.text,
 				'address' : addressInput.addressDict
-			}
+			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -53,6 +63,11 @@ package net.poweru.components.dialogs.code
 			contactInput.text = data['contact'];
 			hoursInput.text = data['hours_of_operation'];
 			addressInput.populate(data['address']);
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void

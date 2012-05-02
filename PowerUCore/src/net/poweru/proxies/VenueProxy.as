@@ -11,7 +11,7 @@ package net.poweru.proxies
 	public class VenueProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'VenueProxy';
-		public static const FIELDS:Array = ['address', 'blackout_periods', 'contact', 'hours_of_operation', 'name', 'phone', 'rooms'];
+		public static const FIELDS:Array = ['active', 'address', 'blackout_periods', 'contact', 'hours_of_operation', 'name', 'phone', 'rooms'];
 		
 		public function VenueProxy()
 		{

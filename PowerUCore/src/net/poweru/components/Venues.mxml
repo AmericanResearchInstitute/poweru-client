@@ -3,12 +3,15 @@
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:code="net.poweru.components.code.*"
 	width="100%"
-	height="100%" xmlns:components="com.hillelcoren.components.*">
+	height="100%"
+	xmlns:components="com.hillelcoren.components.*"
+	xmlns:ns="net.poweru.components.item_renderers.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			
 			import net.poweru.Places;
+			import net.poweru.components.item_renderers.AddressListRenderer;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -16,21 +19,23 @@
 		<mx:FormItem label="Search">
 			<components:AutoComplete dataProvider="{grid.dataProvider as ArrayCollection}" labelField="name"/>
 		</mx:FormItem>
-		<mx:AdvancedDataGrid id="grid" width="100%" height="100%" change="onVenueSelected(event)">
+		<mx:DataGrid id="grid" width="100%" height="100%" change="onVenueSelected(event)" rowHeight="36">
 			<mx:columns>
-				<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
-				<mx:AdvancedDataGridColumn id="addressColumn" dataField="address" headerText="Address"/>
+				<mx:DataGridColumn dataField="name" headerText="Name"/>
+				<mx:DataGridColumn id="addressColumn"
+								   dataField="address"
+								   headerText="Address"
+								   itemRenderer="net.poweru.components.item_renderers.AddressListRenderer">
+				</mx:DataGridColumn>
 			</mx:columns>
-			<mx:rendererProviders>
-				<mx:AdvancedDataGridRendererProvider column="{addressColumn}" columnSpan="1" renderer="net.poweru.components.item_renderers.AddressListRenderer"/>
-			</mx:rendererProviders>
-		</mx:AdvancedDataGrid>
+		</mx:DataGrid>
 	</mx:VBox>
 	
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEVENUE, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:CheckBox id="showInactiveInput" label="Show Inactive" change="grid.dataProvider.refresh(); roomList.dataProvider.refresh()"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
 			<mx:Spacer height="4" width="4"/>

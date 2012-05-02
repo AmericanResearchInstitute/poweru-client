@@ -1,11 +1,10 @@
 package net.poweru.components.item_renderers.code
 {
 	import mx.containers.VBox;
-	import mx.controls.listClasses.BaseListData;
 	import mx.controls.listClasses.IDropInListItemRenderer;
-	import mx.controls.listClasses.IListItemRenderer;
+	import mx.core.IFactory;
 	
-	public class AddressListRendererCode extends VBox implements IListItemRenderer
+	public class AddressListRendererCode extends VBox
 	{
 		[Bindable]
 		protected var addressString:String;
