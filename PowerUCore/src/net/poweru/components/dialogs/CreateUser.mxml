@@ -21,7 +21,6 @@
 	<mx:Form defaultButton="{submit}">
 		<mx:FormItem label="Title" width="{firstFormItem.width}">
 			<widgets:TitleComboBox id="titleInput" width="100%"/>
-			<!--<mx:ComboBox id="titleInput" dataProvider="{Constants.HONORIFICS}" editable="true" width="100%"/>-->
 		</mx:FormItem>
 		<mx:FormItem label="First" id="firstFormItem">
 			<User:FirstNameInput id="first"/>

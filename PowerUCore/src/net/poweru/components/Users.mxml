@@ -182,7 +182,7 @@
 				</mx:VBox>
 				<mx:VBox width="100%" id="addToGroup" label="Add to Group" horizontalAlign="center">
 					<mx:Spacer height="12"/>
-					<mx:Button label="Choose Group" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, chooserRequestTracker.getChooserRequest(Places.CHOOSEGROUP)]))"/>
+					<mx:Button label="Choose Group" click="dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CHOOSEGROUP, chooserRequestTracker.getChooserRequest(Places.CHOOSEGROUP, null, null, false)]))"/>
 					
 					<mx:Form width="100%">
 						<mx:FormItem label="Name:">

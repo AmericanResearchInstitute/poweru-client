@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GroupsCode
+<code:GroupsCode
 	xmlns="net.poweru.components.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="100%"
 	height="100%"
-	xmlns:components="com.hillelcoren.components.*">
+	xmlns:components="com.hillelcoren.components.*" xmlns:code="net.poweru.components.vod.code.*">
 	<mx:Script>
 		<![CDATA[
 			import net.poweru.Places;
@@ -65,4 +65,4 @@
 			</mx:VBox>
 		</mx:TitleWindow>
 	</mx:VBox>
-</GroupsCode>
+</code:GroupsCode>

@@ -11,7 +11,7 @@ package net.poweru.proxies
 	public class GroupProxy extends BaseProxy implements IProxy
 	{
 		public static const NAME:String = 'GroupProxy';
-		public static const FIELDS:Array = ['name'];
+		public static const FIELDS:Array = ['active', 'name'];
 		
 		public static const SUPERADMINGROUP:String = 'Super Administrators';
 		public static const CATEGORYMANAGERGROUP:String = 'Category Managers';

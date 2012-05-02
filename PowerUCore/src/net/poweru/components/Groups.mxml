@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GroupsCode
+<BaseActivePopulatedComponentCode
+	sortedFieldName="name"
 	xmlns="net.poweru.components.code.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="100%"
@@ -7,11 +8,13 @@
 	xmlns:components="com.hillelcoren.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import mx.effects.Fade;
 			
 			import net.poweru.Places;
 			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.model.DataSet;
 		]]>
 	</mx:Script>
 	
@@ -25,11 +28,15 @@
 	<mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0"/>
 	<mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0"/>
 
-	<mx:VBox height="100%">
+	<mx:VBox height="100%" width="30%">
 		<mx:FormItem label="Search">
-			<components:AutoComplete dataProvider="{dataProvider}" labelField="name"/>
+			<components:AutoComplete dataProvider="{grid.dataProvider as ArrayCollection}" labelField="name"/>
 		</mx:FormItem>
-		<mx:List id="groupsList" dataProvider="{dataProvider}" labelField="name" height="100%" minWidth="200"/>
+		<mx:DataGrid id="grid" height="100%" width="100%">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Name" dataField="name"/>
+			</mx:columns>
+		</mx:DataGrid>
 	</mx:VBox>
 	<mx:VBox>
 		<mx:HBox>
@@ -37,17 +44,17 @@
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 			<mx:Button label="{groupHelp.visible ? 'Close Help' : 'Help'}"
 				click="{groupHelp.visible = !groupHelp.visible}"/>
-
+			<mx:CheckBox id="showInactiveInput" label="Show Inactive" change="grid.dataProvider.refresh()"/>
 		</mx:HBox>
-		<mx:TitleWindow title="Group Details" id="detailsTW">
+		<mx:TitleWindow title="Group Details" id="detailsTW" minWidth="300">
 			<mx:Spacer width="4" height="4"/>
 			<mx:HBox id="editButtonBox">
 				<mx:Spacer width="4" height="4"/>
-				<mx:Button label="Edit" enabled="{groupsList.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, groupsList.selectedItem.id]))}"/>
+				<mx:Button label="Edit" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITGROUP, grid.selectedItem.id]))}"/>
 			</mx:HBox>
 			<mx:Form>
-				<mx:FormItem label="Group Name:" fontWeight="bold" backgroundColor="#FFFFFF">
-					<mx:Label text="{groupsList.selectedItem.name}"/>
+				<mx:FormItem label="Name:">
+					<mx:Label text="{grid.selectedItem.name}"/>
 				</mx:FormItem>
 			</mx:Form>
 		</mx:TitleWindow>
@@ -64,4 +71,4 @@
 			</mx:VBox>
 		</mx:TitleWindow>
 	</mx:VBox>
-</GroupsCode>
+</BaseActivePopulatedComponentCode>
