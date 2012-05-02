@@ -21,14 +21,15 @@
 		<mx:HBox>
 			<mx:Button label="Add" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENTTEMPLATE, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
+			<mx:CheckBox id="showInactiveInput" label="Show Inactive" change="grid.dataProvider.refresh()"/>
 		</mx:HBox>
 		<mx:Panel width="100%" title="Details" cornerRadius="16" roundedBottomCorners="true">
 			<mx:Spacer height="4" width="4"/>
 			<mx:HBox id="buttonBox">
 				<mx:Spacer height="4" width="4"/>
 				<mx:Button label="Edit" id="editButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EDITEVENTTEMPLATE, grid.selectedItem.id]))}"/>
-				<mx:Button label="Add Session Template" id="addSessionTemplateButton" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSIONTEMPLATE, grid.selectedItem.id]))}"/>
-				<mx:Button label="Create Event" enabled="{grid.selectedItem != null}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENTFROMTEMPLATE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Add Session Template" id="addSessionTemplateButton" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.active != false}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATESESSIONTEMPLATE, grid.selectedItem.id]))}"/>
+				<mx:Button label="Create Event" enabled="{grid.selectedItem != null &amp;&amp; grid.selectedItem.active != false}" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENTFROMTEMPLATE, grid.selectedItem.id]))}"/>
 			</mx:HBox>	
 			<mx:Form>
 				<mx:FormItem label="Title:">

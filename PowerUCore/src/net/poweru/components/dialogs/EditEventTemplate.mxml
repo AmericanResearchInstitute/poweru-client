@@ -7,6 +7,8 @@
 	xmlns:widgets="net.poweru.components.widgets.*">
 	<mx:Script>
 		<![CDATA[
+			import net.poweru.Constants;
+			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
 		]]>
 	</mx:Script>
@@ -23,6 +25,9 @@
 		<mx:FormItem label="Description:">
 			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" />
 		</mx:FormItem>
+		<mx:FormItem id="activeFormItem" label="Active:">
+			<mx:CheckBox id="activeInput" toolTip="{Constants.ACTIVE_CHECKBOX_TOOLTIP}"/>
+		</mx:FormItem>
 	</mx:Form>
 	
 	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" allowNegative="false" domain="int"/>
@@ -31,4 +36,10 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
+	
+	<code:states>
+		<mx:State name="{StateNames.ORG_ADMIN}">
+			<mx:RemoveChild target="{activeFormItem}"/>
+		</mx:State>
+	</code:states>
 </code:EditEventTemplateCode>

@@ -4,6 +4,7 @@ package net.poweru.components.code
 	import mx.collections.SortField;
 	import mx.containers.HBox;
 	import mx.controls.AdvancedDataGrid;
+	import mx.controls.CheckBox;
 	import mx.controls.List;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
@@ -17,9 +18,10 @@ package net.poweru.components.code
 	{
 		[Bindable]
 		public var grid:AdvancedDataGrid;
-		
 		[Bindable]
 		public var sessionTemplateList:List;
+		[Bindable]
+		public var showInactiveInput:CheckBox;
 		
 		public function EventTemplatesCode()
 		{
@@ -63,14 +65,22 @@ package net.poweru.components.code
 				currentData.mergeData(data);
 				sessionTemplateList.dataProvider.source = currentData.toArray();
 				sessionTemplateList.dataProvider.refresh();
-			}
-			
+			}	
+		}
+		
+		protected function filterInactive(item:Object):Boolean
+		{
+			if (showInactiveInput != null && showInactiveInput.selected == true)
+				return true;
+			else
+				return !(item.hasOwnProperty('active') && item.active == false);
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			grid.dataProvider = SortedDataSetFactory.singleFieldSort('name_prefix');
+			grid.dataProvider.filterFunction = filterInactive;
 			sessionTemplateList.dataProvider = new DataSet();
 			var sort:Sort = new Sort();
 			sort.fields = [new SortField('sequence', false, false, true)];

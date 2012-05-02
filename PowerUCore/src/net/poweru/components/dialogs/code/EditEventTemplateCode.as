@@ -1,5 +1,6 @@
 package net.poweru.components.dialogs.code
 {
+	import mx.controls.CheckBox;
 	import mx.controls.TextArea;
 	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
@@ -18,6 +19,10 @@ package net.poweru.components.dialogs.code
 		public var descriptionInput:TextArea;
 		
 		public var leadTimeInputValidator:NumberValidator;
+		[Bindable]
+		public var activeInput:CheckBox;
+		
+		protected var activeInputWasPopulated:Boolean;
 		
 		protected var pk:Number;
 		
@@ -34,6 +39,8 @@ package net.poweru.components.dialogs.code
 			namePrefixInput.text = '';
 			leadTimeInput.text = '';
 			descriptionInput.text = '';
+			activeInput.selected = true;
+			activeInputWasPopulated = false;
 		}
 		
 		public function populate(data:Object, ...args):void
@@ -43,17 +50,25 @@ package net.poweru.components.dialogs.code
 			namePrefixInput.text = data['name_prefix'];
 			leadTimeInput.text = data['lead_time'];
 			descriptionInput.text = data['description'];
+			if (data.hasOwnProperty('active'))
+			{
+				activeInput.selected = data['active'];
+				activeInputWasPopulated = true;
+			}
 		}
 		
 		override public function getData():Object
 		{
-			return {
+			var ret:Object = {
 				'id' : pk,
 				'title' : titleInput.text,
 				'name_prefix' : namePrefixInput.text,
 				'lead_time' : leadTimeInput.text,
 				'description' : descriptionInput.text
 			};
+			if (activeInputWasPopulated)
+				ret['active'] = activeInput.selected;
+			return ret;
 		}
 		
 		protected function onCreationComplete(event:FlexEvent):void
