@@ -544,6 +544,10 @@
     <classEntry path="net.poweru.utils.RemoteObjectFactory"/>
     <classEntry path="net.poweru.utils.SortCompareFunctionFactory"/>
     <classEntry path="net.poweru.utils.SortedDataSetFactory"/>
+    <classEntry path="net.poweru.components.dialogs.code.CreateEventWizardCode"/>
+    <classEntry path="net.poweru.components.dialogs.CreateEventWizard"/>
+    <classEntry path="net.poweru.presenters.CreateEventWizardMediator"/>
+    <classEntry path="net.poweru.components.interfaces.ICreateEventWizard"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

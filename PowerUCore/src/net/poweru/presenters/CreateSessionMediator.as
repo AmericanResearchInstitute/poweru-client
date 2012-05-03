@@ -1,5 +1,7 @@
 package net.poweru.presenters
 {
+	import mx.events.FlexEvent;
+	
 	import net.poweru.ApplicationFacade;
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
@@ -17,6 +19,7 @@ package net.poweru.presenters
 		
 		protected var initialDataProxy:InitialDataProxy;
 		protected var eventProxy:EventProxy;
+		protected var queuedData:Object;
 		
 		public function CreateSessionMediator(viewComponent:Object)
 		{
@@ -32,10 +35,10 @@ package net.poweru.presenters
 		
 		override public function listNotificationInterests():Array
 		{
-			var ret:Array = super.listNotificationInterests();
-			ret.push(NotificationNames.DIALOGPRESENTED);
-			ret.push(NotificationNames.RECEIVEDONE);
-			return ret;
+			return super.listNotificationInterests().concat(
+				NotificationNames.DIALOGPRESENTED,
+				NotificationNames.RECEIVEDONE
+			);
 		}
 		
 		protected function get createSessionDialog():ICreateSession
@@ -54,7 +57,15 @@ package net.poweru.presenters
 				
 				case NotificationNames.RECEIVEDONE:
 					if (notification.getType() == EventProxy.NAME)
-						createSessionDialog.populateEventData(notification.getBody());
+					{
+						if (createSessionDialog.creationIsComplete == false)
+						{
+							queuedData = notification.getBody();
+							displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onDialogCreationComplete);
+						}
+						else
+							createSessionDialog.populateEventData(notification.getBody());
+					}	
 					break;
 				
 				default:
@@ -65,6 +76,13 @@ package net.poweru.presenters
 		override protected function populate():void
 		{
 			eventProxy.findByPK(initialDataProxy.getInitialData(Places.CREATESESSION) as Number);
+		}
+		
+		private function onDialogCreationComplete(event:FlexEvent):void
+		{
+			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			createSessionDialog.populateEventData(queuedData);
+			queuedData = null;
 		}
 	}
 }

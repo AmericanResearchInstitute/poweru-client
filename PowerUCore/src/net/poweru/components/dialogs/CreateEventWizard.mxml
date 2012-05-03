@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code:CreateEventWizardCode
+	minWidth="300"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="net.poweru.components.dialogs.code.*">
+	<mx:VBox width="{dialogSpace.width}" horizontalAlign="center">
+		<mx:Text width="100%" id="helpText" text="{HELP_BEGIN}"/>
+	</mx:VBox>
+	<mx:VBox id="dialogSpace" width="100%" height="100%" horizontalAlign="center">
+		<mx:Button id="beginButton" label="Begin"/>
+	</mx:VBox>
+</code:CreateEventWizardCode>

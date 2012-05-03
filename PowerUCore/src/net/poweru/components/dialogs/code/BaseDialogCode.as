@@ -2,6 +2,7 @@ package net.poweru.components.dialogs.code
 {
 	import mx.containers.TitleWindow;
 	import mx.events.CloseEvent;
+	import mx.events.FlexEvent;
 	import mx.events.ResizeEvent;
 	import mx.managers.PopUpManager;
 	
@@ -9,6 +10,8 @@ package net.poweru.components.dialogs.code
 	
 	public class BaseDialogCode extends TitleWindow
 	{
+		protected var _creationIsComplete:Boolean = false;
+		
 		public function BaseDialogCode()
 		{
 			super();
@@ -19,6 +22,12 @@ package net.poweru.components.dialogs.code
 		{
 			addEventListener(ResizeEvent.RESIZE, onResize);
 			addEventListener(CloseEvent.CLOSE, onClose);
+			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+		}
+		
+		public function get creationIsComplete():Boolean
+		{
+			return _creationIsComplete;
 		}
 		
 		public function setState(state:String):void
@@ -38,11 +47,21 @@ package net.poweru.components.dialogs.code
 			maxHeight = stage.stageHeight - 20;
 		}
 		
+		private function onCreationComplete(event:FlexEvent):void
+		{
+			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			_creationIsComplete = true;
+		}
+		
 		protected function onResize(event:ResizeEvent):void
 		{
-			limitSize();
-			validateNow();
-			PopUpManager.centerPopUp(this);
+			event.stopImmediatePropagation();
+			if (isPopUp)
+			{
+				limitSize();
+				validateNow();
+				PopUpManager.centerPopUp(this);
+			}
 		}
 		
 		protected function onClose(event:CloseEvent):void

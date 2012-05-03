@@ -2,6 +2,8 @@ package net.poweru.presenters
 {
 	import flash.events.Event;
 	
+	import mx.events.FlexEvent;
+	
 	import net.poweru.NotificationNames;
 	import net.poweru.Places;
 	import net.poweru.model.DataSet;
@@ -87,7 +89,16 @@ package net.poweru.presenters
 		
 		protected function onInputsCollected(event:Event):void
 		{
-			var inputCollector:InputCollector = event.target as InputCollector;
+			if (editDialog.creationIsComplete)
+				editDialog.populate(inputCollector.object['session'], inputCollector.object['event']);
+			else
+				// defer populating until its creation is complete
+				displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onDialogCreationComplete);
+		}
+		
+		private function onDialogCreationComplete(event:FlexEvent):void
+		{
+			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onDialogCreationComplete);
 			editDialog.populate(inputCollector.object['session'], inputCollector.object['event']);
 		}
 	}

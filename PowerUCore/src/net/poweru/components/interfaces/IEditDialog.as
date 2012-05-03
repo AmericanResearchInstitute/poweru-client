@@ -19,5 +19,7 @@ package net.poweru.components.interfaces
 		function setChoices(choices:Object):void;
 		
 		function setState(state:String):void;
+		
+		function get creationIsComplete():Boolean;
 	}
 }

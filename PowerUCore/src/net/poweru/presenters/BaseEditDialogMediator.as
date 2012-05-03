@@ -15,6 +15,7 @@ package net.poweru.presenters
 	{
 		protected var initialDataProxy:InitialDataProxy;
 		protected var placeName:String;
+		protected var queuedData:Object;
 		
 		// placeName is the name associated with this dialog
 		public function BaseEditDialogMediator(mediatorName:String, viewComponent:Object, primaryProxyClass:Class, placeName:String)
@@ -129,7 +130,21 @@ package net.poweru.presenters
 			This only gets called if the sending proxy matched out primaryProxy. */
 		protected function onReceivedOne(notification:INotification):void
 		{
-			editDialog.populate(notification.getBody() as Object);
+			if (editDialog.creationIsComplete)
+				editDialog.populate(notification.getBody() as Object);
+			else
+			{
+				// defer populating until its creation is complete
+				queuedData = notification.getBody();
+				displayObject.addEventListener(FlexEvent.CREATION_COMPLETE, onDialogCreationComplete);
+			}
+		}
+		
+		private function onDialogCreationComplete(event:FlexEvent):void
+		{
+			displayObject.removeEventListener(FlexEvent.CREATION_COMPLETE, onDialogCreationComplete);
+			editDialog.populate(queuedData);
+			queuedData = null;
 		}
 		
 	}

@@ -5,5 +5,6 @@ package net.poweru.components.interfaces
 		/*	This dialog will need some data from its event, and that will
 			be passed in through this method. */
 		function populateEventData(data:Object):void;
+		function get creationIsComplete():Boolean;
 	}
 }

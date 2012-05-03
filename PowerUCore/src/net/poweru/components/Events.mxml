@@ -25,6 +25,7 @@
 	<mx:VBox width="35%" height="100%">
 		<mx:HBox>
 			<mx:Button label="Add" id="addButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENT, '']))}"/>
+			<mx:Button label="Wizard" id="wizardButton" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.CREATEEVENTWIZARD, '']))}"/>
 			<mx:Button label="Refresh" click="{dispatchEvent(new ViewEvent(ViewEvent.REFRESH))}"/>
 			<mx:Button label="Session Calendar" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.EVENTCALENDAR, '']))}"/>
 			<mx:Button label="Enrollment Calendar" click="{dispatchEvent(new ViewEvent(ViewEvent.SHOWDIALOG, [Places.ORGENROLLEDSESSIONS, '']))}"/>
@@ -79,6 +80,7 @@
 			<mx:RemoveChild target="{addSessionButton}"/>
 			<mx:RemoveChild target="{editSessionButton}"/>
 			<mx:RemoveChild target="{emailButton}"/>
+			<mx:RemoveChild target="{wizardButton}"/>
 		</mx:State>
 		<mx:State name="{StateNames.ADMIN_ASSISTANT}" basedOn="{StateNames.SERV_DEALER_ADMIN}"/>
 	</code:states>

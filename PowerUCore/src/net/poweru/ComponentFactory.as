@@ -40,6 +40,7 @@ package net.poweru
 	import net.poweru.components.dialogs.CreateEvent;
 	import net.poweru.components.dialogs.CreateEventFromTemplate;
 	import net.poweru.components.dialogs.CreateEventTemplate;
+	import net.poweru.components.dialogs.CreateEventWizard;
 	import net.poweru.components.dialogs.CreateExam;
 	import net.poweru.components.dialogs.CreateExamFromXML;
 	import net.poweru.components.dialogs.CreateGroup;
@@ -140,6 +141,7 @@ package net.poweru
 	import net.poweru.presenters.CreateEventFromTemplateMediator;
 	import net.poweru.presenters.CreateEventMediator;
 	import net.poweru.presenters.CreateEventTemplateMediator;
+	import net.poweru.presenters.CreateEventWizardMediator;
 	import net.poweru.presenters.CreateExamFromXMLMediator;
 	import net.poweru.presenters.CreateExamMediator;
 	import net.poweru.presenters.CreateGroupMediator;
@@ -352,6 +354,10 @@ package net.poweru
 				
 				case Places.CREATEEVENTTEMPLATE:
 					component = getOrCreate(name, CreateEventTemplate, CreateEventTemplateMediator);
+					break;
+				
+				case Places.CREATEEVENTWIZARD:
+					component = getOrCreate(name, CreateEventWizard, CreateEventWizardMediator);
 					break;
 				
 				case Places.CREATEEXAM:
