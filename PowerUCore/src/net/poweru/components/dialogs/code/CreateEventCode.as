@@ -4,14 +4,13 @@ package net.poweru.components.dialogs.code
 	
 	import mx.controls.DateField;
 	import mx.controls.TextArea;
-	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
-	import mx.validators.NumberValidator;
 	import mx.validators.Validator;
 	
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.model.Event.NameInput;
 	import net.poweru.generated.model.Event.TitleInput;
 	import net.poweru.model.ChooserResult;
@@ -20,7 +19,7 @@ package net.poweru.components.dialogs.code
 	{
 		public var nameInput:NameInput;
 		public var titleInput:TitleInput;
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		[Bindable]
 		public var startInput:DateField;
 		[Bindable]
@@ -42,7 +41,7 @@ package net.poweru.components.dialogs.code
 			return {
 				'name' : nameInput.text,
 				'title' : titleInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'description' : descriptionInput.text,
 				'start' : startInput.selectedDate,
 				'end' : endInput.selectedDate,
@@ -54,7 +53,7 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			titleInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			descriptionInput.text = '';
 			startInput.selectedDate = null;
 			endInput.selectedDate = null;
@@ -67,6 +66,7 @@ package net.poweru.components.dialogs.code
 			focusManager.setFocus(nameInput);
 			
 			validators = [
+				leadTimeInput.validator,
 				nameInput.validator,
 				titleInput.validator,
 			];

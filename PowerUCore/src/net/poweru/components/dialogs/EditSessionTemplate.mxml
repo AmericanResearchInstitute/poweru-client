@@ -17,8 +17,8 @@
 		<mx:FormItem label="Full Name">
 			<SessionTemplate:FullnameInput id="fullNameInput"/>
 		</mx:FormItem>
-		<mx:FormItem label="Reminder Lead Time">
-			<mx:TextInput id="leadTimeInput" />
+		<mx:FormItem label="Reminder Lead Time" required="true">
+			<widgets:LeadTimeInput id="leadTimeInput" required="true"/>
 		</mx:FormItem>
 		<mx:FormItem label="Sequence">
 			<mx:TextInput id="sequenceInput" />

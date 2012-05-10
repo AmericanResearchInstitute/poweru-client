@@ -548,6 +548,8 @@
     <classEntry path="net.poweru.components.dialogs.CreateEventWizard"/>
     <classEntry path="net.poweru.presenters.CreateEventWizardMediator"/>
     <classEntry path="net.poweru.components.interfaces.ICreateEventWizard"/>
+    <classEntry path="net.poweru.components.widgets.code.LeadTimeInputCode"/>
+    <classEntry path="net.poweru.components.widgets.LeadTimeInput"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

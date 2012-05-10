@@ -9,6 +9,7 @@
 			import net.poweru.Places;
 			import net.poweru.StateNames;
 			import net.poweru.events.ViewEvent;
+			import net.poweru.utils.LabelFunctions;
 		]]>
 	</mx:Script>
 	<mx:AdvancedDataGrid id="grid" width="65%" height="100%" change="onEventSelected(event)">
@@ -51,7 +52,7 @@
 					<mx:Label text="{(grid.selectedItem.end as Date).toDateString()}"/>
 				</mx:FormItem>
 				<mx:FormItem label="Reminder Lead Time:">
-					<mx:Label text="{grid.selectedItem.lead_time}" />
+					<mx:Label text="{LabelFunctions.formatLeadTime(grid.selectedItem.lead_time as Number)}" />
 				</mx:FormItem>
 				<mx:FormItem label="Organization:">
 					<mx:Label text="{grid.selectedItem.organization.name}"/>

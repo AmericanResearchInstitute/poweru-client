@@ -33,7 +33,7 @@
 			<yahoo:TimeInput id="endTimeInput" showSeconds="{false}"/>
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time" required="true">
-			<mx:TextInput id="leadTimeInput" />
+			<widgets:LeadTimeInput id="leadTimeInput" required="true"/>
 		</mx:FormItem>
 		<mx:FormItem label="URL">
 			<Session:UrlInput id="urlInput"/>
@@ -65,7 +65,6 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="clear(); dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-	<mx:NumberValidator id="leadTimeInputValidator" source="{leadTimeInput}" property="text" required="true" allowNegative="false" domain="int"/>
 	<mx:DateValidator id="startDateValidator" source="{startDateInput}" property="selectedDate" required="true" validateAsString="false"/>
 	<mx:DateValidator id="endDateValidator" source="{endDateInput}" property="selectedDate" required="true" validateAsString="false"/>
 	<validators:URLValidator id="urlValidator" source="{urlInput}" property="text" required="false"/>

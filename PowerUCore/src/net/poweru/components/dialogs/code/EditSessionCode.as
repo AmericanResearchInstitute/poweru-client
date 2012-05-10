@@ -8,7 +8,6 @@ package net.poweru.components.dialogs.code
 	import mx.controls.DataGrid;
 	import mx.controls.DateField;
 	import mx.controls.TextArea;
-	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	import mx.validators.DateValidator;
 	import mx.validators.NumberValidator;
@@ -17,6 +16,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
 	import net.poweru.components.validators.URLValidator;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;
 	import net.poweru.model.DataSet;
@@ -35,7 +35,7 @@ package net.poweru.components.dialogs.code
 		public var endDateInput:DateField;
 		public var endTimeInput:TimeInput;
 		[Bindable]
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		[Bindable]
 		public var urlInput:IGeneratedTextInput;
 		public var descriptionInput:TextArea;
@@ -50,7 +50,6 @@ package net.poweru.components.dialogs.code
 		[Bindable]
 		protected var chosenRoom:Object;
 		
-		public var leadTimeInputValidator:NumberValidator;
 		public var startDateValidator:DateValidator;
 		public var endDateValidator:DateValidator;
 		public var urlValidator:URLValidator;
@@ -68,7 +67,7 @@ package net.poweru.components.dialogs.code
 			shortNameInput.text = '';
 			fullNameInput.text = '';
 			titleInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			descriptionInput.text = '';
 			startDateInput.selectedDate = null;
 			startTimeInput.value = new Date();
@@ -90,7 +89,7 @@ package net.poweru.components.dialogs.code
 			updateControlIfUnchanged(titleInput, 'text', data['title']);
 			updateControlIfUnchanged(urlInput, 'text', data['url']);
 			updateControlIfUnchanged(descriptionInput, 'text', data['description']);
-			updateControlIfUnchanged(leadTimeInput, 'text', data['lead_time']);
+			updateControlIfUnchanged(leadTimeInput, 'seconds', data['lead_time']);
 			
 			updateControlIfUnchanged(startDateInput, 'selectedDate', new Date((data['start'] as Date).time));
 			updateControlIfUnchanged(startTimeInput, 'value', new Date((data['start'] as Date).time));
@@ -123,7 +122,7 @@ package net.poweru.components.dialogs.code
 				'shortname' : shortNameInput.text,
 				'fullname' : fullNameInput.text,
 				'title' : titleInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'url' : urlInput.text,
 				'description' : descriptionInput.text,
 				'start' : new Date(
@@ -199,7 +198,7 @@ package net.poweru.components.dialogs.code
 			roles.dataProvider = new DataSet();
 			validators = [
 				endDateValidator,
-				leadTimeInputValidator,
+				leadTimeInput.validator,
 				shortNameInput.validator,
 				startDateValidator,
 				fullNameInput.validator,

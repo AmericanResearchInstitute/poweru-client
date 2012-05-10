@@ -18,7 +18,7 @@
 			<EventTemplate:NamePrefixInput id="namePrefixInput" />
 		</mx:FormItem>
 		<mx:FormItem label="Reminder Lead Time:" required="true">
-			<mx:TextInput id="leadTimeInput" />
+			<widgets:LeadTimeInput id="leadTimeInput" required="true"/>
 		</mx:FormItem>
 		<mx:FormItem label="Description:">
 			<widgets:ResizingTextArea minWidth="300" id="descriptionInput" />
@@ -28,7 +28,4 @@
 		<mx:Button id="submit" label="Submit" click="onValidatedSubmit(event)"/>
 		<mx:Button label="Cancel" click="dispatchEvent(new ViewEvent(ViewEvent.CANCEL))"/>
 	</mx:HBox>
-	<code:validators>
-		<mx:NumberValidator source="{leadTimeInput}" property="text" required="true" domain="int" allowNegative="false"/>
-	</code:validators>
 </code:CreateEventTemplateCode>

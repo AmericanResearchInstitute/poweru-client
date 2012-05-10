@@ -6,13 +6,14 @@ package net.poweru.components.dialogs.code
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditSessionTemplateCode extends BaseCRUDDialog implements IEditDialog
 	{
 		public var shortNameInput:IGeneratedTextInput;
 		public var fullNameInput:IGeneratedTextInput;
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		public var sequenceInput:TextInput;
 		public var descriptionInput:TextArea;
 		
@@ -28,7 +29,7 @@ package net.poweru.components.dialogs.code
 		{
 			shortNameInput.text = '';
 			fullNameInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			sequenceInput.text = '';
 			descriptionInput.text = '';
 		}
@@ -39,7 +40,7 @@ package net.poweru.components.dialogs.code
 			
 			shortNameInput.text = data['shortname'];
 			fullNameInput.text = data['fullname'];
-			leadTimeInput.text = data['lead_time'];
+			leadTimeInput.seconds = data['lead_time'];
 			sequenceInput.text = data['sequence'];
 			descriptionInput.text = data['description'];
 		}
@@ -50,7 +51,7 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'shortname' : shortNameInput.text,
 				'fullname' : fullNameInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'description' : descriptionInput.text,
 				'sequence' : sequenceInput.text
 			};
@@ -60,6 +61,7 @@ package net.poweru.components.dialogs.code
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			validators = [
+				leadTimeInput.validator,
 				shortNameInput.validator,
 				fullNameInput.validator
 			];

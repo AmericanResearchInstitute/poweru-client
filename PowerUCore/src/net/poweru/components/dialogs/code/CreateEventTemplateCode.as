@@ -1,11 +1,11 @@
 package net.poweru.components.dialogs.code
 {
 	import mx.controls.TextArea;
-	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.ICreateDialog;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.model.EventTemplate.NamePrefixInput;
 	import net.poweru.generated.model.EventTemplate.TitleInput;
 	
@@ -14,7 +14,7 @@ package net.poweru.components.dialogs.code
 		public var titleInput:TitleInput;
 		public var namePrefixInput:NamePrefixInput;
 		[Bindable]
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		public var descriptionInput:TextArea;
 		
 		public function CreateEventTemplateCode()
@@ -28,7 +28,7 @@ package net.poweru.components.dialogs.code
 			return {
 				'title' : titleInput.text,
 				'name_prefix' : namePrefixInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'description' : descriptionInput.text
 			};
 		}
@@ -36,17 +36,18 @@ package net.poweru.components.dialogs.code
 		protected function onCreationComplete(event:FlexEvent):void
 		{
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			validators = validators.concat(
+			validators = [
+				leadTimeInput.validator,
 				titleInput.validator,
 				namePrefixInput.validator
-			);
+			];
 		}
 		
 		override public function clear():void
 		{
 			titleInput.text = '';
 			namePrefixInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			descriptionInput.text = '';
 		}
 	}

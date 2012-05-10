@@ -11,6 +11,7 @@ package net.poweru.components.dialogs.code
 	import net.poweru.Places;
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	import net.poweru.model.ChooserResult;
 	
@@ -18,7 +19,7 @@ package net.poweru.components.dialogs.code
 	{
 		public var nameInput:IGeneratedTextInput;
 		public var titleInput:IGeneratedTextInput;
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		[Bindable]
 		public var startInput:DateField;
 		[Bindable]
@@ -40,7 +41,7 @@ package net.poweru.components.dialogs.code
 		{
 			nameInput.text = '';
 			titleInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			descriptionInput.text = '';
 			startInput.selectedDate = null;
 			endInput.selectedDate = null;
@@ -52,7 +53,7 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 			nameInput.text = data['name'];
 			titleInput.text = data['title'];
-			leadTimeInput.text = data['lead_time'];
+			leadTimeInput.seconds = data['lead_time'];
 			descriptionInput.text = data['description'];
 			startInput.selectedDate = data['start'];
 			endInput.selectedDate = data['end'];
@@ -67,7 +68,7 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'name' : nameInput.text,
 				'title' : titleInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'description' : descriptionInput.text,
 				'start' : startInput.selectedDate,
 				'end' : endInput.selectedDate,
@@ -104,6 +105,7 @@ package net.poweru.components.dialogs.code
 			focusManager.setFocus(nameInput);
 			
 			validators = [
+				leadTimeInput.validator,
 				nameInput.validator,
 				titleInput.validator,
 			];

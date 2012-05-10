@@ -2,12 +2,12 @@ package net.poweru.components.dialogs.code
 {
 	import mx.controls.CheckBox;
 	import mx.controls.TextArea;
-	import mx.controls.TextInput;
 	import mx.events.FlexEvent;
 	import mx.validators.NumberValidator;
 	
 	import net.poweru.components.dialogs.BaseCRUDDialog;
 	import net.poweru.components.interfaces.IEditDialog;
+	import net.poweru.components.widgets.LeadTimeInput;
 	import net.poweru.generated.interfaces.IGeneratedTextInput;
 	
 	public class EditEventTemplateCode extends BaseCRUDDialog implements IEditDialog
@@ -15,10 +15,9 @@ package net.poweru.components.dialogs.code
 		public var titleInput:IGeneratedTextInput;
 		public var namePrefixInput:IGeneratedTextInput;
 		[Bindable]
-		public var leadTimeInput:TextInput;
+		public var leadTimeInput:LeadTimeInput;
 		public var descriptionInput:TextArea;
 		
-		public var leadTimeInputValidator:NumberValidator;
 		[Bindable]
 		public var activeInput:CheckBox;
 		
@@ -37,7 +36,7 @@ package net.poweru.components.dialogs.code
 			pk = 0;
 			titleInput.text = '';
 			namePrefixInput.text = '';
-			leadTimeInput.text = '';
+			leadTimeInput.clear();
 			descriptionInput.text = '';
 			activeInput.selected = true;
 			activeInputWasPopulated = false;
@@ -48,7 +47,7 @@ package net.poweru.components.dialogs.code
 			pk = data['id'];
 			titleInput.text = data['title'];
 			namePrefixInput.text = data['name_prefix'];
-			leadTimeInput.text = data['lead_time'];
+			leadTimeInput.seconds = data['lead_time'];
 			descriptionInput.text = data['description'];
 			if (data.hasOwnProperty('active'))
 			{
@@ -63,7 +62,7 @@ package net.poweru.components.dialogs.code
 				'id' : pk,
 				'title' : titleInput.text,
 				'name_prefix' : namePrefixInput.text,
-				'lead_time' : leadTimeInput.text,
+				'lead_time' : leadTimeInput.seconds,
 				'description' : descriptionInput.text
 			};
 			if (activeInputWasPopulated)
@@ -78,7 +77,7 @@ package net.poweru.components.dialogs.code
 			validators = [
 				titleInput.validator,
 				namePrefixInput.validator,
-				leadTimeInputValidator
+				leadTimeInput.validator
 			];
 		}
 	}
